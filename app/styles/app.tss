@@ -149,14 +149,19 @@ overrode the settings with other TSS, XML, or JS settings:
 
 "Window": {
 	backgroundColor: '#FFFFFF',
- 	 top: "3dp", 
-	right: "3dp", 
-	bottom: "3dp", 
-	left: "3dp"
 }
 
 ".greycliffbold": {
 	  font: {
 			fontFamily: 'GreycliffCF-Bold'
   	}
+}
+
+"#activityindicator": {
+style: Ti.UI.ActivityIndicatorStyle.DARK,
+  top: 10,
+  left: 10,
+  height: Ti.UI.SIZE,
+  width: Ti.UI.SIZE
+
 }

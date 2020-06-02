@@ -1,10 +1,13 @@
 <Alloy>
-	<Window title="Home WLM Italia" class="vertical">
-			
+	<Window title="Mappa" class="vertical">
+				
 	<Module id="mapview" module="ti.map" method="createView"></Module>
 		<View>
-				    <ActivityIndicator id="activityIndicator" message="Caricamento..."/>
+				    <ActivityIndicator id="activityIndicator"/>
 		</View>
 
+	<View id="errorlabel">
+		<Label text="Impossibile localizzarti, non hai dato il permesso alla localizzazione. Cerca una città cliccando sulla lente di ingrandimento oppure abilita la localizzazione dalle impostazioni sulla privacy." />
+	</View>
 	</Window>
 </Alloy>

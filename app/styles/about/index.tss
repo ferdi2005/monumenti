@@ -2,3 +2,10 @@
 ".container" : {
   
 }
+
+"Window": {
+    top: "5dp",
+    bottom: "5dp",
+    left: "5dp",
+    right: "5dp"
+}
