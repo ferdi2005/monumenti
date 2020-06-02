@@ -1,0 +1,10 @@
+<Alloy>
+	<Window title="Home WLM Italia" class="vertical">
+			
+	<Module id="mapview" module="ti.map" method="createView"></Module>
+		<View>
+				    <ActivityIndicator id="activityIndicator" message="Caricamento..."/>
+		</View>
+
+	</Window>
+</Alloy>

@@ -1,0 +1,28 @@
+".container": {
+	backgroundColor:"white"
+}
+
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "#000"
+}
+
+"#label": {
+	font: {
+		fontSize: 12
+	}
+}
+
+".container": {
+    backgroundColor: "white"
+}
+
+"#view_map" : {
+	region: {
+		latitude: 52.52001,
+		longitude: 13.40495,
+		latitudeDelta: 1,
+		longitudeDelta: 1
+	}
+}

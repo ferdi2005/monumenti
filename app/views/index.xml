@@ -1,0 +1,12 @@
+<Alloy>
+<TabGroup id="index">
+		<Tab title="Home" icon="/images/house.png">
+			<Require type="view" src="home/index" />
+		</Tab>
+
+		<Tab title="Info" icon="/images/find.png">
+			<Require type="view" src="about/index" />
+		</Tab> 
+</TabGroup>
+
+</Alloy>

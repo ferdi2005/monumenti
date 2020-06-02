@@ -1,0 +1,90 @@
+<h1>ActionBarExtras - Documentation</h1>
+
+<h2>Content</h2>
+
+<ul><li><a href="#1-instalation">1. Installation</a></li><li><a href="#2-properties">2. Properties</a></li><li><a href="#3-methods">3. Methods</a></li><li><a href="#4-dropdown">4. Dropdown</a></li><li><a href="#5-searchview">5. SearchView</a></li></ul>
+
+<h2>1. Installation</h2>
+
+<h4>Get it <a href="http://gitt.io/component/com.alcoapps.actionbarextras"><img alt="gitTio" src="http://gitt.io/badge.png"/></a></h4>
+
+<p>Download the latest distribution ZIP-file and consult the <a href="http://docs.appcelerator.com/titanium/latest/#!/guide/Using_a_Module">Titanium Documentation</a> on how install it, or simply use the <a href="http://gitt.io/cli">gitTio CLI</a>:</p>
+
+<h5><code>$ gittio install com.alcoapps.actionbarextras</code></h5>
+
+<h4>Using it</h4>
+
+<p>Please make sure that your window is open before you access the actionbar.</p>
+
+<p><code>javascript
+var abextras = require(&#39;com.alcoapps.actionbarextras&#39;);
+</code></p>
+
+<h2>2. Properties</h2>
+
+<ul><li><p><code>title</code> <em>(String)</em> - sets the Actionbar title</p><ul><li><p>instead of a String, you can also pass an Object with these properties:</p><ul><li>text <em>(String)</em></li><li>font <em>(String | Object)</em></li><li><p>color <em>(String)</em></p></li></ul></li></ul></li><li><p><code>subtitle</code> <em>(String)</em> - sets the Actionbar subtitle</p><ul><li><p>instead of a String, you can also pass an Object with these properties:</p><ul><li>text <em>(String)</em></li><li>font <em>(String | Object)</em></li><li><p>color <em>(String)</em></p></li></ul></li></ul></li><li><p><code>backgroundColor</code> <em>(String)</em> - sets the Actionbar backgroundColor (Only used for the primary action bar. If you use a split action bar, you should go for a theme to set the color)</p></li><li><p><code>titleFont</code> <em>(String | Object)</em> - sets the Actionbar title font</p></li><li><p><code>subtitleFont</code> <em>(String | Object)</em> - sets the Actionbar subtitle font</p></li><li><p><code>titleColor</code> <em>(String)</em> - sets the Actionbar title color</p></li><li><p><code>subtitleColor</code> <em>(String)</em> - sets the Actionbar subtitle color</p></li><li><p><code>disableIcon</code> <em>(Boolean)</em> - disables / enables the Actionbar icon</p></li><li><p><code>homeAsUpIcon</code> <em>(String)</em> - sets the homeAsUp icon</p></li><li><p><code>window</code> <em>(Ti.UI.Window)</em> - Sets a reference to a window. By default, ActionbarExtras will use
+                          the current window, but you may want to define a specific reference.</p></li><li><p><code>actionbarHeight</code> <em>(Number)</em> - returns the height of the Actionbar as absolute pixels</p></li><li><p><code>statusbarColor</code> <em>(String)</em> - sets the Color of the status bar</p></li><li><p><code>navigationbarColor</code> <em>(String)</em> - sets the Color of the navigation bar</p></li><li><p><code>elevation</code> <em>(Number)</em> - sets the Elevation of the Actionbar (in dp)</p></li><li><p><code>upColor</code> <em>(String)</em> - sets the color of the up icon</p></li><li><p><code>displayShowHomeEnabled</code> <em>(Boolean)</em> - Set whether to include the application home affordance in the action bar.</p></li><li><p><code>displayShowTitleEnabled</code> <em>(Boolean)</em> - Set whether an activity title/subtitle should be displayed.</p></li><li><p><code>displayUseLogoEnabled</code> <em>(Boolean)</em> - Set whether to display the activity logo rather than the activity icon.</p></li></ul>
+
+<h2>3. Methods</h2>
+
+<ul><li><p><code>setTitle( arg )</code>  - sets the <code>title</code> property</p><ul><li><p>arg <em>(Object | String)</em> - title</p></li></ul></li><li><p><code>setSubtitle( arg )</code>  - sets <code>subtitle</code> property</p><ul><li><p>arg <em>(Object | String)</em> - subtitle</p></li></ul></li><li><p><code>setBackgroundColor( arg )</code> - sets the <code>backgroundColor</code> property</p><ul><li><p>arg <em>(String)</em> - color</p></li></ul></li><li><p><code>setTitleFont( arg )</code> - sets the <code>titleFont</code> property</p><ul><li><p>arg <em>(String | Object)</em> - font</p></li></ul></li><li><p><code>setSubtitleFont( arg )</code> - sets the <code>subtitleFont</code> property</p><ul><li><p>arg <em>(String | Object)</em> - font</p></li></ul></li><li><p><code>setTitleColor( arg )</code> - sets the <code>titleColor</code> property</p><ul><li><p>arg <em>(String)</em> - color</p></li></ul></li><li><p><code>setSubtitleColor( arg )</code> - sets the <code>subtitleColor</code> property</p><ul><li><p>arg <em>(String)</em> - color</p></li></ul></li><li><p><code>setDisableIcon( arg )</code> - sets the <code>disableIcon</code> property</p><ul><li><p>arg <em>(Boolean)</em> (optional) - enabled / disabled</p></li></ul></li><li><p><code>setHomeAsUpIcon( arg )</code> - sets the <code>homeAsUpIcon</code> property</p><ul><li><p>arg <em>(String)</em> - Url to the icon</p></li></ul></li><li><p><code>hideLogo( )</code> - hides the logo</p></li><li><p><code>setColor( arg )</code> - sets the color of title and subtitle</p><ul><li><p>arg <em>(String)</em> - color</p></li></ul></li><li><p><code>setFont( arg )</code> - sets the font of title and subtitle</p><ul><li><p>arg <em>(String)</em> - color</p></li></ul></li><li><p><code>setWindow( arg )</code> - sets the window property</p><ul><li><p>arg <em>(Ti.UI.Window)</em> - window</p></li></ul></li><li><p><code>setLogo( arg )</code> - sets a custom logo based on a font</p><ul><li><p>args <em>(Object)</em>:</p><ul><li><code>icon</code> <em>(String)</em> - The icon to use from the iconfont</li><li><code>fontFamily</code> <em>(String)</em> - the font to use</li><li><p><code>color</code> <em>(String)</em> - the icon color</p></li></ul></li></ul></li><li><p><code>setMenuItemIcon( arg )</code> - sets a custom menu item icon based on a font</p><ul><li><p>args <em>(Object)</em>:</p><ul><li><code>menu</code> <em>(Ti.Android.Menu)</em> - a reference to the menu</li><li><code>menuItem</code> <em>(Ti.Android.MenuItem)</em> - a reference to the menu item (NOTE: You must set an <code>itemId</code> on the menu item)</li><li><code>icon</code> <em>(String)</em> - The icon to use from the iconfont</li><li><code>fontFamily</code> <em>(String)</em> - the font to use</li><li><code>color</code> <em>(String)</em> - the icon color</li><li><p><code>size</code> <em>(Number)</em> - the icon size <strong>optional</strong> default: Actionbar icon size ( 24 dp )</p></li></ul></li></ul></li><li><p><code>addShareAction( arg )</code> - adds a Share action to the Actionbar</p><ul><li>arg <em>(Object)</em>:<ul><li><code>menu</code> <em>(Ti.Android.Menu)</em> - a reference to the menu</li><li><code>intent</code> <em>(Ti.Android.Intent)</em> - sharing Intent</li><li><code>title</code> <em>(String)</em> - <strong>optional</strong> default: &quot;Share&quot;</li><li><code>showAsAction</code> <em>(Number)</em> - <strong>optional</strong> default: Ti.Android.SHOW<em>AS</em>ACTION<em>IF</em>ROOM</li></ul></li></ul></li><li><p><code>createDropdown( arg )</code> - adds a <a href="#4-dropdown">dropdown</a> menu to the ActionBar</p><ul><li>arg <em>(Object)</em>:<ul><li><code>titles</code> <em>(String[])</em> - an Array of Strings, representing the dropdown items</li><li><code>keepTitle</code> <em>(Boolean)</em> - if set to true, it shows both, title and dropdown, otherwise the title get replaced by the dropdown (Optional, default: false)</li></ul></li></ul></li><li><p><code>getActionbarHeight( )</code>  - returns the height of the Actionbar as absolute pixels</p></li><li><p><code>setStatusbarColor( arg )</code> - sets the color of the status bar</p><ul><li><p>arg <em>(String)</em> - color</p></li></ul></li><li><p><code>setNavigationbarColor( arg )</code> - sets the color of the navigation bar</p><ul><li><p>arg <em>(String)</em> - color</p></li></ul></li><li><p><code>setElevation( arg )</code> - sets the elevation property</p><ul><li><p>arg <em>(Number)</em> - elevation</p></li></ul></li><li><p><code>setUpColor( arg )</code> - sets the upColor property</p><ul><li><p>arg <em>(String)</em> - color</p></li></ul></li><li><p><code>setDisplayShowHomeEnabled( arg )</code> - sets the displayShowHomeEnabled property</p><ul><li><p>arg <em>(Boolean)</em> - showHome</p></li></ul></li><li><p><code>setDisplayShowTitleEnabled( arg )</code> - sets the displayShowTitleEnabled property</p><ul><li><p>arg <em>(Boolean)</em> - showTitle</p></li></ul></li><li><p><code>setDisplayUseLogoEnabled( arg )</code> - sets the displayUseLogoEnabled property</p><ul><li><p>arg <em>(Boolean)</em> - useLogo</p></li></ul></li><li><p><code>setActionbarImage( arg )</code> - sets the custom ActionBar layout, load the provided image and hides the title/subtitle.</p><ul><li><p>arg <em>(Object)</em></p><ul><li><p><code>image</code> <em>(String|Blob)</em> - A Blob, or a valid String representing the path to the image.  <strong>Note</strong>: Using the format &quot;images/my<em>image.png&quot; will load the density dependent image in the corresponding folders: /(Resources|app/assets)/android/images/res-(l|m|h|x|xx|xxx)dpi/my</em>image.png. If you don&#39;t care for the density, then use any other valid way to pass the image&#39;s path or Blob.</p></li></ul></li></ul></li><li><p><code>disableActionbarImage()</code> - Restore the title/subtitle to their previous states and hides the custom ActionBar layout.</p></li></ul>
+
+<h2>4. Dropdown</h2>
+
+<p>An ActionBar <a href="http://developer.android.com/guide/topics/ui/actionbar.html#Dropdown">Dropdown</a> can be created with <code>createDropdown</code>. Make sure you pass a String-Array as <code>titles</code>
+ property. Example:</p>
+
+<p><code>javascript
+var dropdown = abextras.createDropdown({
+    titles: [ &quot;Home&quot;, &quot;Search&quot;, &quot;Likes&quot;, &quot;Settings&quot; ],
+    index: 1 // optional (default: 0)
+});
+</code></p>
+
+<h4>Properties</h4>
+
+<ul><li><code>activeItem</code> <em>(Number)</em> - the index of the current active dropdown item</li></ul>
+
+<h4>Methods</h4>
+
+<ul><li><code>remove</code> - removes the drop-down from the ActionBar</li></ul>
+
+<h4>Events</h4>
+
+<ul><li><code>change</code> - fired when dropdown item is changed<ul><li><code>index</code> <em>(Number)</em> - index of the selected dropdown item</li></ul></li></ul>
+
+<h2>5. SearchView</h2>
+
+<p>You can style an <a href="http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Android.SearchView">SearchView</a> with Actionbar Extras. This is done with the method:</p>
+
+<ul><li><p><code>setSearchView( args )</code> - enhances an existing search view</p><ul><li>args <em>(Object)</em>:<ul><li><code>searchView</code> <em>(Ti.UI.Android.SearchView)</em> - a reference to the search view</li><li><code>backgroundColor</code> <em>(String)</em>  -  changes the background color of the search view</li><li><code>textColor</code> <em>(String)</em>  - changes the text color of the search view</li><li><code>hintColor</code> <em>(String)</em>  - changes the hint color of the search view</li><li><code>line</code> <em>(String)</em>  -  image path to replace the line drawable used by the search view</li><li><code>cancelIcon</code> <em>(String)</em> - image path to use a custom close icon</li><li><code>searchIcon</code> <em>(String)</em> - image path to use a custom magnifier icon (or <code>null</code> to remove it)</li><li><code>maxWidth</code> <em>(int)</em> - set width of search view. Use <code>Number.MAX_VALUE</code> to fill the whole action bar</li></ul></li></ul></li></ul>
+
+<p>An example of how to use this is included in the <a href="https://github.com/ricardoalcocer/actionbarextras/blob/master/example/Resources/app.js">example app</a>.</p>
+
+<h2>5. Appendix</h2>
+
+<h4>Using <a href="https://github.com/FokkeZB/IconFont">IconFont</a> with ABX (thanks @casevictor)</h4>
+
+<p><code></code>`js
+var icons = require(&#39;font-awesome&#39;);</p>
+
+<p>activity.onCreateOptionsMenu = function(e) {
+  e.menu.clear();</p>
+
+<p>  var createItem = e.menu.add({
+    itemId: 101, //unique random number
+    showAsAction: Ti.Android.SHOW<em>AS</em>ACTION_ALWAYS
+  });</p>
+
+<p>  abx.setMenuItemIcon({
+    menu: e.menu,
+    menuItem: createItem,
+    fontFamily: &#39;FontAwesome&#39;,
+    icon: icons.check, 
+    color: &#39;white&#39;,
+    size: 30
+  })
+};</p>
+
+<p>activity.invalidateOptionsMenu();
+<code></code>`</p>
