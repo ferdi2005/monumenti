@@ -1,6 +1,8 @@
 <Alloy>
 	<Window title="Informazioni" class="container vertical">
+	<View>
 		<Label text="Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments. Ulteriori informazioni a riguardo verranno riportate qui al termine della beta." />
 		<Label text="Versione alpha 1.0 (001)"/>
+	</View>
 	</Window>
 </Alloy>
