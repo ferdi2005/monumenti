@@ -1,9 +1,10 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 const Map = require('ti.map');
 // $.activityIndicator.hide();
- // $.activityIndicator.style = Titanium.UI.ActivityIndicatorStyle.DARK;
+// $.activityIndicator.style = Titanium.UI.ActivityIndicatorStyle.DARK;
 $.errorlabel.hide();
 function findmon(e) {
+  if(Ti.Geolocation.locationServicesEnabled) {
   $.mapview.removeAllCircles();
     var args = e;
     lat = args.coords.latitude;
@@ -52,10 +53,12 @@ function findmon(e) {
       });
       xhr.open('GET', url);
         xhr.send();
+    } else {
+      alert('Abilita prima i servizi di localizzazione!');
+    }
         
   }
 
-function localize() {
   if (Ti.Geolocation.hasLocationPermissions(Titanium.Geolocation.AUTHORIZATION_WHEN_IN_USE)) { 
     Ti.Geolocation.getCurrentPosition(function(e) {
       findmon(e);
@@ -80,6 +83,4 @@ function localize() {
     }
     });
   }
-}
-localize();
 // setInterval(localize(), 120000);
