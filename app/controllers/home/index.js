@@ -1,7 +1,7 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 const Map = require('ti.map');
-$.activityIndicator.hide();
- $.activityIndicator.style = Titanium.UI.ActivityIndicatorStyle.DARK;
+// $.activityIndicator.hide();
+ // $.activityIndicator.style = Titanium.UI.ActivityIndicatorStyle.DARK;
 $.errorlabel.hide();
 function findmon(e) {
   $.mapview.removeAllCircles();
@@ -9,7 +9,7 @@ function findmon(e) {
     lat = args.coords.latitude;
     lon = args.coords.longitude;
     url = 'https://wlm.puglia.wiki/monuments.json?latitude=' + lat + '&longitude=' + lon;
-    $.activityIndicator.show();
+   // $.activityIndicator.show();
     var circle = $.mapview.addCircle(Map.createCircle({
       radius: 50,
       center: [e.coords.longitude, e.coords.latitude],
@@ -45,7 +45,7 @@ function findmon(e) {
         },
         onerror: function(e) {
           alert('Errore di connessione: ' + e.error);
-          $.activityIndicator.hide();
+          // $.activityIndicator.hide();
 
         },
         timeout: 15000 // milliseconds
