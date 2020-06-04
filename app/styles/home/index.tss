@@ -19,3 +19,11 @@
   right: '5dp',
   bottom: '5dp'
 }
+
+"#refresh": {
+  bottom: "5%",
+  left: "5%",
+  width: "6%",
+  height: "6%",
+  backgroundColor: "#FFFFFF"
+}

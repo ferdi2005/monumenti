@@ -1,7 +1,9 @@
 <Alloy>
 	<Window title="Mappa" class="vertical" id="winmap">
 				
-	<Module id="mapview" module="ti.map" method="createView"></Module>
+	<Module id="mapview" module="ti.map" method="createView">
+		<Button id="refresh" />
+	</Module>
 		<!-- <View>
 				    <ActivityIndicator id="activityIndicator"/>
 		</View>-->

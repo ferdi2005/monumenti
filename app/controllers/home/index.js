@@ -2,9 +2,10 @@
 const Map = require('ti.map');
 // $.activityIndicator.hide();
 // $.activityIndicator.style = Titanium.UI.ActivityIndicatorStyle.DARK;
+$.refresh.backgroundImage = "images/refresh.png";
 $.errorlabel.hide();
 function findmon(e) {
-  if (Ti.Geolocation.locationServicesEnabled) {
+  if (Ti.Geolocation.locationServicesEnabled && (e.coords != null || undefined) && (e.coords.latitude != null || undefined)) {
     $.mapview.removeAllCircles();
     var args = e;
     lat = args.coords.latitude;
@@ -87,3 +88,7 @@ function locate() {
 }}
 // setInterval(localize(), 120000);
 $.winmap.addEventListener('open', locate);
+
+$.refresh.addEventListener('click', function() {
+  locate()
+});
