@@ -1,5 +1,5 @@
 <Alloy>
-	<Window title="Mappa" class="vertical">
+	<Window title="Mappa" class="vertical" id="winmap">
 				
 	<Module id="mapview" module="ti.map" method="createView"></Module>
 		<!-- <View>
