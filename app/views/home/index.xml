@@ -7,7 +7,7 @@
 		</View>
 
 	<View id="errorlabel">
-		<Label text="Impossibile localizzarti, non hai dato il permesso alla localizzazione. Cerca una città cliccando sulla lente di ingrandimento oppure abilita la localizzazione dalle impostazioni sulla privacy." />
+		<Label width="Ti.UI.SIZE" height="Ti.UI.SIZE" text="Impossibile localizzarti, non hai dato il permesso alla localizzazione. Cerca una città cliccando sulla lente di ingrandimento oppure abilita la localizzazione dalle impostazioni sulla privacy." />
 	</View>
 	</Window>
 </Alloy>

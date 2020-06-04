@@ -10,7 +10,7 @@
   <copyright>Ferdinando Traversa - Apache License</copyright>
   <icon>appicon.png</icon>
   <fullscreen>false</fullscreen>
-  <navbar-hidden>false</navbar-hidden>
+  <navbar-hidden>true</navbar-hidden>
   <analytics>true</analytics>
   <guid>ae64c344-c45b-4a75-9555-e86bff2a2a3d</guid>
   <property name="ti.ui.defaultunit" type="string">dp</property>
@@ -53,7 +53,7 @@
                 <!-- Replace "YOUR_API_KEY" with the Google API key you obtained -->
                 <meta-data 
                     android:name="com.google.android.geo.API_KEY"
-                    android:value="AIzaSyBrART7ZFvMWsqUOiYnVXAxzjnf7KaA7-c" />
+                    android:value="AIzaSyDoUkwrYdgVaux4t7xhMEI46suhreMjy1g" />
             </application>
     </manifest>
   </android>
@@ -67,7 +67,7 @@
     <target device="ipad">true</target>
     <target device="iphone">true</target>
   </deployment-targets>
-  <sdk-version>8.2.0.GA</sdk-version>
+  <sdk-version>8.3.1.GA</sdk-version>
   <plugins>
     <plugin version="1.0">ti.alloy</plugin>
   </plugins>

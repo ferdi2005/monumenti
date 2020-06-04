@@ -11,7 +11,7 @@ function findmon(e) {
     url = 'https://wlm.puglia.wiki/monuments.json?latitude=' + lat + '&longitude=' + lon;
     $.activityIndicator.show();
     var circle = $.mapview.addCircle(Map.createCircle({
-      radius: 100,
+      radius: 50,
       center: [e.coords.longitude, e.coords.latitude],
       fillColor: "#4289ef"
     }));    
@@ -24,8 +24,11 @@ function findmon(e) {
                   latitude: response[1][0],
                   longitude: response[1][1], 
                   latitudeDelta: 0.1,
-                   longitudeDelta: 0.1
+                   longitudeDelta: 0.1,
+                   zoomLevel: 10
               };
+              $.mapview.center = [args.coords.latitude, args.coords.longitude];
+
               $.mapview.mapType = Map.NORMAL_TYPE;
               $.mapview.height = Ti.UI.FILL;
             response[0].forEach(function(item)  {
@@ -53,7 +56,7 @@ function findmon(e) {
   }
 
 function localize() {
-  if (Ti.Geolocation.hasLocationPermissions()) { 
+  if (Ti.Geolocation.locationServicesAuthorization == Titanium.Geolocation.AUTHORIZATION_WHEN_IN_USE) { 
     Ti.Geolocation.getCurrentPosition(function(e) {
       findmon(e);
     });
@@ -71,4 +74,3 @@ function localize() {
 }
 localize();
 setInterval(localize(), 120000);
-  
