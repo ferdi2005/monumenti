@@ -1,4 +1,6 @@
 tabgroup = $.index;
+    
+if(!Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE)) {
 Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function(e) {
     if(e.success) {
         $.index.open();
@@ -7,3 +9,6 @@ Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_U
         $.index.open();
     }
 });
+} else {
+    $.index.open();
+}

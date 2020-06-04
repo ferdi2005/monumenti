@@ -15,6 +15,8 @@
   <guid>ae64c344-c45b-4a75-9555-e86bff2a2a3d</guid>
   <property name="ti.ui.defaultunit" type="string">dp</property>
   <property name="run-on-main-thread" type="bool">true</property>
+  <!--<property name="SENTRY_DSN_PRODUCTION" type="String">https://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property>
+  <property name="SENTRY_DSN_DEVELOPMENT" type="String">https://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property>-->
   <ios>
     <enable-launch-screen-storyboard>true</enable-launch-screen-storyboard>
     <use-app-thinning>true</use-app-thinning>

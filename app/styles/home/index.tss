@@ -12,3 +12,10 @@
 "#city": {
   color: '#8f0000'
 }
+
+"#errorlabel": {
+  top: '5dp',
+  left: '5dp',
+  right: '5dp',
+  bottom: '5dp'
+}

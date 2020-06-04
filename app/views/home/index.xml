@@ -2,9 +2,9 @@
 	<Window title="Mappa" class="vertical">
 				
 	<Module id="mapview" module="ti.map" method="createView"></Module>
-		<View>
+		<!-- <View>
 				    <ActivityIndicator id="activityIndicator"/>
-		</View>
+		</View>-->
 
 	<View id="errorlabel">
 		<Label width="Ti.UI.SIZE" height="Ti.UI.SIZE" text="Impossibile localizzarti, non hai dato il permesso alla localizzazione. Cerca una città cliccando sulla lente di ingrandimento oppure abilita la localizzazione dalle impostazioni sulla privacy." />

@@ -1,7 +1,7 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 const Map = require('ti.map');
 $.activityIndicator.hide();
-$.activityIndicator.style = Titanium.UI.ActivityIndicatorStyle.DARK;
+ $.activityIndicator.style = Titanium.UI.ActivityIndicatorStyle.DARK;
 $.errorlabel.hide();
 function findmon(e) {
   $.mapview.removeAllCircles();
@@ -41,7 +41,7 @@ function findmon(e) {
                 });
                 $.mapview.addAnnotation(annotation);
               });
-      $.activityIndicator.hide();
+    //  $.activityIndicator.hide();
         },
         onerror: function(e) {
           alert('Errore di connessione: ' + e.error);
@@ -56,7 +56,7 @@ function findmon(e) {
   }
 
 function localize() {
-  if (Ti.Geolocation.locationServicesAuthorization == Titanium.Geolocation.AUTHORIZATION_WHEN_IN_USE) { 
+  if (Ti.Geolocation.hasLocationPermissions(Titanium.Geolocation.AUTHORIZATION_WHEN_IN_USE)) { 
     Ti.Geolocation.getCurrentPosition(function(e) {
       findmon(e);
     });
@@ -68,9 +68,18 @@ function localize() {
       });
     } else {
       $.errorlabel.show();
+      $.mapview.region = {
+        latitude: 41.9109,
+        longitude: 12.4818, 
+        latitudeDelta: 0.1,
+         longitudeDelta: 0.1,
+         zoomLevel: 10
+    };
+    $.mapview.mapType = Map.NORMAL_TYPE;
+    $.mapview.height = Ti.UI.SIZE;
     }
     });
   }
 }
 localize();
-setInterval(localize(), 120000);
+// setInterval(localize(), 120000);
