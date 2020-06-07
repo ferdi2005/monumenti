@@ -1,0 +1,43 @@
+
+".container" : {
+  
+}
+
+"#title": {
+    font: { fontSize: 30 }
+}
+
+"#image": {
+    top: "5dp",
+    defaultImage: "images/spin.gif"
+}
+
+"#Wikidata": {
+    backgroundColor: "#8f0000",
+    width: "500px",
+    color: "#FFFFFF"
+}
+
+"#Commons": {
+    backgroundColor: "#006399",
+    width: "500px",
+    top: "5dp",
+    color: "#FFFFFF"
+}
+
+"#description": {
+    font: { fontSize: 18 },
+    top: "10dp",
+    bottom: "5dp"
+}
+
+"#indietro": {
+    font: { fontSize: 10 },
+    bottom: "5%",
+    right: "5%"
+}
+
+"ScrollView": {
+    right: "5dp",
+    left: "5dp"
+}

@@ -1,0 +1,12 @@
+<Alloy>
+	<Window class="container vertical">
+		<ScrollView class="vertical">
+			<ImageView id="image"></ImageView>
+			<Label id="title" />
+			<Label id="description" />
+			<Button id="Wikidata">Pagina su Wikidata</Button>
+			<Button id="Commons">Carica ora una foto!</Button>
+			<Label id="indietro">Per tornare indietro, premi il tasto indietro relativo sul tuo telefono.</Label>
+		</ScrollView>
+	</Window>
+</Alloy>

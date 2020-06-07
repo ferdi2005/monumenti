@@ -105,6 +105,11 @@ function locate() {
 }
 // setInterval(localize(), 120000);
 $.winmap.addEventListener('open', locate);
+$.winmap.addEventListener('click', function(e){
+  if (e.annotation != undefined && e.annotation != null) {
+    utils.open('home/show', e.annotation.myid);
+  }
+});
 
 $.refresh.addEventListener('click', function () {
   locate()
