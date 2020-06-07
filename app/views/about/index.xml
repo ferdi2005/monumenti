@@ -2,7 +2,7 @@
 	<Window title="Informazioni" class="vertical">
 	<View class="vertical">
 		<Label text="Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments. Ulteriori informazioni a riguardo verranno riportate qui al termine della beta." />
-		<Label text="Versione beta 1.0.2 (005)"/>
+		<Label text="Versione 1.1 (005)"/>
 	</View>
 	</Window>
 </Alloy>
