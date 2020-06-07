@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ti:app 
-  xmlns:ti="http://ti.appcelerator.org">
+<ti:app xmlns:ti="http://ti.appcelerator.org">
   <id>it.wikimedia.wikilovesmonuments</id>
   <name>WLM Italia</name>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <publisher>Ferdinando Traversa</publisher>
   <url>https://www.wikilovesmonuments.wikimedia.it</url>
   <description>App per trovare i monumenti partecipanti a Wiki Loves Monuments con la propria posizione.</description>
@@ -46,18 +45,15 @@
       </dict>
     </plist>
   </ios>
-  <android 
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <manifest android:versionCode="4" 
+  <android xmlns:android="http://schemas.android.com/apk/res/android">
+    <manifest android:versionCode="5" 
       xmlns:android="http://schemas.android.com/apk/res/android">
-        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-        <application>
-                <!-- Replace "YOUR_API_KEY" with the Google API key you obtained -->
-                <meta-data 
-                    android:name="com.google.android.geo.API_KEY"
-                    android:value="AIzaSyBrART7ZFvMWsqUOiYnVXAxzjnf7KaA7-c" />
-            </application>
+      <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+      <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+      <application>
+        <!-- Replace "YOUR_API_KEY" with the Google API key you obtained -->
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBrART7ZFvMWsqUOiYnVXAxzjnf7KaA7-c" />
+      </application>
     </manifest>
   </android>
   <modules>

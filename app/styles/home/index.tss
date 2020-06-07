@@ -21,9 +21,24 @@
 }
 
 "#refresh": {
-  bottom: "5%",
+  bottom: "10%",
   left: "5%",
-  width: "6%",
-  height: "6%",
-  backgroundColor: "#FFFFFF"
+  width: "5%",
+  height: "5%"
 }
+
+"#search": {
+  bottom: "10%",
+  right: "5%",
+  width: "5%",
+  height: "5%"
+}
+
+"#searchfield": {
+  width: Ti.UI.FILL,
+  height: "10%",
+  backgroundColor: "#FFF",
+  color: "#000",
+  top: "0",
+  hintTextColor: "#A0A0A0"
+  }
