@@ -2,6 +2,8 @@
 const Map = require('ti.map');
 $.mapview.height = Ti.UI.FILL;
 $.searchfield.hide();
+$.searchfield.autocorrect = false;
+$.searchfield.height = false;
 function findmon(e, type) {
   var args = e;
   // TODO: rimuovere le occorrenze di args
@@ -109,7 +111,7 @@ $.winmap.addEventListener('open', locate);
 $.winmap.addEventListener('click', function(e){
   if (e.annotation != undefined && e.annotation != null && !e.deselected)  {
     if (e.clicksource == "infoWindow" || e.clicksource == "leftPane" ||  e.clicksource == "leftButton" || e.clicksource == "title") {
-      utils.open('home/show', e.annotation.myid);
+      Alloy.Globals.utils.openmodal('home/show', e.annotation.myid);
     }
   }
 });

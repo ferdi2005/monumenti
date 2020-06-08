@@ -1,17 +1,17 @@
 <Alloy>
 	<Window title="Informazioni" class="vertical">
-	<View class="vertical">
-		<Label text="Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments." />
-		<Label id="infocors" platform="android" html="<b>Wiki Loves Monuments</b> è un concorso internazionale che ha lo scopo di illustrare le voci di Wikipedia e dei progetti Wikimedia attraverso fotografie di beni culturali scattate dai cittadini stessi, risultando quindi anche una grande opportunità di promozione turistica.
+		<ScrollView class="vertical vertical-scroll">
+			<Label text="Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments." />
+			<Label id="infocors" platform="android" html="<b>Wiki Loves Monuments</b> è un concorso internazionale che ha lo scopo di illustrare le voci di Wikipedia e dei progetti Wikimedia attraverso fotografie di beni culturali scattate dai cittadini stessi, risultando quindi anche una grande opportunità di promozione turistica.
 È nato nel 2010 e viene organizzato annualmente in tutto il mondo, in più di 50 Paesi, <b>dall’1 al 30 settembre.</b>
 Nel 2012 è entrato nel Guinness dei primati come più grande concorso fotografico al mondo. Ogni anno vengono caricate più di 130.000 fotografie.
 Oggetto delle immagini ammesse a partecipare al concorso sono i monumenti, un insieme molto ampio che include edifici, sculture, siti archeologici, strutture architettoniche ma anche siti naturali e beni paesaggistici. Tutte le fotografie sono rilasciate con licenza libera e pubblicate su Wikimedia Commons, il grande database che illustra Wikipedia (il 5º sito più visitato in Italia) e tutti gli altri progetti con contenuti multimediali (foto e video). Wiki Loves Monuments è aperto alla partecipazione di tutti, fotografi professionisti o amatori, senza limiti di età. L'edizione italiana è organizzata dal 2012 da Wikimedia Italia, associazione che si occupa dal 2005 di diffondere la conoscenza e la cultura libera in Italia, in qualità di capitolo di Wikimedia Foundation." />
-		<Label id="infocors" platform="ios" text="Wiki Loves Monuments< è un concorso internazionale che ha lo scopo di illustrare le voci di Wikipedia e dei progetti Wikimedia attraverso fotografie di beni culturali scattate dai cittadini stessi, risultando quindi anche una grande opportunità di promozione turistica.
+			<Label id="infocors" platform="ios" text="Wiki Loves Monuments< è un concorso internazionale che ha lo scopo di illustrare le voci di Wikipedia e dei progetti Wikimedia attraverso fotografie di beni culturali scattate dai cittadini stessi, risultando quindi anche una grande opportunità di promozione turistica.
 È nato nel 2010 e viene organizzato annualmente in tutto il mondo, in più di 50 Paesi, dall’1 al 30 settembre.
 Nel 2012 è entrato nel Guinness dei primati come più grande concorso fotografico al mondo. Ogni anno vengono caricate più di 130.000 fotografie.
 Oggetto delle immagini ammesse a partecipare al concorso sono i monumenti, un insieme molto ampio che include edifici, sculture, siti archeologici, strutture architettoniche ma anche siti naturali e beni paesaggistici. Tutte le fotografie sono rilasciate con licenza libera e pubblicate su Wikimedia Commons, il grande database che illustra Wikipedia (il 5º sito più visitato in Italia) e tutti gli altri progetti con contenuti multimediali (foto e video). Wiki Loves Monuments è aperto alla partecipazione di tutti, fotografi professionisti o amatori, senza limiti di età. L'edizione italiana è organizzata dal 2012 da Wikimedia Italia, associazione che si occupa dal 2005 di diffondere la conoscenza e la cultura libera in Italia, in qualità di capitolo di Wikimedia Foundation." />
-		<Button class="col_8 col_offset_1" id="info">Ulteriori informazioni</Button>
-		<Label id="lbl_version"/>
-	</View>
+			<Button class="col_8 col_offset_1" id="info">Ulteriori informazioni</Button>
+			<Label id="lbl_version"/>
+		</ScrollView>
 	</Window>
 </Alloy>

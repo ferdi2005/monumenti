@@ -55,3 +55,7 @@
     right: "5dp",
     left: "5dp"
 }
+
+"#activityIndicator": {
+    style: Titanium.UI.ActivityIndicatorStyle.BIG_DARK
+}

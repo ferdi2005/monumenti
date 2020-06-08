@@ -11,3 +11,7 @@
 ".container": {
     backgroundColor: "white"
 }
+
+"TabGroup": {
+	theme: "Theme.AppCompat.NoTitleBar"
+}

@@ -1,3 +1,3 @@
-tabgroup = $.index;
+global.tabgroup = $.index;
     
 $.index.open();

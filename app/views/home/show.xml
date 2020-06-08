@@ -1,6 +1,7 @@
 <Alloy>
 	<Window class="container" id="window">
 		<ScrollView id="scrollable" class="vertical-scroll">
+			<ActivityIndicator id="activityIndicator" />
 			<ImageView id="image"></ImageView>
 			<Label id="title" />
 			<Label id="description" />

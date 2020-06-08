@@ -1,17 +1,29 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = $.args;
 var today = new Date();
-$.scrollable.width= Ti.UI.SIZE;
+$.scrollable.width = Ti.UI.SIZE;
 if (today.getMonth() == 9) {
     $.Alert.hide();
 } else {
     $.Alert.show();
 }
+
+$.activityIndicator.show();
 var url = "https://wlm.puglia.wiki/show.json?id=" + args;
 $.scrollable.disableBounce = true;
 var client = Ti.Network.createHTTPClient({
     onload: function (e) {
         var response = JSON.parse(this.responseText);
+
+        $.window.title = response.itemLabel;
+        if (OS_ANDROID) {
+                $.window.activity.actionBar.title = response.itemLabel;
+                $.window.activity.actionBar.homeButtonEnabled = true;
+                $.window.activity.actionBar.onHomeIconItemSelected = function (e) {
+                $.window.close();
+            }
+        }
+
         if (response.image != null && response.image != undefined && response.image != "") {
             $.image.defaultImage = "/images/spin.gif";
             $.image.image = "https://commons.wikimedia.org/w/thumb.php?f=" + response.image + "&w=1000";
@@ -45,34 +57,43 @@ var client = Ti.Network.createHTTPClient({
                 });
             }
         });
-    
-    if (OS_ANDROID) {
-        Ti.Geolocation.reverseGeocoder(response.latitude, response.longitude, function (e) {
-            if (e.success) {
-                $.address.show();
-                $.address.text = e.places[0].address;
-            } else {
-                $.address.hide();
-            }
-        });
-    }
 
-    if (OS_IOS) {
-        var url = "https://wlm.puglia.wiki/address.json?id=" + args;
-        var client = Ti.Network.createHTTPClient({
-            onload : function(e) {
-                $.address.show();
-                $.address.text = this.responseText;
-            },
-            onerror : function(e) {
-                alert('Errore nel ritrovare indirizzo: ' + e.error);
-            },
-            timeout : 5000 
-        });
-        client.open("GET", url);
-        client.send();
-       
-    }
+        if (OS_ANDROID) {
+            Ti.Geolocation.reverseGeocoder(response.latitude, response.longitude, function (e) {
+                if (e.success) {
+                    $.address.show();
+                    $.address.text = e.places[0].address;
+                    $.activityIndicator.hide();
+                    $.activityIndicator.width = 0;
+                    $.activityIndicator.height = 0;
+                } else {
+                    $.address.hide();
+                    $.activityIndicator.hide();
+                    $.activityIndicator.width = 0;
+                    $.activityIndicator.height = 0;
+                }
+            });
+        }
+
+        if (OS_IOS) {
+            var url = "https://wlm.puglia.wiki/address.json?id=" + args;
+            var client = Ti.Network.createHTTPClient({
+                onload: function (e) {
+                    $.address.show();
+                    $.address.text = this.responseText;
+                    $.activityIndicator.hide();
+                    $.activityIndicator.width = 0;
+                    $.activityIndicator.height = 0;
+                },
+                onerror: function (e) {
+                    alert('Errore nel ritrovare indirizzo: ' + e.error);
+                },
+                timeout: 5000
+            });
+            client.open("GET", url);
+            client.send();
+
+        }
 
     },
     onerror: function (e) {
