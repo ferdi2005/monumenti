@@ -7,6 +7,7 @@
 			<Label id="address" />
 			<Button id="Wikidata">Pagina su Wikidata</Button>
 			<Button id="Commons">Carica ora una foto!</Button>
+			<Label id="Alert">Wiki Loves Monuments non è ancora iniziato! Le foto caricate non potranno partecipare al concorso.</Label>
 			<Button id="Osm">Indicazioni stradali</Button>
 			<Label id="indietro">Per tornare indietro, premi il tasto indietro relativo sul tuo telefono.</Label>
 		</ScrollView>
