@@ -45,3 +45,8 @@
   hintTextColor: "#A0A0A0",
   returnKeyType: Ti.UI.RETURNKEY_SEARCH
 }
+
+"#activityIndicator": {
+  hiddenBehavior: Titanium.UI.HIDDEN_BEHAVIOR_GONE,
+  style: Ti.UI.ActivityIndicatorStyle.BIG_DARK
+}

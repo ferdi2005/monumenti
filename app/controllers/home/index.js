@@ -3,8 +3,9 @@ const Map = require('ti.map');
 $.mapview.height = Ti.UI.FILL;
 $.searchfield.hide();
 $.searchfield.autocorrect = false;
-$.searchfield.height = false;
+$.activityIndicator.hide();
 function findmon(e, type) {
+  $.activityIndicator.show();
   var args = e;
   // TODO: rimuovere le occorrenze di args
   if (type == "geoloc") {
@@ -66,14 +67,14 @@ function findmon(e, type) {
         });
         $.mapview.addAnnotation(annotation);
       });
-      //  $.activityIndicator.hide();
+      $.activityIndicator.hide();
     },
     onerror: function (e) {
       alert('Errore di connessione: ' + e.error);
-      // $.activityIndicator.hide();
+      $.activityIndicator.hide();
 
     },
-    timeout: 15000 // milliseconds
+    timeout: 15000
   });
   xhr.open('GET', url);
   xhr.send();
@@ -108,9 +109,9 @@ function locate() {
 }
 // setInterval(localize(), 120000);
 $.winmap.addEventListener('open', locate);
-$.winmap.addEventListener('click', function(e){
-  if (e.annotation != undefined && e.annotation != null && !e.deselected)  {
-    if (e.clicksource == "infoWindow" || e.clicksource == "leftPane" ||  e.clicksource == "leftButton" || e.clicksource == "title") {
+$.winmap.addEventListener('click', function (e) {
+  if (e.annotation != undefined && e.annotation != null && !e.deselected) {
+    if (e.clicksource == "infoWindow" || e.clicksource == "leftPane" || e.clicksource == "leftButton" || e.clicksource == "title") {
       Alloy.Globals.utils.openmodal('home/show', e.annotation.myid);
     }
   }
