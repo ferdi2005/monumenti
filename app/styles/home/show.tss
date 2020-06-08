@@ -8,8 +8,7 @@
 }
 
 "#image": {
-    top: "5dp",
-    defaultImage: "images/spin.gif"
+    top: "5dp"
 }
 
 "#Wikidata": {
@@ -25,11 +24,25 @@
     color: "#FFFFFF"
 }
 
+"#Osm": {
+    backgroundColor: "#58ce40",
+    width: "500px",
+    top: "5dp",
+    color: "#FFFFFF"
+}
+
 "#description": {
-    font: { fontSize: 18 },
+    font: { fontSize: 20 },
     top: "10dp",
     bottom: "5dp"
 }
+
+"#address": {
+    font: { fontSize: 18 },
+    top: "5dp",
+    bottom: "5dp"
+}
+
 
 "#indietro": {
     font: { fontSize: 10 },
@@ -39,5 +52,6 @@
 
 "ScrollView": {
     right: "5dp",
-    left: "5dp"
+    left: "5dp",
+    scrollType: "vertical"
 }

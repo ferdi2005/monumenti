@@ -59,7 +59,8 @@ function findmon(e, type) {
           longitude: item.longitude,
           title: item.itemLabel,
           pincolor: Map.ANNOTATION_RED,
-          myid: item.id
+          myid: item.id,
+          leftButton: "/images/Info blue.png"
         });
         $.mapview.addAnnotation(annotation);
       });
@@ -106,8 +107,10 @@ function locate() {
 // setInterval(localize(), 120000);
 $.winmap.addEventListener('open', locate);
 $.winmap.addEventListener('click', function(e){
-  if (e.annotation != undefined && e.annotation != null) {
-    utils.open('home/show', e.annotation.myid);
+  if (e.annotation != undefined && e.annotation != null && !e.deselected)  {
+    if (e.clicksource == "infoWindow" || e.clicksource == "leftPane" || e.clicksource == "title") {
+      utils.open('home/show', e.annotation.myid);
+    }
   }
 });
 

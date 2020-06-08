@@ -1,6 +1,6 @@
 <Alloy>
 <TabGroup id="index">
-		<Tab title="Mappa" icon="/images/Map Solid.png">
+		<Tab id="map" title="Mappa" icon="/images/Map Solid.png">
 			<Require type="view" src="home/index" />
 		</Tab>
 
