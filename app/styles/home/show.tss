@@ -8,7 +8,8 @@
 }
 
 "#image": {
-    top: "5dp"
+    top: "5dp",
+    width: "1000px"
 }
 
 "#Wikidata": {
@@ -50,8 +51,7 @@
     right: "5%"
 }
 
-"ScrollView": {
+"#scrollable": {
     right: "5dp",
-    left: "5dp",
-    scrollType: "vertical"
+    left: "5dp"
 }

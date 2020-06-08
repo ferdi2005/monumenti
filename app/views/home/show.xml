@@ -1,6 +1,6 @@
 <Alloy>
-	<Window class="container vertical" id="window">
-		<ScrollView id="scrollable" class="vertical">
+	<Window class="container" id="window">
+		<ScrollView id="scrollable" class="vertical-scroll">
 			<ImageView id="image"></ImageView>
 			<Label id="title" />
 			<Label id="description" />

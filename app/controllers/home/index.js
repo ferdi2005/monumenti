@@ -108,7 +108,7 @@ function locate() {
 $.winmap.addEventListener('open', locate);
 $.winmap.addEventListener('click', function(e){
   if (e.annotation != undefined && e.annotation != null && !e.deselected)  {
-    if (e.clicksource == "infoWindow" || e.clicksource == "leftPane" || e.clicksource == "title") {
+    if (e.clicksource == "infoWindow" || e.clicksource == "leftPane" ||  e.clicksource == "leftButton" || e.clicksource == "title") {
       utils.open('home/show', e.annotation.myid);
     }
   }

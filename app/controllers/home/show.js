@@ -1,6 +1,7 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = $.args;
 var today = new Date();
+$.scrollable.width= Ti.UI.SIZE;
 if (today.getMonth() == 9) {
     $.Alert.hide();
 } else {
@@ -44,7 +45,8 @@ var client = Ti.Network.createHTTPClient({
                 });
             }
         });
-
+    
+    if (OS_ANDROID) {
         Ti.Geolocation.reverseGeocoder(response.latitude, response.longitude, function (e) {
             if (e.success) {
                 $.address.show();
@@ -53,6 +55,24 @@ var client = Ti.Network.createHTTPClient({
                 $.address.hide();
             }
         });
+    }
+
+    if (OS_IOS) {
+        var url = "https://wlm.puglia.wiki/address.json?id=" + args;
+        var client = Ti.Network.createHTTPClient({
+            onload : function(e) {
+                $.address.show();
+                $.address.text = this.responseText;
+            },
+            onerror : function(e) {
+                alert('Errore nel ritrovare indirizzo: ' + e.error);
+            },
+            timeout : 5000 
+        });
+        client.open("GET", url);
+        client.send();
+       
+    }
 
     },
     onerror: function (e) {

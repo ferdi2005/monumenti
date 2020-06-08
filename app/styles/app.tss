@@ -171,3 +171,15 @@ style: Ti.UI.ActivityIndicatorStyle.DARK,
 	height: Ti.UI.SIZE,
 	color: "#000000"
 }
+
+'.vertical-scroll[platform=android]' : {
+	width: Ti.UI.FILL,
+	scrollType: 'vertical',
+	layout: "vertical"
+}
+'.vertical-scroll[platform=ios]' : {
+	width: Ti.UI.FILL,
+	contentWidth: Ti.UI.FILL,
+	layout: "vertical",
+	disableBounce: true
+}
