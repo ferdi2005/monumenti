@@ -38,7 +38,7 @@
 
 "#searchfield": {
   width: Ti.UI.FILL,
-  height: "20%",
+  height: "10%",
   backgroundColor: "#FFF",
   color: "#000",
   top: "0",
