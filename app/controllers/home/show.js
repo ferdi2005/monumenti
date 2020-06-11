@@ -37,6 +37,9 @@ var client = Ti.Network.createHTTPClient({
         $.Wikidata.addEventListener('click', function (e) {
             Ti.Platform.openURL("https://www.wikidata.org/wiki/" + response.item);
         });
+        $.Reasonator.addEventListener('click', function (e) {
+            Ti.Platform.openURL("https://reasonator.toolforge.org/?q=" + response.item + "&lang=it");
+        });
         $.Commons.addEventListener('click', function (e) {
             Ti.Platform.openURL("https://commons.wikimedia.org/w/index.php?title=Special:UploadWizard&campaign=wlm-it&id=" + response.wlmid + "&uselang=it&descriptionlang=it&lat=" + response.latitude + "&lon=" + response.longitude + "&categories=Images+from+Wiki+Loves+Monuments+" + today.getFullYear() + "+in+Italy");
         });
@@ -64,13 +67,9 @@ var client = Ti.Network.createHTTPClient({
                     $.address.show();
                     $.address.text = e.places[0].address;
                     $.activityIndicator.hide();
-                    $.activityIndicator.width = 0;
-                    $.activityIndicator.height = 0;
                 } else {
                     $.address.hide();
                     $.activityIndicator.hide();
-                    $.activityIndicator.width = 0;
-                    $.activityIndicator.height = 0;
                 }
             });
         }
@@ -82,8 +81,6 @@ var client = Ti.Network.createHTTPClient({
                     $.address.show();
                     $.address.text = this.responseText;
                     $.activityIndicator.hide();
-                    $.activityIndicator.width = 0;
-                    $.activityIndicator.height = 0;
                 },
                 onerror: function (e) {
                     alert('Errore nel ritrovare indirizzo: ' + e.error);

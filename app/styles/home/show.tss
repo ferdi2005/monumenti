@@ -18,6 +18,14 @@
     color: "#FFFFFF"
 }
 
+"#Reasonator": {
+    backgroundColor: "#8f0000",
+    width: "500px",
+    color: "#FFFFFF",
+    top: "5dp"
+}
+
+
 "#Commons": {
     backgroundColor: "#006399",
     width: "500px",
@@ -35,7 +43,8 @@
 "#description": {
     font: { fontSize: 20 },
     top: "10dp",
-    bottom: "5dp"
+    bottom: "5dp",
+    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
 
 "#address": {
@@ -57,5 +66,6 @@
 }
 
 "#activityIndicator": {
-    style: Titanium.UI.ActivityIndicatorStyle.BIG_DARK
+    style: Titanium.UI.ActivityIndicatorStyle.BIG_DARK,
+    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
