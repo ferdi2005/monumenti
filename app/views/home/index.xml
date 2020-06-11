@@ -6,10 +6,5 @@
 			<Button id="refresh" backgroundImage="/images/refresh.png"/>
 			<Button id="search" backgroundImage="/images/search.png"/>
 		</Module>
-		<!-- <View>
-				    <ActivityIndicator id="activityIndicator"/>
-		</View>-->
-
-
 	</Window>
 </Alloy>
