@@ -11,7 +11,7 @@
 			<Label id="Alert">Wiki Loves Monuments non è ancora iniziato! Le foto caricate non potranno partecipare al concorso.</Label>
 			<Button id="Osm">Indicazioni stradali</Button>
 			<Button id="Reasonator">Pagina su Reasonator</Button>
-			<Label id="indietro">Per tornare indietro, premi il tasto indietro relativo sul tuo telefono.</Label>
+			<Label id="indietro" platform="android">Per tornare indietro, premi il tasto indietro relativo sul tuo telefono.</Label>
 		</ScrollView>
 	</Window>
 </Alloy>
