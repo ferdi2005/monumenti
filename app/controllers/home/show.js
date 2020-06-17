@@ -17,11 +17,9 @@ var client = Ti.Network.createHTTPClient({
 
         $.window.title = response.itemLabel;
         if (OS_ANDROID) {
+            $.window.addEventListener("open", function(){
                 $.window.activity.actionBar.title = response.itemLabel;
-                $.window.activity.actionBar.homeButtonEnabled = true;
-                $.window.activity.actionBar.onHomeIconItemSelected = function (e) {
-                $.window.close();
-            }
+            });
         }
 
         if (response.image != null && response.image != undefined && response.image != "") {
@@ -32,6 +30,13 @@ var client = Ti.Network.createHTTPClient({
             $.description.text = response.itemDescription;
         } else {
             $.description.hide();
+        }
+        if (response.wikipedia != null && response.wikipedia != undefined && response.wikipedia != "") {
+            $.Wikipedia.addEventListener("click", function(){
+                Ti.Platform.openURL(response.wikipedia);
+            });
+        } else {
+            $.Wikipedia.hide();
         }
         $.title.text = response.itemLabel;
         $.Wikidata.addEventListener('click', function (e) {

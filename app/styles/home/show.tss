@@ -69,3 +69,11 @@
     style: Titanium.UI.ActivityIndicatorStyle.BIG_DARK,
     hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
+
+"#Wikipedia": {
+    backgroundColor: "#FFFFFF",
+    width: "500px",
+    color: "#000000",
+    top: "5dp",
+    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
+}
