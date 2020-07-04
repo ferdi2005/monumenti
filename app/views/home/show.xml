@@ -8,7 +8,8 @@
 			<Label id="address" />
 			<Button id="Wikidata">Pagina su Wikidata</Button>
 			<Button id="Commons">Carica ora una foto!</Button>
-			<Label id="Alert">Wiki Loves Monuments non è ancora iniziato! Le foto caricate non potranno partecipare al concorso.</Label>
+			<Label id="Alert" platform="ios">Partecipano a Wiki Loves Monuments solo le foto caricate dal 1 al 30 settembre.</Label>
+					<Label id="Alert" platform="android" html="Partecipano a Wiki Loves Monuments <b>solo</b> le foto caricate dal 1 al 30 settembre."/>
 			<Button id="Osm">Indicazioni stradali</Button>
 			<Button id="Reasonator">Pagina su Reasonator</Button>
 			<Button id="Wikipedia">Voce su Wikipedia</Button>
