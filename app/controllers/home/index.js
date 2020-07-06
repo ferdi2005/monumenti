@@ -4,7 +4,11 @@ $.mapview.height = Ti.UI.FILL;
 $.searchfield.hide();
 $.searchfield.autocorrect = false;
 $.activityIndicator.hide();
-function findmon(e, type) {
+function findmon(e, type, latkeep, latdelta, londelta) {
+  if (latkeep != true) {
+    var latdelta = 0.1;
+    var londelta = 0.1;
+  }
   $.activityIndicator.show();
   var args = e;
   // TODO: rimuovere le occorrenze di args
@@ -18,7 +22,8 @@ function findmon(e, type) {
       var circle = $.mapview.addCircle(Map.createCircle({
         radius: 50,
         center: [e.coords.longitude, e.coords.latitude],
-        fillColor: "#4289ef"
+        fillColor: "#4289ef",
+        opacity: '0.4'
       }));
     } else {
       alert('Qualcosa è andato storto! Clicca il tasto refresh per aggironare la mappa e assicurati di aver attivato la localizzazione.');
@@ -36,9 +41,8 @@ function findmon(e, type) {
         $.mapview.region = {
           latitude: response[1][0],
           longitude: response[1][1],
-          latitudeDelta: 0.1,
-          longitudeDelta: 0.1,
-          zoomLevel: 10
+          latitudeDelta: latdelta,
+          longitudeDelta: londelta
         };
         if (type == "geoloc") {
           $.mapview.center = [args.coords.latitude, args.coords.longitude];
@@ -47,9 +51,8 @@ function findmon(e, type) {
         $.mapview.region = {
           latitude: 41.9109,
           longitude: 12.4818,
-          latitudeDelta: 0.1,
-          longitudeDelta: 0.1,
-          zoomLevel: 10
+          latitudeDelta: latdelta,
+          longitudeDelta: londelta
         };
         alert("Non hai inserito nessuna località o c'è stato un errore nella geolocalizzazione.");
       }
@@ -81,24 +84,27 @@ function findmon(e, type) {
 }
 
 // TODO: Usare l'event listner location
-function locate() {
+function locate(latkeep, latdelta, londelta) {
+  if (latkeep != true) {
+    var latdelta = 0.1;
+    var londelta = 0.1;
+  }
   if (Ti.Geolocation.hasLocationPermissions(Titanium.Geolocation.AUTHORIZATION_WHEN_IN_USE)) {
     Ti.Geolocation.getCurrentPosition(function (e) {
-      findmon(e, "geoloc");
+      findmon(e, "geoloc", latkeep, latdelta, londelta);
     });
   } else {
     Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function (e) {
       if (e.success) {
         Ti.Geolocation.getCurrentPosition(function (e) {
-          findmon(e, "geoloc");
+          findmon(e, "geoloc", latkeep, latdelta, londelta);
         });
       } else {
         $.mapview.region = {
           latitude: 41.9109,
           longitude: 12.4818,
-          latitudeDelta: 0.1,
-          longitudeDelta: 0.1,
-          zoomLevel: 10
+          latitudeDelta: latdelta,
+          longitudeDelta: londelta
         };
         $.mapview.mapType = Map.NORMAL_TYPE;
         $.mapview.height = Ti.UI.SIZE;
@@ -118,7 +124,7 @@ $.winmap.addEventListener('click', function (e) {
 });
 
 $.refresh.addEventListener('click', function () {
-  locate()
+  locate(true, $.mapview.region.latitudeDelta, $.mapview.region.longitudeDelta);
 });
 
 $.search.addEventListener('click', function () {
