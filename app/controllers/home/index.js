@@ -64,10 +64,15 @@ function findmon(e, type, latkeep, latdelta, londelta) {
           latitude: item.latitude,
           longitude: item.longitude,
           title: item.itemLabel,
-          pincolor: Map.ANNOTATION_RED,
           myid: item.id,
           leftButton: "/images/Info blue.png"
         });
+        // Cambia il colore del pin a seconda che ci siano o no fotografie
+        if (item.with_photos) {
+          annotation.pincolor = Map.ANNOTATION_GREEN;
+        } else {
+          annotation.pincolor = Map.ANNOTATION_RED;
+        }
         $.mapview.addAnnotation(annotation);
       });
       $.activityIndicator.hide();
