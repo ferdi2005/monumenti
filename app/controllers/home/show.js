@@ -9,7 +9,7 @@ if (today.getMonth() == 9) {
 }
 
 $.activityIndicator.show();
-var url = "https://wlm.puglia.wiki/show.json?id=" + args;
+var url = "https://wlm.ferdinandotraversa.it/show.json?id=" + args;
 $.scrollable.disableBounce = true;
 var client = Ti.Network.createHTTPClient({
     onload: function (e) {
@@ -80,7 +80,7 @@ var client = Ti.Network.createHTTPClient({
         }
 
         if (OS_IOS) {
-            var url = "https://wlm.puglia.wiki/address.json?id=" + args;
+            var url = "https://wlm.ferdinandotraversa.it/address.json?id=" + args;
             var client = Ti.Network.createHTTPClient({
                 onload: function (e) {
                     $.address.show();
