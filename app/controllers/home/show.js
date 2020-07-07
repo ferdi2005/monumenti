@@ -23,7 +23,6 @@ var client = Ti.Network.createHTTPClient({
         }
 
         if (response.image != null && response.image != undefined && response.image != "") {
-            $.image.defaultImage = "/images/spin.gif";
             $.image.image = "https://commons.wikimedia.org/w/thumb.php?f=" + response.image + "&w=1000";
         }
         if (response.itemDescription != null && response.itemDescription != undefined && response.itemDescription != "") {
