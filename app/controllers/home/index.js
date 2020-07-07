@@ -69,7 +69,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
         });
         // Cambia il colore del pin a seconda che ci siano o no fotografie
         if (item.with_photos) {
-          annotation.pincolor = Map.ANNOTATION_GREEN;
+          annotation.pincolor = Map.ANNOTATION_AZURE;
         } else {
           annotation.pincolor = Map.ANNOTATION_RED;
         }

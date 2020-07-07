@@ -3,7 +3,7 @@
   
 }
 
-"View": {
+"ScrollView": {
     top: "5dp",
     bottom: "5dp",
     left: "5dp",
