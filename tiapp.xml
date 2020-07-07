@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ti:app xmlns:ti="http://ti.appcelerator.org">
+<ti:app 
+  xmlns:ti="http://ti.appcelerator.org">
   <id>it.wikimedia.wikilovesmonuments</id>
   <name>WLM Italia</name>
   <version>1.1.6</version>
@@ -11,11 +12,10 @@
   <fullscreen>false</fullscreen>
   <navbar-hidden>true</navbar-hidden>
   <analytics>true</analytics>
-  <guid>ae64c344-c45b-4a75-9555-e86bff2a2a3d</guid>
+  <guid>2234bc15-7129-44c8-9444-e86bff2a2a3d</guid>
   <property name="ti.ui.defaultunit" type="string">dp</property>
   <property name="run-on-main-thread" type="bool">true</property>
-  <!--<property name="SENTRY_DSN_PRODUCTION" type="String">https://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property>
-  <property name="SENTRY_DSN_DEVELOPMENT" type="String">https://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property>-->
+  <!--<property name="SENTRY_DSN_PRODUCTION" type="String">https://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property><property name="SENTRY_DSN_DEVELOPMENT" type="String">https://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property>-->
   <ios>
     <enable-launch-screen-storyboard>true</enable-launch-screen-storyboard>
     <use-app-thinning>true</use-app-thinning>
@@ -45,13 +45,14 @@
       </dict>
     </plist>
   </ios>
-  <android xmlns:android="http://schemas.android.com/apk/res/android">
+  <android 
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <manifest android:versionCode="11" 
       xmlns:android="http://schemas.android.com/apk/res/android">
       <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
       <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
       <application>
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBrART7ZFvMWsqUOiYnVXAxzjnf7KaA7-c" />
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBrART7ZFvMWsqUOiYnVXAxzjnf7KaA7-c"/>
       </application>
     </manifest>
   </android>
@@ -68,4 +69,5 @@
   <plugins>
     <plugin version="1.0">ti.alloy</plugin>
   </plugins>
+  <property name="appc-app-id" type="string">5f047529c64b996af2272a83</property>
 </ti:app>

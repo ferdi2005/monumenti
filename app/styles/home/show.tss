@@ -71,7 +71,7 @@
 }
 
 "#Wikipedia": {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#dadbdd",
     width: "500px",
     color: "#000000",
     top: "5dp",
