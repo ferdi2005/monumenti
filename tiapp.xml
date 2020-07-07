@@ -42,6 +42,8 @@
         <string>UIStatusBarStyleDefault</string>
         <key>NSLocationWhenInUseUsageDescription</key>
         <string>Abbiamo bisogno della tua posizione per poterti localizzare ed indicare quali sono i monumenti più vicini a te.</string>
+        <key>NSLocationAlwaysUsageDescription</key>
+        <string>Non abbiamo bisogno di localizzarti continuamente.</string>
       </dict>
     </plist>
   </ios>
