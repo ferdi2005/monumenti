@@ -54,6 +54,8 @@ function findmon(e, type, latkeep, latdelta, londelta) {
           latitudeDelta: latdelta,
           longitudeDelta: londelta
         };
+        $.mapview.mapType = Map.NORMAL_TYPE;
+        $.mapview.height = Ti.UI.FILL;
         alert("Non hai inserito nessuna località o c'è stato un errore nella geolocalizzazione.");
       }
 
@@ -108,11 +110,11 @@ function locate(latkeep, latdelta, londelta) {
         $.mapview.region = {
           latitude: 41.9109,
           longitude: 12.4818,
-          latitudeDelta: latdelta,
-          longitudeDelta: londelta
+          latitudeDelta: 0.1,
+          longitudeDelta: 0.1
         };
         $.mapview.mapType = Map.NORMAL_TYPE;
-        $.mapview.height = Ti.UI.SIZE;
+        $.mapview.height = Ti.UI.FILL;
         alert("Impossibile localizzarti, non hai dato il permesso alla localizzazione. Cerca una città cliccando sulla lente di ingrandimento oppure abilita la localizzazione dalle impostazioni sulla privacy.");
       }
     });
