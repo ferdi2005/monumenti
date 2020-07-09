@@ -17,7 +17,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
       $.mapview.removeAllCircles();
       lat = args.coords.latitude;
       lon = args.coords.longitude;
-      url = 'https://wlm.ferdinandotraversa.it/monuments.json?latitude=' + lat + '&longitude=' + lon;
+      url = 'https://cerca.wikilovesmonuments.it/monuments.json?latitude=' + lat + '&longitude=' + lon;
       // $.activityIndicator.show();
       var circle = $.mapview.addCircle(Map.createCircle({
         radius: 50,
@@ -30,7 +30,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
     }
   }
   if (type == "city") {
-    url = 'https://wlm.ferdinandotraversa.it/monuments.json?city=' + e;
+    url = 'https://cerca.wikilovesmonuments.it/monuments.json?city=' + e;
   }
 
   var xhr = Ti.Network.createHTTPClient({
