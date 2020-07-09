@@ -3,6 +3,10 @@
   height: Ti.UI.FILL	
 }
 
+"#mapview": {
+  height: Ti.UI.FILL,
+  userLocation: true
+}
 "#introd": {
   font: {
     fontSize: '25px',
@@ -48,5 +52,6 @@
 
 "#activityIndicator": {
   hiddenBehavior: Titanium.UI.HIDDEN_BEHAVIOR_GONE,
-  style: Ti.UI.ActivityIndicatorStyle.BIG
+  style: Ti.UI.ActivityIndicatorStyle.BIG,
+  indicatorColor: 'black'
 }

@@ -1,9 +1,9 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 const Map = require('ti.map');
-$.mapview.height = Ti.UI.FILL;
 $.searchfield.hide();
 $.searchfield.autocorrect = false;
 $.activityIndicator.hide();
+$.mapview.mapType = Map.NORMAL_TYPE;
 function findmon(e, type, latkeep, latdelta, londelta) {
   if (latkeep != true) {
     var latdelta = 0.1;
@@ -14,17 +14,10 @@ function findmon(e, type, latkeep, latdelta, londelta) {
   // TODO: rimuovere le occorrenze di args
   if (type == "geoloc") {
     if (Ti.Geolocation.locationServicesEnabled && (e.coords != null || undefined) && (e.coords.latitude != null || undefined)) {
-      $.mapview.removeAllCircles();
       lat = args.coords.latitude;
       lon = args.coords.longitude;
       url = 'https://cerca.wikilovesmonuments.it/monuments.json?latitude=' + lat + '&longitude=' + lon;
-      // $.activityIndicator.show();
-      var circle = $.mapview.addCircle(Map.createCircle({
-        radius: 50,
-        center: [e.coords.longitude, e.coords.latitude],
-        fillColor: "#4289ef",
-        opacity: '0.4'
-      }));
+       $.activityIndicator.show();
     } else {
       alert('Qualcosa è andato storto! Clicca il tasto refresh per aggironare la mappa e assicurati di aver attivato la localizzazione.');
     }
@@ -54,8 +47,6 @@ function findmon(e, type, latkeep, latdelta, londelta) {
           latitudeDelta: latdelta,
           longitudeDelta: londelta
         };
-        $.mapview.mapType = Map.NORMAL_TYPE;
-        $.mapview.height = Ti.UI.FILL;
         alert("Non hai inserito nessuna località o c'è stato un errore nella geolocalizzazione.");
       }
 
