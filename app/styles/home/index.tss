@@ -48,5 +48,5 @@
 
 "#activityIndicator": {
   hiddenBehavior: Titanium.UI.HIDDEN_BEHAVIOR_GONE,
-  style: Ti.UI.ActivityIndicatorStyle.BIG_DARK
+  style: Ti.UI.ActivityIndicatorStyle.BIG
 }
