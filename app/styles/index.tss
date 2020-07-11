@@ -1,6 +1,4 @@
-".container": {
-	backgroundColor:"white"
-}
+
 
 "#label": {
 	font: {
@@ -8,10 +6,6 @@
 	}
 }
 
-".container": {
-    backgroundColor: "white"
-}
-
-"TabGroup": {
+"TabGroup[platform=android]": {
 	theme: "Theme.AppCompat.NoTitleBar"
 }
