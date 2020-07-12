@@ -128,13 +128,9 @@ $.refresh.addEventListener('click', function () {
 $.search.addEventListener('click', function () {
   $.searchfield.show();
   $.searchfield.focus();
-  if (OS_ANDROID) {
-    $.searchfield.height = "20%";
-  }
   $.searchfield.addEventListener('return', function (e) {
     findmon(e.value, "city");
     $.searchfield.hide();
-    $.searchfield.height = "10%";
     if (OS_ANDROID) {
       Ti.UI.Android.hideSoftKeyboard();
     }
