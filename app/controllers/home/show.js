@@ -15,18 +15,18 @@ var client = Ti.Network.createHTTPClient({
     onload: function (e) {
         var response = JSON.parse(this.responseText);
 
-        $.window.title = response.itemLabel;
+        $.window.title = response.itemlabel;
         if (OS_ANDROID) {
             $.window.addEventListener("open", function(){
-                $.window.activity.actionBar.title = response.itemLabel;
+                $.window.activity.actionBar.title = response.itemlabel;
             });
         }
 
         if (response.image != null && response.image != undefined && response.image != "") {
             $.image.image = "https://commons.wikimedia.org/w/thumb.php?f=" + response.image + "&w=1000";
         }
-        if (response.itemDescription != null && response.itemDescription != undefined && response.itemDescription != "") {
-            $.description.text = response.itemDescription;
+        if (response.itemdescription != null && response.itemdescription != undefined && response.itemdescription != "") {
+            $.description.text = response.itemdescription;
         } else {
             $.description.hide();
         }
@@ -37,7 +37,7 @@ var client = Ti.Network.createHTTPClient({
         } else {
             $.Wikipedia.hide();
         }
-        $.title.text = response.itemLabel;
+        $.title.text = response.itemlabel;
         $.Wikidata.addEventListener('click', function (e) {
             Ti.Platform.openURL("https://www.wikidata.org/wiki/" + response.item);
         });
