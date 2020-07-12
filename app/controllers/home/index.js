@@ -56,7 +56,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
         annotation = Map.createAnnotation({
           latitude: item.latitude,
           longitude: item.longitude,
-          title: item.itemLabel,
+          title: item.itemlabel,
           myid: item.id,
           leftButton: "/images/Info blue.png"
         });

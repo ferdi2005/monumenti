@@ -3,14 +3,14 @@
   xmlns:ti="http://ti.appcelerator.org">
   <id>it.wikimedia.wikilovesmonuments</id>
   <name>WLM Italia</name>
-  <version>1.1.6</version>
+  <version>1.1.7</version>
   <publisher>Ferdinando Traversa</publisher>
   <url>https://www.wikilovesmonuments.wikimedia.it</url>
   <description>App per trovare i monumenti partecipanti a Wiki Loves Monuments con la propria posizione.</description>
   <copyright>Ferdinando Traversa - Apache License</copyright>
   <icon>appicon.png</icon>
   <fullscreen>false</fullscreen>
-  <navbar-hidden>true</navbar-hidden>
+  <navbar-hidden>false</navbar-hidden>
   <analytics>true</analytics>
   <guid>2234bc15-7129-44c8-9444-e86bff2a2a3d</guid>
   <property name="ti.ui.defaultunit" type="string">dp</property>
@@ -38,8 +38,6 @@
         <false/>
         <key>UIStatusBarHidden</key>
         <false/>
-        <key>UIStatusBarStyle</key>
-        <string>UIStatusBarStyleDefault</string>
         <key>NSLocationWhenInUseUsageDescription</key>
         <string>Abbiamo bisogno della tua posizione per poterti localizzare ed indicare quali sono i monumenti più vicini a te.</string>
         <key>NSLocationAlwaysUsageDescription</key>
@@ -49,7 +47,7 @@
   </ios>
   <android 
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <manifest android:versionCode="11" 
+    <manifest android:versionCode="12" 
       xmlns:android="http://schemas.android.com/apk/res/android">
       <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
       <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
