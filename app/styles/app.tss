@@ -34,8 +34,10 @@ overrode the settings with other TSS, XML, or JS settings:
 	backgroundColor: '#FFFFFF'
 }
 
-"ScrollableView": {
-	backgroundColor: '#FFFFFF'
+"ScrollView": {
+	backgroundColor: '#FFFFFF',
+	left: '5dp',
+	right: '5dp'
 }
 
 

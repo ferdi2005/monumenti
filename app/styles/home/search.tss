@@ -17,3 +17,7 @@
     style: Titanium.UI.ActivityIndicatorStyle.DARK,
     hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
+
+"ListView": {
+    separatorStyle: Titanium.UI.TABLE_VIEW_SEPARATOR_STYLE_SINGLE_LINE
+}

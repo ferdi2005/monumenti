@@ -18,7 +18,9 @@ function search(value) {
                         properties: {
                             itemId: item.id,
                             title: item.itemlabel,
-                            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE
+                            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
+                            color: '#000000',
+                            backgroundColor: '#FFFFFF'
                         }
                     }
                     data.push(itemdata);
