@@ -19,7 +19,9 @@ function findmon(e, type, latkeep, latdelta, londelta) {
       url = 'https://cerca.wikilovesmonuments.it/monuments.json?latitude=' + lat + '&longitude=' + lon;
        $.activityIndicator.show();
     } else {
-      alert('Qualcosa è andato storto! Clicca il tasto refresh per aggironare la mappa e assicurati di aver attivato la localizzazione.');
+      alert("Qualcosa è andato storto! Assicurati di aver attivato la localizzazione e riavvia l'applicazione o clicca refresh.");
+      $.activityIndicator.hide();
+      return
     }
   }
   if (type == "city") {
