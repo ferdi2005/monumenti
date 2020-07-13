@@ -1,9 +1,8 @@
 
 ".container" : {
-  backgroundColor: "#FFFFFF"
 }
 
-"ScrollView": {
+"Label": {
     top: "5dp",
     bottom: "5dp",
     left: "5dp",

@@ -83,6 +83,7 @@
   height: '20%',
   width: Ti.UI.FILL,
   userLocation: true,
-  top: '5dp',
+  userLocationButton: false,
+  top: '3dp',
   bottom: '5dp'
 }

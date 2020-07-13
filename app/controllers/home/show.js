@@ -121,7 +121,8 @@ var client = Ti.Network.createHTTPClient({
 
     },
     onerror: function (e) {
-        alert('Errore di rete: ' + e.error);
+        alert('Errore di rete, tornare indietro: ' + e.error);
+        $.activityIndicator.hide();
     },
     timeout: 5000
 });

@@ -3,9 +3,6 @@
   height: Ti.UI.FILL
 }
 
-"Window[platform=android]": {
-  windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_ADJUST_PAN
-}
 "#mapview": {
   height: Ti.UI.FILL,
   userLocation: true
