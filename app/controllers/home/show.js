@@ -1,5 +1,7 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
+const Map = require('ti.map');
 var args = $.args;
+
 var today = new Date();
 $.scrollable.width = Ti.UI.SIZE;
 if (today.getMonth() == 9) {
@@ -15,7 +17,18 @@ var client = Ti.Network.createHTTPClient({
     onload: function (e) {
         var response = JSON.parse(this.responseText);
 
+        // L'elemento è indicato con response
+
         $.window.title = response.itemlabel;
+
+        $.mapview.region = {
+            latitude: response.latitude,
+            longitude: response.longitude,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01
+          };
+        $.mapview.center = [response.latitude, response.longitude];
+
         if (OS_ANDROID) {
             $.window.addEventListener("open", function(){
                 $.window.activity.actionBar.title = response.itemlabel;
@@ -64,6 +77,16 @@ var client = Ti.Network.createHTTPClient({
                 });
             }
         });
+
+
+        var annotation = Map.createAnnotation({
+            latitude: response.latitude,
+            longitude: response.longitude,
+            title: response.itemlabel,
+            myid: response.id
+          });
+        
+        $.mapview.addAnnotation(annotation);
 
         if (OS_ANDROID) {
             Ti.Geolocation.reverseGeocoder(response.latitude, response.longitude, function (e) {

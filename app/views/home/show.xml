@@ -14,6 +14,7 @@
 			<Button id="Reasonator">Pagina su Reasonator</Button>
 			<Button id="Wikipedia">Voce su Wikipedia</Button>
 			<Label id="indietro" platform="android">Per tornare indietro, premi il tasto indietro relativo sul tuo telefono.</Label>
+			<Module id="mapview" module="ti.map" method="createView" />
 		</ScrollView>
 	</Window>
 </Alloy>

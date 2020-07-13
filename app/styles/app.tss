@@ -30,8 +30,16 @@ overrode the settings with other TSS, XML, or JS settings:
 }
 
 "View": {
-	height: Ti.UI.SIZE
+	height: Ti.UI.SIZE,
+	backgroundColor: '#FFFFFF'
 }
+
+"ScrollView": {
+	backgroundColor: '#FFFFFF',
+	left: '5dp',
+	right: '5dp'
+}
+
 
 "Button": {
 	backgroundColor: "#EEE",

@@ -1,6 +1,6 @@
 
 ".container" : {
-  
+   backgroundColor: "white"
 }
 
 "#title": {
@@ -62,7 +62,8 @@
 
 "#scrollable": {
     right: "5dp",
-    left: "5dp"
+    left: "5dp",
+    backgroundColor: 'white'
 }
 
 "#activityIndicator": {
@@ -76,4 +77,12 @@
     color: "#000000",
     top: "5dp",
     hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
+}
+
+"#mapview": {
+  height: '20%',
+  width: Ti.UI.FILL,
+  userLocation: true,
+  top: '5dp',
+  bottom: '5dp'
 }

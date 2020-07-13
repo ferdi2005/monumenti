@@ -1,0 +1,23 @@
+
+".container" : {
+  
+}
+
+"#searchfield": {
+  returnKeyType: Ti.UI.RETURNKEY_SEARCH,
+  top: '5px',
+  borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
+  hintTextColor: '#A0A0A0',
+  color: 'black',
+  borderColor: 'black',
+  borderWidth: '0.5'
+}
+
+"#activityIndicator": {
+    style: Titanium.UI.ActivityIndicatorStyle.DARK,
+    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
+}
+
+"ListView": {
+    separatorStyle: Titanium.UI.TABLE_VIEW_SEPARATOR_STYLE_SINGLE_LINE
+}

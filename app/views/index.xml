@@ -4,6 +4,10 @@
 			<Require type="view" src="home/index" />
 		</Tab>
 
+		<Tab id="search" title="Per nome" icon="/images/search.png">
+			<Require type="view" src="home/search" />
+		</Tab>
+
 		<Tab title="Info" icon="/images/Info.png">
 			<Require type="view" src="about/index" />
 		</Tab> 
