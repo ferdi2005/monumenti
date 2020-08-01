@@ -5,7 +5,7 @@ $.activityIndicator.hide();
 function search(value) {
     $.activityIndicator.show();
 
-    var url = 'https://cerca.wikilovesmonuments.it/namesearch.json?search=' + encodeURI(value);
+    var url = 'http://cerca.wikilovesmonuments.it/namesearch.json?search=' + encodeURI(value);
     var xhr = Ti.Network.createHTTPClient({
         onload: function(e) {
             

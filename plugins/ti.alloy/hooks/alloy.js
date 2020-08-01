@@ -151,7 +151,7 @@ exports.init = function (logger, config, cli, appc) {
 					logger.info(__('Executing Alloy compile: %s',
 						['cmd', '/s', '/c'].concat(cmd).join(' ').cyan));
 
-					// arg processing from https://github.com/MarcDiethelm/superspawn
+					// arg processing from http://github.com/MarcDiethelm/superspawn
 					child = spawn('cmd', [['/s', '/c', '"' +
 						cmd.map(function(a) {
 							if (/^[^"].* .*[^"]/.test(a)) return '"' + a + '"'; return a;

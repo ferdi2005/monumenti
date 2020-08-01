@@ -11,7 +11,7 @@ if (today.getMonth() == 9) {
 }
 
 $.activityIndicator.show();
-var url = "https://cerca.wikilovesmonuments.it/show.json?id=" + args;
+var url = "http://cerca.wikilovesmonuments.it/show.json?id=" + args;
 $.scrollable.disableBounce = true;
 var client = Ti.Network.createHTTPClient({
     onload: function (e) {
@@ -36,7 +36,7 @@ var client = Ti.Network.createHTTPClient({
         }
 
         if (response.image != null && response.image != undefined && response.image != "") {
-            $.image.image = "https://commons.wikimedia.org/w/thumb.php?f=" + response.image + "&w=1000";
+            $.image.image = "http://commons.wikimedia.org/w/thumb.php?f=" + response.image + "&w=1000";
         }
         if (response.itemdescription != null && response.itemdescription != undefined && response.itemdescription != "") {
             $.description.text = response.itemdescription;
@@ -52,27 +52,27 @@ var client = Ti.Network.createHTTPClient({
         }
         $.title.text = response.itemlabel;
         $.Wikidata.addEventListener('click', function (e) {
-            Ti.Platform.openURL("https://www.wikidata.org/wiki/" + response.item);
+            Ti.Platform.openURL("http://www.wikidata.org/wiki/" + response.item);
         });
         $.Reasonator.addEventListener('click', function (e) {
-            Ti.Platform.openURL("https://reasonator.toolforge.org/?q=" + response.item + "&lang=it");
+            Ti.Platform.openURL("http://reasonator.toolforge.org/?q=" + response.item + "&lang=it");
         });
         $.Commons.addEventListener('click', function (e) {
-            Ti.Platform.openURL("https://commons.wikimedia.org/w/index.php?title=Special:UploadWizard&campaign=wlm-it&id=" + response.wlmid + "&uselang=it&descriptionlang=it&lat=" + response.latitude + "&lon=" + response.longitude + "&categories=Images+from+Wiki+Loves+Monuments+" + today.getFullYear() + "+in+Italy");
+            Ti.Platform.openURL("http://commons.wikimedia.org/w/index.php?title=Special:UploadWizard&campaign=wlm-it&id=" + response.wlmid + "&uselang=it&descriptionlang=it&lat=" + response.latitude + "&lon=" + response.longitude + "&categories=Images+from+Wiki+Loves+Monuments+" + today.getFullYear() + "+in+Italy");
         });
         $.Osm.addEventListener('click', function (e) {
             if (Ti.Geolocation.hasLocationPermissions(Titanium.Geolocation.AUTHORIZATION_WHEN_IN_USE)) {
                 Ti.Geolocation.getCurrentPosition(function (e) {
-                    Ti.Platform.openURL("https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude);
+                    Ti.Platform.openURL("http://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude);
                 });
             } else {
                 Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function (e) {
                     if (e.success) {
                         Ti.Geolocation.getCurrentPosition(function (e) {
-                            Ti.Platform.openURL("https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude);
+                            Ti.Platform.openURL("http://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude);
                         });
                     } else {
-                        Ti.Platform.openURL("https://www.openstreetmap.org/directions");
+                        Ti.Platform.openURL("http://www.openstreetmap.org/directions");
                     }
                 });
             }
@@ -102,7 +102,7 @@ var client = Ti.Network.createHTTPClient({
         }
 
         if (OS_IOS) {
-            var url = "https://cerca.wikilovesmonuments.it/address.json?id=" + args;
+            var url = "http://cerca.wikilovesmonuments.it/address.json?id=" + args;
             var client = Ti.Network.createHTTPClient({
                 onload: function (e) {
                     $.address.show();

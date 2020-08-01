@@ -4,5 +4,5 @@ var args = $.args;
 $.lbl_version.text = "Versione " + Ti.App.version;
 
 $.info.addEventListener("click", function(e){
-    Ti.Platform.openURL("https://wikilovesmonuments.wikimedia.it");
+    Ti.Platform.openURL("http://wikilovesmonuments.wikimedia.it");
 });

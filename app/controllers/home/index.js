@@ -16,7 +16,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
     if (Ti.Geolocation.locationServicesEnabled && (e.coords != null || undefined) && (e.coords.latitude != null || undefined)) {
       lat = args.coords.latitude;
       lon = args.coords.longitude;
-      url = 'https://cerca.wikilovesmonuments.it/monuments.json?latitude=' + lat + '&longitude=' + lon;
+      url = 'http://cerca.wikilovesmonuments.it/monuments.json?latitude=' + lat + '&longitude=' + lon;
        $.activityIndicator.show();
     } else {
       alert("Qualcosa è andato storto! Assicurati di aver attivato la localizzazione e riavvia l'applicazione o clicca refresh.");
@@ -25,7 +25,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
     }
   }
   if (type == "city") {
-    url = 'https://cerca.wikilovesmonuments.it/monuments.json?city=' + e;
+    url = 'http://cerca.wikilovesmonuments.it/monuments.json?city=' + e;
   }
 
   var xhr = Ti.Network.createHTTPClient({

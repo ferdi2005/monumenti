@@ -1,6 +1,6 @@
 global.tabgroup = $.index;
 
-var url = 'https://api.github.com/repos/ferdi2005/monumenti/releases/latest';
+var url = 'http://api.github.com/repos/ferdi2005/monumenti/releases/latest';
 var xhr = Ti.Network.createHTTPClient({
     onload: function(e) {
         response = JSON.parse(this.responseText);

@@ -5,7 +5,7 @@
   <name>WLM Italia</name>
   <version>1.2</version>
   <publisher>Ferdinando Traversa</publisher>
-  <url>https://www.wikilovesmonuments.wikimedia.it</url>
+  <url>http://www.wikilovesmonuments.wikimedia.it</url>
   <description>App per trovare i monumenti partecipanti a Wiki Loves Monuments con la propria posizione.</description>
   <copyright>Ferdinando Traversa - Apache License</copyright>
   <icon>appicon.png</icon>
@@ -15,7 +15,7 @@
   <guid>2234bc15-7129-44c8-9444-e86bff2a2a3d</guid>
   <property name="ti.ui.defaultunit" type="string">dp</property>
   <property name="run-on-main-thread" type="bool">true</property>
-  <!--<property name="SENTRY_DSN_PRODUCTION" type="String">https://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property><property name="SENTRY_DSN_DEVELOPMENT" type="String">https://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property>-->
+  <!--<property name="SENTRY_DSN_PRODUCTION" type="String">http://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property><property name="SENTRY_DSN_DEVELOPMENT" type="String">http://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property>-->
   <ios>
     <enable-launch-screen-storyboard>true</enable-launch-screen-storyboard>
     <use-app-thinning>true</use-app-thinning>
@@ -59,6 +59,7 @@
   <modules>
     <module platform="android">ti.map</module>
     <module platform="iphone">ti.map</module>
+    <module>hyperloop</module>
   </modules>
   <deployment-targets>
     <target device="android">true</target>
