@@ -57,9 +57,13 @@ var client = Ti.Network.createHTTPClient({
         $.Reasonator.addEventListener('click', function (e) {
             Ti.Platform.openURL("http://reasonator.toolforge.org/?q=" + response.item + "&lang=it");
         });
-        /* $.Commons.addEventListener('click', function (e) {
-            Ti.Platform.openURL("http://commons.wikimedia.org/w/index.php?title=Special:UploadWizard&campaign=wlm-it&id=" + response.wlmid + "&uselang=it&descriptionlang=it&lat=" + response.latitude + "&lon=" + response.longitude + "&categories=Images+from+Wiki+Loves+Monuments+" + today.getFullYear() + "+in+Italy");
-        }); */
+        $.Commons.addEventListener('click', function (e) {
+            if (today.getMonth() == 9) {
+                Ti.Platform.openURL(response.uploadurl);
+            } else {
+                Ti.Platform.openURL(response.nonwlmuploadurl);
+            }
+        });
         $.Osm.addEventListener('click', function (e) {
             if (Ti.Geolocation.hasLocationPermissions(Titanium.Geolocation.AUTHORIZATION_WHEN_IN_USE)) {
                 Ti.Geolocation.getCurrentPosition(function (e) {

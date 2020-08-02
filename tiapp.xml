@@ -3,7 +3,7 @@
   xmlns:ti="http://ti.appcelerator.org">
   <id>it.wikimedia.wikilovesmonuments</id>
   <name>WLM Italia</name>
-  <version>1.2.1</version>
+  <version>1.2.2</version>
   <publisher>Ferdinando Traversa</publisher>
   <url>http://www.wikilovesmonuments.wikimedia.it</url>
   <description>App per trovare i monumenti partecipanti a Wiki Loves Monuments con la propria posizione.</description>
@@ -47,7 +47,7 @@
   </ios>
   <android 
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <manifest android:versionCode="15" 
+    <manifest android:versionCode="16" 
       xmlns:android="http://schemas.android.com/apk/res/android">
       <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
       <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
