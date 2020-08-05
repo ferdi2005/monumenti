@@ -60,6 +60,9 @@
     <module platform="android">ti.map</module>
     <module platform="iphone">ti.map</module>
     <module>hyperloop</module>
+    <module platform="android">ti.flurry</module>
+    <module platform="iphone">ti.flurry</module>
+    <module platform="android">ti.playservices</module>
   </modules>
   <deployment-targets>
     <target device="android">true</target>

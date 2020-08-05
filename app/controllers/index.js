@@ -1,3 +1,9 @@
+var Flurry = require('ti.flurry');
+Flurry.debugLogEnabled = true;
+Flurry.eventLoggingEnabled = true;
+
+Flurry.initialize('BPHB2T7TNDV6FGZHW233');
+
 global.tabgroup = $.index;
 
 var url = 'http://api.github.com/repos/ferdi2005/monumenti/releases/latest';

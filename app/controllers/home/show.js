@@ -36,7 +36,7 @@ var client = Ti.Network.createHTTPClient({
         }
 
         if (response.image != null && response.image != undefined && response.image != "") {
-            $.image.image = "http://commons.wikimedia.org/w/thumb.php?f=" + response.image + "&w=1000";
+            $.image.image = "https://commons.wikimedia.org/w/thumb.php?f=" + response.image + "&w=1000";
         }
         if (response.itemdescription != null && response.itemdescription != undefined && response.itemdescription != "") {
             $.description.text = response.itemdescription;
