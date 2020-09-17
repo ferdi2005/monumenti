@@ -58,7 +58,6 @@ var client = Ti.Network.createHTTPClient({
             Ti.Platform.openURL("http://reasonator.toolforge.org/?q=" + response.item + "&lang=it");
         });
         $.Commons.addEventListener('click', function (e) {
-            alert(today.getMonth());
             if (today.getMonth() == 8) {
                 Ti.Platform.openURL(response.uploadurl);
             } else {

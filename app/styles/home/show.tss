@@ -87,3 +87,7 @@
   top: '3dp',
   bottom: '5dp'
 }
+
+"#Alert": {
+    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
+}
