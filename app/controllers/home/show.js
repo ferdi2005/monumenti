@@ -4,7 +4,7 @@ var args = $.args;
 
 var today = new Date();
 $.scrollable.width = Ti.UI.SIZE;
-if (today.getMonth() == 9) {
+if (today.getMonth() == 8) {
     $.Alert.hide();
 } else {
     $.Alert.show();
@@ -58,7 +58,8 @@ var client = Ti.Network.createHTTPClient({
             Ti.Platform.openURL("http://reasonator.toolforge.org/?q=" + response.item + "&lang=it");
         });
         $.Commons.addEventListener('click', function (e) {
-            if (today.getMonth() == 9) {
+            alert(today.getMonth());
+            if (today.getMonth() == 8) {
                 Ti.Platform.openURL(response.uploadurl);
             } else {
                 Ti.Platform.openURL(response.nonwlmuploadurl);
