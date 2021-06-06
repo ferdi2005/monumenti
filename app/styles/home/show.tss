@@ -15,29 +15,32 @@
 "#Wikidata": {
     backgroundColor: "#8f0000",
     width: "500px",
-    color: "#FFFFFF"
+    color: "#FFFFFF",
+    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
 
 "#Reasonator": {
     backgroundColor: "#8f0000",
     width: "500px",
     color: "#FFFFFF",
-    top: "5dp"
+    top: "5dp",
+    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
-
 
 "#Commons": {
     backgroundColor: "#006399",
     width: "500px",
     top: "5dp",
-    color: "#FFFFFF"
+    color: "#FFFFFF",
+    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
 
 "#Osm": {
     backgroundColor: "#58ce40",
     width: "500px",
     top: "5dp",
-    color: "#FFFFFF"
+    color: "#FFFFFF",
+    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
 
 "#description": {

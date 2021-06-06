@@ -6,7 +6,7 @@ Flurry.initialize('BPHB2T7TNDV6FGZHW233');
 
 global.tabgroup = $.index;
 
-var url = 'http://api.github.com/repos/ferdi2005/monumenti/releases/latest';
+var url = 'https://api.github.com/repos/ferdi2005/monumenti/releases/latest';
 var xhr = Ti.Network.createHTTPClient({
     onload: function(e) {
         response = JSON.parse(this.responseText);

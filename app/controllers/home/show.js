@@ -1,7 +1,12 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 const Map = require('ti.map');
 var args = $.args;
-
+if (OS_IOS) {
+    $.Wikidata.hide();
+    $.Osm.hide();
+    $.Reasonator.hide();
+    $.Wikipedia.hide();
+}
 var today = new Date();
 $.scrollable.width = Ti.UI.SIZE;
 if (today.getMonth() == 8) {
@@ -92,7 +97,6 @@ var client = Ti.Network.createHTTPClient({
         
         $.mapview.addAnnotation(annotation);
 
-        if (OS_ANDROID) {
             Ti.Geolocation.reverseGeocoder(response.latitude, response.longitude, function (e) {
                 if (e.success) {
                     $.address.show();
@@ -103,9 +107,8 @@ var client = Ti.Network.createHTTPClient({
                     $.activityIndicator.hide();
                 }
             });
-        }
 
-        if (OS_IOS) {
+        /* if (OS_IOS) {
             var url = "http://cerca.wikilovesmonuments.it/address.json?id=" + args;
             var client = Ti.Network.createHTTPClient({
                 onload: function (e) {
@@ -121,7 +124,8 @@ var client = Ti.Network.createHTTPClient({
             client.open("GET", url);
             client.send();
 
-        }
+
+        } */
 
     },
     onerror: function (e) {

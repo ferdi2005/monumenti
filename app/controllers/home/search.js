@@ -47,7 +47,7 @@ function search(value) {
 
 $.listview.addEventListener('itemclick', function(e){
     var window = Alloy.createController('home/show', e.itemId).getView();
-    tabgroup.getActiveTab().open(window);
+    tabgroup.activeTab.open(window);
 });
 
 $.winsearch.addEventListener('open', function(){

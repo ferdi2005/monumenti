@@ -5,17 +5,17 @@
   <name>WLM Italia</name>
   <version>1.2.4</version>
   <publisher>Ferdinando Traversa</publisher>
-  <url>http://www.wikilovesmonuments.wikimedia.it</url>
+  <url>https://cerca.wikilovesmonuments.it</url>
   <description>App per trovare i monumenti partecipanti a Wiki Loves Monuments con la propria posizione.</description>
   <copyright>Ferdinando Traversa - Apache License</copyright>
   <icon>appicon.png</icon>
   <fullscreen>false</fullscreen>
   <navbar-hidden>false</navbar-hidden>
   <analytics>true</analytics>
-  <guid>2234bc15-7129-44c8-9444-e86bff2a2a3d</guid>
+  <guid>46ce9ebb-22ee-4e85-9aaa-e86bff2a2a3d</guid>
   <property name="ti.ui.defaultunit" type="string">dp</property>
   <property name="run-on-main-thread" type="bool">true</property>
-  <!--<property name="SENTRY_DSN_PRODUCTION" type="String">http://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property><property name="SENTRY_DSN_DEVELOPMENT" type="String">http://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property>-->
+  <!--<property name="SENTRY_DSN_PRODUCTION" type="String">https://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property><property name="SENTRY_DSN_DEVELOPMENT" type="String">https://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property>-->
   <ios>
     <enable-launch-screen-storyboard>true</enable-launch-screen-storyboard>
     <use-app-thinning>true</use-app-thinning>
@@ -69,9 +69,9 @@
     <target device="ipad">true</target>
     <target device="iphone">true</target>
   </deployment-targets>
-  <sdk-version>9.1.0.GA</sdk-version>
+  <sdk-version>9.3.2.GA</sdk-version>
   <plugins>
     <plugin version="1.0">ti.alloy</plugin>
   </plugins>
-  <property name="appc-app-id" type="string">5f047529c64b996af2272a83</property>
+  <property name="appc-app-id" type="string">60072883cfdd367277623974</property>
 </ti:app>
