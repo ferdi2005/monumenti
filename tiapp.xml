@@ -63,6 +63,8 @@
     <module platform="android">ti.flurry</module>
     <module platform="iphone">ti.flurry</module>
     <module platform="android">ti.playservices</module>
+    <module platform="iphone">ti.identity</module>
+    <module platform="android">ti.identity</module>
   </modules>
   <deployment-targets>
     <target device="android">true</target>
