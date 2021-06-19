@@ -14,32 +14,32 @@
 
 "#Wikidata": {
     backgroundColor: "#8f0000",
-    width: "500px",
     color: "#FFFFFF",
-    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
 
 "#Reasonator": {
     backgroundColor: "#8f0000",
-    width: "500px",
     color: "#FFFFFF",
-    top: "5dp",
-    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
 
 "#Commons": {
     backgroundColor: "#006399",
-    width: "500px",
-    top: "5dp",
     color: "#FFFFFF",
-    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
 
 "#Osm": {
     backgroundColor: "#58ce40",
-    width: "500px",
-    top: "5dp",
     color: "#FFFFFF",
+}
+
+"#Wikipedia": {
+    backgroundColor: "#dadbdd",
+    color: "#000000",
+}
+
+"Button": {
+    width: Ti.UI.FILL,
+    top: "5dp",
     hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
 
@@ -71,14 +71,6 @@
 
 "#activityIndicator": {
     style: Titanium.UI.ActivityIndicatorStyle.DARK,
-    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
-}
-
-"#Wikipedia": {
-    backgroundColor: "#dadbdd",
-    width: "500px",
-    color: "#000000",
-    top: "5dp",
     hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
 

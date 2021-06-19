@@ -25,12 +25,16 @@ overrode the settings with other TSS, XML, or JS settings:
 
 */
 
+"Window": {
+	backgroundColor: '#fff'
+}
+
 ".vertical": {
 	layout: "vertical"
 }
 
 "View": {
-	height: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
 	backgroundColor: '#FFFFFF'
 }
 
@@ -161,12 +165,11 @@ overrode the settings with other TSS, XML, or JS settings:
 }
 
 "#activityindicator": {
-style: Ti.UI.ActivityIndicatorStyle.DARK,
-  top: 10,
-  left: 10,
-  height: Ti.UI.SIZE,
-  width: Ti.UI.SIZE
-
+	style: Ti.UI.ActivityIndicatorStyle.DARK,
+	top: 10,
+	left: 10,
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE
 }
 
 "Label": {
@@ -185,4 +188,8 @@ style: Ti.UI.ActivityIndicatorStyle.DARK,
 	contentWidth: Ti.UI.FILL,
 	layout: "vertical",
 	disableBounce: true
+}
+
+".noshow": {
+	hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
