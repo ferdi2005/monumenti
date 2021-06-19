@@ -2,6 +2,10 @@
 ".container" : {
 }
 
+"Button": {
+    top: "5dp"	
+}
+
 "Label": {
     top: "5dp",
     bottom: "5dp",
@@ -15,6 +19,11 @@
 }
 
 "#info": {
+    backgroundColor: "#8f0000",
+    color: "#FFFFFF"
+}
+
+"#upload_config": {
     backgroundColor: "#8f0000",
     color: "#FFFFFF"
 }

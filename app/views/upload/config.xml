@@ -1,0 +1,16 @@
+<Alloy>
+	<Window class="vertical" id="config" title="Gestioni impostazioni upload">
+		<View class="vertical">
+			<ActivityIndicator id="activityIndicator" />
+
+			<Label text="Da qui puoi controllare le impostazioni relative al tuo account Wikimedia con particolare riferimento alla funzionalità di upload foto da app."/>
+
+			<Label id="commento_login_start" text="Per proseguire, effettua il login o crea un account su Wikimedia Commons cliccando il tasto blu qui sotto."/>
+			<Button class="noshow" id="login_start">Accedi a Wikimedia Commons</Button>
+
+			<Button class="noshow" id="login_delete">Esci</Button>
+			
+			<Label class="noshow" id="mediawiki_data"/>
+		</View>
+	</Window>
+</Alloy>

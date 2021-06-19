@@ -1,0 +1,29 @@
+
+".container" : {
+  
+}
+
+"Label": {
+    top: "5dp",
+    bottom: "5dp",
+    left: "5dp",
+    right: "5dp"
+}
+
+"Button": {
+    top: "5dp",
+    width: Ti.UI.FILL,
+    left: "5dp",
+    right: "5dp"
+}
+
+"#login_start": {
+    color: "#FFF",
+    backgroundColor: "#006499"
+}
+
+"#activityIndicator": {
+  hiddenBehavior: Titanium.UI.HIDDEN_BEHAVIOR_GONE,
+  style: Ti.UI.ActivityIndicatorStyle.BIG,
+  indicatorColor: 'black'
+}
