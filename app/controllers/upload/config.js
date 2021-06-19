@@ -1,6 +1,6 @@
 var args = $.args;
-var Identity = require("ti.identity");
-var Dialog = require('ti.webdialog');
+const Identity = require("ti.identity");
+const Dialog = require('ti.webdialog');
 
 // Mostra activity indicator
 $.activityIndicator.show();

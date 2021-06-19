@@ -1,11 +1,12 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 const Map = require('ti.map');
+const Dialog = require('ti.webdialog');
+
 var args = $.args;
 if (OS_IOS) {
     $.Wikidata.hide();
     $.Osm.hide();
     $.Reasonator.hide();
-    $.Wikipedia.hide();
 }
 var today = new Date();
 $.scrollable.width = Ti.UI.SIZE;
@@ -50,19 +51,41 @@ var client = Ti.Network.createHTTPClient({
         }
         if (response.wikipedia != null && response.wikipedia != undefined && response.wikipedia != "") {
             $.Wikipedia.addEventListener("click", function(){
-                Ti.Platform.openURL(response.wikipedia);
+                if (Dialog.isSupported()) {
+                    Dialog.open({
+                        title: response.itemlabel,
+                        url: response.wikipedia
+                    })
+                } else {
+                    Ti.Platform.openURL(response.wikipedia);
+                }     
             });
         } else {
             $.Wikipedia.hide();
         }
         $.title.text = response.itemlabel;
         $.Wikidata.addEventListener('click', function (e) {
-            Ti.Platform.openURL("http://www.wikidata.org/wiki/" + response.item);
+            if (Dialog.isSupported()) {
+                Dialog.open({
+                    title: response.item,
+                    url: "http://www.wikidata.org/wiki/" + response.item
+                })
+            } else {
+                Ti.Platform.openURL("http://www.wikidata.org/wiki/" + response.item);
+            }
         });
         $.Reasonator.addEventListener('click', function (e) {
-            Ti.Platform.openURL("http://reasonator.toolforge.org/?q=" + response.item + "&lang=it");
+            if (Dialog.isSupported()) {
+                Dialog.open({
+                    title: response.item,
+                    url: "http://reasonator.toolforge.org/?q=" + response.item + "&lang=it"
+                })
+            } else {
+                Ti.Platform.openURL("http://reasonator.toolforge.org/?q=" + response.item + "&lang=it");
+            }
         });
-        $.Commons.addEventListener('click', function (e) {
+        // Sistema per il caricamento delle fotografie
+        $.Upload.addEventListener('click', function (e) {
             if (today.getMonth() == 8) {
                 Ti.Platform.openURL(response.uploadurl);
             } else {
@@ -72,16 +95,34 @@ var client = Ti.Network.createHTTPClient({
         $.Osm.addEventListener('click', function (e) {
             if (Ti.Geolocation.hasLocationPermissions(Titanium.Geolocation.AUTHORIZATION_WHEN_IN_USE)) {
                 Ti.Geolocation.getCurrentPosition(function (e) {
+                    if (Dialog.isSupported()) {
+                        Dialog.open({
+                            title: response.item,
+                            url: "http://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude
+                        }) } else {
                     Ti.Platform.openURL("http://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude);
+                        }
                 });
             } else {
                 Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function (e) {
                     if (e.success) {
                         Ti.Geolocation.getCurrentPosition(function (e) {
+                            if (Dialog.isSupported()) {
+                                Dialog.open({
+                                    title: response.item,
+                                    url: "http://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude
+                                }) } else {
                             Ti.Platform.openURL("http://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude);
+                                }
                         });
                     } else {
+                        if (Dialog.isSupported()) {
+                            Dialog.open({
+                                title: response.item,
+                                url: "http://www.openstreetmap.org/directions"
+                            }) } else {
                         Ti.Platform.openURL("http://www.openstreetmap.org/directions");
+                            }
                     }
                 });
             }

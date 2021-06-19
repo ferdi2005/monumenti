@@ -22,7 +22,7 @@
     color: "#FFFFFF",
 }
 
-"#Commons": {
+"#Upload": {
     backgroundColor: "#006399",
     color: "#FFFFFF",
 }
