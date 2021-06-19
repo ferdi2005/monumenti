@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 3.0.0
+apiversion: 2
+architectures: arm64 x86_64
+description: titanium-web-dialog
+author: Hans Knoechel
+license: Apache 2.0
+copyright: Copyright (c) 2017-present by Axway Appcelerator
+
+# these should not be edited
+name: titanium-web-dialog
+moduleid: ti.webdialog
+guid: 1f19cce1-0ad7-4e25-ab3b-0666f54a0a49
+platform: iphone
+minsdk: 9.2.0
