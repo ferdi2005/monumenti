@@ -1,6 +1,8 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = $.args;
 
+$.conferma.hide();
+
 // Titolo della finestra su Android
 if (OS_ANDROID) {
     $.title.addEventListener("open", function(){
@@ -15,6 +17,7 @@ const TOKEN = args[1];
 var images = args[2];
 var monument = args[3];
 
+var fieldtext = {};
 var data = [];
 var uploaded = []
 
@@ -59,6 +62,7 @@ Array(images).forEach(
                     uploaded.push(itemdata); // Array delle immagini caricate correttamente
                     $.imagespace.setItems(data);
                     $.activityIndicator.hide();
+                    $.conferma.show();
                 }
             },
             onerror: function(e) {
@@ -72,7 +76,7 @@ Array(images).forEach(
                 $.imagespace.setItems(data);
                 $.activityIndicator.hide();
             },
-            timeout: 500000
+            timeout: 600000
         });
         client.open("POST", url);
         var content = {
@@ -85,64 +89,89 @@ Array(images).forEach(
     }
 );
 
+const DATEREGEX = /\d{2}\/\d{2}\/\d{4}/ // Regex del formato della data
+// Funzione invocata onBlur
+function saveText(e) {
+    fieldtext[e.source.id] = e.value;
+    if (e.source.id.startsWith("date") && !e.value.match(DATEREGEX)) {
+        alert("Attenzione: il formato della data dovrebbe essere gg/mm/aaaa come per esempio 11/05/2005. Altri formati potrebbero essere interpretati non correttamente, sebbene accettati.");
+    }
+}
+
+function bluronReturn(e) {
+    e.source.blur();
+}
+
 $.conferma.addEventListener("click", function(e){
     var photos = {};
+    var campi_pieni = true;
 
     uploaded.forEach(function(photo){
-      /*  var title = photo.title.id;
-        var description = photo.description.id;
-        var date = photo.date.id;
-        photos[photo.properties.itemId] = [$.title.value, $.description.value, $.date.value]; */
-        
-        // TODO: photos[photo.properties.itemId] = [titolo, descrizione, data] 
+        // Recupera da fieldtext i valori dei campi.
+        photos[photo.properties.itemId] = [fieldtext["title"+photo.properties.itemId], fieldtext["description"+photo.properties.itemId], fieldtext["date"+photo.properties.itemId]]
+
+        if (fieldtext["title"+photo.properties.itemId] == undefined || fieldtext["title"+photo.properties.itemId] == "" || fieldtext["description"+photo.properties.itemId] == undefined || fieldtext["description"+photo.properties.itemId] == "" || fieldtext["date"+photo.properties.itemId] == undefined || fieldtext["date"+photo.properties.itemId] == "") {
+            alert("I campi sono obbligatori! Compilali tutti prima di procedere all'upload (o premi invio sulla tastiera se l'hai fatto).");
+            campi_pieni = false;
+        }
     })
 
-    var url = Alloy.Globals.backend + "/photocancel.json";
-    var client = Ti.Network.createHTTPClient({
-        onload: function(e){
-            var alert = alert("Foto caricate con successo!");
-            alert.addEventListener("click", function(e){
-                $.title.close();
-            });
-        },
-        onerror: function(e){
-            var alert = alert("Qualcosa è andato storto e il caricamento non è riuscito. Riprova più tardi: " + e.error);
-            alert.addEventListener("click", function(e){
-                $.title.close();
-            });
-        },
-        timeout: 5000
-    });
-    client.open("POST", url);
-    var content = {
-        uuid: UUID,
-        token: TOKEN,
-        photos: JSON.stringify(photos)
-    };
-    client.send(content);
+    if (campi_pieni) {
+        var url = Alloy.Globals.backend + "/set_title.json";
+        var client = Ti.Network.createHTTPClient({
+            onload: function(e){
+                var alert = Ti.UI.createAlertDialog({message: "Foto messe in coda per il caricamento con successo! Puoi verificare il loro stato nelle impostazioni.", buttonNames: ["Ok"]});
+                alert.addEventListener("click", function(e){
+                    $.title.close();
+                });
+                alert.show();
+            },
+            onerror: function(e){
+                var alert = Ti.UI.createAlertDialog({message: "Qualcosa è andato storto e il caricamento non è riuscito. Riprova più tardi: " + e.error, buttonNames: ["Ok"]});
+                alert.addEventListener("click", function(e){
+                    $.title.close();
+                });
+            },
+            timeout: 20000
+        });
+        client.open("POST", url);
+        var content = {
+            uuid: UUID,
+            token: TOKEN,
+            photos: JSON.stringify(photos)
+        };
+        client.send(content);
+    }
 });
 
 $.annulla.addEventListener("click", function(e){
-    var ids = [];
+    if(uploaded.length > 0) {
+        $.activityIndicator.show();
+        var ids = [];
 
-    uploaded.forEach(function(photo){
-        ids.push(photo.properties.itemId);
-    })
-    var url = Alloy.Globals.backend + "/photocancel.json";
-    var client = Ti.Network.createHTTPClient({
-        onload: function(e){
-            $.title.close();
-        },
-        onerror: function(e){
-            $.title.close();
-        },
-        timeout: 5000
-    });
-    client.open("POST", url);
-    var content = {
-        uuid: UUID,
-        token: TOKEN,
-        ids: ids
-    };
-    client.send(content);
+        uploaded.forEach(function(photo){
+            ids.push(photo.properties.itemId);
+        })
+        var url = Alloy.Globals.backend + "/photocancel.json";
+        var client = Ti.Network.createHTTPClient({
+            onload: function(e){
+                $.activityIndicator.hide();
+                $.title.close();
+            },
+            onerror: function(e){
+                $.activityIndicator.hide();
+                $.title.close();
+            },
+            timeout: 20000
+        });
+        client.open("POST", url);
+        var content = {
+            uuid: UUID,
+            token: TOKEN,
+            ids: JSON.stringify(ids)
+        };
+        client.send(content);
+    } else {
+        $.title.close();
+    }
 });

@@ -22,13 +22,14 @@
     borderColor: 'black',
     borderWidth: '0.5'
 }
+/*
 "TextArea": {
     borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
     hintTextColor: '#A0A0A0',
     color: 'black',
     borderColor: 'black',
     borderWidth: '0.5'
-}
+}*/
 
 ".image": {
     top: "5dp",
@@ -47,4 +48,21 @@
   hiddenBehavior: Titanium.UI.HIDDEN_BEHAVIOR_GONE,
   style: Ti.UI.ActivityIndicatorStyle.BIG,
   indicatorColor: 'black'
+}
+
+"Button": {
+    top: "5dp",
+    width: Ti.UI.FILL,
+    left: "5dp",
+    right: "5dp"
+}
+
+"#conferma": {
+    backgroundColor: "#006399",
+    color: "#FFFFFF",
+}
+
+"#annulla": {
+    backgroundColor: "#8f0000",
+    color: "#FFFFFF",
 }
