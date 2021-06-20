@@ -5,7 +5,7 @@
 
 			<Label text="Da qui puoi controllare le impostazioni relative al tuo account Wikimedia con particolare riferimento alla funzionalità di upload foto da app."/>
 
-			<Label id="commento_login_start" text="Per proseguire, effettua il login o crea un account su Wikimedia Commons cliccando il tasto blu qui sotto."/>
+			<Label id="commento_login_start" text="Per proseguire, effettua il login o crea un account su Wikimedia Commons cliccando il tasto blu qui sotto. Se hai già fatto il login, chiudi e riapri questa finestra."/>
 			<Button class="noshow" id="login_start">Accedi a Wikimedia Commons</Button>
 
 			<Button class="noshow" id="login_delete">Esci</Button>

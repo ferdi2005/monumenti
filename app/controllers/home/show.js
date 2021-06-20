@@ -1,8 +1,10 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 const Map = require('ti.map');
 const Dialog = require('ti.webdialog');
+const Identity = require("ti.identity");
 
 var args = $.args;
+
 if (OS_IOS) {
     $.Wikidata.hide();
     $.Osm.hide();
@@ -10,7 +12,7 @@ if (OS_IOS) {
 }
 var today = new Date();
 $.scrollable.width = Ti.UI.SIZE;
-if (today.getMonth() == 8) {
+if (today.getMonth() == 8) { // I mesi in JavaScriptlandia partono da 0
     $.Alert.hide();
 } else {
     $.Alert.show();
@@ -86,10 +88,31 @@ var client = Ti.Network.createHTTPClient({
         });
         // Sistema per il caricamento delle fotografie
         $.Upload.addEventListener('click', function (e) {
-            if (today.getMonth() == 8) {
-                Ti.Platform.openURL(response.uploadurl);
+            if (Ti.App.Properties.getBool("registrato", false) == false || Ti.App.Properties.getBool("autorizzato", false) == false) {
+                Alloy.Globals.utils.open('upload/config', args); //TODO: implementare dall'altro lato
             } else {
-                Ti.Platform.openURL(response.nonwlmuploadurl);
+                Ti.Media.openPhotoGallery({
+                    allowMultiple: true,
+                    mediaTypes: [Titanium.Media.MEDIA_TYPE_PHOTO],
+                    cancel: function(e) {
+                        alert("Hai annullato il caricamento delle foto")
+                    },
+                    error: function(e) {
+                        alert("Potresti non aver concesso l'autorizzazione ad accedere alla galleria foto. Verifica.")
+                    },
+                    success: function(e){
+                        // Recupero token salvato nel keychain e procedo con la lettura delle informazioni
+                        var keychainItem = Identity.createKeychainItem({ identifier: "token" });
+                        keychainItem.addEventListener("read", function(k){
+                            if (k.success == true) {
+                                Alloy.Globals.utils.open("upload/title", [Titanium.Platform.id, k.value, e.images, response.item]);
+                            } else {
+                                Alloy.Globals.utils.open('upload/config', false);
+                            }
+                        });
+                        keychainItem.read();
+                    }
+                });
             }
         });
         $.Osm.addEventListener('click', function (e) {

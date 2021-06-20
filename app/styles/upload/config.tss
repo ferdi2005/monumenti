@@ -27,3 +27,4 @@
   style: Ti.UI.ActivityIndicatorStyle.BIG,
   indicatorColor: 'black'
 }
+

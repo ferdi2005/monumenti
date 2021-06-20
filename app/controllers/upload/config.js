@@ -1,6 +1,6 @@
 var args = $.args;
 const Identity = require("ti.identity");
-const Dialog = require('ti.webdialog');
+var Dialog = require('ti.webdialog');
 
 // Mostra activity indicator
 $.activityIndicator.show();
@@ -31,6 +31,12 @@ function triggerDeletion(){
     $.config.close();
 }
 
+if (args == false) {
+    alert("Si è verificato un problema. Riprova più tardi.");
+    triggerDeletion();
+    $.config.close();
+}
+
 // Mostra i dati dell'utente
 function showUserInfo(userInfo) {
     // TODO: mostrare dati utili all'utente nel label
@@ -43,8 +49,13 @@ function startLogin(userInfo) {
     if (Dialog.isSupported()) {
         Dialog.open({
             title: "Esegui il login a Commons",
-            url: url
-        })
+            url: url,
+            dismissButtonStyle: Dialog.DISMISS_BUTTON_STYLE_DONE
+        });
+        Dialog.addEventListener("close", function(e){
+            retrieveUserData(userInfo.uuid, userInfo.token);
+            $.activityIndicator.show();
+        });
     } else {
         // Fallback nel caso in cui non sia supportato il webdialog
         Ti.Platform.openURL(url);
@@ -56,14 +67,22 @@ function retrieveUserData(uuid, token) {
     var url = Alloy.Globals.backend + "/userinfo.json?uuid=" + uuid + "&token=" + token
     var client = Ti.Network.createHTTPClient({
         onload: function(e) {
-            if (JSON.parse(this.responseText).error == "User not found") {
+            if (JSON.parse(this.responseText).error == "User not found.") {
                 triggerDeletion();
             } else {
                 var userInfo = JSON.parse(this.responseText);
                 
                 if (userInfo.authorized == true) {
                     showUserInfo(userInfo);
+                    Ti.App.Properties.setBool("autorizzato", true);
+                    $.login_start.hide();
+                    $.commento_login_start.hide();
+                    $.activityIndicator.hide();
+                    if (args != "settings" && args != false) {
+                        Alloy.Globals.utils.open("home/show", args)
+                    }
                 } else {
+                    Ti.App.Properties.setBool("autorizzato", false);
                     $.login_start.show();
                     $.commento_login_start.show();
                     $.activityIndicator.hide();
@@ -75,6 +94,7 @@ function retrieveUserData(uuid, token) {
         },
         onerror: function(e) {
             alert("Si è verificato un errore. Riprova più tardi: " + e.error)
+            $.config.close;
         },
         timeout: 5000
     });
@@ -96,7 +116,6 @@ if (Ti.App.Properties.getBool("registrato", false) == false) {
 
     var client = Ti.Network.createHTTPClient({
         onload: function(e) {
-            Ti.API.log(this.status);
             if (this.status == 202) {
                 var keychainItem = Identity.createKeychainItem({
                     identifier: "token"
@@ -130,7 +149,6 @@ if (Ti.App.Properties.getBool("registrato", false) == false) {
 // Recupero token salvato nel keychain e procedo con la lettura delle informazioni
 var keychainItem = Identity.createKeychainItem({ identifier: "token" });
 keychainItem.addEventListener("read", function(e){
-    Ti.API.log(JSON.stringify(e));
     if (e.success == true) {
         retrieveUserData(UUID, e.value); // Il token è contenuto in e.value
     } else {

@@ -1,0 +1,50 @@
+
+".container" : {
+  
+}
+
+"ListView": {
+    separatorStyle: Titanium.UI.TABLE_VIEW_SEPARATOR_STYLE_SINGLE_LINE,
+    height: Ti.UI.SIZE
+}
+
+"Label": {
+    top: "5dp",
+    bottom: "5dp",
+    left: "5dp",
+    right: "5dp"
+}
+
+"TextField": {
+    borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
+    hintTextColor: '#A0A0A0',
+    color: 'black',
+    borderColor: 'black',
+    borderWidth: '0.5'
+}
+"TextArea": {
+    borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
+    hintTextColor: '#A0A0A0',
+    color: 'black',
+    borderColor: 'black',
+    borderWidth: '0.5'
+}
+
+".image": {
+    top: "5dp",
+    left: "5dp",
+    width: "100dp",
+    left: 0
+}
+
+".field": {
+    inputType: Titanium.UI.INPUT_TYPE_CLASS_TEXT,
+    width: Ti.UI.FILL,
+    left: "5dp"
+}
+
+"#activityIndicator": {
+  hiddenBehavior: Titanium.UI.HIDDEN_BEHAVIOR_GONE,
+  style: Ti.UI.ActivityIndicatorStyle.BIG,
+  indicatorColor: 'black'
+}
