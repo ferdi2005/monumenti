@@ -149,9 +149,10 @@ var client = Ti.Network.createHTTPClient({
                             Dialog.open({
                                 title: response.item,
                                 url: "http://www.openstreetmap.org/directions"
-                            }) } else {
+                            });
+                        } else {
                         Ti.Platform.openURL("http://www.openstreetmap.org/directions");
-                            }
+                        }
                     }
                 });
             }

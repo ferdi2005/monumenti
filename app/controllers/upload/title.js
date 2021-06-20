@@ -21,7 +21,7 @@ var fieldtext = {};
 var data = [];
 var uploaded = []
 
-Array(images).forEach(
+Array(images)[0].forEach(
     function(photo) {
         var url = Alloy.Globals.backend + "/photoupload.json"
         var client = Ti.Network.createHTTPClient({
@@ -51,7 +51,7 @@ Array(images).forEach(
                             id: "date" + id,
                         },
                         photo: {
-                            image: photo[0].media
+                            image: photo.media
                         },
                         properties: {
                             itemId: id,
@@ -68,7 +68,7 @@ Array(images).forEach(
             onerror: function(e) {
                 itemdata =  { 
                     photo: {
-                        image: photo[0].media
+                        image: photo.media
                     },
                     template: "error",
                 }
@@ -80,7 +80,7 @@ Array(images).forEach(
         });
         client.open("POST", url);
         var content = {
-            file: photo[0].media,
+            file: photo.media,
             uuid: UUID,
             token: TOKEN,
             monument: monument
