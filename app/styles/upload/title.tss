@@ -15,12 +15,9 @@
     right: "5dp"
 }
 
-"TextField": {
-    borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
+"TextField": {    
     hintTextColor: '#A0A0A0',
     color: 'black',
-    borderColor: 'black',
-    borderWidth: '0.5'
 }
 /*
 "TextArea": {
@@ -65,4 +62,8 @@
 "#annulla": {
     backgroundColor: "#8f0000",
     color: "#FFFFFF",
+}
+
+"#listview": {
+    disableBounce: true
 }

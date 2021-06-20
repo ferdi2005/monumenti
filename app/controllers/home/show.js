@@ -5,11 +5,13 @@ const Identity = require("ti.identity");
 
 var args = $.args;
 
-if (OS_IOS) {
-    $.Wikidata.hide();
-    $.Osm.hide();
-    $.Reasonator.hide();
-}
+// Nasconde tutti i buttons per mostrarli via via.
+$.Upload.hide();
+$.Wikidata.hide();
+$.Wikipedia.hide();
+$.Osm.hide();
+$.Reasonator.hide();
+
 var today = new Date();
 $.scrollable.width = Ti.UI.SIZE;
 if (today.getMonth() == 8) { // I mesi in JavaScriptlandia partono da 0
@@ -62,30 +64,9 @@ var client = Ti.Network.createHTTPClient({
                     Ti.Platform.openURL(response.wikipedia);
                 }     
             });
-        } else {
-            $.Wikipedia.hide();
+            $.Wikipedia.show();
         }
         $.title.text = response.itemlabel;
-        $.Wikidata.addEventListener('click', function (e) {
-            if (Dialog.isSupported()) {
-                Dialog.open({
-                    title: response.item,
-                    url: "http://www.wikidata.org/wiki/" + response.item
-                })
-            } else {
-                Ti.Platform.openURL("http://www.wikidata.org/wiki/" + response.item);
-            }
-        });
-        $.Reasonator.addEventListener('click', function (e) {
-            if (Dialog.isSupported()) {
-                Dialog.open({
-                    title: response.item,
-                    url: "http://reasonator.toolforge.org/?q=" + response.item + "&lang=it"
-                })
-            } else {
-                Ti.Platform.openURL("http://reasonator.toolforge.org/?q=" + response.item + "&lang=it");
-            }
-        });
         // Sistema per il caricamento delle fotografie
         $.Upload.addEventListener('click', function (e) {
             if (Ti.App.Properties.getBool("registrato", false) == false || Ti.App.Properties.getBool("autorizzato", false) == false) {
@@ -115,6 +96,31 @@ var client = Ti.Network.createHTTPClient({
                 });
             }
         });
+        $.Upload.show();
+        $.Wikidata.addEventListener('click', function (e) {
+            if (Dialog.isSupported()) {
+                Dialog.open({
+                    title: response.item,
+                    url: "http://www.wikidata.org/wiki/" + response.item
+                })
+            } else {
+                Ti.Platform.openURL("http://www.wikidata.org/wiki/" + response.item);
+            }
+        });
+        $.Wikidata.show();
+        $.Reasonator.addEventListener('click', function (e) {
+            if (Dialog.isSupported()) {
+                Dialog.open({
+                    title: response.item,
+                    url: "http://reasonator.toolforge.org/?q=" + response.item + "&lang=it"
+                })
+            } else {
+                Ti.Platform.openURL("http://reasonator.toolforge.org/?q=" + response.item + "&lang=it");
+            }
+        });
+        if (!OS_IOS) {
+            $.Reasonator.show();
+        }
         $.Osm.addEventListener('click', function (e) {
             if (Ti.Geolocation.hasLocationPermissions(Titanium.Geolocation.AUTHORIZATION_WHEN_IN_USE)) {
                 Ti.Geolocation.getCurrentPosition(function (e) {
@@ -150,7 +156,9 @@ var client = Ti.Network.createHTTPClient({
                 });
             }
         });
-
+        if (!OS_IOS) {
+            $.Osm.show();
+        }
 
         var annotation = Map.createAnnotation({
             latitude: response.latitude,

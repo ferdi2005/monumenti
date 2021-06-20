@@ -41,7 +41,9 @@
         <key>NSLocationWhenInUseUsageDescription</key>
         <string>Abbiamo bisogno della tua posizione per poterti localizzare ed indicare quali sono i monumenti più vicini a te.</string>
         <key>NSLocationAlwaysUsageDescription</key>
-        <string>Non abbiamo bisogno di localizzarti continuamente.</string>
+        <string>Abbiamo bisogno della tua posizione per poterti localizzare ed indicare quali sono i monumenti più vicini a te.</string>
+        <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+        <string>Abbiamo bisogno della tua posizione per poterti localizzare ed indicare quali sono i monumenti più vicini a te.</string>
         <key>NSPhotoLibraryUsageDescription</key>
         <string>Abbiamo bisogno dell'accesso alle tue fotografie in modo che tu possa caricarle direttamente dall'app e partecipare al concorso.</string>
       </dict>

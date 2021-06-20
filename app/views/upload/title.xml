@@ -14,7 +14,7 @@
 					<ImageView bindId="photo" class="image"/>
 					<View class="vertical">
 						<TextField bindId="title" class="field" hintText="Titolo dell'immagine" onBlur="saveText" onReturn="bluronReturn"/>
-						<TextField bindId="description" class="field" hintText="Descrizione dell'immagine" onBlur="saveText" onReturn="bluronReturn"/>
+						<TextField bindId="commonsdescription" class="field" hintText="Descrizione dell'immagine" onBlur="saveText" onReturn="bluronReturn"/>
 						<TextField bindId="date" class="field" hintText="Data della foto (gg/mm/aaaa)" onBlur="saveText" onReturn="bluronReturn"/>
 					</View>
 				</View>

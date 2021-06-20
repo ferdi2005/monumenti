@@ -44,7 +44,7 @@ Array(images).forEach(
                         title: {
                             id: "title" + id,
                         },
-                        description: {
+                        commonsdescription: {
                             id: "description" + id,
                         },
                         date: {
