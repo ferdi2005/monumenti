@@ -39,7 +39,7 @@ function search(value) {
             alert('Errore di connessione' + e.error);
             $.activityIndicator.hide();
         },
-        timeout: 5000
+        timeout: 50000
     });
     xhr.open('GET', url);
     xhr.send();

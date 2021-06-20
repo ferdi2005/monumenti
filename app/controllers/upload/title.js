@@ -62,6 +62,7 @@ Array(images)[0].forEach(
                     uploaded.push(itemdata); // Array delle immagini caricate correttamente
                     $.imagespace.setItems(data);
                     $.activityIndicator.hide();
+                    $.activityIndicator.height = 0;
                     $.conferma.show();
                 }
             },
@@ -75,6 +76,7 @@ Array(images)[0].forEach(
                 data.push(itemdata);
                 $.imagespace.setItems(data);
                 $.activityIndicator.hide();
+                $.activityIndicator.height = 0;
             },
             timeout: 600000
         });
@@ -156,10 +158,12 @@ $.annulla.addEventListener("click", function(e){
         var client = Ti.Network.createHTTPClient({
             onload: function(e){
                 $.activityIndicator.hide();
+                $.activityIndicator.height = 0;
                 $.title.close();
             },
             onerror: function(e){
                 $.activityIndicator.hide();
+                $.activityIndicator.height = 0;
                 $.title.close();
             },
             timeout: 20000
