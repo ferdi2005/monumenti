@@ -55,3 +55,7 @@
   style: Ti.UI.ActivityIndicatorStyle.BIG,
   indicatorColor: 'black'
 }
+
+"#osm[platform=android]": {
+   mapType: Alloy.Globals.OSM.WIKIMEDIA
+}

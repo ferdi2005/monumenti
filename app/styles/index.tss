@@ -9,3 +9,7 @@
 "TabGroup[platform=android]": {
 	theme: "Theme.AppCompat.NoTitleBar"
 }
+
+"#index": {
+	swipeable: false
+}

@@ -1,17 +1,14 @@
 <Alloy>
 	<Window title="Mappa" class="vertical" id="winmap">
-		<Module if="OS_IOS" id="mapview" module="ti.map" method="createView">
-			<ActivityIndicator id="activityIndicator" />
-			<TextField id="searchfield" hintText="Inserisci il nome della città e premi invio..."/>
-			<Button id="refresh" backgroundImage="/images/refresh.png"/>
-			<Button id="search" backgroundImage="/images/search.png"/>
-		</Module>
+		<View>
+			<Module if="OS_IOS" id="mapview" module="ti.map" method="createView" />
 
-		<OSMView module="ti.osm" id="osm" if="OS_ANDROID">
+			<OSMView module="ti.osm" id="osm" if="OS_ANDROID" />
+
 			<ActivityIndicator id="activityIndicator" />
 			<TextField id="searchfield" hintText="Inserisci il nome della città e premi invio..."/>
 			<Button id="refresh" backgroundImage="/images/refresh.png"/>
 			<Button id="search" backgroundImage="/images/search.png"/>
-		</OSMView>
+		</View>
 	</Window>
 </Alloy>
