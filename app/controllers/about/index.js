@@ -11,3 +11,7 @@ $.info.addEventListener("click", function(e){
 $.upload_config.addEventListener("click", function(e){
     Alloy.Globals.utils.open("upload/config");
 });
+
+$.upload_list.addEventListener("click", function(e){
+    Alloy.Globals.utils.open("upload/index");
+});

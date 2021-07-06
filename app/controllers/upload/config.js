@@ -1,6 +1,7 @@
-var args = $.args;
 const Identity = require("ti.identity");
-var Dialog = require('ti.webdialog');
+const Dialog = require('ti.webdialog');
+
+var args = $.args;
 
 // Mostra activity indicator
 $.activityIndicator.show();
@@ -55,7 +56,11 @@ function triggerDeletion(uuid){
             client.open("GET", url);
             client.send();
         } else {
-            alert("Si è verificato un errore con la lettura del keychain, riprova più tardi.")
+            var alert = Ti.UI.createAlertDialog({message: "Si è verificato un errore. Riprova più tardi. ", buttonNames: ["Ok"]});
+            alert.addEventListener("click", function(e){
+                $.config.close();
+            });
+            alert.show();
         }
     });
     keychainItem.read();

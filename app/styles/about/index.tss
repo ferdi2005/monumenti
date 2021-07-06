@@ -27,3 +27,8 @@
     backgroundColor: "#8f0000",
     color: "#FFFFFF"
 }
+
+"#upload_list": {
+    backgroundColor: "#006399",
+    color: "#FFFFFF",
+}

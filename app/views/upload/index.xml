@@ -1,0 +1,29 @@
+<Alloy>
+	<Window title="Elenco foto caricate" class="vertical" id="index">
+		<ActivityIndicator id="activityIndicator" />
+		<ListView id="listview" class="vertical">
+		<Templates>
+			<ItemTemplate name="error">
+				<View class="horizontal">
+					<ImageView bindId="photo" class="image"/>
+					<Label class="field" text="Immagine non caricata a casa di un errore."/>
+				</View>
+			</ItemTemplate>
+			<ItemTemplate name="waiting">
+				<View class="horizontal">
+					<ImageView bindId="photo" class="image"/>
+					<Label class="field" text="Immagine ancora in caricamento."/>
+				</View>
+			</ItemTemplate>
+			<ItemTemplate name="success">
+				<View class="horizontal">
+					<ImageView bindId="photo" class="image" onClick="openPhoto"/>
+					<Label bindId="title" onClick="openPhoto"/>
+				</View>
+			</ItemTemplate>
+		</Templates>
+		<ListSection id="imagespace" headerTitle="Immagini inviate" />
+		</ListView>
+
+	</Window>
+</Alloy>
