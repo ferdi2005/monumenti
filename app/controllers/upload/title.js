@@ -59,7 +59,8 @@ Array(images)[0].forEach(
                     });
 
                     var view = Titanium.UI.createView({
-                        layout: "vertical"
+                        layout: "vertical",
+                        height: Ti.UI.SIZE
                     });
 
                     var title = Titanium.UI.createTextField({
@@ -67,6 +68,7 @@ Array(images)[0].forEach(
                         id: "title" + id,
                         inputType: Titanium.UI.INPUT_TYPE_CLASS_TEXT,
                         width: Ti.UI.FILL,
+                        height: Ti.UI.SIZE,
                         left: "5dp",
                         borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
                         hintTextColor: '#A0A0A0',
@@ -84,6 +86,7 @@ Array(images)[0].forEach(
                         id: "description" + id,
                         inputType: Titanium.UI.INPUT_TYPE_CLASS_TEXT,
                         width: Ti.UI.FILL,
+                        height: Ti.UI.SIZE,
                         left: "5dp",
                         borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
                         hintTextColor: '#A0A0A0',
@@ -101,6 +104,7 @@ Array(images)[0].forEach(
                         id: "date" + id,
                         inputType: Titanium.UI.INPUT_TYPE_CLASS_TEXT,
                         width: Ti.UI.FILL,
+                        height: Ti.UI.SIZE,
                         left: "5dp",
                         borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
                         hintTextColor: '#A0A0A0',
