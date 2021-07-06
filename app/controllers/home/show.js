@@ -199,6 +199,11 @@ var client = Ti.Network.createHTTPClient({
             $.osm.addMarkers(markers);
         }
 
+        if (response.address != null && response.address != undefined && response.address != "") {
+            $.address.text = response.address;
+            $.address.show();
+            $.activityIndicator.hide();
+        } else {
             Ti.Geolocation.reverseGeocoder(response.latitude, response.longitude, function (e) {
                 if (e.success) {
                     $.address.show();
@@ -209,7 +214,7 @@ var client = Ti.Network.createHTTPClient({
                     $.activityIndicator.hide();
                 }
             });
-
+        }
         /* if (OS_IOS) {
             var url = "http://cerca.wikilovesmonuments.it/address.json?id=" + args;
             var client = Ti.Network.createHTTPClient({
