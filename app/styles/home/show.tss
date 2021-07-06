@@ -74,13 +74,21 @@
     hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
 
-"#mapview": {
-  height: '20%',
-  width: Ti.UI.FILL,
-  userLocation: true,
-  userLocationButton: false,
-  top: '3dp',
-  bottom: '5dp'
+"#mapview[platform=ios]": {
+    height: '20%',
+    width: Ti.UI.FILL,
+    userLocation: true,
+    userLocationButton: false,
+    top: '3dp',
+    bottom: '5dp'
+}
+
+"#osm[platform=android]": {
+    mapType: Alloy.Globals.OSM.WIKIMEDIA,
+    height: '20%',
+    width: Ti.UI.FILL,
+    top: '3dp',
+    bottom: '5dp'
 }
 
 "#Alert": {

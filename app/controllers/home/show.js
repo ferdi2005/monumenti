@@ -31,13 +31,23 @@ var client = Ti.Network.createHTTPClient({
 
         $.window.title = response.itemlabel;
 
-        $.mapview.region = {
-            latitude: response.latitude,
-            longitude: response.longitude,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01
-          };
-        $.mapview.center = [response.latitude, response.longitude];
+        if (OS_IOS) {
+            $.mapview.region = {
+                latitude: response.latitude,
+                longitude: response.longitude,
+                latitudeDelta: 0.01,
+                longitudeDelta: 0.01
+            };
+            $.mapview.center = [response.latitude, response.longitude];
+        }
+
+        if (OS_ANDROID) {
+            $.osm.location = {
+                latitude: response.latitude,
+                longitude: response.longitude,
+                zoom: 13,
+            }
+        }
 
         if (OS_ANDROID) {
             $.window.addEventListener("open", function(){
@@ -161,14 +171,33 @@ var client = Ti.Network.createHTTPClient({
             $.Osm.show();
         }
 
-        var annotation = Map.createAnnotation({
-            latitude: response.latitude,
-            longitude: response.longitude,
-            title: response.itemlabel,
-            myid: response.id
-          });
-        
-        $.mapview.addAnnotation(annotation);
+        if (OS_IOS) {
+            var annotation = Map.createAnnotation({
+                latitude: response.latitude,
+                longitude: response.longitude,
+                title: response.itemlabel,
+                myid: response.id
+            });
+            
+            $.mapview.addAnnotation(annotation);
+        }
+
+        if (OS_ANDROID) {
+            if (response.with_photos) {
+                var icon = "/images/Info blue.png";
+            } else {
+                var icon = "/images/Info red.png";
+            }
+            var markers = [];
+            markers.push({
+                latitude: response.latitude,
+                longitude: response.longitude,
+                title: response.itemlabel,
+                id: response.id,
+                icon: icon
+            });
+            $.osm.addMarkers(markers);
+        }
 
             Ti.Geolocation.reverseGeocoder(response.latitude, response.longitude, function (e) {
                 if (e.success) {
