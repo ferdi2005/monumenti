@@ -61,8 +61,8 @@
     </manifest>
   </android>
   <modules>
-    <module platform="android">ti.map</module>
-    <module platform="iphone">ti.map</module>
+    <module platform="android">ti.osm</module>
+    <module>ti.map</module>
     <module>hyperloop</module>
     <module platform="android">ti.flurry</module>
     <module platform="iphone">ti.flurry</module>
