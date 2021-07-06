@@ -3,7 +3,11 @@
 		<ScrollView class="vertical vertical-scroll">
 			<Button class="col_8 col_offset_1" id="upload_config">Gestione impostazioni upload</Button>
 			<Button class="col_8 col_offset_1" id="upload_list">Foto caricate</Button>
-			
+			<View class="horizontal">
+				<Label text="Vuoi condividere con lo sviluppatore di quest'applicazione alcuni dati di utilizzo e in particolare di crash, in modo da poter contribuire al miglioramento della stessa, tramite la piattaforma Flurry?" />
+				<Switch id="tracciamento" value="true"/>
+			</View>
+
 			<Label text="Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments.\nIl pin azzurro indica un monumento che ha fotografie, il pin rosso indica un monumento che non ha ancora fotografie, quindi affrettati a scattarne!" />
 			
 			<Label id="infocors" platform="android" html="<b>Wiki Loves Monuments</b> è un concorso internazionale che ha lo scopo di illustrare le voci di Wikipedia e dei progetti Wikimedia attraverso fotografie di beni culturali scattate dai cittadini stessi, risultando quindi anche una grande opportunità di promozione turistica.
