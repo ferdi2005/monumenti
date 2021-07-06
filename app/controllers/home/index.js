@@ -3,19 +3,13 @@ if (OS_IOS) {
   var Map = require('ti.map');
 }
 
-if (OS_ANDROID) {
-  var OSM = require('ti.osm');
-}
-
 $.searchfield.hide();
 $.searchfield.autocorrect = false;
 $.activityIndicator.hide();
-var defaultZoom = 9; // Per Android
+var defaultZoom = 15; // Per Android
 
 if (OS_ANDROID) {
   $.osm.height = Ti.UI.FILL;
-  $.osm.mapType = OSM.WIKIMEDIA;
-
 }
 
 if (OS_IOS) {
@@ -98,7 +92,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
       }
         // Mappa con OSM
         if (OS_ANDROID) {
-          $.osm.location = { longitude: 41.9109, latitude: 41.9109, zoomLevel: 9};
+          $.osm.location = { longitude: 41.9109, latitude: 12.4818, zoomLevel: defaultZoom};
         }
         alert("Non hai inserito nessuna località o c'è stato un errore nella geolocalizzazione.");
       }
@@ -123,15 +117,22 @@ function findmon(e, type, latkeep, latdelta, londelta) {
       }
 
       if (OS_ANDROID) {
+        markers = []
         response[0].forEach(function (item) {
-          $.osm.addMarker({
+          if (item.with_photos) {
+            var icon = "/images/Info blue.png";
+          } else {
+            var icon = "/images/Info red.png";
+          }
+          markers.push({
             latitude: item.latitude,
             longitude: item.longitude,
             title: item.itemlabel,
-            icon: "/images/Info blue.png",
+            icon: icon,
             id: item.id
           });
         });
+        $.osm.addMarkers(markers);
       }
       
       $.activityIndicator.hide();
@@ -164,7 +165,6 @@ function locate(latkeep, latdelta, londelta) {
     Ti.Geolocation.getCurrentPosition(function (e) {
       if (OS_ANDROID) {
         findmon(e, "geoloc", latkeep, latdelta);
-
       }
 
       if (OS_IOS) {
@@ -177,9 +177,8 @@ function locate(latkeep, latdelta, londelta) {
         Ti.Geolocation.getCurrentPosition(function (e) {
           if (OS_ANDROID) {
             findmon(e, "geoloc", latkeep, latdelta);
-    
           }
-    
+
           if (OS_IOS) {
             findmon(e, "geoloc", latkeep, latdelta, londelta);
           }
@@ -197,7 +196,7 @@ function locate(latkeep, latdelta, londelta) {
 
         // Mappa con OSM
         if (OS_ANDROID) {
-          $.osm.location = { longitude: 41.9109, latitude: 41.9109, zoomLevel: 9}
+          $.osm.location = { longitude: 41.9109, latitude: 12.4818, zoomLevel: defaultZoom}
         }
 
         };
@@ -222,12 +221,11 @@ if (OS_IOS) {
 
 
 if (OS_ANDROID) {
-  function markerClick(e) {
+  function infoboxClick(e) {
     Alloy.Globals.utils.openmodal('home/show', e.marker.id);
   }
 
-  $.osm.addEventListener("infoboxClick", markerClick);
-  $.osm.addEventListener("markerClick", markerClick);
+  $.osm.addEventListener("infoboxClick", infoboxClick);
 }
 
 $.refresh.addEventListener('click', function () {
@@ -243,9 +241,7 @@ $.refresh.addEventListener('click', function () {
 $.search.addEventListener('click', function () {
   $.searchfield.show();
   $.searchfield.focus();
-  if (OS_ANDROID) {
-    $.searchfield.height = "20%";
-  }
+
   $.searchfield.addEventListener('return', function (e) {
     findmon(e.value, "city");
     $.searchfield.hide();
