@@ -70,7 +70,7 @@ var client = Ti.Network.createHTTPClient({
         // Sistema per il caricamento delle fotografie
         $.Upload.addEventListener('click', function (e) {
             if (Ti.App.Properties.getBool("registrato", false) == false || Ti.App.Properties.getBool("autorizzato", false) == false) {
-                Alloy.Globals.utils.open('upload/config', args); //TODO: implementare dall'altro lato
+                Alloy.Globals.utils.open('upload/config'); //TODO: implementare dall'altro lato
             } else {
                 Ti.Media.openPhotoGallery({
                     allowMultiple: true,
@@ -88,7 +88,7 @@ var client = Ti.Network.createHTTPClient({
                             if (k.success == true) {
                                 Alloy.Globals.utils.open("upload/title", [Titanium.Platform.id, k.value, e.images, response.item]);
                             } else {
-                                Alloy.Globals.utils.open('upload/config', false);
+                                alert("Si è verificato un errore con la lettura del keychain, riprova più tardi.")
                             }
                         });
                         keychainItem.read();

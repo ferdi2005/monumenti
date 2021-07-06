@@ -17,30 +17,68 @@ $.login_start.hide();
 $.commento_login_start.hide();
 $.login_delete.hide();
 $.mediawiki_data.hide();
+$.login_update.hide();
 
 // Dati utili
 const UUID = Titanium.Platform.id; // identificativo univoco del device
 const USERNAME = String(Titanium.Platform.username); // username del device (a scopi statistici)
 
-// In caso di errori, cancella la registrazione
-function triggerDeletion(){
-    // TODO: Aggiungere chiamata API con cancellazione dell'UUID (solo qualora il devicename corrisponda)
+// In caso di errori o richiesta, cancella la registrazione
+function triggerDeletion(uuid){
     var keychainItem = Identity.createKeychainItem({ identifier: "token" });
-    keychainItem.reset();
-    Ti.App.Properties.setBool("registrato", false);
-    $.config.close();
-}
-
-if (args == false) {
-    alert("Si è verificato un problema. Riprova più tardi.");
-    triggerDeletion();
-    $.config.close();
+    keychainItem.addEventListener("read", function(k){
+        if (k.success == true) {
+            // Cancella la registrazione
+            var keychainItem = Identity.createKeychainItem({ identifier: "token" });
+            keychainItem.reset();
+            Ti.App.Properties.setBool("registrato", false);
+            Ti.App.Properties.setBool("autorizzato", false);
+            // Invia la cancellazione della registrazione al server per cancellare l'utente
+            var url = Alloy.Globals.backend + "/deleteuser.json?uuid=" + uuid + "&token=" + k.value
+            var client = Ti.Network.createHTTPClient({
+                onload: function(e) {
+                    var alert = Ti.UI.createAlertDialog({message: "È stata cancellata la tua registrazione su tua richiesta o a causa di un errore. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.", buttonNames: ["Ok"]});
+                    alert.addEventListener("click", function(e){
+                        $.config.close();
+                    });
+                    alert.show();
+                },
+                onerror: function(e) {
+                    var alert = Ti.UI.createAlertDialog({message: "Non è stato possibile cancellare i tuoi dati dal server. Assicurati di revocare l'autorizzazione oAuth. " + e.error, buttonNames: ["Ok"]});
+                    alert.addEventListener("click", function(e){
+                        $.config.close();
+                    });
+                    alert.show();
+                },
+                timeout: 5000
+            });
+            client.open("GET", url);
+            client.send();
+        } else {
+            alert("Si è verificato un errore con la lettura del keychain, riprova più tardi.")
+        }
+    });
+    keychainItem.read();
+    
 }
 
 // Mostra i dati dell'utente
 function showUserInfo(userInfo) {
-    // TODO: mostrare dati utili all'utente nel label
     $.login_delete.show();
+
+    $.login_delete.addEventListener("click", function(e){
+        triggerDeletion(UUID);
+    });
+
+    if (userInfo.testuser == true) {
+        $.mediawiki_data.text = "Hai eseguito l'accesso alla Wiki di test. Le tue foto non verranno caricate davvero."
+    } else {
+        $.mediawiki_data.text = "Hai eseguito l'accesso a Wikimedia Commons."
+    }
+    if (userInfo.ready == true) {
+        $.mediawiki_data.text = $.mediawiki_data.text += " Il tuo nome utente è " + userInfo.username
+    }
+    $.mediawiki_data.show();
 }
 
 // Svolge le operazioni per aprire la finestra di login
@@ -68,7 +106,7 @@ function retrieveUserData(uuid, token) {
     var client = Ti.Network.createHTTPClient({
         onload: function(e) {
             if (JSON.parse(this.responseText).error == "User not found.") {
-                triggerDeletion();
+                triggerDeletion(UUID);
             } else {
                 var userInfo = JSON.parse(this.responseText);
                 
@@ -76,19 +114,21 @@ function retrieveUserData(uuid, token) {
                     showUserInfo(userInfo);
                     Ti.App.Properties.setBool("autorizzato", true);
                     $.login_start.hide();
+                    $.login_update.hide();
                     $.commento_login_start.hide();
                     $.activityIndicator.hide();
-                    if (args != "settings" && args != false) {
-                        Alloy.Globals.utils.open("home/show", args)
-                    }
                 } else {
                     Ti.App.Properties.setBool("autorizzato", false);
                     $.login_start.show();
+                    $.login_update.show();
                     $.commento_login_start.show();
-                    $.activityIndicator.hide();
                     $.login_start.addEventListener("click", function(e){
                         startLogin(userInfo);
                     });
+                    $.login_update.addEventListener("click", function(e){
+                        readInformation(UUID);
+                    });
+                    $.activityIndicator.hide();
                 }
             }
         },
@@ -124,14 +164,13 @@ if (Ti.App.Properties.getBool("registrato", false) == false) {
                 keychainItem.addEventListener("save", function(e){
                     if (e.success == true) {
                         Ti.App.Properties.setBool("registrato", true); // Imposta l'avvenuta registrazione con successo
+                        retrieveUserData(UUID, GENERATED_TOKEN);
                     } else {
                         alert("Si è verificato un errore. Riprova più tardi: " + e.error)
                     }
                 });
 
                 keychainItem.save(GENERATED_TOKEN);
-
-                // TODO: rendere visibile testo introduttivo e nascondere loader
             } else {
                 alert("Si è verificato un errore. Riprova più tardi.")
                 $.config.close();        
@@ -146,14 +185,22 @@ if (Ti.App.Properties.getBool("registrato", false) == false) {
     client.send(credentials);
 }
 
+function readInformation(uuid) {
 // Recupero token salvato nel keychain e procedo con la lettura delle informazioni
-var keychainItem = Identity.createKeychainItem({ identifier: "token" });
-keychainItem.addEventListener("read", function(e){
-    if (e.success == true) {
-        retrieveUserData(UUID, e.value); // Il token è contenuto in e.value
-    } else {
-        triggerDeletion();
-    }
-    
-});
-keychainItem.read();
+    var keychainItem = Identity.createKeychainItem({ identifier: "token" });
+    keychainItem.addEventListener("read", function(e){
+        if (e.success == true) {
+            retrieveUserData(uuid, e.value); // Il token è contenuto in e.value
+        } else {
+            var alert = Ti.UI.createAlertDialog({message: "Si è verificato un problema, riprova più tardi. Se si ripresenta, fai il logout.", buttonNames: ["Ok"]});
+            alert.addEventListener("click", function(e){
+                $.config.close();
+            });
+            alert.show();    
+        }
+        
+    });
+    keychainItem.read();
+}
+
+readInformation(UUID);

@@ -9,5 +9,5 @@ $.info.addEventListener("click", function(e){
 
 // Apri le impostazioni degli upload
 $.upload_config.addEventListener("click", function(e){
-    Alloy.Globals.utils.open("upload/config", "settings");
+    Alloy.Globals.utils.open("upload/config");
 });
