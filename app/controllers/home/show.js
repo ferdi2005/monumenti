@@ -122,7 +122,7 @@ var client = Ti.Network.createHTTPClient({
             $.Reasonator.show();
         }
         $.Osm.addEventListener('click', function (e) {
-            if (Ti.Geolocation.hasLocationPermissions(Titanium.Geolocation.AUTHORIZATION_WHEN_IN_USE)) {
+            if (Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)) {
                 Ti.Geolocation.getCurrentPosition(function (e) {
                     if (Dialog.isSupported()) {
                         Dialog.open({
