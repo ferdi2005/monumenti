@@ -10,6 +10,7 @@ var defaultZoom = 14; // Per Android
 
 if (OS_ANDROID) {
   $.osm.height = Ti.UI.FILL;
+  $.osm.location = { longitude: 41.9109, latitude: 12.4818, zoomLevel: defaultZoom};
 }
 
 if (OS_IOS) {
@@ -104,7 +105,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
             longitude: item.longitude,
             title: item.itemlabel,
             myid: item.id,
-            leftButton: "/images/Info blue.png"
+            leftButton: "/images/Info ios.png"
           });
           // Cambia il colore del pin a seconda che ci siano o no fotografie
           if (item.with_photos) {
