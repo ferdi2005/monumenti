@@ -1,4 +1,5 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
+
 if (OS_IOS) {
   var Map = require('ti.map');
 }
@@ -208,7 +209,27 @@ function locate(latkeep, latdelta, londelta) {
   }
 }
 
-$.winmap.addEventListener('open', locate);
+$.winmap.addEventListener('open', function(e){
+  if (Ti.App.Properties.getBool("flurry", "notset") == "notset") {
+    var dialog = Ti.UI.createAlertDialog({
+        buttonNames: ['Accetta', 'Rifiuta'],
+        message: "Vuoi condividere con lo sviluppatore di quest'applicazione alcuni dati di utilizzo e in particolare di crash, in modo da poter contribuire al miglioramento della stessa, tramite la piattaforma Flurry?",
+        title: 'Dati di utilizzo e crash'
+      });
+      dialog.addEventListener('click', function(e) {
+        if (e.index == 0) {
+            Ti.App.Properties.setBool("flurry", true);
+        } else {
+            Ti.App.Properties.setBool("flurry", false);
+        }
+        locate();
+      });
+      dialog.show();
+  } else {
+    locate();
+  }
+  
+});
 
 if (OS_IOS) {
   // setInterval(localize(), 120000);
@@ -236,7 +257,7 @@ $.refresh.addEventListener('click', function () {
   }
 
   if (OS_ANDROID) {
-    locate(true, $.osm.zoomLevel);
+    locate(true, $.osm.location.zoomLevel);
   }
 });
 
