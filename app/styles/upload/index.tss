@@ -16,3 +16,7 @@
     left: "5dp",
     right: "5dp"
 }
+
+".openlabel": {
+    color: "#0645AD"	
+}

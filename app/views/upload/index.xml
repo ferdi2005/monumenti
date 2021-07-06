@@ -18,7 +18,7 @@
 			<ItemTemplate name="success">
 				<View class="horizontal">
 					<ImageView bindId="photo" class="image" onClick="openPhoto"/>
-					<Label bindId="title" onClick="openPhoto"/>
+					<Label class="openlabel" bindId="title" onClick="openPhoto"/>
 				</View>
 			</ItemTemplate>
 		</Templates>
