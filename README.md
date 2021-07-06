@@ -3,8 +3,8 @@ Applicazione per cercare i monumenti di Wiki Loves Monuments vicino a sé.
 
 * Play Store: https://play.google.com/store/apps/details?id=it.wikimedia.wikilovesmonuments
 ## Priorità di sviluppo
-- [ ] Aggiungere possibilità di caricare foto direttamente dall’applicazione
-- [ ] Mappa con OpenStreetMap (su Android)
+- [X] Aggiungere possibilità di caricare foto direttamente dall’applicazione
+- [X] Mappa con OpenStreetMap (su Android)
 - [ ] Visualizzazione dei monumenti anche come lista
 - [ ] Tasto indietro nella barra superiore
 - [ ] Pubblicazione sull'App Store
