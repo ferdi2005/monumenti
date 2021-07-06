@@ -45,7 +45,7 @@ var client = Ti.Network.createHTTPClient({
             $.osm.location = {
                 latitude: response.latitude,
                 longitude: response.longitude,
-                zoom: 13,
+                zoomLevel: 15,
             }
         }
 
@@ -234,7 +234,7 @@ var client = Ti.Network.createHTTPClient({
         alert('Errore di rete, tornare indietro: ' + e.error);
         $.activityIndicator.hide();
     },
-    timeout: 5000
+    timeout: 50000
 });
 client.open("GET", url);
 client.send();

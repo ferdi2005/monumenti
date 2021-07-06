@@ -57,5 +57,6 @@
 }
 
 "#osm[platform=android]": {
-   mapType: Alloy.Globals.OSM.WIKIMEDIA
+   mapType: Alloy.Globals.OSM.WIKIMEDIA,
+   userLocation: true
 }
