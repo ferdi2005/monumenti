@@ -6,7 +6,7 @@ if (OS_IOS) {
 $.searchfield.hide();
 $.searchfield.autocorrect = false;
 $.activityIndicator.hide();
-var defaultZoom = 15; // Per Android
+var defaultZoom = 14; // Per Android
 
 if (OS_ANDROID) {
   $.osm.height = Ti.UI.FILL;
@@ -35,7 +35,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
     if (Ti.Geolocation.locationServicesEnabled && (e.coords != null || undefined) && (e.coords.latitude != null || undefined)) {
       lat = args.coords.latitude;
       lon = args.coords.longitude;
-      url = 'https://cerca.wikilovesmonuments.it/monuments.json?latitude=' + lat + '&longitude=' + lon;
+      url = 'https://cerca.wikilovesmonuments.it/monuments.json?range=30&latitude=' + lat + '&longitude=' + lon;
       $.activityIndicator.show();
     } else {
       alert("Qualcosa è andato storto! Assicurati di aver attivato la localizzazione e riavvia l'applicazione o clicca refresh.");
@@ -72,7 +72,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
           $.osm.location = {
             latitude: response[1][0],
             longitude: response[1][1],
-            zoom: latdelta
+            zoomLevel: latdelta
           }
         }
         if (type == "geoloc") {
@@ -118,6 +118,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
 
       if (OS_ANDROID) {
         markers = []
+        // Evita di prendere tutti tutti i risultati, che sono moltissimi
         response[0].forEach(function (item) {
           if (item.with_photos) {
             var icon = "/images/Info blue.png";
