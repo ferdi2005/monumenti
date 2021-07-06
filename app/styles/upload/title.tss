@@ -3,9 +3,9 @@
   
 }
 
-"ListView": {
-    separatorStyle: Titanium.UI.TABLE_VIEW_SEPARATOR_STYLE_SINGLE_LINE,
-    height: Ti.UI.SIZE
+"TableView": {
+    height: Ti.UI.SIZE,
+    disableBounce: true
 }
 
 "Label": {
@@ -65,8 +65,4 @@
 "#annulla": {
     backgroundColor: "#8f0000",
     color: "#FFFFFF",
-}
-
-"#listview": {
-    disableBounce: true
 }

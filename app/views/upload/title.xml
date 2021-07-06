@@ -1,27 +1,9 @@
 <Alloy>
 	<Window title="Caricamento foto" class="vertical" id="title">
 		<ActivityIndicator id="activityIndicator" />
-		<ListView id="listview" class="vertical">
-		<Templates>
-			<ItemTemplate name="error">
-				<View class="horizontal">
-					<ImageView bindId="photo" class="image"/>
-					<Label class="field" text="Errore nel caricamento di quest'immagine, riprova più tardi."/>
-				</View>
-			</ItemTemplate>
-			<ItemTemplate name="template">
-				<View class="horizontal">
-					<ImageView bindId="photo" class="image"/>
-					<View class="vertical">
-						<TextField bindId="title" class="field" hintText="Titolo dell'immagine" onBlur="saveText" onReturn="bluronReturn"/>
-						<TextField bindId="commonsdescription" class="field" hintText="Descrizione dell'immagine" onBlur="saveText" onReturn="bluronReturn"/>
-						<TextField bindId="date" class="field" hintText="Data della foto (gg/mm/aaaa)" onBlur="saveText" onReturn="bluronReturn"/>
-					</View>
-				</View>
-			</ItemTemplate>
-		</Templates>
-		<ListSection id="imagespace" headerTitle="Immagini da caricare" />
-		</ListView>
+		<TableView id="tableview" class="vertical">
+			<TableViewSection id="imagespace" headerTitle="Immagini da caricare" />
+		</TableView>
 		<Label id="license">Accetto di rilasciare irrevocabilmente queste immagini sotto la licenza Creative Commons-Attribuzione-Condividi allo stesso modo 4.0. Sono consapevole che verranno pubblicate su Wikimedia Commons e saranno riutilizzabili in perpetuo secondo i termini di detta licenza. Dichiaro altresì di essere l'autore delle immagini. Sono consapevole che la responsabilità penale e civile per quanto caricato è a mio carico.</Label> 
 		<Button id="conferma">Conferma e carica</Button>
 		<Button id="annulla">Annulla</Button>
