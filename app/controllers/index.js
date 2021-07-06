@@ -1,8 +1,23 @@
-var Flurry = require('ti.flurry');
-Flurry.debugLogEnabled = true;
-Flurry.eventLoggingEnabled = true;
-
-Flurry.initialize('BPHB2T7TNDV6FGZHW233');
+if (Ti.App.Properties.getBool("flurry", "notset") == "notset") {
+    var dialog = Ti.UI.createAlertDialog({
+        buttonNames: ['Accetta', 'Rifiuta'],
+        message: "Vuoi condividere con lo sviluppatore di quest'applicazione alcuni dati di utilizzo e in particolare di crash, in modo da poter contribuire al miglioramento della stessa, tramite la piattaforma Flurry?",
+        title: 'Dati di utilizzo e crash'
+      });
+      dialog.addEventListener('click', function(e) {
+        if (e.index == 0) {
+            Ti.App.Properties.setBool("flurry", true);
+        } else {
+            Ti.App.Properties.setBool("flurry", false);
+        }
+      });
+      dialog.show();    
+} else if (Ti.App.Properties.getBool("flurry", "notset") == true) {
+    var Flurry = require('ti.flurry');
+    Flurry.debugLogEnabled = true;
+    Flurry.eventLoggingEnabled = true;
+    Flurry.initialize('BPHB2T7TNDV6FGZHW233');
+}
 
 global.tabgroup = $.index;
 
