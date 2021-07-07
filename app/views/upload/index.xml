@@ -6,7 +6,7 @@
 			<ItemTemplate name="error">
 				<View class="horizontal">
 					<ImageView bindId="photo" class="image"/>
-					<Label class="field" text="Immagine non caricata a causa di un errore."/>
+					<Label class="field" bindId="errorlabel"/>
 				</View>
 			</ItemTemplate>
 			<ItemTemplate name="waiting">

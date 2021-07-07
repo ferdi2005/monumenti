@@ -19,16 +19,24 @@ keychainItem.addEventListener("read", function(k){
 
                 photos.forEach(function(photo) {
                     if (photo["uploaded"] == false) {
+                        if (photo["errorinfo"] == null || photo["errorinfo"] == undefined) {
+                           var errortext = "Immagine non caricata a causa di un errore."
+                        } else {
+                           var errortext= "Immagine non caricata a causa di un errore: " + photo["errorinfo"]
+                        }
                         itemdata =  { 
                             photo: {
-                                image: photo["url"]
+                                image: photo["serverurl"]
+                            },
+                            errorlabel: {
+                                text: errortext
                             },
                             template: "error",
                         }    
                     } else if (photo["uploaded"] == null) {
                         itemdata =  { 
                             photo: {
-                                image: photo["url"]
+                                image: photo["serverurl"]
                             },
                             template: "waiting",
                         }
