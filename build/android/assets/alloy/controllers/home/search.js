@@ -118,7 +118,6 @@ tabgroup.activeTab.open(window);
 }),
 
 $.winsearch.addEventListener("open",function(){
-$.searchfield.focus(),
 $.searchfield.addEventListener("return",function(e){
 search(e.value),
 

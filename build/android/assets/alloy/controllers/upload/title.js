@@ -74,13 +74,6 @@ var args=$.args;
 
 $.conferma.hide(),
 
-
-
-$.title.addEventListener("open",function(){
-$.title.activity.actionBar.title=$.title.title;
-}),
-
-
 $.activityIndicator.show();const
 
 UUID=args[0],

@@ -59,7 +59,7 @@ $.__views.__alloyId2=Ti.UI.createLabel(
 
 $.__views.__alloyId1.add($.__views.__alloyId2),
 $.__views.tracciamento=Ti.UI.createSwitch(
-{value:!0,id:"tracciamento"}),
+{id:"tracciamento"}),
 
 $.__views.__alloyId1.add($.__views.tracciamento),
 $.__views.__alloyId3=Ti.UI.createLabel(
@@ -90,8 +90,11 @@ _.extend($,$.__views);
 
 
 var args=$.args;
-!0!=Ti.App.Properties.getBool("flurry","notset")||
-!1!=$.tracciamento.value,
+
+!0==Ti.App.Properties.getBool("flurry","notset")?
+!0==$.tracciamento.value:
+
+!1==$.tracciamento.value,
 
 
 $.lbl_version.text="Versione 2.0.0",
@@ -110,11 +113,13 @@ Alloy.Globals.utils.open("upload/index");
 }),
 
 $.tracciamento.addEventListener("change",function(e){
+Ti.API.log(Ti.App.Properties.getBool("flurry","notset")),
 !0==e.value?
 Ti.App.Properties.setBool("flurry",!0):
 
-Ti.App.Properties.setBool("flurry",!1);
+Ti.App.Properties.setBool("flurry",!1),
 
+Ti.API.log(Ti.App.Properties.getBool("flurry","notset"));
 }),
 
 

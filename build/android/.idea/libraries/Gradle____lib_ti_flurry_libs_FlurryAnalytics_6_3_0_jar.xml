@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: ./lib.ti.flurry/libs/FlurryAnalytics-6.3.0.jar">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib.ti.flurry/libs/FlurryAnalytics-6.3.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
