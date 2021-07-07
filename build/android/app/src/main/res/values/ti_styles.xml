@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="Base.Theme.Titanium.Basic" parent="Theme.MaterialComponents.Bridge"/>
+	<style name="Base.Theme.Titanium.Customizable" parent="Theme.MaterialComponents.Bridge"/>
+
+	<!-- Theme used by "TiRootActivity" derived class which displays the splash screen. -->
+	<style name="Theme.Titanium" parent="@style/Base.Theme.Titanium.Splash">
+		<item name="android:windowBackground">@drawable/background</item>
+	</style>
+</resources>

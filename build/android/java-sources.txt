@@ -1,0 +1,4 @@
+"/Users/ferdi2005/Codice/monumenti/build/android/app/src/main/java/it/wikimedia/wikilovesmonuments/AssetCryptImpl.java"
+"/Users/ferdi2005/Codice/monumenti/build/android/app/src/main/java/it/wikimedia/wikilovesmonuments/WlmItaliaActivity.java"
+"/Users/ferdi2005/Codice/monumenti/build/android/app/src/main/java/it/wikimedia/wikilovesmonuments/WlmItaliaAppInfo.java"
+"/Users/ferdi2005/Codice/monumenti/build/android/app/src/main/java/it/wikimedia/wikilovesmonuments/WlmItaliaApplication.java"
