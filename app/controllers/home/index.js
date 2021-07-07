@@ -210,6 +210,7 @@ function locate(latkeep, latdelta, londelta) {
 }
 
 $.winmap.addEventListener('open', function(e){
+
   if (Ti.App.Properties.getBool("flurry", "notset") == "notset") {
     var dialog = Ti.UI.createAlertDialog({
         buttonNames: ['Accetta', 'Rifiuta'],
@@ -228,9 +229,6 @@ $.winmap.addEventListener('open', function(e){
   } else {
     locate();
   }
-
-  Ti.API.log(Ti.App.Properties.getBool("flurry", "notset"));
-  
 });
 
 if (OS_IOS) {

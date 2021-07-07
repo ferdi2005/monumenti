@@ -6,13 +6,6 @@ var args = $.args;
 // Mostra activity indicator
 $.activityIndicator.show();
 
-// Titolo della finestra su Android
-if (OS_ANDROID) {
-    $.config.addEventListener("open", function(){
-        $.config.activity.actionBar.title = $.config.title;
-    });
-}
-
 // Nascondo tutti gli elementi (verranno mostrati successivamente)
 $.login_start.hide();
 $.commento_login_start.hide();

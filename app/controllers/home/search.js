@@ -51,7 +51,6 @@ $.listview.addEventListener('itemclick', function(e){
 });
 
 $.winsearch.addEventListener('open', function(){
-    $.searchfield.focus();
     $.searchfield.addEventListener('return', function (e) {
       search(e.value);
       if (OS_ANDROID) {

@@ -31,6 +31,12 @@ var client = Ti.Network.createHTTPClient({
 
         $.window.title = response.itemlabel;
 
+        if (OS_ANDROID) {
+            $.window.addEventListener("open", function(){
+                $.window.activity.actionBar.title = response.itemlabel;
+            });
+        }
+        
         if (OS_IOS) {
             $.mapview.region = {
                 latitude: response.latitude,
@@ -49,11 +55,6 @@ var client = Ti.Network.createHTTPClient({
             }
         }
 
-        if (OS_ANDROID) {
-            $.window.addEventListener("open", function(){
-                $.window.activity.actionBar.title = response.itemlabel;
-            });
-        }
 
         if (response.image != null && response.image != undefined && response.image != "") {
             $.image.image = "https://commons.wikimedia.org/w/thumb.php?f=" + response.image + "&w=1000";

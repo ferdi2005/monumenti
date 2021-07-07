@@ -3,13 +3,6 @@ var args = $.args;
 
 $.conferma.hide();
 
-// Titolo della finestra su Android
-if (OS_ANDROID) {
-    $.title.addEventListener("open", function(){
-        $.title.activity.actionBar.title = $.title.title;
-    });
-}
-
 $.activityIndicator.show();
 
 const UUID = args[0];
