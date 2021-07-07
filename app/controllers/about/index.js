@@ -1,7 +1,10 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = $.args;
+
 if (Ti.App.Properties.getBool("flurry", "notset") == true) {
-    $.tracciamento.value == false
+    $.tracciamento.value == true;
+} else {
+    $.tracciamento.value == false;
 }
 
 $.lbl_version.text = "Versione " + Ti.App.version;
@@ -20,9 +23,11 @@ $.upload_list.addEventListener("click", function(e){
 });
 
 $.tracciamento.addEventListener("change", function(e){
+    Ti.API.log(Ti.App.Properties.getBool("flurry", "notset"));
     if (e.value == true) {
        Ti.App.Properties.setBool("flurry", true);
     } else {
         Ti.App.Properties.setBool("flurry", false);
     }
+    Ti.API.log(Ti.App.Properties.getBool("flurry", "notset"));
 });

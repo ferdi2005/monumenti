@@ -5,7 +5,7 @@
 			<Button class="col_8 col_offset_1" id="upload_list">Foto caricate</Button>
 			<View class="horizontal">
 				<Label text="Vuoi condividere con lo sviluppatore di quest'applicazione alcuni dati di utilizzo e in particolare di crash, in modo da poter contribuire al miglioramento della stessa, tramite la piattaforma Flurry?" />
-				<Switch id="tracciamento" value="true"/>
+				<Switch id="tracciamento"/>
 			</View>
 
 			<Label text="Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments.\nIl pin azzurro indica un monumento che ha fotografie, il pin rosso indica un monumento che non ha ancora fotografie, quindi affrettati a scattarne!" />

@@ -228,6 +228,8 @@ $.winmap.addEventListener('open', function(e){
   } else {
     locate();
   }
+
+  Ti.API.log(Ti.App.Properties.getBool("flurry", "notset"));
   
 });
 
