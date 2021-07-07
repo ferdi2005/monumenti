@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: ./lib.ti.flurry/libs/flurry_android.jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib.ti.flurry/libs/flurry_android.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

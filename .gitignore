@@ -3,7 +3,16 @@
 /platform
 /i18n
 build.log
-build
+build/alloy
+build/hyperloop
+build/incremental
+build/inspectFrameworks
+build/hyperloop
+build/iphone
+build/map
+build/.alloynewcli
+build/build_android.log
+build/build_iphone.log
 npm-debug.log
 tmp
 .map

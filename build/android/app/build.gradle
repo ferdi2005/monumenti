@@ -1,0 +1,135 @@
+
+apply plugin: 'com.android.application'
+
+// Apply the Google Services plugin if included
+if (file("${projectDir}/google-services.json").exists()) {
+	apply plugin: 'com.google.gms.google-services'
+}
+
+repositories {
+
+	maven { url 'file:///Users/ferdi2005/Library/Application%20Support/Titanium/mobilesdk/osx/9.3.2.GA/android/m2repository' }
+
+	maven { url 'file:///Users/ferdi2005/Codice/monumenti/modules/android/ti.osm/1.0.0/m2repository' }
+
+	maven { url 'file:///Users/ferdi2005/Library/Application%20Support/Titanium/modules/android/ti.map/5.0.1/m2repository' }
+
+	maven { url 'file:///Users/ferdi2005/Library/Application%20Support/Titanium/modules/android/hyperloop/7.0.1/m2repository' }
+
+	maven { url 'file:///Users/ferdi2005/Library/Application%20Support/Titanium/modules/android/ti.playservices/17.5.0/m2repository' }
+
+	maven { url 'file:///Users/ferdi2005/Codice/monumenti/modules/android/ti.identity/3.0.3/m2repository' }
+
+	maven { url 'file:///Users/ferdi2005/Codice/monumenti/modules/android/ti.webdialog/2.0.0/m2repository' }
+
+}
+
+android {
+	compileSdkVersion 30
+	defaultConfig {
+		applicationId 'it.wikimedia.wikilovesmonuments'
+		minSdkVersion 19
+		targetSdkVersion 30
+		versionCode 19
+		versionName '2.0.0'
+		manifestPlaceholders = project.ext.tiManifestPlaceholders
+		manifestPlaceholders.put('localApplicationId', applicationId) // Legacy placeholder old AARs sometimes use.
+		multiDexEnabled true
+		aaptOptions {
+			// Android build tools ignores asset directories with leading underscores, but iOS supports it.
+			// So, we must redefine ignore string with underscore pattern removed to support this too.
+			ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+		}
+
+		ndk {
+			abiFilters 'arm64-v8a','armeabi-v7a'
+		}
+
+	}
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+	signingConfigs {
+		def tiKeystoreFilePath = '/Users/ferdi2005/Library/Application Support/Titanium/mobilesdk/osx/9.3.2.GA/android/dev_keystore'
+		if (System.env.TI_ANDROID_APP_KEYSTORE_FILE != null) {
+			tiKeystoreFilePath = System.env.TI_ANDROID_APP_KEYSTORE_FILE
+		}
+		def tiKeystorePassword = 'tirocks'
+		if (System.env.TI_ANDROID_APP_KEYSTORE_PASSWORD != null) {
+			tiKeystorePassword = System.env.TI_ANDROID_APP_KEYSTORE_PASSWORD
+		}
+		def tiKeystoreAliasName = 'tidev'
+		if (System.env.TI_ANDROID_APP_KEYSTORE_ALIAS_NAME != null) {
+			tiKeystoreAliasName = System.env.TI_ANDROID_APP_KEYSTORE_ALIAS_NAME
+		}
+		def tiKeystoreAliasPassword = 'tirocks'
+		if (System.env.TI_ANDROID_APP_KEYSTORE_ALIAS_PASSWORD != null) {
+			tiKeystoreAliasPassword = System.env.TI_ANDROID_APP_KEYSTORE_ALIAS_PASSWORD
+		} else if (System.env.TI_ANDROID_APP_KEYSTORE_PASSWORD != null) {
+			tiKeystoreAliasPassword = System.env.TI_ANDROID_APP_KEYSTORE_PASSWORD
+		}
+		config {
+			storeFile file(tiKeystoreFilePath)
+			storePassword tiKeystorePassword
+			keyAlias tiKeystoreAliasName
+			keyPassword tiKeystoreAliasPassword
+		}
+	}
+	buildTypes {
+		debug {
+			signingConfig signingConfigs.config
+		}
+		release {
+			signingConfig signingConfigs.config
+
+		}
+	}
+	dexOptions {
+		javaMaxHeapSize '3072M'
+	}
+	lintOptions {
+		checkReleaseBuilds false
+	}
+	packagingOptions {
+		pickFirst '/lib/arm64-v8a/libc++_shared.so'
+		pickFirst '/lib/armeabi-v7a/libc++_shared.so'
+		pickFirst '/lib/x86/libc++_shared.so'
+		pickFirst '/lib/x86_64/libc++_shared.so'
+	}
+}
+
+// Disable linting to improve build performance. No point since all Java code is generated.
+tasks.lint.enabled = false
+
+dependencies {
+	implementation "androidx.appcompat:appcompat:${project.ext.tiAndroidXAppCompatLibVersion}"
+	implementation fileTree(dir: "${rootDir}/libs", include: ['*.aar', '*.jar'])
+	implementation fileTree(dir: "${projectDir}/src/main", include: ['*.aar', '*.jar'])
+
+
+	implementation project(':lib.ti.flurry')
+
+
+	implementation 'org.appcelerator:titanium:9.3.2'
+
+	implementation 'ti:osm:1.0.0'
+
+	implementation 'ti:map:5.0.1'
+
+	implementation 'hyperloop:hyperloop:7.0.1'
+
+	implementation 'ti:playservices:17.5.0'
+
+	implementation 'ti:identity:3.0.3'
+
+	implementation 'ti:webdialog:2.0.0'
+
+}
+
+// Load optional "build.gradle" file copied from Titanium project's "platform/android" directory.
+// Allows app developer to add additional dependencies, such as those needed by hyperloop.
+def customBuildGradlePath = "${projectDir}/src/main/build.gradle"
+if (file(customBuildGradlePath).exists()) {
+	apply from: customBuildGradlePath
+}

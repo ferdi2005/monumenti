@@ -1,0 +1,12 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    xmlns:tools="http://schemas.android.com/tools"
+4    package="ti.flurry" >
+5
+6    <uses-sdk
+7        android:minSdkVersion="19"
+7-->/Users/ferdi2005/Codice/monumenti/build/android/lib.ti.flurry/src/main/AndroidManifest.xml
+8        android:targetSdkVersion="30" />
+8-->/Users/ferdi2005/Codice/monumenti/build/android/lib.ti.flurry/src/main/AndroidManifest.xml
+9
+10</manifest>

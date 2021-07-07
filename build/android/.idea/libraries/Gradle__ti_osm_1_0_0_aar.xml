@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: ti:osm:1.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/447f201a9484b1db4534f037158d351d/jetified-osm-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/447f201a9484b1db4534f037158d351d/jetified-osm-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/447f201a9484b1db4534f037158d351d/jetified-osm-1.0.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
