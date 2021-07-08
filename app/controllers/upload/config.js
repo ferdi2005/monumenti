@@ -140,9 +140,27 @@ function retrieveUserData(uuid, token) {
     client.send();
 }
 
-// Nel caso in cui non sia stata effettuata la registrazione, procede ad effettuarla
+function readInformation(uuid) {
+// Recupero token salvato nel keychain e procedo con la lettura delle informazioni
+    var keychainItem = Identity.createKeychainItem({ identifier: "token" });
+    keychainItem.addEventListener("read", function(e){
+        if (e.success == true) {
+            retrieveUserData(uuid, e.value); // Il token è contenuto in e.value
+        } else {
+            var alert = Ti.UI.createAlertDialog({message: "Si è verificato un problema, riprova più tardi. Se si ripresenta, fai il logout.", buttonNames: ["Ok"]});
+            alert.addEventListener("click", function(e){
+                $.config.close();
+            });
+            alert.show();    
+        }
+        
+    });
+    keychainItem.read();
+}
 
-if (Ti.App.Properties.getBool("registrato", false) == false) {
+$.config.addEventListener("open", function(e) {
+    // Nel caso in cui non sia stata effettuata la registrazione, procede ad effettuarla
+    if (Ti.App.Properties.getBool("registrato", false) == false) {
     const GENERATED_TOKEN = Titanium.Platform.createUUID();
     var credentials = {
         uuid: UUID,
@@ -181,24 +199,7 @@ if (Ti.App.Properties.getBool("registrato", false) == false) {
     });
     client.open("POST", url);
     client.send(credentials);
-}
+    }
 
-function readInformation(uuid) {
-// Recupero token salvato nel keychain e procedo con la lettura delle informazioni
-    var keychainItem = Identity.createKeychainItem({ identifier: "token" });
-    keychainItem.addEventListener("read", function(e){
-        if (e.success == true) {
-            retrieveUserData(uuid, e.value); // Il token è contenuto in e.value
-        } else {
-            var alert = Ti.UI.createAlertDialog({message: "Si è verificato un problema, riprova più tardi. Se si ripresenta, fai il logout.", buttonNames: ["Ok"]});
-            alert.addEventListener("click", function(e){
-                $.config.close();
-            });
-            alert.show();    
-        }
-        
-    });
-    keychainItem.read();
-}
-
-readInformation(UUID);
+    readInformation(UUID);
+});

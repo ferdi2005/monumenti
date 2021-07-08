@@ -10,7 +10,7 @@ if (Ti.App.Properties.getBool("flurry", "notset") == true) {
 $.lbl_version.text = "Versione " + Ti.App.version;
 
 $.info.addEventListener("click", function(e){
-    Ti.Platform.openURL("https://wikilovesmonuments.wikimedia.it");
+    Alloy.Globals.utils.open("about/info");
 });
 
 // Apri le impostazioni degli upload
@@ -30,4 +30,8 @@ $.tracciamento.addEventListener("change", function(e){
         Ti.App.Properties.setBool("flurry", false);
     }
     Ti.API.log(Ti.App.Properties.getBool("flurry", "notset"));
+});
+
+$.crediti.addEventListener("click", function(e){
+    alert("Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments. Il pin azzurro indica un monumento che ha fotografie, il pin rosso indica un monumento che non ha ancora fotografie, quindi affrettati a scattarne!");
 });
