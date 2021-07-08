@@ -34,7 +34,7 @@ __defers={},
 
 
 
-__alloyId10=[];
+__alloyId9=[];
 
 
 
@@ -58,7 +58,7 @@ __alloyId10=[];
 
 
 
-if($.__views.__alloyId11=Alloy.createController("home/index",{id:"__alloyId11"}),$.__views.map=Ti.UI.createTab({window:$.__views.__alloyId11.getViewEx({recurse:!0}),id:"map",title:"Mappa",icon:"/images/Map Solid.png"}),__alloyId10.push($.__views.map),$.__views.__alloyId12=Alloy.createController("home/search",{id:"__alloyId12"}),$.__views.search=Ti.UI.createTab({window:$.__views.__alloyId12.getViewEx({recurse:!0}),id:"search",title:"Per nome",icon:"/images/search.png"}),__alloyId10.push($.__views.search),$.__views.__alloyId14=Alloy.createController("about/index",{id:"__alloyId14"}),$.__views.__alloyId13=Ti.UI.createTab({window:$.__views.__alloyId14.getViewEx({recurse:!0}),title:"Info",icon:"/images/Info.png",id:"__alloyId13"}),__alloyId10.push($.__views.__alloyId13),$.__views.index=Ti.UI.createTabGroup({theme:"Theme.AppCompat.NoTitleBar",swipeable:!1,tabs:__alloyId10,id:"index"}),$.__views.index&&$.addTopLevelView($.__views.index),exports.destroy=function(){},_.extend($,$.__views),!0==Ti.App.Properties.getBool("flurry","notset")){
+if($.__views.__alloyId10=Alloy.createController("home/index",{id:"__alloyId10"}),$.__views.map=Ti.UI.createTab({window:$.__views.__alloyId10.getViewEx({recurse:!0}),id:"map",title:"Mappa",icon:"/images/Map Solid.png"}),__alloyId9.push($.__views.map),$.__views.__alloyId11=Alloy.createController("home/search",{id:"__alloyId11"}),$.__views.search=Ti.UI.createTab({window:$.__views.__alloyId11.getViewEx({recurse:!0}),id:"search",title:"Per nome",icon:"/images/search.png"}),__alloyId9.push($.__views.search),$.__views.__alloyId13=Alloy.createController("about/index",{id:"__alloyId13"}),$.__views.__alloyId12=Ti.UI.createTab({window:$.__views.__alloyId13.getViewEx({recurse:!0}),title:"Impostazioni",icon:"/images/Info.png",id:"__alloyId12"}),__alloyId9.push($.__views.__alloyId12),$.__views.index=Ti.UI.createTabGroup({theme:"Theme.AppCompat.NoTitleBar",swipeable:!1,tabs:__alloyId9,id:"index"}),$.__views.index&&$.addTopLevelView($.__views.index),exports.destroy=function(){},_.extend($,$.__views),!0==Ti.App.Properties.getBool("flurry","notset")){
 var Flurry=require("ti.flurry");
 Flurry.debugLogEnabled=!0,
 Flurry.eventLoggingEnabled=!0,

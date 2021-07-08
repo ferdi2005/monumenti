@@ -220,49 +220,6 @@ client.open("GET",url),
 client.send();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function readInformation(uuid){
 
 var keychainItem=Identity.createKeychainItem({identifier:"token"});
@@ -279,9 +236,53 @@ alert.show();
 
 }),
 keychainItem.read();
-}if(require("/alloy/controllers/BaseController").apply(this,Array.prototype.slice.call(arguments)),this.__controllerPath="upload/config",this.args=arguments[0]||{},arguments[0])var __parentSymbol=__processArg(arguments[0],"__parentSymbol"),$model=__processArg(arguments[0],"$model"),__itemTemplate=__processArg(arguments[0],"__itemTemplate");var $=this,exports={},__defers={};$.__views.config=Ti.UI.createWindow({backgroundColor:"#fff",layout:"vertical",id:"config",title:"Gestioni impostazioni upload"}),$.__views.config&&$.addTopLevelView($.__views.config),$.__views.__alloyId16=Ti.UI.createView({height:Ti.UI.SIZE,backgroundColor:"#FFFFFF",layout:"vertical",id:"__alloyId16"}),$.__views.config.add($.__views.__alloyId16),$.__views.activityIndicator=Ti.UI.createActivityIndicator({hiddenBehavior:Titanium.UI.HIDDEN_BEHAVIOR_GONE,style:Ti.UI.ActivityIndicatorStyle.BIG,indicatorColor:"black",id:"activityIndicator"}),$.__views.__alloyId16.add($.__views.activityIndicator),$.__views.__alloyId17=Ti.UI.createLabel({width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000000",top:"5dp",bottom:"5dp",left:"5dp",right:"5dp",text:"Da qui puoi controllare le impostazioni relative al tuo account Wikimedia con particolare riferimento alla funzionalit\xE0 di upload foto da app.",id:"__alloyId17"}),$.__views.__alloyId16.add($.__views.__alloyId17),$.__views.login_start=Ti.UI.createButton({backgroundColor:"#006499",color:"#FFF",top:"5dp",width:Ti.UI.FILL,left:"5dp",right:"5dp",hiddenBehavior:Ti.UI.HIDDEN_BEHAVIOR_GONE,title:"Accedi a Wikimedia Commons",id:"login_start"}),$.__views.__alloyId16.add($.__views.login_start),$.__views.login_update=Ti.UI.createButton({backgroundColor:"#EEE",color:"#000",top:"5dp",width:Ti.UI.FILL,left:"5dp",right:"5dp",hiddenBehavior:Ti.UI.HIDDEN_BEHAVIOR_GONE,title:"Verifica avvenuto accesso",id:"login_update"}),$.__views.__alloyId16.add($.__views.login_update),$.__views.login_delete=Ti.UI.createButton({backgroundColor:"#EEE",color:"#000",top:"5dp",width:Ti.UI.FILL,left:"5dp",right:"5dp",hiddenBehavior:Ti.UI.HIDDEN_BEHAVIOR_GONE,title:"Esci",id:"login_delete"}),$.__views.__alloyId16.add($.__views.login_delete),$.__views.mediawiki_data=Ti.UI.createLabel({width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000000",top:"5dp",bottom:"5dp",left:"5dp",right:"5dp",hiddenBehavior:Ti.UI.HIDDEN_BEHAVIOR_GONE,id:"mediawiki_data"}),$.__views.__alloyId16.add($.__views.mediawiki_data),$.__views.commento_login_start=Ti.UI.createLabel({width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000000",top:"5dp",bottom:"5dp",left:"5dp",right:"5dp",hiddenBehavior:Ti.UI.HIDDEN_BEHAVIOR_GONE,id:"commento_login_start",text:"Per proseguire, effettua il login o crea un account su Wikimedia Commons cliccando il tasto blu qui sopra. Se hai gi\xE0 fatto il login, clicca il tasto per verificare l'avvenuto accesso."}),$.__views.__alloyId16.add($.__views.commento_login_start),exports.destroy=function(){},_.extend($,$.__views);const Identity=require("ti.identity"),Dialog=require("ti.webdialog");var args=$.args;$.activityIndicator.show(),$.login_start.hide(),$.commento_login_start.hide(),$.login_delete.hide(),$.mediawiki_data.hide(),$.login_update.hide();const UUID=Titanium.Platform.id,USERNAME=Titanium.Platform.username+"";if(!1==Ti.App.Properties.getBool("registrato",!1)){const GENERATED_TOKEN=Titanium.Platform.createUUID();var credentials={uuid:UUID,device_name:USERNAME,token:GENERATED_TOKEN},url=Alloy.Globals.backend+"/set_credentials.json",client=Ti.Network.createHTTPClient({onload:function(e){if(202==this.status){var keychainItem=Identity.createKeychainItem({identifier:"token"});keychainItem.addEventListener("save",function(e){!0==e.success?(Ti.App.Properties.setBool("registrato",!0),retrieveUserData(UUID,GENERATED_TOKEN)):alert("Si \xE8 verificato un errore. Riprova pi\xF9 tardi: "+e.error)}),keychainItem.save(GENERATED_TOKEN)}else alert("Si \xE8 verificato un errore. Riprova pi\xF9 tardi."),$.config.close()},onerror:function(e){alert("Si \xE8 verificato un errore di connessione: "+e.error)},timeout:5e3});client.open("POST",url),client.send(credentials)}
+}if(require("/alloy/controllers/BaseController").apply(this,Array.prototype.slice.call(arguments)),this.__controllerPath="upload/config",this.args=arguments[0]||{},arguments[0])var __parentSymbol=__processArg(arguments[0],"__parentSymbol"),$model=__processArg(arguments[0],"$model"),__itemTemplate=__processArg(arguments[0],"__itemTemplate");var $=this,exports={},__defers={};$.__views.config=Ti.UI.createWindow({backgroundColor:"#fff",layout:"vertical",id:"config",title:"Gestioni impostazioni upload"}),$.__views.config&&$.addTopLevelView($.__views.config),$.__views.__alloyId15=Ti.UI.createView({height:Ti.UI.SIZE,backgroundColor:"#FFFFFF",layout:"vertical",id:"__alloyId15"}),$.__views.config.add($.__views.__alloyId15),$.__views.activityIndicator=Ti.UI.createActivityIndicator({hiddenBehavior:Titanium.UI.HIDDEN_BEHAVIOR_GONE,style:Ti.UI.ActivityIndicatorStyle.BIG,indicatorColor:"black",id:"activityIndicator"}),$.__views.__alloyId15.add($.__views.activityIndicator),$.__views.__alloyId16=Ti.UI.createLabel({width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000000",top:"5dp",bottom:"5dp",left:"5dp",right:"5dp",text:"Da qui puoi controllare le impostazioni relative al tuo account Wikimedia con particolare riferimento alla funzionalit\xE0 di upload foto da app.",id:"__alloyId16"}),$.__views.__alloyId15.add($.__views.__alloyId16),$.__views.login_start=Ti.UI.createButton({backgroundColor:"#006499",color:"#FFF",top:"5dp",width:Ti.UI.FILL,left:"5dp",right:"5dp",hiddenBehavior:Ti.UI.HIDDEN_BEHAVIOR_GONE,title:"Accedi a Wikimedia Commons",id:"login_start"}),$.__views.__alloyId15.add($.__views.login_start),$.__views.login_update=Ti.UI.createButton({backgroundColor:"#EEE",color:"#000",top:"5dp",width:Ti.UI.FILL,left:"5dp",right:"5dp",hiddenBehavior:Ti.UI.HIDDEN_BEHAVIOR_GONE,title:"Verifica avvenuto accesso",id:"login_update"}),$.__views.__alloyId15.add($.__views.login_update),$.__views.login_delete=Ti.UI.createButton({backgroundColor:"#EEE",color:"#000",top:"5dp",width:Ti.UI.FILL,left:"5dp",right:"5dp",hiddenBehavior:Ti.UI.HIDDEN_BEHAVIOR_GONE,title:"Esci",id:"login_delete"}),$.__views.__alloyId15.add($.__views.login_delete),$.__views.mediawiki_data=Ti.UI.createLabel({width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000000",top:"5dp",bottom:"5dp",left:"5dp",right:"5dp",hiddenBehavior:Ti.UI.HIDDEN_BEHAVIOR_GONE,id:"mediawiki_data"}),$.__views.__alloyId15.add($.__views.mediawiki_data),$.__views.commento_login_start=Ti.UI.createLabel({width:Ti.UI.SIZE,height:Ti.UI.SIZE,color:"#000000",top:"5dp",bottom:"5dp",left:"5dp",right:"5dp",hiddenBehavior:Ti.UI.HIDDEN_BEHAVIOR_GONE,id:"commento_login_start",text:"Per proseguire, effettua il login o crea un account su Wikimedia Commons cliccando il tasto blu qui sopra. Se hai gi\xE0 fatto il login, clicca il tasto per verificare l'avvenuto accesso."}),$.__views.__alloyId15.add($.__views.commento_login_start),exports.destroy=function(){},_.extend($,$.__views);const Identity=require("ti.identity"),Dialog=require("ti.webdialog");var args=$.args;$.activityIndicator.show(),$.login_start.hide(),$.commento_login_start.hide(),$.login_delete.hide(),$.mediawiki_data.hide(),$.login_update.hide();const UUID=Titanium.Platform.id,USERNAME=Titanium.Platform.username+"";
 
-readInformation(UUID),
+$.config.addEventListener("open",function(e){
+
+if(!1==Ti.App.Properties.getBool("registrato",!1)){
+const GENERATED_TOKEN=Titanium.Platform.createUUID();var
+credentials={
+uuid:UUID,
+device_name:USERNAME,
+token:GENERATED_TOKEN},
+
+
+url=Alloy.Globals.backend+"/set_credentials.json",
+
+client=Ti.Network.createHTTPClient({
+onload:function(e){
+if(202==this.status){
+var keychainItem=Identity.createKeychainItem({
+identifier:"token"});
+
+
+keychainItem.addEventListener("save",function(e){
+!0==e.success?(
+Ti.App.Properties.setBool("registrato",!0),
+retrieveUserData(UUID,GENERATED_TOKEN)):
+
+alert("Si \xE8 verificato un errore. Riprova pi\xF9 tardi: "+e.error);
+
+}),
+
+keychainItem.save(GENERATED_TOKEN);
+}else
+alert("Si \xE8 verificato un errore. Riprova pi\xF9 tardi."),
+$.config.close();
+
+},
+onerror:function(e){
+alert("Si \xE8 verificato un errore di connessione: "+e.error);
+},
+timeout:5e3});
+
+client.open("POST",url),
+client.send(credentials);
+}
+
+readInformation(UUID);
+}),
 
 
 

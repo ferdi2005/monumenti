@@ -26,7 +26,7 @@ public class AssetCryptImpl implements KrollAssetHelper.AssetCrypt
 	private static final String BIN_EXT = ".bin";
 
 	private static byte[] salt = {
-		(byte)42, (byte)57, (byte)28, (byte)195, (byte)26, (byte)240, (byte)170, (byte)244, (byte)126, (byte)69, (byte)129, (byte)16, (byte)179, (byte)220, (byte)7, (byte)50
+		(byte)189, (byte)246, (byte)181, (byte)22, (byte)225, (byte)26, (byte)34, (byte)243, (byte)55, (byte)21, (byte)22, (byte)169, (byte)162, (byte)230, (byte)231, (byte)28
 	};
 
 	private static final Collection<String> assets =
@@ -38,6 +38,7 @@ public class AssetCryptImpl implements KrollAssetHelper.AssetCrypt
 			"Resources/alloy/constants.js",
 			"Resources/alloy/controllers/BaseController.js",
 			"Resources/alloy/controllers/about/index.js",
+			"Resources/alloy/controllers/about/info.js",
 			"Resources/alloy/controllers/home/index.js",
 			"Resources/alloy/controllers/home/search.js",
 			"Resources/alloy/controllers/home/show.js",
@@ -46,6 +47,7 @@ public class AssetCryptImpl implements KrollAssetHelper.AssetCrypt
 			"Resources/alloy/controllers/upload/index.js",
 			"Resources/alloy/controllers/upload/title.js",
 			"Resources/alloy/styles/about/index.js",
+			"Resources/alloy/styles/about/info.js",
 			"Resources/alloy/styles/home/index.js",
 			"Resources/alloy/styles/home/search.js",
 			"Resources/alloy/styles/home/show.js",

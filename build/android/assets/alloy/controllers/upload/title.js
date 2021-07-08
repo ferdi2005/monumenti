@@ -42,11 +42,11 @@ $.__views.activityIndicator=Ti.UI.createActivityIndicator(
 {hiddenBehavior:Titanium.UI.HIDDEN_BEHAVIOR_GONE,style:Ti.UI.ActivityIndicatorStyle.BIG,indicatorColor:"black",id:"activityIndicator"}),
 
 $.__views.title.add($.__views.activityIndicator);
-var __alloyId51=[];$.__views.imagespace=Ti.UI.createTableViewSection(
+var __alloyId50=[];$.__views.imagespace=Ti.UI.createTableViewSection(
 {id:"imagespace",headerTitle:"Immagini da caricare"}),
 
-__alloyId51.push($.__views.imagespace),$.__views.tableview=Ti.UI.createTableView(
-{height:Ti.UI.SIZE,disableBounce:!0,separatorColor:"#000000",layout:"vertical",data:__alloyId51,id:"tableview"}),
+__alloyId50.push($.__views.imagespace),$.__views.tableview=Ti.UI.createTableView(
+{height:Ti.UI.SIZE,disableBounce:!0,separatorColor:"#000000",layout:"vertical",data:__alloyId50,id:"tableview"}),
 
 $.__views.title.add($.__views.tableview),
 $.__views.license=Ti.UI.createLabel(
