@@ -259,6 +259,12 @@ $.refresh.addEventListener('click', function () {
   if (OS_ANDROID) {
     locate(true, $.osm.location.zoomLevel);
   }
+
+  $.searchfield.hide();
+  $.searchfield.height = "10%";
+  if (OS_ANDROID) {
+    Ti.UI.Android.hideSoftKeyboard();
+  }
 });
 
 $.search.addEventListener('click', function () {
@@ -268,7 +274,7 @@ $.search.addEventListener('click', function () {
     $.searchfield.height = "20%";
   }
   
-  $.searchfield.addEventListener('return', function (e) {
+$.searchfield.addEventListener('return', function (e) {
     findmon(e.value, "city");
     $.searchfield.hide();
     $.searchfield.height = "10%";
