@@ -61,7 +61,8 @@ $.winsearch.addEventListener('open', function(){
  });
 
 if (OS_ANDROID) {
-    $.winsearch.addEventListener('close', function(){
+    $.winsearch.addEventListener('blur', function(){
+        $.searchfield.blur();
         Ti.UI.Android.hideSoftKeyboard();
     });
 }

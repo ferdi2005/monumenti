@@ -251,7 +251,7 @@ if (OS_ANDROID) {
   $.osm.addEventListener("infoboxClick", infoboxClick);
 }
 
-$.refresh.addEventListener('click', function () {
+function refresh() {
   if (OS_IOS) {
     locate(true, $.mapview.region.latitudeDelta, $.mapview.region.longitudeDelta);
   }
@@ -265,7 +265,9 @@ $.refresh.addEventListener('click', function () {
   if (OS_ANDROID) {
     Ti.UI.Android.hideSoftKeyboard();
   }
-});
+}
+
+$.refresh.addEventListener('click', refresh);
 
 $.search.addEventListener('click', function () {
   $.searchfield.show();
@@ -275,13 +277,24 @@ $.search.addEventListener('click', function () {
   }
   
 $.searchfield.addEventListener('return', function (e) {
+  if (e.value.trim() == "") {
+    refresh();
+  } else {
     findmon(e.value, "city");
+    $.searchfield.blur();
     $.searchfield.hide();
     $.searchfield.height = "10%";
     if (OS_ANDROID) {
       Ti.UI.Android.hideSoftKeyboard();
     }
+  }
   });
+});
+
+$.winmap.addEventListener("blur", function(e){
+  $.searchfield.blur();
+  $.searchfield.hide();
+  $.searchfield.height = "10%";
 });
 
 $.search.addEventListener('blur', function(e){
