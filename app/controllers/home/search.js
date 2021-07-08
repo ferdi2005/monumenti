@@ -59,8 +59,8 @@ $.winsearch.addEventListener('open', function(){
     });
  });
 
- if (OS_ANDROID) {
-     $.winsearch.addEventListener('close', function(){
+if (OS_ANDROID) {
+    $.winsearch.addEventListener('close', function(){
         Ti.UI.Android.hideSoftKeyboard();
-     });
-  }
+    });
+}

@@ -26,7 +26,7 @@ public class AssetCryptImpl implements KrollAssetHelper.AssetCrypt
 	private static final String BIN_EXT = ".bin";
 
 	private static byte[] salt = {
-		(byte)174, (byte)100, (byte)118, (byte)99, (byte)70, (byte)207, (byte)34, (byte)27, (byte)126, (byte)219, (byte)49, (byte)118, (byte)175, (byte)79, (byte)71, (byte)65
+		(byte)42, (byte)57, (byte)28, (byte)195, (byte)26, (byte)240, (byte)170, (byte)244, (byte)126, (byte)69, (byte)129, (byte)16, (byte)179, (byte)220, (byte)7, (byte)50
 	};
 
 	private static final Collection<String> assets =

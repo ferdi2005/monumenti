@@ -1,6 +1,10 @@
 
-"Window": {
-  height: Ti.UI.FILL
+"#winmap": {
+  height: Ti.UI.FILL,
+}
+
+"#winmap[platform=android]": {
+   windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_ADJUST_PAN
 }
 
 "#mapview": {
