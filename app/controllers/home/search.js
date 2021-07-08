@@ -53,6 +53,7 @@ $.listview.addEventListener('itemclick', function(e){
 $.winsearch.addEventListener('open', function(){
     $.searchfield.addEventListener('return', function (e) {
       search(e.value);
+      $.searchfield.blur();
       if (OS_ANDROID) {
         Ti.UI.Android.hideSoftKeyboard();
       }
