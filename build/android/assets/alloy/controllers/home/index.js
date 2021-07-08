@@ -346,6 +346,9 @@ $.search.addEventListener("click",function(){
 $.searchfield.show(),
 $.searchfield.focus(),
 
+$.searchfield.height="20%",
+
+
 $.searchfield.addEventListener("return",function(e){
 findmon(e.value,"city"),
 $.searchfield.hide(),
