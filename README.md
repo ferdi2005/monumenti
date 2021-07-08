@@ -1,6 +1,7 @@
 # WLM Italia
 Applicazione per cercare i monumenti di Wiki Loves Monuments vicino a sé.
 
+* Backend per autenticazione: https://github.com/ferdi2005/monumenti_backend
 * Play Store: https://play.google.com/store/apps/details?id=it.wikimedia.wikilovesmonuments
 ## Priorità di sviluppo
 - [X] Aggiungere possibilità di caricare foto direttamente dall’applicazione
