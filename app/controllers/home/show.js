@@ -9,7 +9,7 @@ var args = $.args;
 $.Upload.hide();
 $.Wikidata.hide();
 $.Wikipedia.hide();
-$.Osm.hide();
+$.Osm_button.hide();
 $.Reasonator.hide();
 
 var today = new Date();
@@ -132,44 +132,54 @@ var client = Ti.Network.createHTTPClient({
         if (!OS_IOS) {
             $.Reasonator.show();
         }
-        $.Osm.addEventListener('click', function (e) {
+        $.Osm_button.addEventListener('click', function (e) {
+            var osm_url; // Dichiaro la variabile url, che sarà popolata in vari modi a seconda della situazione
+
             if (Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)) {
                 Ti.Geolocation.getCurrentPosition(function (e) {
-                    if (Dialog.isSupported()) {
-                        Dialog.open({
-                            title: response.item,
-                            url: "http://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude
-                        }) } else {
-                    Ti.Platform.openURL("http://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude);
-                        }
+                    osm_url = "http://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude
                 });
             } else {
                 Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function (e) {
                     if (e.success) {
                         Ti.Geolocation.getCurrentPosition(function (e) {
-                            if (Dialog.isSupported()) {
-                                Dialog.open({
-                                    title: response.item,
-                                    url: "http://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude
-                                }) } else {
-                            Ti.Platform.openURL("http://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude);
-                                }
+                            osm_url = "http://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude
                         });
                     } else {
-                        if (Dialog.isSupported()) {
-                            Dialog.open({
-                                title: response.item,
-                                url: "http://www.openstreetmap.org/directions"
-                            });
-                        } else {
-                        Ti.Platform.openURL("http://www.openstreetmap.org/directions");
-                        }
+                        alert("Senza autorizzazione alla posizione non sono in grado di tracciare un percorso!");
+                        return;
                     }
                 });
             }
+
+            var alert = Ti.UI.createAlertDialog({message: "Come vuoi raggiungere " + response.itemlabel + "?", buttonNames: ["In auto", "A piedi", "In bici"]});
+            alert.addEventListener("click", function(e){
+                switch(e.index) {
+                    case 0:
+                        osm_url += "&engine=graphhopper_car";
+                        break;
+                    case 1:
+                        osm_url += "&engine=graphhopper_foot";
+                        break;
+                    case 2:
+                        osm_url += "&engine=graphhopper_bicycle";
+                        break;
+                }
+
+                if (Dialog.isSupported()) {
+                    Dialog.open({
+                        title: response.itemlabel,
+                        url: osm_url
+                    });
+                } else {
+                    Ti.Platform.openURL(osm_url);
+                }
+            });
+            alert.show();
+            
         });
         if (!OS_IOS) {
-            $.Osm.show();
+            $.Osm_button.show();
         }
 
         if (OS_IOS) {

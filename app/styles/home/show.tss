@@ -27,7 +27,7 @@
     color: "#FFFFFF",
 }
 
-"#Osm": {
+"#Osm_button": {
     backgroundColor: "#58ce40",
     color: "#FFFFFF",
 }

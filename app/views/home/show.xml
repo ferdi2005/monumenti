@@ -10,7 +10,7 @@
 			<Label id="Alert" platform="ios">Partecipano a Wiki Loves Monuments solo le foto caricate dall'1 al 30 settembre.</Label>
 			<Label id="Alert" platform="android" html="Partecipano a Wiki Loves Monuments <b>solo</b> le foto caricate dall'1 al 30 settembre."/>
 			<Button id="Wikidata">Pagina su Wikidata</Button>
-			<Button id="Osm">Indicazioni stradali</Button>
+			<Button id="Osm_button">Indicazioni stradali</Button>
 			<Button id="Reasonator">Pagina su Reasonator</Button>
 			<Button id="Wikipedia">Voce su Wikipedia</Button>
 			<Label id="indietro" platform="android">Per tornare indietro, premi il tasto indietro relativo sul tuo telefono.</Label>
