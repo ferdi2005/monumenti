@@ -14,7 +14,8 @@ function getDistance(lat1, lon1, lat2, lon2) {
     dist = Math.acos(dist);
     dist = dist * 180 / Math.PI;
     dist = dist * 60 * 1.1515;
-    dist = dist.toFixed(0);
+    dist = dist * 1.609344;
+    dist = dist.toFixed(2);
     return dist;
 }
 
@@ -24,8 +25,36 @@ function search(value, user_initiated) {
     var url = 'http://cerca.wikilovesmonuments.it/namesearch.json?search=' + encodeURI(value);
     var xhr = Ti.Network.createHTTPClient({
         onload: function(e) {
-            
+            var location;
+            var located;
+
             response = JSON.parse(this.responseText);
+
+            if (Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)) {
+                Ti.Geolocation.getCurrentPosition(function (e) {
+                    if (e.success) {
+                        location = e;
+                        located = true;
+                    } else {
+                        located = false;
+                    }
+                });
+            } else {
+                Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function (e) {
+                    if (e.success) {
+                        Ti.Geolocation.getCurrentPosition(function (e) {
+                            if (e.success) {
+                                location = e;
+                                located = true;
+                            } else {
+                                located = false;
+                            }
+                        });
+                    } else {
+                        located = false;
+                    }
+                });
+            }
 
             if (response.length > 0) {
                 data = []
@@ -33,37 +62,30 @@ function search(value, user_initiated) {
                     var title;
 
                     // Ottengo la distanza tra elementi
-                    if (Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)) {
-                        Ti.Geolocation.getCurrentPosition(function (e) {
-                            if (e.success) {
-                                title = item.itemlabel + " (" + getDistance(e.latitude, e.longitude, item.latitude, item.longitude) + " km)";
-                            } else {
-                                title = item.itemlabel;
-                            }
-                        });
+                    if (located) {
+                        title = item.itemlabel + " (" + getDistance(location.coords.latitude, location.coords.longitude, item.latitude, item.longitude) + " km)";
                     } else {
-                        Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function (e) {
-                            if (e.success) {
-                                title = item.itemlabel + " (" + getDistance(e.latitude, e.longitude, item.latitude, item.longitude) + " km)";
-                            } else {
-                                title = item.itemlabel;
-                            }
-                        });
+                        title = item.itemlabel;
                     }
-                    
+                                                
                     itemdata =  { 
                         properties: {
                             itemId: item.id,
                             title: title ,
                             accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
                             color: '#000000',
-                            backgroundColor: '#FFFFFF'
+                            backgroundColor: '#FFFFFF',
+                            latitude: item.latitude,
+                            longitude: item.longitude
                         }
                     }
                     data.push(itemdata);
                 });
                 
                 if ($.listsection.items != data) {
+                    data = data.sort(function(a,b){
+                        return getDistance(location.coords.latitude, location.coords.longitude, a.properties.latitude, a.properties.longitude) - getDistance(location.coords.latitude, location.coords.longitude, b.properties.latitude, b.properties.longitude);
+                    })
                     $.listsection.setItems(data);
                 }
                 $.listview.show();
