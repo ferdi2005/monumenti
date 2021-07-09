@@ -8,6 +8,7 @@
 			<ActivityIndicator id="activityIndicator" />
 			<TextField id="searchfield" hintText="Inserisci il nome della città e premi invio..."/>
 			<Button id="refresh" backgroundImage="/images/refresh.png"/>
+			<Button id="my_location" backgroundImage="/images/location.png"/>
 			<Button id="search" backgroundImage="/images/search.png"/>
 		</View>
 	</Window>

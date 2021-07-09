@@ -5,4 +5,4 @@ Alloy.Globals.utils = new utilsService();
 if (OS_ANDROID) {
     Alloy.Globals.OSM = require('ti.osm');
 } 
-Alloy.Globals.backend = "https://app-backend.wikilovesmonuments.it"; // TODO: spostare su backend ufficiale
+Alloy.Globals.backend = "https://app-backend.wikilovesmonuments.it";

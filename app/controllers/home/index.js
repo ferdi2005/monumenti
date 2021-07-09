@@ -251,7 +251,17 @@ if (OS_ANDROID) {
   $.osm.addEventListener("infoboxClick", infoboxClick);
 }
 
-function refresh() {
+$.refresh.addEventListener('click', function(e){
+  if (OS_IOS) {
+    findmon({coords: {latitude: $.mapview.region.latitude, longitude: $.mapview.region.longitude}}, "geoloc", true, $.mapview.region.latitudeDelta, $.mapview.region.longitudeDelta);
+  }
+
+  if (OS_ANDROID) {
+    findmon({coords: {latitude: $.osm.location.latitude, longitude: $.osm.location.longitude}}, "geoloc", true, $.osm.location.zoomLevel);
+  }
+});
+
+function my_location() {
   if (OS_IOS) {
     locate(true, $.mapview.region.latitudeDelta, $.mapview.region.longitudeDelta);
   }
@@ -267,7 +277,7 @@ function refresh() {
   }
 }
 
-$.refresh.addEventListener('click', refresh);
+$.my_location.addEventListener("click", my_location);
 
 $.search.addEventListener('click', function () {
   $.searchfield.show();
@@ -278,7 +288,7 @@ $.search.addEventListener('click', function () {
   
 $.searchfield.addEventListener('return', function (e) {
   if (e.value.trim() == "") {
-    refresh();
+    home();
   } else {
     findmon(e.value, "city");
     $.searchfield.blur();

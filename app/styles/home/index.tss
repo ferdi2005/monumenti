@@ -36,6 +36,15 @@
   backgroundColor: "transparent"
 }
 
+"#my_location": {
+  bottom: "10%",
+  left: "15%",
+  width: 25,
+  height: 25,
+  backgroundColor: "transparent"
+}
+
+
 "#search": {
   bottom: "10%",
   right: "5%",
