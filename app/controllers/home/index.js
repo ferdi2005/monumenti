@@ -166,12 +166,28 @@ function locate(latkeep, latdelta, londelta) {
   
   if (Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)) {
     Ti.Geolocation.getCurrentPosition(function (e) {
-      if (OS_ANDROID) {
-        findmon(e, "geoloc", latkeep, latdelta);
-      }
+      if (e.success) {
+        if (OS_ANDROID) {
+          findmon(e, "geoloc", latkeep, latdelta);
+        }
 
-      if (OS_IOS) {
-        findmon(e, "geoloc", latkeep, latdelta, londelta);
+        if (OS_IOS) {
+          findmon(e, "geoloc", latkeep, latdelta, londelta);
+        }
+      } else {
+        if (OS_IOS) {
+          $.mapview.region = {
+            latitude: 41.9109,
+            longitude: 12.4818,
+            latitudeDelta: 0.1,
+            longitudeDelta: 0.1
+          }
+        }
+        // Mappa con OSM
+        if (OS_ANDROID) {
+          $.osm.location = { longitude: 41.9109, latitude: 12.4818, zoomLevel: defaultZoom}
+        }
+        alert("Attiva la geolocalizzazione per usare la mappa.");
       }
     });
   } else {
@@ -195,6 +211,7 @@ function locate(latkeep, latdelta, londelta) {
             longitude: 12.4818,
             latitudeDelta: 0.1,
             longitudeDelta: 0.1
+          }
         }
 
         // Mappa con OSM
@@ -202,7 +219,6 @@ function locate(latkeep, latdelta, londelta) {
           $.osm.location = { longitude: 41.9109, latitude: 12.4818, zoomLevel: defaultZoom}
         }
 
-        };
         alert("Impossibile localizzarti, non hai dato il permesso alla localizzazione. Cerca una città cliccando sulla lente di ingrandimento oppure abilita la localizzazione dalle impostazioni sulla privacy.");
       }
     });

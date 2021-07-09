@@ -132,26 +132,7 @@ var client = Ti.Network.createHTTPClient({
         if (!OS_IOS) {
             $.Reasonator.show();
         }
-        $.Osm_button.addEventListener('click', function (e) {
-            var osm_url; // Dichiaro la variabile url, che sarà popolata in vari modi a seconda della situazione
-
-            if (Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)) {
-                Ti.Geolocation.getCurrentPosition(function (e) {
-                    osm_url = "http://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude
-                });
-            } else {
-                Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function (e) {
-                    if (e.success) {
-                        Ti.Geolocation.getCurrentPosition(function (e) {
-                            osm_url = "http://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude
-                        });
-                    } else {
-                        alert("Senza autorizzazione alla posizione non sono in grado di tracciare un percorso!");
-                        return;
-                    }
-                });
-            }
-
+        function showOSMalert(response, osm_url) {
             var alert = Ti.UI.createAlertDialog({message: "Come vuoi raggiungere " + response.itemlabel + "?", buttonNames: ["In auto", "A piedi", "In bici"]});
             alert.addEventListener("click", function(e){
                 switch(e.index) {
@@ -176,11 +157,38 @@ var client = Ti.Network.createHTTPClient({
                 }
             });
             alert.show();
+        }
+
+        $.Osm_button.addEventListener('click', function (e) {
+            var osm_url; // Dichiaro la variabile url, che sarà popolata in vari modi a seconda della situazione
+            
+            if (Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)) {
+                Ti.Geolocation.getCurrentPosition(function (e) {
+                    if (e.success) {
+                        osm_url = "https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude;
+
+                        showOSMalert(response, osm_url);
+                    } else {
+                        alert("Senza geolocalizzazione attiva non sono in grado di tracciare un percorso!");
+                    }
+                });
+            } else {
+                Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function (e) {
+                    if (e.success) {
+                        Ti.Geolocation.getCurrentPosition(function (e) {
+                            osm_url = "https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude;
+
+                            showOSMalert(response, osm_url);
+                        });
+                    } else {
+                        alert("Senza autorizzazione alla posizione non sono in grado di tracciare un percorso!");
+                    }
+                });
+            }
             
         });
-        if (!OS_IOS) {
-            $.Osm_button.show();
-        }
+        
+        $.Osm_button.show();
 
         if (OS_IOS) {
             var annotation = Map.createAnnotation({
