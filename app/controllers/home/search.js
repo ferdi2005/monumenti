@@ -2,7 +2,7 @@
 var args = $.args;
 $.listview.hide();
 $.activityIndicator.hide();
-function search(value) {
+function search(value, user_initiated) {
     $.activityIndicator.show();
 
     var url = 'http://cerca.wikilovesmonuments.it/namesearch.json?search=' + encodeURI(value);
@@ -26,11 +26,15 @@ function search(value) {
                     data.push(itemdata);
                 });
                 
-                $.listsection.setItems(data);
+                if ($.listsection.items != data) {
+                    $.listsection.setItems(data);
+                }
                 $.listview.show();
                 $.activityIndicator.hide();
             } else {
-                alert("Nessun risultato trovato! Prova a fare un'altra ricerca");
+                if (user_initiated) {
+                    alert("Nessun risultato trovato! Prova a fare un'altra ricerca");
+                }
                 $.activityIndicator.hide();
             }
 
@@ -52,12 +56,20 @@ $.listview.addEventListener('itemclick', function(e){
 
 $.winsearch.addEventListener('open', function(){
     $.searchfield.addEventListener('return', function (e) {
-      search(e.value);
-      $.searchfield.blur();
-      if (OS_ANDROID) {
-        Ti.UI.Android.hideSoftKeyboard();
-      }
+        if (e.value.length < 5) {
+            search(e.value, true);
+        }
+        $.searchfield.blur();
+        if (OS_ANDROID) {
+            Ti.UI.Android.hideSoftKeyboard();
+        }
     });
+
+    $.searchfield.addEventListener("change", function(e){
+        if (e.value.length >= 5) {
+            search(e.value, false)
+        }
+    })
  });
 
 if (OS_ANDROID) {
