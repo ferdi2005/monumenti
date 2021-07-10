@@ -112,12 +112,17 @@ function retrieveUserData(uuid, token) {
                 var userInfo = JSON.parse(this.responseText);
                 
                 if (userInfo.authorized == true) {
-                    showUserInfo(userInfo);
                     Ti.App.Properties.setBool("autorizzato", true);
                     $.login_start.hide();
                     $.login_update.hide();
                     $.commento_login_start.hide();
                     $.activityIndicator.hide();
+                    // In caso di arrivo dalla finestra di caricamento
+                    if (args == "show") {
+                        $.config.close();
+                    } else {
+                        showUserInfo(userInfo);
+                    }
                 } else {
                     Ti.App.Properties.setBool("autorizzato", false);
                     $.login_start.show();
@@ -154,7 +159,7 @@ function readInformation(uuid) {
             alert.addEventListener("click", function(e){
                 $.config.close();
             });
-            alert.show();    
+            alert.show();
         }
         
     });
@@ -162,6 +167,9 @@ function readInformation(uuid) {
 }
 
 $.config.addEventListener("open", function(e) {
+    if (args == "show") {
+        alert("Prima di poter caricare le fotografie, devi effettuare l'accesso a Wikimedia Commons.");
+    }
     // Nel caso in cui non sia stata effettuata la registrazione, procede ad effettuarla
     if (Ti.App.Properties.getBool("registrato", false) == false) {
         const GENERATED_TOKEN = Titanium.Platform.createUUID();

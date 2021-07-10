@@ -1,6 +1,5 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = $.args;
-
 if (Ti.App.Properties.getBool("flurry", "notset") == true) {
     $.tracciamento.value == true;
 } else {
@@ -15,7 +14,7 @@ $.info.addEventListener("click", function(e){
 
 // Apri le impostazioni degli upload
 $.upload_config.addEventListener("click", function(e){
-    Alloy.Globals.utils.open("upload/config");
+    Alloy.Globals.utils.open("upload/config", "settings");
 });
 
 $.upload_list.addEventListener("click", function(e){

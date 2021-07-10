@@ -20,8 +20,11 @@ Array(images)[0].forEach(
         var client = Ti.Network.createHTTPClient({
             onload: function(e) {
                 if (JSON.parse(this.responseText).error == "User not found.") {
-                    Alloy.Globals.utils.open('upload/config', false);
-                    return false;
+                    var alert = Ti.UI.createAlertDialog({message: "Si è verificato un errore. Esegui il logout dalla Gestione impostazioni upload nella scheda impostazioni.", buttonNames: ["Ok"]});
+                    alert.addEventListener("click", function(e){
+                        $.title.close();
+                    });
+                    alert.show();    
                 } else if(JSON.parse(this.responseText).error == "Photo upload not succedeed.") {
                     var row = Titanium.UI.createTableViewRow({layout: "horizontal"});
                     var image = Titanium.UI.createImageView({

@@ -82,32 +82,39 @@ var client = Ti.Network.createHTTPClient({
         }
         $.title.text = response.itemlabel;
         // Sistema per il caricamento delle fotografie
+        function startPhotoUpload() {
+            Ti.Media.openPhotoGallery({
+                allowMultiple: true,
+                mediaTypes: [Titanium.Media.MEDIA_TYPE_PHOTO],
+                cancel: function(e) {
+                    alert("Hai annullato il caricamento delle foto")
+                },
+                error: function(e) {
+                    alert("Potresti non aver concesso l'autorizzazione ad accedere alla galleria foto. Verifica.")
+                },
+                success: function(e){
+                    // Recupero token salvato nel keychain e procedo con la lettura delle informazioni
+                    var keychainItem = Identity.createKeychainItem({ identifier: "token" });
+                    keychainItem.addEventListener("read", function(k){
+                        if (k.success == true) {
+                            Alloy.Globals.utils.open("upload/title", [Titanium.Platform.id, k.value, e.images, response.item]);
+                        } else {
+                            alert("Si è verificato un errore con la lettura del keychain, riprova più tardi.")
+                        }
+                    });
+                    keychainItem.read();
+                }
+            });
+        }
         $.Upload.addEventListener('click', function (e) {
             if (Ti.App.Properties.getBool("registrato", false) == false || Ti.App.Properties.getBool("autorizzato", false) == false) {
-                Alloy.Globals.utils.open('upload/config'); //TODO: implementare dall'altro lato
-            } else {
-                Ti.Media.openPhotoGallery({
-                    allowMultiple: true,
-                    mediaTypes: [Titanium.Media.MEDIA_TYPE_PHOTO],
-                    cancel: function(e) {
-                        alert("Hai annullato il caricamento delle foto")
-                    },
-                    error: function(e) {
-                        alert("Potresti non aver concesso l'autorizzazione ad accedere alla galleria foto. Verifica.")
-                    },
-                    success: function(e){
-                        // Recupero token salvato nel keychain e procedo con la lettura delle informazioni
-                        var keychainItem = Identity.createKeychainItem({ identifier: "token" });
-                        keychainItem.addEventListener("read", function(k){
-                            if (k.success == true) {
-                                Alloy.Globals.utils.open("upload/title", [Titanium.Platform.id, k.value, e.images, response.item]);
-                            } else {
-                                alert("Si è verificato un errore con la lettura del keychain, riprova più tardi.")
-                            }
-                        });
-                        keychainItem.read();
-                    }
+                var window = Alloy.createController("upload/config", "show").getView();
+                window.addEventListener("close", function(e){
+                    startPhotoUpload();
                 });
+                tabgroup.activeTab.open(window, {modal: true, animated: true});     
+            } else {
+                startPhotoUpload()
             }
         });
         $.Upload.show();
