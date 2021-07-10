@@ -202,7 +202,7 @@ var client = Ti.Network.createHTTPClient({
         }
 
         if (OS_ANDROID) {
-            if (repsonse.with_photos) {
+            if (response.with_photos) {
                 if (response.tree) {
                   var icon = "/images/tree blue.png";
                 } else {
