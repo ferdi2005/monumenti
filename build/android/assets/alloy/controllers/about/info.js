@@ -35,7 +35,7 @@ __defers={};
 
 
 $.__views.info=Ti.UI.createWindow(
-{backgroundColor:"#fff",layout:"vertical",title:"Informazioni sul concorso",id:"info"}),
+{backgroundColor:"#fff",layout:"vertical",id:"info",title:"Informazioni sul concorso"}),
 
 $.__views.info&&$.addTopLevelView($.__views.info),
 
@@ -58,6 +58,21 @@ _.extend($,$.__views);
 
 
 var args=$.args;
+
+
+
+$.info.activity.onCreateOptionsMenu=function(e){var
+menu=e.menu,
+menuItem=menu.add({
+title:"Back",
+icon:"images/back.png",
+showAsAction:Ti.Android.SHOW_AS_ACTION_ALWAYS});
+
+menuItem.addEventListener("click",function(e){
+$.info.close();
+});
+},
+
 
 $.site.addEventListener("click",function(e){
 Ti.Platform.openURL("https://wikilovesmonuments.it");
