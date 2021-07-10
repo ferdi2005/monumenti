@@ -332,19 +332,19 @@ $.search.addEventListener('click', function () {
   if (OS_ANDROID) {
     $.searchfield.height = "20%";
   }
-  
-$.searchfield.addEventListener('return', function (e) {
-  if (e.value.trim() == "") {
-    home();
-  } else {
-    findmon(e.value, "city");
+
+  $.searchfield.addEventListener('return', function (e) {
+    if (e.value.trim() == "") {
+      my_location();
+    } else {
+      findmon(e.value, "city");
+    }
     $.searchfield.blur();
     $.searchfield.hide();
     $.searchfield.height = "10%";
     if (OS_ANDROID) {
       Ti.UI.Android.hideSoftKeyboard();
     }
-  }
   });
 });
 
