@@ -235,7 +235,7 @@ var client = Ti.Network.createHTTPClient({
             $.address.show();
             $.activityIndicator.hide();
         } else {
-            Ti.Geolocation.reverseGeocoder(response.latitude, response.longitude, function (e) {
+            /* Ti.Geolocation.reverseGeocoder(response.latitude, response.longitude, function (e) {
                 if (e.success) {
                     $.address.text = e.places[0].address;
                     $.address.show();
@@ -244,27 +244,24 @@ var client = Ti.Network.createHTTPClient({
                     $.address.hide();
                     $.activityIndicator.hide();
                 }
-            });
-        }
-        /* if (OS_IOS) {
-            var url = "http://cerca.wikilovesmonuments.it/address.json?id=" + args;
+            }); */
+            var url = "http://cerca.wikilovesmonuments.it/address.json?id=" + response.id;
             var client = Ti.Network.createHTTPClient({
                 onload: function (e) {
-                    $.address.show();
                     $.address.text = this.responseText;
+                    $.address.show();
                     $.activityIndicator.hide();
                 },
                 onerror: function (e) {
-                    alert('Errore nel ritrovare indirizzo: ' + e.error);
+                    $.address.hide();
+                    $.activityIndicator.hide();
+                    // Fallisce silenziosamente
                 },
                 timeout: 5000
             });
             client.open("GET", url);
             client.send();
-
-
-        } */
-
+        }
     },
     onerror: function (e) {
         alert('Errore di rete, tornare indietro: ' + e.error);

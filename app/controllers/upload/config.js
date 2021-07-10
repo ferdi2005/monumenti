@@ -72,9 +72,9 @@ function showUserInfo(userInfo) {
     });
 
     if (userInfo.testuser == true) {
-        $.mediawiki_data.text = "Hai eseguito l'accesso alla Wiki di test. Da ora puoi tornare indietro e caricare le tue fotografie tramite l'apposito tasto sulla scheda di ogni monumento sulla mappa. Le tue foto non verranno caricate davvero."
+        $.mediawiki_data.text = "Hai eseguito l'accesso alla Wiki di test. Da ora puoi tornare indietro e caricare le tue fotografie tramite l'apposito tasto nella scheda di ogni monumento. Le tue foto non verranno caricate davvero."
     } else {
-        $.mediawiki_data.text = "Hai eseguito l'accesso a Wikimedia Commons. Da ora puoi tornare indietro e caricare le tue fotografie tramite l'apposito tasto sulla scheda di ogni monumento sulla mappa."
+        $.mediawiki_data.text = "Hai eseguito l'accesso a Wikimedia Commons. Da ora puoi tornare indietro e caricare le tue fotografie tramite l'apposito tasto nella scheda di ogni monumento."
     }
     if (userInfo.ready == true) {
         $.mediawiki_data.text = $.mediawiki_data.text += " Il tuo nome utente è " + userInfo.username
