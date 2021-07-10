@@ -202,12 +202,20 @@ var client = Ti.Network.createHTTPClient({
         }
 
         if (OS_ANDROID) {
-            if (response.with_photos) {
-                var icon = "/images/Info blue.png";
-            } else {
-                var icon = "/images/Info red.png";
-            }
-            var markers = [];
+            if (repsonse.with_photos) {
+                if (response.tree) {
+                  var icon = "/images/tree blue.png";
+                } else {
+                  var icon = "/images/Info blue.png";
+                }
+              } else {
+                if (response.tree) {
+                  var icon = "/images/tree red.png";
+                } else {
+                  var icon = "/images/Info red.png";
+                }
+              }
+                var markers = [];
             markers.push({
                 latitude: response.latitude,
                 longitude: response.longitude,
