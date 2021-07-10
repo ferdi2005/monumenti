@@ -13,6 +13,11 @@ $.login_delete.hide();
 $.mediawiki_data.hide();
 $.login_update.hide();
 
+// Event listener su Login update
+$.login_update.addEventListener("click", function(e){
+    readInformation(UUID, true);
+});
+
 // Dati utili
 const UUID = Titanium.Platform.id; // identificativo univoco del device
 const USERNAME = String(Titanium.Platform.username); // username del device (a scopi statistici)
@@ -102,7 +107,7 @@ function startLogin(userInfo) {
 }
 
 // Funzione per recuperare le informazioni dell'utente e mostrare in seguito tutto
-function retrieveUserData(uuid, token) {
+function retrieveUserData(uuid, token, user_initiated = false) {
     var url = Alloy.Globals.backend + "/userinfo.json?uuid=" + uuid + "&token=" + token
     var client = Ti.Network.createHTTPClient({
         onload: function(e) {
@@ -131,10 +136,10 @@ function retrieveUserData(uuid, token) {
                     $.login_start.addEventListener("click", function(e){
                         startLogin(userInfo);
                     });
-                    $.login_update.addEventListener("click", function(e){
-                        readInformation(UUID);
-                    });
                     $.activityIndicator.hide();
+                    if (user_initiated) {
+                        alert("Non hai ancora effettuato il login. Clicca su Accedi a Wikimedia Commons per farlo.");
+                    }
                 }
             }
         },
@@ -148,12 +153,12 @@ function retrieveUserData(uuid, token) {
     client.send();
 }
 
-function readInformation(uuid) {
+function readInformation(uuid, user_initiated = false) {
 // Recupero token salvato nel keychain e procedo con la lettura delle informazioni
     var keychainItem = Identity.createKeychainItem({ identifier: "token" });
     keychainItem.addEventListener("read", function(e){
         if (e.success == true) {
-            retrieveUserData(uuid, e.value); // Il token è contenuto in e.value
+            retrieveUserData(uuid, e.value, user_initiated); // Il token è contenuto in e.value
         } else {
             var alert = Ti.UI.createAlertDialog({message: "Si è verificato un problema, riprova più tardi. Se si ripresenta, fai il logout.", buttonNames: ["Ok"]});
             alert.addEventListener("click", function(e){
