@@ -84,14 +84,13 @@ _.extend($,$.__views);
 
 
 var args=$.args;
-
 !0==Ti.App.Properties.getBool("flurry","notset")?
 !0==$.tracciamento.value:
 
 !1==$.tracciamento.value,
 
 
-$.lbl_version.text="Versione 2.0.0",
+$.lbl_version.text="Versione 2.1.0",
 
 $.info.addEventListener("click",function(e){
 Alloy.Globals.utils.open("about/info");
@@ -99,7 +98,7 @@ Alloy.Globals.utils.open("about/info");
 
 
 $.upload_config.addEventListener("click",function(e){
-Alloy.Globals.utils.open("upload/config");
+Alloy.Globals.utils.open("upload/config","settings");
 }),
 
 $.upload_list.addEventListener("click",function(e){
@@ -107,17 +106,15 @@ Alloy.Globals.utils.open("upload/index");
 }),
 
 $.tracciamento.addEventListener("change",function(e){
-Ti.API.log(Ti.App.Properties.getBool("flurry","notset")),
 !0==e.value?
 Ti.App.Properties.setBool("flurry",!0):
 
-Ti.App.Properties.setBool("flurry",!1),
+Ti.App.Properties.setBool("flurry",!1);
 
-Ti.API.log(Ti.App.Properties.getBool("flurry","notset"));
 }),
 
 $.crediti.addEventListener("click",function(e){
-alert("Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments. Il pin azzurro indica un monumento che ha fotografie, il pin rosso indica un monumento che non ha ancora fotografie, quindi affrettati a scattarne!");
+alert("Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments.\n Il pin azzurro indica un monumento che ha fotografie, il pin rosso indica un monumento che non ha ancora fotografie.\n Icona dell'albero modificata da Symbolon, licenza CC-BY 3.0\n Icone della barra di navigazione modificate da FontAwesome, licenza CC-BY-SA 4.0 ");
 }),
 
 

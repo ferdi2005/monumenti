@@ -29,7 +29,7 @@ public final class WlmItaliaAppInfo implements ITiAppInfo
 	}
 
 	public String getVersion() {
-		return "2.0.0";
+		return "2.1.0";
 	}
 
 	public String getPublisher() {

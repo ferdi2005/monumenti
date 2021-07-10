@@ -90,10 +90,13 @@ function(photo){var
 url=Alloy.Globals.backend+"/photoupload.json",
 client=Ti.Network.createHTTPClient({
 onload:function(e){
-if("User not found."==JSON.parse(this.responseText).error)
-
-return Alloy.Globals.utils.open("upload/config",!1),!1;
-if("Photo upload not succedeed."==JSON.parse(this.responseText).error){var
+if("User not found."==JSON.parse(this.responseText).error){
+var alert=Ti.UI.createAlertDialog({message:"Si \xE8 verificato un errore. Esegui il logout dalla Gestione impostazioni upload nella scheda impostazioni.",buttonNames:["Ok"]});
+alert.addEventListener("click",function(e){
+$.title.close();
+}),
+alert.show();
+}else if("Photo upload not succedeed."==JSON.parse(this.responseText).error){var
 row=Titanium.UI.createTableViewRow({layout:"horizontal"}),
 image=Titanium.UI.createImageView({
 image:photo.media,

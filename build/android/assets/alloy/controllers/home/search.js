@@ -69,35 +69,98 @@ function Controller(){
 
 
 
-function search(value){
+
+
+
+function getDistance(lat1,lon1,lat2,lon2){var _Mathacos=
+
+
+
+
+
+Math.acos,_Mathcos=Math.cos,_Mathsin=Math.sin,_MathPI=Math.PI,radlat1=_MathPI*lat1/180,radlat2=_MathPI*lat2/180,theta=lon1-lon2,radtheta=_MathPI*theta/180,dist=_Mathsin(radlat1)*_Mathsin(radlat2)+_Mathcos(radlat1)*_Mathcos(radlat2)*_Mathcos(radtheta);
+
+
+
+
+return dist=_Mathacos(dist),dist=180*dist/_MathPI,dist=1.1515*(60*dist),dist*=1.609344,dist=dist.toFixed(2),dist;
+}
+
+function search(value,user_initiated){
 $.activityIndicator.show();var
 
 url="http://cerca.wikilovesmonuments.it/namesearch.json?search="+encodeURI(value),
 xhr=Ti.Network.createHTTPClient({
-onload:function(e){
+onload:function(e){var
+location,
+located;
 
 response=JSON.parse(this.responseText),
+
+Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE)||Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)?
+Ti.Geolocation.getCurrentPosition(function(e){
+e.success?(
+location=e,
+located=!0):
+
+located=!1;
+
+}):
+
+Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE,function(e){
+e.success?
+Ti.Geolocation.getCurrentPosition(function(e){
+e.success?(
+location=e,
+located=!0):
+
+located=!1;
+
+}):
+
+located=!1;
+
+}),
+
 
 0<response.length?(
 data=[],
 response.forEach(function(item){
+var title;
+
+
+
+title=located?item.itemlabel+" ("+getDistance(location.coords.latitude,location.coords.longitude,item.latitude,item.longitude)+" km)":
+
+item.itemlabel,
+
+
 itemdata={
 properties:{
 itemId:item.id,
-title:item.itemlabel,
+title:title,
 accessoryType:Ti.UI.LIST_ACCESSORY_TYPE_NONE,
 color:"#000000",
-backgroundColor:"#FFFFFF"}},
+backgroundColor:"#FFFFFF",
+latitude:item.latitude,
+longitude:item.longitude}},
 
 
 data.push(itemdata);
 }),
 
-$.listsection.setItems(data),
+$.listsection.items!=data&&(
+data=data.sort(function(a,b){
+return getDistance(location.coords.latitude,location.coords.longitude,a.properties.latitude,a.properties.longitude)-getDistance(location.coords.latitude,location.coords.longitude,b.properties.latitude,b.properties.longitude);
+}),
+$.listsection.setItems(data)),
+
 $.listview.show(),
 $.activityIndicator.hide()):(
 
+user_initiated&&
 alert("Nessun risultato trovato! Prova a fare un'altra ricerca"),
+
 $.activityIndicator.hide());
 
 
@@ -119,10 +182,20 @@ tabgroup.activeTab.open(window);
 
 $.winsearch.addEventListener("open",function(){
 $.searchfield.addEventListener("return",function(e){
-search(e.value),
+3>e.value.length?
+alert("Inserisci minimo 3 caratteri per effettuare una ricerca."):
+5>e.value.length&&
+search(e.value,!0),
+
 $.searchfield.blur(),
 
 Ti.UI.Android.hideSoftKeyboard();
+
+}),
+
+$.searchfield.addEventListener("change",function(e){
+5<=e.value.length&&
+search(e.value,!1);
 
 });
 }),

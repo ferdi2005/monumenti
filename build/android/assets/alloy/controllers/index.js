@@ -71,8 +71,8 @@ url="https://api.github.com/repos/ferdi2005/monumenti/releases/latest",
 xhr=Ti.Network.createHTTPClient({
 onload:function(e){
 response=JSON.parse(this.responseText),
-"v2.0.0"!=response.tag_name&&
-alert("Attenzione! Stai usando una versione non aggiornata dell'applicazione (2.0.0) vai sullo store a scaricare la nuova versione "+response.tag_name+".");
+"v2.1.0"!=response.tag_name&&
+alert("Attenzione! Stai usando una versione non aggiornata dell'applicazione (2.1.0) vai sullo store a scaricare la nuova versione "+response.tag_name+".");
 
 },
 onerror:function(e){
