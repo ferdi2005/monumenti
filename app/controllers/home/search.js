@@ -115,7 +115,9 @@ $.listview.addEventListener('itemclick', function(e){
 
 $.winsearch.addEventListener('open', function(){
     $.searchfield.addEventListener('return', function (e) {
-        if (e.value.length > 0 && e.value.length < 5) {
+        if (e.value.length < 3) {
+            alert("Inserisci minimo 3 caratteri per effettuare una ricerca.");
+        } else if (e.value.length < 5) {
             search(e.value, true);
         }
         $.searchfield.blur();
