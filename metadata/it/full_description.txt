@@ -1,0 +1,9 @@
+Tramite quest'applicazione, facendo uso delle funzionalità di localizzazione e di mappa, potrai vedere tutti i monumenti partecipanti a Wiki Loves monuments Italia vicino a te, analizzarne i dettagli in una scheda, ottenendo le informazioni dell'elemento Wikidata (nome, descrizione e indirizzo), un link a Wikidata, la possibilità di caricare le foto da un link a Wikimedia Commons e le indicazioni tramite OSM.
+
+Puoi anche cercare una città specifica per vederne i monumenti oppure cliccare sul tasto di refresh per aggiornare la tua posizione.
+
+I dati della localizzazione vengono trattati con la massima riservatezza, la localizzazione non viene salvata in alcun modo.
+I dati dei monumenti sono presi da Wikidata, sono rilasciati sotto licenza CC-0 e sono disponibile a tutti tramite https://cerca.wikilovesmonuments.it che espone un'API pubblica su https://cerca.wikilovesmonuments.it/monuments.json.
+
+Codice sorgente: https://github.com/ferdi2005/monumenti
+Codice sorgente del backend: https://github.com/ferdi2005/wikilovesmonuments

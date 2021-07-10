@@ -1,0 +1,9 @@
+Grandi novità nella versione 2.0.0:
+* mappa con OpenStreetMap con le tile Wikimedia invece di Google Maps su Android (grazie al modulo ti.map sviluppato per l'occasione col supporto di Wikimedia Italia)
+  * nuovo stile per i marker dei monumenti
+* possibilità di caricare le fotografie dall'app (e anche partecipare al concorso)
+  * autenticazione oAuth con MediaWiki (tramite backend)
+  * visualizzazione dell'elenco delle foto caricate
+* opt-in/opt-out per le analytics e il tracking dei crash
+* riorganizzazione delle impostazioni
+* risoluzione di bug vari
