@@ -4,7 +4,7 @@ Applicazione per cercare i monumenti di Wiki Loves Monuments vicino a sé.
 * Backend per autenticazione: https://github.com/ferdi2005/monumenti_backend
 * Play Store: https://play.google.com/store/apps/details?id=it.wikimedia.wikilovesmonuments
 ## Ringraziamenti
-Special and many thanks to: Michael Gangolf (@m1ga), Yacine Boussoufa and Stupeficium.
+Grazie di cuore a Michael Gangolf (@m1ga), nonché a tutti i tester dell'applicazione!
 
 ## Changelog
 Vedi releases su GitHub.
