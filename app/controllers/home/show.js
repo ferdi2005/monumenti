@@ -110,11 +110,15 @@ var client = Ti.Network.createHTTPClient({
             if (Ti.App.Properties.getBool("registrato", false) == false || Ti.App.Properties.getBool("autorizzato", false) == false) {
                 var window = Alloy.createController("upload/config", "show").getView();
                 window.addEventListener("close", function(e){
-                    startPhotoUpload();
+                    if (Ti.App.Properties.getBool("registrato", false) == false || Ti.App.Properties.getBool("autorizzato", false) == false) {
+                        alert("Non hai completato la registrazione! Effettua il login con Wikimedia Commons per caricare le fotografie.")
+                    } else {
+                        startPhotoUpload();
+                    }
                 });
                 tabgroup.activeTab.open(window, {modal: true, animated: true});     
             } else {
-                startPhotoUpload()
+                startPhotoUpload();
             }
         });
         $.Upload.show();
