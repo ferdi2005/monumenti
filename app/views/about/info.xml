@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="vertical" title="Informazioni sul concorso">
+	<Window class="vertical" id="info" title="Informazioni sul concorso">
 			
 		<Label id="infocors" platform="android" html="<b>Wiki Loves Monuments</b> è un concorso internazionale che ha lo scopo di illustrare le voci di Wikipedia e dei progetti Wikimedia attraverso fotografie di beni culturali scattate dai cittadini stessi, risultando quindi anche una grande opportunità di promozione turistica.
 		È nato nel 2010 e viene organizzato annualmente in tutto il mondo, in più di 50 Paesi, <b>dall’1 al 30 settembre.</b>

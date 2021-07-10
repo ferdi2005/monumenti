@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container" id="window" title="Monumento">
+	<Window class="container" id="show" title="Monumento">
 		<ScrollView id="scrollable" class="vertical-scroll">
 			<ActivityIndicator id="activityIndicator" />
 			<ImageView id="image"></ImageView>
@@ -12,7 +12,6 @@
 			<Button id="Osm_button">Indicazioni stradali</Button>
 			<Button id="Info">Maggiori informazioni</Button>
 			<Button id="Wikipedia">Voce su Wikipedia</Button>
-			<Label id="indietro" platform="android">Per tornare alla mappa, premi il tasto indietro sul tuo telefono.</Label>
 			<Module id="mapview" module="ti.map" method="createView" if="OS_IOS" />
 			<OSMView module="ti.osm" id="osm" if="OS_ANDROID" />
 		</ScrollView>

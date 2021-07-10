@@ -13,6 +13,20 @@ $.login_delete.hide();
 $.mediawiki_data.hide();
 $.login_update.hide();
 
+// Mostra bottone indietro
+if (args == "settings" && OS_ANDROID) {
+    $.config.activity.onCreateOptionsMenu = function(e) { 
+            var menu = e.menu; 
+            var menuItem = menu.add({ 
+                title: "Back", 
+                icon: "images/back.png", 
+                showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
+            }); 
+            menuItem.addEventListener("click", function(e) { 
+                $.config.close();
+            }); 
+        };
+}
 // Event listener su Login update
 $.login_update.addEventListener("click", function(e){
     readInformation(UUID, true);

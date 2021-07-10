@@ -51,13 +51,6 @@
     bottom: "5dp"
 }
 
-
-"#indietro": {
-    font: { fontSize: 10 },
-    bottom: "5%",
-    right: "5%"
-}
-
 "#scrollable": {
     right: "5dp",
     left: "5dp",

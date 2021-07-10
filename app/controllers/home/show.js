@@ -15,8 +15,25 @@ if(OS_ANDROID) {
     $.osm.hide();
 }
 
-var today = new Date();
+// Mostra bottone indietro
+if (OS_ANDROID) {
+    $.show.activity.onCreateOptionsMenu = function(e) { 
+            var menu = e.menu; 
+            var menuItem = menu.add({ 
+                title: "Back", 
+                icon: "images/back.png", 
+                showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
+            }); 
+            menuItem.addEventListener("click", function(e) { 
+                $.show.close();
+            }); 
+        };
+}
+
 $.scrollable.width = Ti.UI.SIZE;
+
+// Alert per WLM
+var today = new Date();
 if (today.getMonth() == 8) { // I mesi in JavaScriptlandia partono da 0
     $.Alert.hide();
 } else {
@@ -32,10 +49,10 @@ var client = Ti.Network.createHTTPClient({
 
         // L'elemento è indicato con response
 
-        $.window.title = response.itemlabel;
+        $.show.title = response.itemlabel;
 
         if (OS_ANDROID) {
-            $.window.addEventListener("open", function(){
+            $.show.addEventListener("open", function(){
                 $.window.activity.actionBar.title = response.itemlabel;
             });
         }

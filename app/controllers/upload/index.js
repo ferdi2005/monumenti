@@ -4,6 +4,21 @@ const Dialog = require('ti.webdialog');
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = $.args;
 
+// Mostra bottone indietro
+if (OS_ANDROID) {
+    $.index.activity.onCreateOptionsMenu = function(e) { 
+            var menu = e.menu; 
+            var menuItem = menu.add({ 
+                title: "Back", 
+                icon: "images/back.png", 
+                showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
+            }); 
+            menuItem.addEventListener("click", function(e) { 
+                $.index.close();
+            }); 
+        };
+}
+
 $.index.addEventListener("open", function(e){
     if (Ti.App.Properties.getBool("registrato", false) == false || Ti.App.Properties.getBool("autorizzato", false) == false ) {
         var alert = Ti.UI.createAlertDialog({message: "Non hai ancora provveduto alla registrazione o al caricamento di fotografie.", buttonNames: ["Ok"]});
