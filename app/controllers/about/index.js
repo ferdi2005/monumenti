@@ -33,5 +33,5 @@ $.tracciamento.addEventListener("change", function(e){
 });
 
 $.crediti.addEventListener("click", function(e){
-    alert("Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments. Il pin azzurro indica un monumento che ha fotografie, il pin rosso indica un monumento che non ha ancora fotografie, quindi affrettati a scattarne!");
+    alert("Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments. Il pin azzurro indica un monumento che ha fotografie, il pin rosso indica un monumento che non ha ancora fotografie, quindi affrettati a scattarne! Icona dell'albero modificata da Symbolon, licenza CC-BY 3.0");
 });

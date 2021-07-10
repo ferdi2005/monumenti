@@ -109,10 +109,33 @@ function findmon(e, type, latkeep, latdelta, londelta) {
             leftButton: "/images/Info ios.png"
           });
           // Cambia il colore del pin a seconda che ci siano o no fotografie
-          if (item.with_photos) {
-            annotation.pincolor = Map.ANNOTATION_AZURE;
+          if (item.tree) {
+            if (item.with_photos) {
+              var image = "/images/tree blue.png";
+            } else {
+              var image = "/images/tree red.png"
+            }
+            annotation = Map.createAnnotation({
+              latitude: item.latitude,
+              longitude: item.longitude,
+              title: item.itemlabel,
+              myid: item.id,
+              image: image,
+              leftButton: "/images/Info ios.png"
+            });  
           } else {
-            annotation.pincolor = Map.ANNOTATION_RED;
+            annotation = Map.createAnnotation({
+              latitude: item.latitude,
+              longitude: item.longitude,
+              title: item.itemlabel,
+              myid: item.id,
+              leftButton: "/images/Info ios.png"
+            });
+            if (item.with_photos) {
+              annotation.pincolor = Map.ANNOTATION_AZURE;
+            } else {
+              annotation.pincolor = Map.ANNOTATION_RED;
+            }
           }
           $.mapview.addAnnotation(annotation);
         });
@@ -123,9 +146,17 @@ function findmon(e, type, latkeep, latdelta, londelta) {
         // Evita di prendere tutti tutti i risultati, che sono moltissimi
         response[0].forEach(function (item) {
           if (item.with_photos) {
-            var icon = "/images/Info blue.png";
+            if (item.tree) {
+              var icon = "/images/tree blue.png";
+            } else {
+              var icon = "/images/Info blue.png";
+            }
           } else {
-            var icon = "/images/Info red.png";
+            if (item.tree) {
+              var icon = "/images/tree red.png";
+            } else {
+              var icon = "/images/Info red.png";
+            }
           }
           markers.push({
             latitude: item.latitude,
