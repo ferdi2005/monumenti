@@ -12,12 +12,7 @@
     width: "1000px"
 }
 
-"#Wikidata": {
-    backgroundColor: "#8f0000",
-    color: "#FFFFFF",
-}
-
-"#Reasonator": {
+"#Info": {
     backgroundColor: "#8f0000",
     color: "#FFFFFF",
 }

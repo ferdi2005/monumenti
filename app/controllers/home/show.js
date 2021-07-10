@@ -7,10 +7,9 @@ var args = $.args;
 
 // Nasconde tutti i buttons per mostrarli via via.
 $.Upload.hide();
-$.Wikidata.hide();
+$.Info.hide();
 $.Wikipedia.hide();
 $.Osm_button.hide();
-$.Reasonator.hide();
 $.address.hide();
 if(OS_ANDROID) {
     $.osm.hide();
@@ -112,30 +111,35 @@ var client = Ti.Network.createHTTPClient({
             }
         });
         $.Upload.show();
-        $.Wikidata.addEventListener('click', function (e) {
-            if (Dialog.isSupported()) {
-                Dialog.open({
-                    title: response.item,
-                    url: "http://www.wikidata.org/wiki/" + response.item
-                })
-            } else {
-                Ti.Platform.openURL("http://www.wikidata.org/wiki/" + response.item);
-            }
+        $.Info.addEventListener('click', function (e) {
+            var info_url;
+            var reasonator_url =  "http://reasonator.toolforge.org/?q=" + response.item + "&lang=it";
+            var wikidata_url = "http://www.wikidata.org/wiki/" + response.item;
+            
+            var alert = Ti.UI.createAlertDialog({message: "Maggiori informazioni su " + response.itemlabel, buttonNames: ["Wikidata", "Reasonator"]});
+            alert.addEventListener("click", function(e){
+                switch(e.index) {
+                    case 0:
+                        info_url = wikidata_url;
+                        break;
+                    case 1:
+                        info_url = reasonator_url;
+                        break;
+                }
+
+                if (Dialog.isSupported()) {
+                    Dialog.open({
+                        title: response.itemlabel,
+                        url: info_url
+                    });
+                } else {
+                    Ti.Platform.openURL(info_url);
+                }
+            });
+            alert.show();
         });
-        $.Wikidata.show();
-        $.Reasonator.addEventListener('click', function (e) {
-            if (Dialog.isSupported()) {
-                Dialog.open({
-                    title: response.item,
-                    url: "http://reasonator.toolforge.org/?q=" + response.item + "&lang=it"
-                })
-            } else {
-                Ti.Platform.openURL("http://reasonator.toolforge.org/?q=" + response.item + "&lang=it");
-            }
-        });
-        if (!OS_IOS) {
-            $.Reasonator.show();
-        }
+        $.Info.show();
+    
         function showOSMalert(response, osm_url) {
             var alert = Ti.UI.createAlertDialog({message: "Come vuoi raggiungere " + response.itemlabel + "?", buttonNames: ["In auto", "A piedi", "In bici"]});
             alert.addEventListener("click", function(e){
