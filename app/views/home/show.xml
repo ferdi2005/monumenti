@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container" id="window">
+	<Window class="container" id="window" title="Monumento">
 		<ScrollView id="scrollable" class="vertical-scroll">
 			<ActivityIndicator id="activityIndicator" />
 			<ImageView id="image"></ImageView>

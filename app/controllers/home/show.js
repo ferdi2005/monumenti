@@ -11,6 +11,10 @@ $.Wikidata.hide();
 $.Wikipedia.hide();
 $.Osm_button.hide();
 $.Reasonator.hide();
+$.address.hide();
+if(OS_ANDROID) {
+    $.osm.hide();
+}
 
 var today = new Date();
 $.scrollable.width = Ti.UI.SIZE;
@@ -53,9 +57,9 @@ var client = Ti.Network.createHTTPClient({
                 longitude: response.longitude,
                 zoomLevel: 15,
             }
+            $.osm.show();
         }
-
-
+        
         if (response.image != null && response.image != undefined && response.image != "") {
             $.image.image = "https://commons.wikimedia.org/w/thumb.php?f=" + response.image + "&w=1000";
         }
@@ -233,8 +237,8 @@ var client = Ti.Network.createHTTPClient({
         } else {
             Ti.Geolocation.reverseGeocoder(response.latitude, response.longitude, function (e) {
                 if (e.success) {
-                    $.address.show();
                     $.address.text = e.places[0].address;
+                    $.address.show();
                     $.activityIndicator.hide();
                 } else {
                     $.address.hide();

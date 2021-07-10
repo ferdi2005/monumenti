@@ -49,7 +49,10 @@ function triggerDeletion(uuid){
             client.open("GET", url);
             client.send();
         } else {
-            var alert = Ti.UI.createAlertDialog({message: "Si è verificato un errore. Riprova più tardi. ", buttonNames: ["Ok"]});
+            Ti.App.Properties.setBool("registrato", false);
+            Ti.App.Properties.setBool("autorizzato", false);
+
+            var alert = Ti.UI.createAlertDialog({message: "Non è stato possibile cancellare i tuoi dati dal server. Assicurati di revocare l'autorizzazione oAuth. ", buttonNames: ["Ok"]});
             alert.addEventListener("click", function(e){
                 $.config.close();
             });
@@ -69,9 +72,9 @@ function showUserInfo(userInfo) {
     });
 
     if (userInfo.testuser == true) {
-        $.mediawiki_data.text = "Hai eseguito l'accesso alla Wiki di test. Le tue foto non verranno caricate davvero."
+        $.mediawiki_data.text = "Hai eseguito l'accesso alla Wiki di test. Da ora puoi tornare indietro e caricare le tue fotografie tramite l'apposito tasto sulla scheda di ogni monumento sulla mappa. Le tue foto non verranno caricate davvero."
     } else {
-        $.mediawiki_data.text = "Hai eseguito l'accesso a Wikimedia Commons."
+        $.mediawiki_data.text = "Hai eseguito l'accesso a Wikimedia Commons. Da ora puoi tornare indietro e caricare le tue fotografie tramite l'apposito tasto sulla scheda di ogni monumento sulla mappa."
     }
     if (userInfo.ready == true) {
         $.mediawiki_data.text = $.mediawiki_data.text += " Il tuo nome utente è " + userInfo.username
@@ -161,45 +164,45 @@ function readInformation(uuid) {
 $.config.addEventListener("open", function(e) {
     // Nel caso in cui non sia stata effettuata la registrazione, procede ad effettuarla
     if (Ti.App.Properties.getBool("registrato", false) == false) {
-    const GENERATED_TOKEN = Titanium.Platform.createUUID();
-    var credentials = {
-        uuid: UUID,
-        device_name: USERNAME,
-        token: GENERATED_TOKEN
-    };
+        const GENERATED_TOKEN = Titanium.Platform.createUUID();
+        var credentials = {
+            uuid: UUID,
+            device_name: USERNAME,
+            token: GENERATED_TOKEN
+        };
 
-    var url = Alloy.Globals.backend + "/set_credentials.json"
+        var url = Alloy.Globals.backend + "/set_credentials.json"
 
-    var client = Ti.Network.createHTTPClient({
-        onload: function(e) {
-            if (this.status == 202) {
-                var keychainItem = Identity.createKeychainItem({
-                    identifier: "token"
-                });
+        var client = Ti.Network.createHTTPClient({
+            onload: function(e) {
+                if (this.status == 202) {
+                    var keychainItem = Identity.createKeychainItem({
+                        identifier: "token"
+                    });
 
-                keychainItem.addEventListener("save", function(e){
-                    if (e.success == true) {
-                        Ti.App.Properties.setBool("registrato", true); // Imposta l'avvenuta registrazione con successo
-                        retrieveUserData(UUID, GENERATED_TOKEN);
-                    } else {
-                        alert("Si è verificato un errore. Riprova più tardi: " + e.error)
-                    }
-                });
+                    keychainItem.addEventListener("save", function(e){
+                        if (e.success == true) {
+                            Ti.App.Properties.setBool("registrato", true); // Imposta l'avvenuta registrazione con successo
+                            retrieveUserData(UUID, GENERATED_TOKEN);
+                        } else {
+                            alert("Si è verificato un errore. Riprova più tardi: " + e.error)
+                        }
+                    });
 
-                keychainItem.save(GENERATED_TOKEN);
-            } else {
-                alert("Si è verificato un errore. Riprova più tardi.")
-                $.config.close();        
-            }
-        },
-        onerror: function(e) {
-            alert("Si è verificato un errore di connessione: " + e.error);
-        },
-        timeout: 5000
-    });
-    client.open("POST", url);
-    client.send(credentials);
+                    keychainItem.save(GENERATED_TOKEN);
+                } else {
+                    alert("Si è verificato un errore. Riprova più tardi.")
+                    $.config.close();        
+                }
+            },
+            onerror: function(e) {
+                alert("Si è verificato un errore di connessione: " + e.error);
+            },
+            timeout: 5000
+        });
+        client.open("POST", url);
+        client.send(credentials);
+    } else {
+        readInformation(UUID);
     }
-
-    readInformation(UUID);
 });

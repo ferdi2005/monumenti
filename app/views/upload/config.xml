@@ -9,7 +9,7 @@
 
 			<Button class="noshow" id="login_update">Verifica avvenuto accesso</Button>
 
-			<Button class="noshow" id="login_delete">Esci</Button>
+			<Button class="noshow" id="login_delete">Logout</Button>
 			
 			<Label class="noshow" id="mediawiki_data"/>
 			
