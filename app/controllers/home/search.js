@@ -62,7 +62,7 @@ function search(value, user_initiated) {
                     var title;
 
                     // Ottengo la distanza tra elementi
-                    if (located) {
+                    if (located && item.latitude != null && item.longitude != null) {
                         title = item.itemlabel + " (" + getDistance(location.coords.latitude, location.coords.longitude, item.latitude, item.longitude) + " km)";
                     } else {
                         title = item.itemlabel;

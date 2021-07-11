@@ -11,6 +11,9 @@ $.Info.hide();
 $.Wikipedia.hide();
 $.Osm_button.hide();
 $.address.hide();
+if(OS_IOS) {
+    $.mapview.hide();
+}
 if(OS_ANDROID) {
     $.osm.hide();
 }
@@ -56,24 +59,27 @@ var client = Ti.Network.createHTTPClient({
                 $.window.activity.actionBar.title = response.itemlabel;
             });
         }
-        
-        if (OS_IOS) {
-            $.mapview.region = {
-                latitude: response.latitude,
-                longitude: response.longitude,
-                latitudeDelta: 0.01,
-                longitudeDelta: 0.01
-            };
-            $.mapview.center = [response.latitude, response.longitude];
-        }
 
-        if (OS_ANDROID) {
-            $.osm.location = {
-                latitude: response.latitude,
-                longitude: response.longitude,
-                zoomLevel: 15,
+        if (response.latitude != null && response.longitude != null) {
+            if (OS_IOS) {
+                $.mapview.region = {
+                    latitude: response.latitude,
+                    longitude: response.longitude,
+                    latitudeDelta: 0.01,
+                    longitudeDelta: 0.01
+                };
+                $.mapview.center = [response.latitude, response.longitude];
+                $.mapview.show();
             }
-            $.osm.show();
+
+            if (OS_ANDROID) {
+                $.osm.location = {
+                    latitude: response.latitude,
+                    longitude: response.longitude,
+                    zoomLevel: 15,
+                }
+                $.osm.show();
+            }
         }
         
         if (response.image != null && response.image != undefined && response.image != "") {
@@ -194,74 +200,78 @@ var client = Ti.Network.createHTTPClient({
             });
             alert.show();
         }
-
-        $.Osm_button.addEventListener('click', function (e) {
-            var osm_url; // Dichiaro la variabile url, che sarà popolata in vari modi a seconda della situazione
-            
-            if (Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)) {
-                Ti.Geolocation.getCurrentPosition(function (e) {
-                    if (e.success) {
-                        osm_url = "https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude;
-
-                        showOSMalert(response, osm_url);
-                    } else {
-                        alert("Senza geolocalizzazione attiva non sono in grado di tracciare un percorso!");
-                    }
-                });
-            } else {
-                Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function (e) {
-                    if (e.success) {
-                        Ti.Geolocation.getCurrentPosition(function (e) {
+    
+        if (response.latitude != null && response.longitude != null) {
+            $.Osm_button.addEventListener('click', function (e) {
+                var osm_url; // Dichiaro la variabile url, che sarà popolata in vari modi a seconda della situazione
+                
+                if (Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)) {
+                    Ti.Geolocation.getCurrentPosition(function (e) {
+                        if (e.success) {
                             osm_url = "https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude;
 
                             showOSMalert(response, osm_url);
-                        });
-                    } else {
-                        alert("Senza autorizzazione alla posizione non sono in grado di tracciare un percorso!");
-                    }
+                        } else {
+                            alert("Senza geolocalizzazione attiva non sono in grado di tracciare un percorso!");
+                        }
+                    });
+                } else {
+                    Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function (e) {
+                        if (e.success) {
+                            Ti.Geolocation.getCurrentPosition(function (e) {
+                                osm_url = "https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude;
+
+                                showOSMalert(response, osm_url);
+                            });
+                        } else {
+                            alert("Senza autorizzazione alla posizione non sono in grado di tracciare un percorso!");
+                        }
+                    });
+                }
+                
+            });
+            
+            $.Osm_button.show();
+            
+
+            if (OS_IOS) {
+                var annotation = Map.createAnnotation({
+                    latitude: response.latitude,
+                    longitude: response.longitude,
+                    title: response.itemlabel,
+                    myid: response.id
                 });
+                
+                $.mapview.addAnnotation(annotation);
             }
-            
-        });
+
+            if (OS_ANDROID) {
+                if (response.with_photos) {
+                    if (response.tree) {
+                    var icon = "/images/tree blue.png";
+                    } else {
+                    var icon = "/images/Info blue.png";
+                    }
+                } else {
+                    if (response.tree) {
+                    var icon = "/images/tree red.png";
+                    } else {
+                    var icon = "/images/Info red.png";
+                    }
+                }
+                    var markers = [];
+                markers.push({
+                    latitude: response.latitude,
+                    longitude: response.longitude,
+                    title: response.itemlabel,
+                    id: response.id,
+                    icon: icon
+                });
+                $.osm.addMarkers(markers);
+            }
+        }
+
         
-        $.Osm_button.show();
-
-        if (OS_IOS) {
-            var annotation = Map.createAnnotation({
-                latitude: response.latitude,
-                longitude: response.longitude,
-                title: response.itemlabel,
-                myid: response.id
-            });
-            
-            $.mapview.addAnnotation(annotation);
-        }
-
-        if (OS_ANDROID) {
-            if (response.with_photos) {
-                if (response.tree) {
-                  var icon = "/images/tree blue.png";
-                } else {
-                  var icon = "/images/Info blue.png";
-                }
-              } else {
-                if (response.tree) {
-                  var icon = "/images/tree red.png";
-                } else {
-                  var icon = "/images/Info red.png";
-                }
-              }
-                var markers = [];
-            markers.push({
-                latitude: response.latitude,
-                longitude: response.longitude,
-                title: response.itemlabel,
-                id: response.id,
-                icon: icon
-            });
-            $.osm.addMarkers(markers);
-        }
-
         if (response.address != null && response.address != undefined && response.address != "") {
             $.address.text = response.address;
             $.address.show();
