@@ -130,7 +130,7 @@ var title;
 
 
 
-title=located?item.itemlabel+" ("+getDistance(location.coords.latitude,location.coords.longitude,item.latitude,item.longitude)+" km)":
+title=located&&null!=item.latitude&&null!=item.longitude?item.itemlabel+" ("+getDistance(location.coords.latitude,location.coords.longitude,item.latitude,item.longitude)+" km)":
 
 item.itemlabel,
 

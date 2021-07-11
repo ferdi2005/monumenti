@@ -117,7 +117,7 @@ function Controller(){
 
 
 
-function triggerDeletion(uuid){
+function triggerDeletion(uuid,user_initiated=!1){
 var keychainItem=Identity.createKeychainItem({identifier:"token"});
 keychainItem.addEventListener("read",function(k){
 if(!0==k.success){
@@ -130,7 +130,14 @@ Ti.App.Properties.setBool("autorizzato",!1);var
 url=Alloy.Globals.backend+"/deleteuser.json?uuid="+uuid+"&token="+k.value,
 client=Ti.Network.createHTTPClient({
 onload:function(e){
-var alert=Ti.UI.createAlertDialog({message:"\xC8 stata cancellata la tua registrazione su tua richiesta o a causa di un errore. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.",buttonNames:["Ok"]});
+var message;
+
+
+message=user_initiated?"Come richiesto, la tua registrazione \xE8 stata cancellata. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.":
+
+"La tua registrazione \xE8 stata cancellata a causa di un problema. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.";
+
+var alert=Ti.UI.createAlertDialog({message:message,buttonNames:["Ok"]});
 alert.addEventListener("click",function(e){
 $.config.close();
 }),
@@ -167,7 +174,7 @@ function showUserInfo(userInfo){
 $.login_delete.show(),
 
 $.login_delete.addEventListener("click",function(e){
-triggerDeletion(UUID);
+triggerDeletion(UUID,!0);
 }),
 
 

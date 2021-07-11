@@ -117,7 +117,10 @@ $.Upload.hide(),
 $.Info.hide(),
 $.Wikipedia.hide(),
 $.Osm_button.hide(),
-$.address.hide(),
+$.address.hide(),!1,
+
+
+
 
 $.osm.hide(),
 
@@ -152,6 +155,9 @@ var url="http://cerca.wikilovesmonuments.it/show.json?id="+args;
 $.scrollable.disableBounce=!0;
 var client=Ti.Network.createHTTPClient({
 onload:function(e){
+
+
+
 
 
 
@@ -302,6 +308,7 @@ Ti.Platform.openURL(osm_url);
 alert.show();
 }var response=JSON.parse(this.responseText);
 
+if($.show.title=response.itemlabel,$.show.addEventListener("open",function(){$.window.activity.actionBar.title=response.itemlabel}),null!=response.latitude&&null!=response.longitude&&(!1,$.osm.location={latitude:response.latitude,longitude:response.longitude,zoomLevel:15},$.osm.show()),null!=response.image&&null!=response.image&&""!=response.image&&($.image.image="https://commons.wikimedia.org/w/thumb.php?f="+response.image+"&w=1000"),null!=response.itemdescription&&null!=response.itemdescription&&""!=response.itemdescription?$.description.text=response.itemdescription:$.description.hide(),null!=response.wikipedia&&null!=response.wikipedia&&""!=response.wikipedia&&($.Wikipedia.addEventListener("click",function(){Dialog.isSupported()?Dialog.open({title:response.itemlabel,url:response.wikipedia}):Ti.Platform.openURL(response.wikipedia)}),$.Wikipedia.show()),$.title.text=response.itemlabel,$.Upload.addEventListener("click",function(e){if(!1==Ti.App.Properties.getBool("registrato",!1)||!1==Ti.App.Properties.getBool("autorizzato",!1)){var window=Alloy.createController("upload/config","show").getView();window.addEventListener("close",function(e){!1==Ti.App.Properties.getBool("registrato",!1)||!1==Ti.App.Properties.getBool("autorizzato",!1)?alert("Non hai completato la registrazione! Effettua il login con Wikimedia Commons per caricare le fotografie."):startPhotoUpload()}),tabgroup.activeTab.open(window,{modal:!0,animated:!0})}else startPhotoUpload()}),$.Upload.show(),$.Info.addEventListener("click",function(e){var info_url,reasonator_url="http://reasonator.toolforge.org/?q="+response.item+"&lang=it",wikidata_url="http://www.wikidata.org/wiki/"+response.item,alert=Ti.UI.createAlertDialog({message:"Maggiori informazioni su "+response.itemlabel,buttonNames:["Wikidata","Reasonator"]});alert.addEventListener("click",function(e){switch(e.index){case 0:info_url=wikidata_url;break;case 1:info_url=reasonator_url;}Dialog.isSupported()?Dialog.open({title:response.itemlabel,url:info_url}):Ti.Platform.openURL(info_url)}),alert.show()}),$.Info.show(),null!=response.latitude&&null!=response.longitude){
 
 
 
@@ -333,7 +340,8 @@ alert.show();
 
 
 
-if($.show.title=response.itemlabel,$.show.addEventListener("open",function(){$.window.activity.actionBar.title=response.itemlabel}),!1,$.osm.location={latitude:response.latitude,longitude:response.longitude,zoomLevel:15},$.osm.show(),null!=response.image&&null!=response.image&&""!=response.image&&($.image.image="https://commons.wikimedia.org/w/thumb.php?f="+response.image+"&w=1000"),null!=response.itemdescription&&null!=response.itemdescription&&""!=response.itemdescription?$.description.text=response.itemdescription:$.description.hide(),null!=response.wikipedia&&null!=response.wikipedia&&""!=response.wikipedia&&($.Wikipedia.addEventListener("click",function(){Dialog.isSupported()?Dialog.open({title:response.itemlabel,url:response.wikipedia}):Ti.Platform.openURL(response.wikipedia)}),$.Wikipedia.show()),$.title.text=response.itemlabel,$.Upload.addEventListener("click",function(e){if(!1==Ti.App.Properties.getBool("registrato",!1)||!1==Ti.App.Properties.getBool("autorizzato",!1)){var window=Alloy.createController("upload/config","show").getView();window.addEventListener("close",function(e){!1==Ti.App.Properties.getBool("registrato",!1)||!1==Ti.App.Properties.getBool("autorizzato",!1)?alert("Non hai completato la registrazione! Effettua il login con Wikimedia Commons per caricare le fotografie."):startPhotoUpload()}),tabgroup.activeTab.open(window,{modal:!0,animated:!0})}else startPhotoUpload()}),$.Upload.show(),$.Info.addEventListener("click",function(e){var info_url,reasonator_url="http://reasonator.toolforge.org/?q="+response.item+"&lang=it",wikidata_url="http://www.wikidata.org/wiki/"+response.item,alert=Ti.UI.createAlertDialog({message:"Maggiori informazioni su "+response.itemlabel,buttonNames:["Wikidata","Reasonator"]});alert.addEventListener("click",function(e){switch(e.index){case 0:info_url=wikidata_url;break;case 1:info_url=reasonator_url;}Dialog.isSupported()?Dialog.open({title:response.itemlabel,url:info_url}):Ti.Platform.openURL(info_url)}),alert.show()}),$.Info.show(),$.Osm_button.addEventListener("click",function(e){var osm_url;Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE)||Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)?Ti.Geolocation.getCurrentPosition(function(e){e.success?(osm_url="https://www.openstreetmap.org/directions?route="+e.coords.latitude+"%2C"+e.coords.longitude+"%3B"+response.latitude+"%2C"+response.longitude,showOSMalert(response,osm_url)):alert("Senza geolocalizzazione attiva non sono in grado di tracciare un percorso!")}):Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE,function(e){e.success?Ti.Geolocation.getCurrentPosition(function(e){osm_url="https://www.openstreetmap.org/directions?route="+e.coords.latitude+"%2C"+e.coords.longitude+"%3B"+response.latitude+"%2C"+response.longitude,showOSMalert(response,osm_url)}):alert("Senza autorizzazione alla posizione non sono in grado di tracciare un percorso!")})}),$.Osm_button.show(),!1){
+
+if($.Osm_button.addEventListener("click",function(e){var osm_url;Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE)||Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)?Ti.Geolocation.getCurrentPosition(function(e){e.success?(osm_url="https://www.openstreetmap.org/directions?route="+e.coords.latitude+"%2C"+e.coords.longitude+"%3B"+response.latitude+"%2C"+response.longitude,showOSMalert(response,osm_url)):alert("Senza geolocalizzazione attiva non sono in grado di tracciare un percorso!")}):Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE,function(e){e.success?Ti.Geolocation.getCurrentPosition(function(e){osm_url="https://www.openstreetmap.org/directions?route="+e.coords.latitude+"%2C"+e.coords.longitude+"%3B"+response.latitude+"%2C"+response.longitude,showOSMalert(response,osm_url)}):alert("Senza autorizzazione alla posizione non sono in grado di tracciare un percorso!")})}),$.Osm_button.show(),!1){
 var annotation=Map.createAnnotation({
 latitude:response.latitude,
 longitude:response.longitude,
@@ -368,6 +376,8 @@ icon:icon}),
 
 $.osm.addMarkers(markers);
 }
+}
+
 
 if(null!=response.address&&null!=response.address&&""!=response.address)
 $.address.text=response.address,

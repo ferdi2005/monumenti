@@ -47,7 +47,7 @@ $.__views.upload_config=Ti.UI.createButton(
 
 $.__views.__alloyId0.add($.__views.upload_config),
 $.__views.upload_list=Ti.UI.createButton(
-{backgroundColor:"#006399",color:"#FFFFFF",top:"5dp",width:"80%",left:"10%",title:"Foto caricate",id:"upload_list"}),
+{backgroundColor:"#006399",color:"#FFFFFF",top:"5dp",width:"80%",left:"10%",hiddenBehavior:Ti.UI.HIDDEN_BEHAVIOR_GONE,title:"Foto caricate",id:"upload_list"}),
 
 $.__views.__alloyId0.add($.__views.upload_list),
 $.__views.__alloyId1=Ti.UI.createView(
@@ -84,10 +84,26 @@ _.extend($,$.__views);
 
 
 var args=$.args;
+
+$.index.addEventListener("focus",function(e){
 !0==Ti.App.Properties.getBool("flurry","notset")?
 !0==$.tracciamento.value:
 
 !1==$.tracciamento.value,
+
+
+!1==Ti.App.Properties.getBool("registrato",!1)||!1==Ti.App.Properties.getBool("autorizzato",!1)?(
+$.upload_list.hide(),!1):(
+
+
+
+
+$.upload_list.show(),!1);
+
+
+
+
+}),
 
 
 $.lbl_version.text="Versione 2.1.0",
@@ -97,12 +113,15 @@ Alloy.Globals.utils.open("about/info");
 }),
 
 
+
 $.upload_config.addEventListener("click",function(e){
 Alloy.Globals.utils.open("upload/config","settings");
 }),
 
 $.upload_list.addEventListener("click",function(e){
+!0==Ti.App.Properties.getBool("registrato",!1)&&!0==Ti.App.Properties.getBool("autorizzato",!1)&&
 Alloy.Globals.utils.open("upload/index");
+
 }),
 
 $.tracciamento.addEventListener("change",function(e){

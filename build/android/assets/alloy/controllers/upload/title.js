@@ -83,7 +83,9 @@ monument=args[3],
 
 fieldtext={},
 data=[],
-uploaded=[];
+uploaded=[],
+
+today=new Date;
 
 Array(images)[0].forEach(
 function(photo){var
@@ -115,7 +117,9 @@ row.add(label),
 
 $.imagespace.add(row);
 }else{var
-id=JSON.parse(this.responseText).id,
+response=JSON.parse(this.responseText),
+id=response.id,
+
 row=Titanium.UI.createTableViewRow({layout:"horizontal"}),
 image=Titanium.UI.createImageView({
 image:photo.media,
@@ -130,6 +134,8 @@ layout:"vertical",
 height:Ti.UI.SIZE}),
 
 
+pretitolo=response.city+" - "+response.label+" - "+response.timestamp,
+
 title=Titanium.UI.createTextField({
 hintText:"Titolo dell'immagine",
 id:"title"+id,
@@ -141,14 +147,17 @@ borderStyle:Ti.UI.INPUT_BORDERSTYLE_LINE,
 hintTextColor:"#A0A0A0",
 color:"black",
 borderColor:"black",
-borderWidth:"0.3"});
+borderWidth:"0.3",
+value:pretitolo});
 
 
 fieldtext["title"+id]=title,
 
-view.add(title);
+view.add(title);var
 
-var description=Titanium.UI.createTextField({
+predescrizione=response.city+" - "+response.label,
+
+description=Titanium.UI.createTextField({
 hintText:"Descrizione dell'immagine",
 id:"description"+id,
 inputType:Titanium.UI.INPUT_TYPE_CLASS_TEXT,
@@ -159,7 +168,8 @@ borderStyle:Ti.UI.INPUT_BORDERSTYLE_LINE,
 hintTextColor:"#A0A0A0",
 color:"black",
 borderColor:"black",
-borderWidth:"0.3"});
+borderWidth:"0.3",
+value:predescrizione});
 
 
 fieldtext["description"+id]=description,
@@ -177,7 +187,8 @@ borderStyle:Ti.UI.INPUT_BORDERSTYLE_LINE,
 hintTextColor:"#A0A0A0",
 color:"black",
 borderColor:"black",
-borderWidth:"0.3"});
+borderWidth:"0.3",
+value:response.today});
 
 
 fieldtext["date"+id]=date,
