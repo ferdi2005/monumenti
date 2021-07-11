@@ -14,6 +14,8 @@ var fieldtext = {};
 var data = [];
 var uploaded = []
 
+var today = new Date();
+
 Array(images)[0].forEach(
     function(photo) {
         var url = Alloy.Globals.backend + "/photoupload.json"
@@ -44,7 +46,9 @@ Array(images)[0].forEach(
 
                     $.imagespace.add(row);
                 } else {
-                    var id = JSON.parse(this.responseText).id;
+                    var response = JSON.parse(this.responseText);
+                    var id = response.id;
+
                     var row = Titanium.UI.createTableViewRow({layout: "horizontal"});
                     var image = Titanium.UI.createImageView({
                         image: photo.media,
@@ -59,6 +63,8 @@ Array(images)[0].forEach(
                         height: Ti.UI.SIZE
                     });
 
+                    var pretitolo = response.city + " - " + response.label + " - " + response.timestamp;
+
                     var title = Titanium.UI.createTextField({
                         hintText: "Titolo dell'immagine",
                         id: "title" + id,
@@ -70,12 +76,15 @@ Array(images)[0].forEach(
                         hintTextColor: '#A0A0A0',
                         color: 'black',
                         borderColor: 'black',
-                        borderWidth: '0.3'                    
+                        borderWidth: '0.3',
+                        value: pretitolo                 
                     });
                     
                     fieldtext["title" + id] = title;
 
                     view.add(title);
+
+                    var predescrizione = response.city + " - " + response.label;
 
                     var description = Titanium.UI.createTextField({
                         hintText: "Descrizione dell'immagine",
@@ -88,7 +97,8 @@ Array(images)[0].forEach(
                         hintTextColor: '#A0A0A0',
                         color: 'black',
                         borderColor: 'black',
-                        borderWidth: '0.3'                    
+                        borderWidth: '0.3',
+                        value: predescrizione               
                     });
 
                     fieldtext["description" + id] = description;
@@ -106,7 +116,8 @@ Array(images)[0].forEach(
                         hintTextColor: '#A0A0A0',
                         color: 'black',
                         borderColor: 'black',
-                        borderWidth: '0.3'                    
+                        borderWidth: '0.3',
+                        value: response.today
                     });
 
                     fieldtext["date" + id] = date;

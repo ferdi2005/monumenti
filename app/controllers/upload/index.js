@@ -34,6 +34,7 @@ $.index.addEventListener("open", function(e){
                     items = [];
 
                     photos.forEach(function(photo) {
+                        var serverurl = photo["serverurl"].replace("http", "https");
                         if (photo["uploaded"] == false) {
                             if (photo["errorinfo"] == null || photo["errorinfo"] == undefined) {
                             var errortext = "Immagine non caricata a causa di un errore."
@@ -42,7 +43,7 @@ $.index.addEventListener("open", function(e){
                             }
                             itemdata =  { 
                                 photo: {
-                                    image: photo["serverurl"]
+                                    image: serverurl
                                 },
                                 errorlabel: {
                                     text: errortext
@@ -52,7 +53,7 @@ $.index.addEventListener("open", function(e){
                         } else if (photo["uploaded"] == null) {
                             itemdata =  { 
                                 photo: {
-                                    image: photo["serverurl"]
+                                    image: serverurl
                                 },
                                 template: "waiting",
                             }

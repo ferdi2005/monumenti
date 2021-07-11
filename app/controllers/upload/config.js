@@ -37,7 +37,7 @@ const UUID = Titanium.Platform.id; // identificativo univoco del device
 const USERNAME = String(Titanium.Platform.username); // username del device (a scopi statistici)
 
 // In caso di errori o richiesta, cancella la registrazione
-function triggerDeletion(uuid){
+function triggerDeletion(uuid, user_initiated = false){
     var keychainItem = Identity.createKeychainItem({ identifier: "token" });
     keychainItem.addEventListener("read", function(k){
         if (k.success == true) {
@@ -50,7 +50,14 @@ function triggerDeletion(uuid){
             var url = Alloy.Globals.backend + "/deleteuser.json?uuid=" + uuid + "&token=" + k.value
             var client = Ti.Network.createHTTPClient({
                 onload: function(e) {
-                    var alert = Ti.UI.createAlertDialog({message: "È stata cancellata la tua registrazione su tua richiesta o a causa di un errore. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.", buttonNames: ["Ok"]});
+                    var message;
+
+                    if (user_initiated) {
+                        message = "Come richiesto, la tua registrazione è stata cancellata. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.";
+                    } else {
+                        message = "La tua registrazione è stata cancellata a causa di un problema. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.";
+                    }
+                    var alert = Ti.UI.createAlertDialog({message: message, buttonNames: ["Ok"]});
                     alert.addEventListener("click", function(e){
                         $.config.close();
                     });
@@ -87,7 +94,7 @@ function showUserInfo(userInfo) {
     $.login_delete.show();
 
     $.login_delete.addEventListener("click", function(e){
-        triggerDeletion(UUID);
+        triggerDeletion(UUID, true);
     });
 
     if (userInfo.testuser == true) {
@@ -219,7 +226,7 @@ $.config.addEventListener("open", function(e) {
                     keychainItem.save(GENERATED_TOKEN);
                 } else {
                     alert("Si è verificato un errore. Riprova più tardi.")
-                    $.config.close();        
+                    $.config.close();  
                 }
             },
             onerror: function(e) {
