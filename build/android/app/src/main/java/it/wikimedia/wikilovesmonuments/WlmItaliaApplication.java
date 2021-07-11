@@ -203,7 +203,7 @@ public final class WlmItaliaApplication extends TiApplication
 		
 
 		moduleInfo = new KrollModuleInfo(
-			"ti.osm", "ti.osm", "2d5116e8-1aca-40b9-91f4-e844253c3477", "1.0.0",
+			"ti.osm", "ti.osm", "2d5116e8-1aca-40b9-91f4-e844253c3477", "1.0.1",
 			"ti.osm",
 			"Michael Gangolf",
 			"MIT",

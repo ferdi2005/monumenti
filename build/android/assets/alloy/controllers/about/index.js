@@ -106,7 +106,7 @@ $.upload_list.show(),!1);
 }),
 
 
-$.lbl_version.text="Versione 2.1.0",
+$.lbl_version.text="Versione 2.1.2",
 
 $.info.addEventListener("click",function(e){
 Alloy.Globals.utils.open("about/info");

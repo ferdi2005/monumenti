@@ -11,7 +11,7 @@
 	"analytics": true,
 	"publisher": "Ferdinando Traversa",
 	"url": "https://cerca.wikilovesmonuments.it",
-	"version": "2.1.0",
+	"version": "2.1.2",
 	"description": "App per trovare i monumenti partecipanti a Wiki Loves Monuments con la propria posizione.",
 	"copyright": "Ferdinando Traversa - Apache License",
 	"guid": "46ce9ebb-22ee-4e85-9aaa-e86bff2a2a3d",
