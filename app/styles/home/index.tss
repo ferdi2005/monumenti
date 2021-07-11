@@ -71,5 +71,6 @@
 
 "#osm[platform=android]": {
    mapType: Alloy.Globals.OSM.WIKIMEDIA,
-   userLocation: true
+   userLocation: true,
+   userAgent: "Wiki Loves Monuments Italia app/2.1.2 (https://github.com/ferdi2005/monumenti; ferdinando.traversa@wikimedia.it) ti.osm/1.0.1",
 }
