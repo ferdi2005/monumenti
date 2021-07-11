@@ -360,3 +360,13 @@ $.search.addEventListener('blur', function(e){
     Ti.UI.Android.hideSoftKeyboard();
   }
 });
+
+Alloy.Globals.events.on("map_close", function(e){
+  if (OS_ANDROID) {
+    findmon({coords: {latitude: e.latitude, longitude: e.longitude}}, "geoloc", true, $.osm.location.zoomLevel);
+  }
+
+  if (OS_IOS) {
+    findmon({coords: {latitude: e.latitude, longitude: e.longitude}}, "geoloc", true, $.mapview.region.latitudeDelta, $.mapview.region.longitudeDelta);
+  }
+});

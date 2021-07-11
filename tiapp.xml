@@ -15,7 +15,6 @@
   <guid>46ce9ebb-22ee-4e85-9aaa-e86bff2a2a3d</guid>
   <property name="ti.ui.defaultunit" type="string">dp</property>
   <property name="run-on-main-thread" type="bool">true</property>
-  <!--<property name="SENTRY_DSN_PRODUCTION" type="String">https://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property><property name="SENTRY_DSN_DEVELOPMENT" type="String">https://6ec7f8a35414498886c2a551e861058d@o82964.ingest.sentry.io/5264438</property>-->
   <ios>
     <enable-launch-screen-storyboard>true</enable-launch-screen-storyboard>
     <use-app-thinning>true</use-app-thinning>
@@ -55,7 +54,7 @@
       xmlns:android="http://schemas.android.com/apk/res/android">
       <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
       <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-      <application>
+      <application android:largeHeap="true" android:hardwareAccelerated="true">
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBrART7ZFvMWsqUOiYnVXAxzjnf7KaA7-c"/>
       </application>
     </manifest>
