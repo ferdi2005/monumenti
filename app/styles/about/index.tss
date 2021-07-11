@@ -25,10 +25,11 @@
 
 "#upload_config": {
     backgroundColor: "#8f0000",
-    color: "#FFFFFF"
+    color: "#FFFFFF",
 }
 
 "#upload_list": {
     backgroundColor: "#006399",
     color: "#FFFFFF",
+    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }
