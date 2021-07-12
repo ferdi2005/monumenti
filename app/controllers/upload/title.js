@@ -16,6 +16,8 @@ var uploaded = []
 
 var today = new Date();
 
+var counter = 0;
+
 Array(images)[0].forEach(
     function(photo) {
         var url = Alloy.Globals.backend + "/photoupload.json"
@@ -63,7 +65,13 @@ Array(images)[0].forEach(
                         height: Ti.UI.SIZE
                     });
 
-                    var pretitolo = response.city + " - " + response.label + " - " + response.timestamp;
+                    counter += 1;
+
+                    if (counter == 1) {
+                        var pretitolo = response.city + " - " + response.label + " - " + response.timestamp;
+                    } else {
+                        var pretitolo = response.city + " - " + response.label + " - " + response.timestamp + " " + counter;
+                    }
 
                     var title = Titanium.UI.createTextField({
                         hintText: "Titolo dell'immagine",
