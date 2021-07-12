@@ -8,8 +8,8 @@
 				<Switch id="tracciamento" />
 			</View>
 
-			<Button class="col_8 col_offset_1" id="info">Informazioni su Wiki Loves Monuments</Button>
-			<Button id="crediti">Crediti e significato dei colori</Button>
+			<Button class="col_8 col_offset_1" id="info">Info su Wiki Loves Monuments</Button>
+			<Button class="col_8 col_offset_1" id="crediti">Crediti e significato dei colori</Button>
 			<Label id="lbl_version"/>
 		</ScrollView>
 	</Window>

@@ -19,14 +19,20 @@ if (OS_ANDROID) {
         };
 }
 
-$.index.addEventListener("open", function(e){
+function reload(e){
     $.activityIndicator.show();
+
+    if ($.optionbar.index == 0) {
+        var order = "date";
+    } else {
+        var order = "title";
+    }
 
     const UUID = Titanium.Platform.id; // identificativo univoco del device
     var keychainItem = Identity.createKeychainItem({ identifier: "token" });
     keychainItem.addEventListener("read", function(k){
         if (k.success == true) {
-            var url = Alloy.Globals.backend + "/photolist.json?uuid=" + UUID + "&token=" + k.value
+            var url = Alloy.Globals.backend + "/photolist.json?uuid=" + UUID + "&token=" + k.value + "&order=" + order;
             var client = Ti.Network.createHTTPClient({
                 onload: function(e) {
                     var photos = JSON.parse(this.responseText);
@@ -98,7 +104,11 @@ $.index.addEventListener("open", function(e){
         }
     });
     keychainItem.read();
-});
+}
+
+$.index.addEventListener("open", reload);
+
+$.optionbar.addEventListener("click", reload);
 
 function openPhoto(e) {
     if (Dialog.isSupported()) {

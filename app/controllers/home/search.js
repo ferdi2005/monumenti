@@ -19,24 +19,64 @@ function getDistance(lat1, lon1, lat2, lon2) {
     return dist;
 }
 
+
+function setData(response, user_initiated, located = false, location){
+    if (response.length > 0) {
+        data = []
+        response.forEach(function (item) {
+            var title;
+            // Ottengo la distanza tra elementi
+            if (located == true && item.latitude != null && item.longitude != null) {
+                title = item.itemlabel + " (" + getDistance(location.coords.latitude, location.coords.longitude, item.latitude, item.longitude) + " km)";
+            } else {
+                title = item.itemlabel;
+            }
+                                        
+            itemdata =  { 
+                properties: {
+                    itemId: item.id,
+                    title: title ,
+                    accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
+                    color: '#000000',
+                    backgroundColor: '#FFFFFF',
+                    latitude: item.latitude,
+                    longitude: item.longitude
+                }
+            }
+            data.push(itemdata);
+        });
+        
+        if ($.listsection.items != data) {
+            data = data.sort(function(a,b){
+                return getDistance(location.coords.latitude, location.coords.longitude, a.properties.latitude, a.properties.longitude) - getDistance(location.coords.latitude, location.coords.longitude, b.properties.latitude, b.properties.longitude);
+            })
+            $.listsection.setItems(data);
+        }
+        $.listview.show();
+        $.activityIndicator.hide();
+    } else {
+        if (user_initiated) {
+            alert("Nessun risultato trovato! Prova a fare un'altra ricerca");
+        }
+        $.listsection.setItems([]);
+        $.activityIndicator.hide();
+    }
+}
+
 function search(value, user_initiated) {
     $.activityIndicator.show();
-
+    
     var url = 'http://cerca.wikilovesmonuments.it/namesearch.json?search=' + encodeURI(value);
     var xhr = Ti.Network.createHTTPClient({
         onload: function(e) {
-            var location;
-            var located;
-
             response = JSON.parse(this.responseText);
 
             if (Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)) {
                 Ti.Geolocation.getCurrentPosition(function (e) {
                     if (e.success) {
-                        location = e;
-                        located = true;
+                        setData(response, user_initiated, true, e);
                     } else {
-                        located = false;
+                        setData(response, user_initiated);
                     }
                 });
             } else {
@@ -44,57 +84,15 @@ function search(value, user_initiated) {
                     if (e.success) {
                         Ti.Geolocation.getCurrentPosition(function (e) {
                             if (e.success) {
-                                location = e;
-                                located = true;
+                                setData(response, user_initiated, true, e);
                             } else {
-                                located = false;
+                                setData(response, user_initiated);
                             }
                         });
                     } else {
-                        located = false;
+                        setData(response, user_initiated);
                     }
                 });
-            }
-
-            if (response.length > 0) {
-                data = []
-                response.forEach(function (item) {
-                    var title;
-
-                    // Ottengo la distanza tra elementi
-                    if (located && item.latitude != null && item.longitude != null) {
-                        title = item.itemlabel + " (" + getDistance(location.coords.latitude, location.coords.longitude, item.latitude, item.longitude) + " km)";
-                    } else {
-                        title = item.itemlabel;
-                    }
-                                                
-                    itemdata =  { 
-                        properties: {
-                            itemId: item.id,
-                            title: title ,
-                            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
-                            color: '#000000',
-                            backgroundColor: '#FFFFFF',
-                            latitude: item.latitude,
-                            longitude: item.longitude
-                        }
-                    }
-                    data.push(itemdata);
-                });
-                
-                if ($.listsection.items != data) {
-                    data = data.sort(function(a,b){
-                        return getDistance(location.coords.latitude, location.coords.longitude, a.properties.latitude, a.properties.longitude) - getDistance(location.coords.latitude, location.coords.longitude, b.properties.latitude, b.properties.longitude);
-                    })
-                    $.listsection.setItems(data);
-                }
-                $.listview.show();
-                $.activityIndicator.hide();
-            } else {
-                if (user_initiated) {
-                    alert("Nessun risultato trovato! Prova a fare un'altra ricerca");
-                }
-                $.activityIndicator.hide();
             }
 
         },
