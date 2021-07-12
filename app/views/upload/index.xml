@@ -1,6 +1,12 @@
 <Alloy>
 	<Window title="Elenco foto caricate" class="vertical" id="index">
 		<ActivityIndicator id="activityIndicator" />
+		<OptionBar id="optionbar">
+			<Labels>
+				<Label selected="true">Per data</Label>
+				<Label>Per nome</Label>
+			</Labels>
+		</OptionBar>
 		<ListView id="listview" class="vertical">
 		<Templates>
 			<ItemTemplate name="error">
