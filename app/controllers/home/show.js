@@ -141,15 +141,25 @@ var client = Ti.Network.createHTTPClient({
                     if (Ti.App.Properties.getBool("registrato", false) == false || Ti.App.Properties.getBool("autorizzato", false) == false) {
                         alert("Non hai completato la registrazione! Effettua il login con Wikimedia Commons per caricare le fotografie.")
                     } else {
-                        startPhotoUpload();
+                        if (response.noupload == false) {
+                            startPhotoUpload();
+                        }
                     }
                 });
                 tabgroup.activeTab.open(window, {modal: true, animated: true});     
             } else {
-                startPhotoUpload();
+                if (response.noupload == false) {
+                    startPhotoUpload();
+                }
             }
         });
-        $.Upload.show();
+        // Evita il caricamento di foto di monumenti scaduti
+        if (response.noupload == false) {
+            $.Upload.show();
+        } else {
+            $.Alert.text = "L'autorizzazione per questo monumento è scaduta.";
+        }
+        
         $.Info.addEventListener('click', function (e) {
             var info_url;
             var reasonator_url =  "http://reasonator.toolforge.org/?q=" + response.item + "&lang=it";
@@ -178,42 +188,45 @@ var client = Ti.Network.createHTTPClient({
             alert.show();
         });
         $.Info.show();
-    
+        
+        function openOSMdialog(response, osm_url) {
+            if (Dialog.isSupported()) {
+                Dialog.open({
+                    title: response.itemlabel,
+                    url: osm_url
+                });
+            } else {
+                Ti.Platform.openURL(osm_url);
+            }
+        }
+
         function showOSMalert(response, osm_url) {
             var alert = Ti.UI.createAlertDialog({message: "Come vuoi raggiungere " + response.itemlabel + "?", buttonNames: ["In auto", "A piedi", "In bici"]});
             alert.addEventListener("click", function(e){
                 switch(e.index) {
                     case 0:
                         osm_url += "&engine=graphhopper_car";
+                        openOSMdialog(response, osm_url);
                         break;
                     case 1:
                         osm_url += "&engine=graphhopper_foot";
+                        openOSMdialog(response, osm_url);
                         break;
                     case 2:
                         osm_url += "&engine=graphhopper_bicycle";
+                        openOSMdialog(response, osm_url);
                         break;
-                }
-
-                if (Dialog.isSupported()) {
-                    Dialog.open({
-                        title: response.itemlabel,
-                        url: osm_url
-                    });
-                } else {
-                    Ti.Platform.openURL(osm_url);
                 }
             });
             alert.show();
         }
     
         if (response.latitude != null && response.longitude != null) {
-            $.Osm_button.addEventListener('click', function (e) {
-                var osm_url; // Dichiaro la variabile url, che sarà popolata in vari modi a seconda della situazione
-                
+            $.Osm_button.addEventListener('click', function (e) {                
                 if (Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)) {
                     Ti.Geolocation.getCurrentPosition(function (e) {
                         if (e.success) {
-                            osm_url = "https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude;
+                            var osm_url = "https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude;
 
                             showOSMalert(response, osm_url);
                         } else {
@@ -224,7 +237,7 @@ var client = Ti.Network.createHTTPClient({
                     Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function (e) {
                         if (e.success) {
                             Ti.Geolocation.getCurrentPosition(function (e) {
-                                osm_url = "https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude;
+                                var osm_url = "https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude;
 
                                 showOSMalert(response, osm_url);
                             });
@@ -233,7 +246,6 @@ var client = Ti.Network.createHTTPClient({
                         }
                     });
                 }
-                
             });
             
             $.Osm_button.show();

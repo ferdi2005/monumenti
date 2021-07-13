@@ -7,8 +7,7 @@
 			<Label id="description" />
 			<Label id="address" />
 			<Button id="Upload">Carica le tue foto</Button>
-			<Label id="Alert" platform="ios">Partecipano a Wiki Loves Monuments solo le foto caricate dall'1 al 30 settembre.</Label>
-			<Label id="Alert" platform="android" html="Partecipano a Wiki Loves Monuments <b>solo</b> le foto caricate dall'1 al 30 settembre."/>
+			<Label id="Alert">Partecipano a Wiki Loves Monuments solo le foto caricate dall'1 al 30 settembre.</Label>
 			<Button id="Osm_button">Indicazioni stradali</Button>
 			<Button id="Info">Maggiori informazioni</Button>
 			<Button id="Wikipedia">Voce su Wikipedia</Button>
