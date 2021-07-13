@@ -6,10 +6,16 @@
 	}
 }
 
-"TabGroup[platform=android]": {
+"TabGroup": {
 	theme: "Theme.AppCompat.NoTitleBar"
 }
 
 "#index": {
-	swipeable: false
+	swipeable: false,
+}
+
+"#index[platform=android]": {
+	theme: "Theme.AppCompat.NoTitleBar",
+	activeTintColor: "tabColor",
+	activeTitleColor: "tabColor"
 }
