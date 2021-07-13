@@ -1,6 +1,6 @@
 ".image": {
     top: "5dp",
-    left: "5dp",
+    left: "10dp",
     width: "100dp",
     left: 0
 }
@@ -20,4 +20,11 @@
 
 ".openlabel": {
     color: "#0645AD"
+}
+
+".showbutton": {
+    backgroundColor: "#8f0000",
+    color: "#FFFFFF",
+    top: "3dp",
+    left: "5dp"
 }

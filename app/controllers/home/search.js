@@ -34,7 +34,7 @@ function setData(response, user_initiated, located = false, location){
                                         
             itemdata =  { 
                 properties: {
-                    itemId: item.id,
+                    itemId: item.item,
                     title: title ,
                     accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
                     color: '#000000',

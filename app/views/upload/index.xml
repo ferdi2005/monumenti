@@ -13,18 +13,21 @@
 				<View class="horizontal">
 					<ImageView bindId="photo" class="image"/>
 					<Label class="field" bindId="errorlabel"/>
+					<Button class="showbutton" bindId="showButton" onClick="openShow">Scheda del monumento</Button>
 				</View>
 			</ItemTemplate>
 			<ItemTemplate name="waiting">
 				<View class="horizontal">
 					<ImageView bindId="photo" class="image"/>
 					<Label class="field" text="Immagine ancora in caricamento."/>
+					<Button class="showbutton" bindId="showButton" onClick="openShow">Scheda del monumento</Button>
 				</View>
 			</ItemTemplate>
 			<ItemTemplate name="success">
 				<View class="horizontal">
 					<ImageView bindId="photo" class="image" onClick="openPhoto"/>
 					<Label class="openlabel" bindId="title" onClick="openPhoto"/>
+					<Button class="showbutton" bindId="showButton" onClick="openShow">Scheda del monumento</Button>
 				</View>
 			</ItemTemplate>
 		</Templates>

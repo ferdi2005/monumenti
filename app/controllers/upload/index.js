@@ -54,12 +54,18 @@ function reload(e){
                                 errorlabel: {
                                     text: errortext
                                 },
+                                showButton: {
+                                    id: photo["item"]
+                                },
                                 template: "error",
                             }    
                         } else if (photo["uploaded"] == null) {
                             itemdata =  { 
                                 photo: {
                                     image: serverurl
+                                },
+                                showButton: {
+                                    id: photo["item"]
                                 },
                                 template: "waiting",
                             }
@@ -72,6 +78,9 @@ function reload(e){
                                 title: {
                                     text: photo["canonicaltitle"],
                                     id: photo["descriptionurl"]
+                                },
+                                showButton: {
+                                    id: photo["item"]
                                 },
                                 template: "success",
                             }
@@ -110,6 +119,7 @@ $.index.addEventListener("open", reload);
 
 $.optionbar.addEventListener("click", reload);
 
+// Usata nell'index.xml (view alloy) per il click sulle foto o sul titolo delle foto
 function openPhoto(e) {
     if (Dialog.isSupported()) {
         Dialog.open({
@@ -120,3 +130,8 @@ function openPhoto(e) {
         Ti.Platform.openURL(e.source.id);
     }
 } 
+
+// Usata nell'index.xml (view alloy) per il click sul bottone della scheda monumento
+function openShow(e) {
+    Alloy.Globals.utils.open("home/show", e.source.id);
+}

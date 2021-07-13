@@ -44,7 +44,7 @@ if (today.getMonth() == 8) { // I mesi in JavaScriptlandia partono da 0
 }
 
 $.activityIndicator.show();
-var url = "http://cerca.wikilovesmonuments.it/show.json?id=" + args;
+var url = "http://cerca.wikilovesmonuments.it/show_by_wikidata.json?item=" + args;
 $.scrollable.disableBounce = true;
 var client = Ti.Network.createHTTPClient({
     onload: function (e) {

@@ -105,7 +105,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
             latitude: item.latitude,
             longitude: item.longitude,
             title: item.itemlabel,
-            myid: item.id,
+            myid: item.item,
             leftButton: "/images/Info ios.png"
           });
           // Cambia il colore del pin a seconda che ci siano o no fotografie
@@ -119,7 +119,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
               latitude: item.latitude,
               longitude: item.longitude,
               title: item.itemlabel,
-              myid: item.id,
+              myid: item.item,
               image: image,
               leftButton: "/images/Info ios.png"
             });  
@@ -128,7 +128,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
               latitude: item.latitude,
               longitude: item.longitude,
               title: item.itemlabel,
-              myid: item.id,
+              myid: item.item,
               leftButton: "/images/Info ios.png"
             });
             if (item.with_photos) {
@@ -163,7 +163,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
             longitude: item.longitude,
             title: item.itemlabel,
             icon: icon,
-            id: item.id
+            id: item.item
           });
         });
         $.osm.addMarkers(markers);
