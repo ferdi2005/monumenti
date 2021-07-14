@@ -22,7 +22,7 @@ $.index.addEventListener("focus", function(e){
 });
 
 
-$.lbl_version.text = "Versione " + Ti.App.version;
+$.lbl_version.text = String.format(L("app_version"), Ti.App.version);
 
 $.info.addEventListener("click", function(e){
     Alloy.Globals.utils.open("about/info");
@@ -49,5 +49,5 @@ $.tracciamento.addEventListener("change", function(e){
 });
 
 $.crediti.addEventListener("click", function(e){
-    alert("Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments.\n Il pin azzurro indica un monumento che ha fotografie, il pin rosso indica un monumento che non ha ancora fotografie.\n Icona dell'albero modificata da Symbolon, licenza CC-BY 3.0\n Icone della barra di navigazione modificate da FontAwesome, licenza CC-BY-SA 4.0 ");
+    alert(L("credits_text"));
 });

@@ -1,10 +1,10 @@
 <Alloy>
-	<Window id="winsearch" title="Ricerca per nome" class="container vertical">
+	<Window id="winsearch" titleid="winsearch" class="container vertical">
 		<View class="vertical">
-			<TextField id="searchfield" hintText="Inserisci il nome del monumento che vuoi cercare e premi invio..."/>
+			<TextField id="searchfield" hinttextid="monument_searchfield"/>
 			<ActivityIndicator id="activityIndicator" />
 			<ListView id="listview">
-				<ListSection id="listsection" headerTitle="Monumenti trovati" />
+				<ListSection id="listsection" headerTitle="L('list_section_monuments_header')" />
 			</ListView>
 		</View>
 	</Window>

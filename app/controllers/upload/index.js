@@ -43,9 +43,9 @@ function reload(e){
                         var serverurl = photo["serverurl"].replace("http", "https");
                         if (photo["uploaded"] == false) {
                             if (photo["errorinfo"] == null || photo["errorinfo"] == undefined) {
-                            var errortext = "Immagine non caricata a causa di un errore."
+                                var errortext = L("photo_not_uploaded");
                             } else {
-                            var errortext= "Immagine non caricata a causa di un errore: " + photo["errorinfo"]
+                                var errortext = String.format(L("photo_not_uploaded_with_reason"), photo["errorinfo"]);
                             }
                             itemdata =  { 
                                 photo: {
@@ -94,7 +94,7 @@ function reload(e){
                     $.activityIndicator.height = 0;
                 },
                 onerror: function(e) {
-                    var alert = Ti.UI.createAlertDialog({message: "Si è verificato un errore: " + e.error, buttonNames: ["Ok"]});
+                    var alert = Ti.UI.createAlertDialog({message:String.format(L("generic_error"), e.error), buttonNames: [L("ok")]});
                     alert.addEventListener("click", function(e){
                         $.index.close();
                     });
@@ -105,7 +105,7 @@ function reload(e){
             client.open("GET", url);
             client.send();
         } else {
-            var alert = Ti.UI.createAlertDialog({message: "Si è verificato un errore, riprova più tardi", buttonNames: ["Ok"]});
+            var alert = Ti.UI.createAlertDialog({message:String.format(L("generic_error"), k.error), buttonNames: [L("ok")]});
             alert.addEventListener("click", function(e){
                 $.index.close();
             });

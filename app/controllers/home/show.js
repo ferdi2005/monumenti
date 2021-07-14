@@ -115,10 +115,10 @@ var client = Ti.Network.createHTTPClient({
                 allowMultiple: true,
                 mediaTypes: [Titanium.Media.MEDIA_TYPE_PHOTO],
                 cancel: function(e) {
-                    alert("Hai annullato il caricamento delle foto")
+                    alert(L("upload_stopped"));
                 },
                 error: function(e) {
-                    alert("Potresti non aver concesso l'autorizzazione ad accedere alla galleria foto. Verifica.")
+                    alert(L("no_upload_permission"));
                 },
                 success: function(e){
                     // Recupero token salvato nel keychain e procedo con la lettura delle informazioni
@@ -127,7 +127,7 @@ var client = Ti.Network.createHTTPClient({
                         if (k.success == true) {
                             Alloy.Globals.utils.open("upload/title", [Titanium.Platform.id, k.value, e.images, response.item]);
                         } else {
-                            alert("Si è verificato un errore con la lettura del keychain, riprova più tardi.")
+                            alert(L("keychain_error"));
                         }
                     });
                     keychainItem.read();
@@ -139,7 +139,7 @@ var client = Ti.Network.createHTTPClient({
                 var window = Alloy.createController("upload/config", "show").getView();
                 window.addEventListener("close", function(e){
                     if (Ti.App.Properties.getBool("registrato", false) == false || Ti.App.Properties.getBool("autorizzato", false) == false) {
-                        alert("Non hai completato la registrazione! Effettua il login con Wikimedia Commons per caricare le fotografie.")
+                        alert(L("signup_not_completed"));
                     } else {
                         if (response.noupload == false) {
                             startPhotoUpload();
@@ -157,7 +157,7 @@ var client = Ti.Network.createHTTPClient({
         if (response.noupload == false) {
             $.Upload.show();
         } else {
-            $.Alert.text = "L'autorizzazione per questo monumento è scaduta.";
+            $.Alert.textid = "authorization_expired";
         }
         
         $.Info.addEventListener('click', function (e) {
@@ -165,7 +165,7 @@ var client = Ti.Network.createHTTPClient({
             var reasonator_url =  "http://reasonator.toolforge.org/?q=" + response.item + "&lang=it";
             var wikidata_url = "http://www.wikidata.org/wiki/" + response.item;
             
-            var alert = Ti.UI.createAlertDialog({message: "Maggiori informazioni su " + response.itemlabel, buttonNames: ["Wikidata", "Reasonator"]});
+            var alert = Ti.UI.createAlertDialog({message: String.format(L("more_information"), response.itemlabel), buttonNames: ["Wikidata", "Reasonator"]});
             alert.addEventListener("click", function(e){
                 switch(e.index) {
                     case 0:
@@ -201,7 +201,7 @@ var client = Ti.Network.createHTTPClient({
         }
 
         function showOSMalert(response, osm_url) {
-            var alert = Ti.UI.createAlertDialog({message: "Come vuoi raggiungere " + response.itemlabel + "?", buttonNames: ["In auto", "A piedi", "In bici"]});
+            var alert = Ti.UI.createAlertDialog({message: String.format(L("choose_mean"), response.itemlabel), buttonNames: [L("by_car"), L("on_foot"), L("by_bike")]});
             alert.addEventListener("click", function(e){
                 switch(e.index) {
                     case 0:
@@ -230,7 +230,7 @@ var client = Ti.Network.createHTTPClient({
 
                             showOSMalert(response, osm_url);
                         } else {
-                            alert("Senza geolocalizzazione attiva non sono in grado di tracciare un percorso!");
+                            alert(L("no_geoloc_no_route"));
                         }
                     });
                 } else {
@@ -242,7 +242,7 @@ var client = Ti.Network.createHTTPClient({
                                 showOSMalert(response, osm_url);
                             });
                         } else {
-                            alert("Senza autorizzazione alla posizione non sono in grado di tracciare un percorso!");
+                            alert(L("no_geoloc_no_route"));
                         }
                     });
                 }
@@ -323,8 +323,9 @@ var client = Ti.Network.createHTTPClient({
         }
     },
     onerror: function (e) {
-        alert('Errore di rete, tornare indietro: ' + e.error);
+        alert(String.format(L("connection_erorr"), e.error));
         $.activityIndicator.hide();
+        $.show.close();
     },
     timeout: 50000
 });

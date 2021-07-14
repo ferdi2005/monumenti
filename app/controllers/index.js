@@ -12,7 +12,7 @@ var xhr = Ti.Network.createHTTPClient({
     onload: function(e) {
         response = JSON.parse(this.responseText);
         if (response.tag_name != 'v' + Ti.App.version ) {
-            alert("Attenzione! Stai usando una versione non aggiornata dell'applicazione (" + Ti.App.version + ") vai sullo store a scaricare la nuova versione " + response.tag_name + ".");
+            alert(String.format(L("update_app"), Ti.App.version, response.tag_name));
         }
     },
     onerror: function(e) {

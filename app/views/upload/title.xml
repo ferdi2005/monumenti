@@ -1,13 +1,13 @@
 <Alloy>
-	<Window title="Caricamento foto" class="vertical" id="title">
+	<Window titleid="photo_upload" class="vertical" id="title">
 		<ActivityIndicator id="activityIndicator" />
 		<ScrollView class="vertical-scroll">
 			<TableView id="tableview" class="vertical">
-				<TableViewSection id="imagespace" headerTitle="Immagini da caricare" />
+				<TableViewSection id="imagespace" headerTitle="L('title_header_text')" />
 			</TableView>
-			<Label id="license">Accetto di rilasciare irrevocabilmente queste immagini sotto la licenza Creative Commons-Attribuzione-Condividi allo stesso modo 4.0. Sono consapevole che verranno pubblicate su Wikimedia Commons e saranno riutilizzabili in perpetuo secondo i termini di detta licenza. Dichiaro altresì di essere l'autore delle immagini. Sono consapevole che la responsabilità penale e civile per quanto caricato è a mio carico.</Label> 
-			<Button id="conferma">Conferma e carica</Button>
-			<Button id="annulla">Annulla</Button>
+			<Label id="license" textid="license_acceptance" />
+			<Button id="conferma" titleid="confirm_upload" />
+			<Button id="annulla" titleid="stop_upload" />
 		</ScrollView>
 	</Window>
 </Alloy>

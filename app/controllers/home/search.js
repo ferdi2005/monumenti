@@ -56,7 +56,7 @@ function setData(response, user_initiated, located = false, location){
         $.activityIndicator.hide();
     } else {
         if (user_initiated) {
-            alert("Nessun risultato trovato! Prova a fare un'altra ricerca");
+            alert(L("no_results_found"));
         }
         $.listsection.setItems([]);
         $.activityIndicator.hide();
@@ -97,7 +97,7 @@ function search(value, user_initiated) {
 
         },
         onerror: function(e) {
-            alert('Errore di connessione' + e.error);
+            alert(String.format(L("connection_erorr"), e.error));
             $.activityIndicator.hide();
         },
         timeout: 50000
@@ -114,7 +114,7 @@ $.listview.addEventListener('itemclick', function(e){
 $.winsearch.addEventListener('open', function(){
     $.searchfield.addEventListener('return', function (e) {
         if (e.value.length < 3) {
-            alert("Inserisci minimo 3 caratteri per effettuare una ricerca.");
+            alert(L("minimum_char"));
         } else if (e.value.length < 5) {
             search(e.value, true);
         }

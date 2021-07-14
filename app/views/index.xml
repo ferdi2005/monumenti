@@ -1,14 +1,14 @@
 <Alloy>
 <TabGroup id="index">
-		<Tab id="map" title="Mappa" icon="/images/Map Solid.png">
+		<Tab id="map" titleid="winmap" icon="/images/Map Solid.png">
 			<Require type="view" src="home/index" />
 		</Tab>
 
-		<Tab id="search" title="Per nome" icon="/images/search.png">
+		<Tab id="search" titleid="search_tab" icon="/images/search.png">
 			<Require type="view" src="home/search" />
 		</Tab>
 
-		<Tab title="Impostazioni" icon="/images/Info.png">
+		<Tab titleid="settings_tab" icon="/images/Info.png">
 			<Require type="view" src="about/index" />
 		</Tab> 
 </TabGroup>

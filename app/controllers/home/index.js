@@ -40,7 +40,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
       url = 'https://cerca.wikilovesmonuments.it/monuments.json?range=30&latitude=' + lat + '&longitude=' + lon;
       $.activityIndicator.show();
     } else {
-      alert("Qualcosa è andato storto! Assicurati di aver attivato la localizzazione e riavvia l'applicazione o clicca refresh.");
+      alert(L("error_geolocation"));
       $.activityIndicator.hide();
       return
     }
@@ -96,7 +96,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
         if (OS_ANDROID) {
           $.osm.location = { longitude: 41.9109, latitude: 12.4818, zoomLevel: defaultZoom};
         }
-        alert("Non hai inserito nessuna località o c'è stato un errore nella geolocalizzazione.");
+        alert(L("error_geolocation"));
       }
 
       if (OS_IOS) {
@@ -172,7 +172,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
       $.activityIndicator.hide();
     },
     onerror: function (e) {
-      alert('Errore di connessione: ' + e.error);
+      alert(String.format(L("connection_erorr"), e.error));
       $.activityIndicator.hide();
 
     },
@@ -218,7 +218,7 @@ function locate(latkeep, latdelta, londelta) {
         if (OS_ANDROID) {
           $.osm.location = { longitude: 41.9109, latitude: 12.4818, zoomLevel: defaultZoom}
         }
-        alert("Attiva la geolocalizzazione per usare la mappa.");
+        alert(L("activate_geolocation"));
       }
     });
   } else {
@@ -250,7 +250,7 @@ function locate(latkeep, latdelta, londelta) {
           $.osm.location = { longitude: 41.9109, latitude: 12.4818, zoomLevel: defaultZoom}
         }
 
-        alert("Impossibile localizzarti, non hai dato il permesso alla localizzazione. Cerca una città cliccando sulla lente di ingrandimento oppure abilita la localizzazione dalle impostazioni sulla privacy.");
+        alert(L("no_geolocation_permission"));
       }
     });
   }
@@ -260,9 +260,9 @@ $.winmap.addEventListener('open', function(e){
 
   if (Ti.App.Properties.getBool("flurry", "notset") == "notset") {
     var dialog = Ti.UI.createAlertDialog({
-        buttonNames: ['Accetta', 'Rifiuta'],
-        message: "Vuoi condividere con lo sviluppatore di quest'applicazione alcuni dati di utilizzo e in particolare di crash, in modo da poter contribuire al miglioramento della stessa, tramite la piattaforma Flurry?",
-        title: 'Dati di utilizzo e crash'
+        buttonNames: [L("accept"), L("refuse")],
+        messageid: "flurry_ask",
+        titleid: 'flurry_title'
       });
       dialog.addEventListener('click', function(e) {
         if (e.index == 0) {

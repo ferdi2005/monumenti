@@ -53,18 +53,18 @@ function triggerDeletion(uuid, user_initiated = false){
                     var message;
 
                     if (user_initiated) {
-                        message = "Come richiesto, la tua registrazione è stata cancellata. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.";
+                        message = "registration_deleted_by_user";
                     } else {
-                        message = "La tua registrazione è stata cancellata a causa di un problema. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.";
+                        message = "registration_deleted_by_error";
                     }
-                    var alert = Ti.UI.createAlertDialog({message: message, buttonNames: ["Ok"]});
+                    var alert = Ti.UI.createAlertDialog({messageid: message, buttonNames: [L("ok")]});
                     alert.addEventListener("click", function(e){
                         $.config.close();
                     });
                     alert.show();
                 },
                 onerror: function(e) {
-                    var alert = Ti.UI.createAlertDialog({message: "Non è stato possibile cancellare i tuoi dati dal server. Assicurati di revocare l'autorizzazione oAuth. " + e.error, buttonNames: ["Ok"]});
+                    var alert = Ti.UI.createAlertDialog({message: L("server_deletion_not_possible") + e.error, buttonNames: [L("ok")]});
                     alert.addEventListener("click", function(e){
                         $.config.close();
                     });
@@ -78,7 +78,7 @@ function triggerDeletion(uuid, user_initiated = false){
             Ti.App.Properties.setBool("registrato", false);
             Ti.App.Properties.setBool("autorizzato", false);
 
-            var alert = Ti.UI.createAlertDialog({message: "Non è stato possibile cancellare i tuoi dati dal server. Assicurati di revocare l'autorizzazione oAuth. ", buttonNames: ["Ok"]});
+            var alert = Ti.UI.createAlertDialog({messageid: "server_deletion_not_possible", buttonNames: [L("ok")]});
             alert.addEventListener("click", function(e){
                 $.config.close();
             });
@@ -98,12 +98,12 @@ function showUserInfo(userInfo) {
     });
 
     if (userInfo.testuser == true) {
-        $.mediawiki_data.text = "Hai eseguito l'accesso alla Wiki di test. Da ora puoi tornare indietro e caricare le tue fotografie tramite l'apposito tasto nella scheda di ogni monumento. Le tue foto non verranno caricate davvero."
+        $.mediawiki_data.text = L("test_wiki_login");
     } else {
-        $.mediawiki_data.text = "Hai eseguito l'accesso a Wikimedia Commons. Da ora puoi tornare indietro e caricare le tue fotografie tramite l'apposito tasto nella scheda di ogni monumento."
+        $.mediawiki_data.text = L("commons_login");
     }
     if (userInfo.ready == true) {
-        $.mediawiki_data.text = $.mediawiki_data.text += " Il tuo nome utente è " + userInfo.username
+        $.mediawiki_data.text = $.mediawiki_data.text += String.format(L("your_username"), userInfo.username);
     }
     $.mediawiki_data.show();
 }
@@ -113,7 +113,7 @@ function startLogin(userInfo) {
     var url = Alloy.Globals.backend + "/start_login?uuid=" + userInfo.uuid + "&token=" + userInfo.token;
     if (Dialog.isSupported()) {
         Dialog.open({
-            title: "Esegui il login a Commons",
+            title: L("start_commons_login"),
             url: url,
             dismissButtonStyle: Dialog.DISMISS_BUTTON_STYLE_DONE
         });
@@ -159,13 +159,13 @@ function retrieveUserData(uuid, token, user_initiated = false) {
                     });
                     $.activityIndicator.hide();
                     if (user_initiated) {
-                        alert("Non hai ancora effettuato il login. Clicca su Accedi a Wikimedia Commons per farlo.");
+                        alert(L("login_not_done"));
                     }
                 }
             }
         },
         onerror: function(e) {
-            alert("Si è verificato un errore. Riprova più tardi: " + e.error)
+            alert(String.format(L("connection_erorr"), e.error));
             $.config.close;
         },
         timeout: 5000
@@ -181,7 +181,7 @@ function readInformation(uuid, user_initiated = false) {
         if (e.success == true) {
             retrieveUserData(uuid, e.value, user_initiated); // Il token è contenuto in e.value
         } else {
-            var alert = Ti.UI.createAlertDialog({message: "Si è verificato un problema, riprova più tardi. Se si ripresenta, fai il logout.", buttonNames: ["Ok"]});
+            var alert = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("ok")]});
             alert.addEventListener("click", function(e){
                 $.config.close();
             });
@@ -194,7 +194,7 @@ function readInformation(uuid, user_initiated = false) {
 
 $.config.addEventListener("open", function(e) {
     if (args == "show") {
-        alert("Prima di poter caricare le fotografie, devi effettuare l'accesso a Wikimedia Commons.");
+        alert(L("no_upload_until_commons"));
     }
     // Nel caso in cui non sia stata effettuata la registrazione, procede ad effettuarla
     if (Ti.App.Properties.getBool("registrato", false) == false) {
@@ -219,18 +219,18 @@ $.config.addEventListener("open", function(e) {
                             Ti.App.Properties.setBool("registrato", true); // Imposta l'avvenuta registrazione con successo
                             retrieveUserData(UUID, GENERATED_TOKEN);
                         } else {
-                            alert("Si è verificato un errore. Riprova più tardi: " + e.error)
+                            alert(String.format(L("generic_error"), e.error));
                         }
                     });
 
                     keychainItem.save(GENERATED_TOKEN);
                 } else {
-                    alert("Si è verificato un errore. Riprova più tardi.")
+                    alert(String.format(L("generic_error"), this.status));
                     $.config.close();  
                 }
             },
             onerror: function(e) {
-                alert("Si è verificato un errore di connessione: " + e.error);
+                alert(String.format(L("connection_erorr"), e.error));
             },
             timeout: 5000
         });

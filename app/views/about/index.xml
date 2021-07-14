@@ -1,15 +1,16 @@
 <Alloy>
 	<Window title="Impostazioni" class="vertical">
 		<ScrollView class="vertical vertical-scroll">
-			<Button class="col_8 col_offset_1" id="upload_config">Gestione impostazioni upload</Button>
-			<Button class="col_8 col_offset_1" id="upload_list">Foto caricate</Button>
+			<Button class="col_8 col_offset_1" id="upload_config" titleid="upload_config" />
+			<Button class="col_8 col_offset_1" id="upload_list" titleid="upload_list" />
+			
 			<View class="horizontal">
-				<Label text="Vuoi condividere con lo sviluppatore di quest'applicazione alcuni dati di utilizzo e in particolare di crash, in modo da poter contribuire al miglioramento della stessa, tramite la piattaforma Flurry?" />
+				<Label textid="flurry_ask"/>
 				<Switch id="tracciamento" />
 			</View>
 
-			<Button class="col_8 col_offset_1" id="info">Info su Wiki Loves Monuments</Button>
-			<Button class="col_8 col_offset_1" id="crediti">Crediti e significato dei colori</Button>
+			<Button class="col_8 col_offset_1" id="info" titleid="info" />
+			<Button class="col_8 col_offset_1" id="crediti" titleid="credits"/>
 			<Label id="lbl_version"/>
 		</ScrollView>
 	</Window>

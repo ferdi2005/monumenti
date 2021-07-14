@@ -24,13 +24,14 @@ Array(images)[0].forEach(
         var client = Ti.Network.createHTTPClient({
             onload: function(e) {
                 if (JSON.parse(this.responseText).error == "User not found.") {
-                    var alert = Ti.UI.createAlertDialog({message: "Si è verificato un errore. Esegui il logout dalla Gestione impostazioni upload nella scheda impostazioni.", buttonNames: ["Ok"]});
+                    var alert = Ti.UI.createAlertDialog({messageid: "error_please_logout", buttonNames: [L("ok")]});
                     alert.addEventListener("click", function(e){
                         $.title.close();
                     });
                     alert.show();    
                 } else if(JSON.parse(this.responseText).error == "Photo upload not succedeed.") {
                     var row = Titanium.UI.createTableViewRow({layout: "horizontal"});
+
                     var image = Titanium.UI.createImageView({
                         image: photo.media,
                         top: "5dp",
@@ -40,7 +41,7 @@ Array(images)[0].forEach(
                     });
 
                     var label = Titanium.UI.createLabel({
-                        text: "Errore nel caricamento di quest'immagine, riprova più tardi."
+                        textid: "error_image_upload",
                     });
 
                     row.add(image);
@@ -74,7 +75,7 @@ Array(images)[0].forEach(
                     }
 
                     var title = Titanium.UI.createTextField({
-                        hintText: "Titolo dell'immagine",
+                        hinttextid: "image_title",
                         id: "title" + id,
                         inputType: Titanium.UI.INPUT_TYPE_CLASS_TEXT,
                         width: Ti.UI.FILL,
@@ -95,7 +96,7 @@ Array(images)[0].forEach(
                     var predescrizione = response.city + " - " + response.label;
 
                     var description = Titanium.UI.createTextField({
-                        hintText: "Descrizione dell'immagine",
+                        hinttextid: "image_description",
                         id: "description" + id,
                         inputType: Titanium.UI.INPUT_TYPE_CLASS_TEXT,
                         width: Ti.UI.FILL,
@@ -114,7 +115,7 @@ Array(images)[0].forEach(
                     view.add(description);
 
                     var date = Titanium.UI.createTextField({
-                        hintText: "Data della foto (gg/mm/aaaa)",
+                        hinttextid: "image_date",
                         id: "date" + id,
                         inputType: Titanium.UI.INPUT_TYPE_CLASS_TEXT,
                         width: Ti.UI.FILL,
@@ -153,7 +154,7 @@ Array(images)[0].forEach(
                 });
 
                 var label = Titanium.UI.createLabel({
-                    text: "Errore nel caricamento di quest'immagine, riprova più tardi."
+                    textid: "error_image_upload",
                 });
 
                 row.add(image);
@@ -192,11 +193,11 @@ $.conferma.addEventListener("click", function(e){
         photos[id] = [title, description, date];
 
         if (!date.match(DATEREGEX)) {
-            alert("Attenzione: il formato della data deve essere gg/mm/aaaa come per esempio 11/05/2005.");
+            alert(L("error_date_format"));
             campi_pieni = false;
         }
         if (title == "" || description == "" || date == "") {
-            alert("I campi sono obbligatori! Compilali tutti prima di procedere all'upload (o premi invio sulla tastiera se l'hai fatto).");
+            alert(L("fields_are_mandatory"));
             campi_pieni = false;
         }
 
@@ -207,14 +208,14 @@ $.conferma.addEventListener("click", function(e){
         var url = Alloy.Globals.backend + "/set_title.json";
         var client = Ti.Network.createHTTPClient({
             onload: function(e){
-                var alert = Ti.UI.createAlertDialog({message: "Foto messe in coda per il caricamento con successo! Puoi verificare il loro stato nelle impostazioni.", buttonNames: ["Ok"]});
+                var alert = Ti.UI.createAlertDialog({messageid: "image_queue_success", buttonNames: [L("ok")]});
                 alert.addEventListener("click", function(e){
                     $.title.close();
                 });
                 alert.show();
             },
             onerror: function(e){
-                var alert = Ti.UI.createAlertDialog({message: "Qualcosa è andato storto e il caricamento non è riuscito. Riprova più tardi: " + e.error, buttonNames: ["Ok"]});
+                var alert = Ti.UI.createAlertDialog({message: String.format("image_queue_error", e.error), buttonNames: [L("ok")]});
                 alert.addEventListener("click", function(e){
                     $.title.close();
                 });

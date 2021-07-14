@@ -1,16 +1,16 @@
 <Alloy>
-	<Window class="container" id="show" title="Monumento">
+	<Window class="container" id="show" titleid="placeholder_show_title">
 		<ScrollView id="scrollable" class="vertical-scroll">
 			<ActivityIndicator id="activityIndicator" />
 			<ImageView id="image"></ImageView>
 			<Label id="title" />
 			<Label id="description" />
 			<Label id="address" />
-			<Button id="Upload">Carica le tue foto</Button>
-			<Label id="Alert">Partecipano a Wiki Loves Monuments solo le foto caricate dall'1 al 30 settembre.</Label>
-			<Button id="Osm_button">Indicazioni stradali</Button>
-			<Button id="Info">Maggiori informazioni</Button>
-			<Button id="Wikipedia">Voce su Wikipedia</Button>
+			<Button id="Upload" titleid="upload_button"/>
+			<Label id="Alert" textid="only_september" />
+			<Button id="Osm_button" titleid="osm_text"/>
+			<Button id="Info" titleid="more_information_button"/>
+			<Button id="Wikipedia" titleid="wikipedia_article"/>
 			<Module id="mapview" module="ti.map" method="createView" if="OS_IOS" />
 			<OSMView module="ti.osm" id="osm" if="OS_ANDROID" />
 		</ScrollView>
