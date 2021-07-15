@@ -6,10 +6,8 @@
 			<OSMView module="ti.osm" id="osm" if="OS_ANDROID" />
 
 			<ActivityIndicator id="activityIndicator" />
-			<TextField id="searchfield" hinttextid="town_searchfield"/>
 			<Button id="refresh" backgroundImage="/images/refresh.png"/>
 			<Button id="my_location" backgroundImage="/images/location.png"/>
-			<Button id="search" backgroundImage="/images/search.png"/>
 		</View>
 	</Window>
 </Alloy>

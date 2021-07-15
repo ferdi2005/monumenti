@@ -1,6 +1,5 @@
 
 ".container" : {
-   backgroundColor: "white"
 }
 
 "#title": {
@@ -54,7 +53,6 @@
 "#scrollable": {
     right: "5dp",
     left: "5dp",
-    backgroundColor: 'white'
 }
 
 "#activityIndicator": {

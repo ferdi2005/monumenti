@@ -20,7 +20,7 @@ function getDistance(lat1, lon1, lat2, lon2) {
 }
 
 
-function setData(response, user_initiated, located = false, location){
+function setMonumentsData(response, user_initiated, located = false, location){
     if (response.length > 0) {
         data = []
         response.forEach(function (item) {
@@ -34,13 +34,9 @@ function setData(response, user_initiated, located = false, location){
                                         
             itemdata =  { 
                 properties: {
-                    itemId: item.item,
+                    itemId: "monument" + item.item,
                     title: title ,
-                    accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
-                    color: '#000000',
-                    backgroundColor: '#FFFFFF',
-                    latitude: item.latitude,
-                    longitude: item.longitude
+                    accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE
                 }
             }
             data.push(itemdata);
@@ -63,7 +59,55 @@ function setData(response, user_initiated, located = false, location){
     }
 }
 
-function search(value, user_initiated) {
+function searchTowns(value, user_initiated) {
+    $.activityIndicator.show();
+    
+    var url = 'http://cerca.wikilovesmonuments.it/towns/search.json?query=' + encodeURI(value);
+    var xhr = Ti.Network.createHTTPClient({
+        onload: function(e) {
+            response = JSON.parse(this.responseText);
+
+            if (response.length > 0) {
+                data = []
+
+                response.forEach(function(town) {
+                    itemdata =  { 
+                        properties: {
+                            itemId: "town" + town.name,
+                            title: town.name,
+                            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
+                        }
+                    }
+                    data.push(itemdata);   
+                });
+
+                if ($.listsection.items != data) {
+                    $.listsection.setItems(data);
+                }
+
+                $.listview.show();
+                $.activityIndicator.hide();
+                
+            } else {
+                if (user_initiated) {
+                    alert(L("no_results_found"));
+                }
+                $.listsection.setItems([]);
+                $.activityIndicator.hide();
+        }
+
+        },
+        onerror: function(e) {
+            alert(String.format(L("connection_erorr"), e.error));
+            $.activityIndicator.hide();
+        },
+        timeout: 50000
+    });
+    xhr.open('GET', url);
+    xhr.send();
+}
+
+function searchMonuments(value, user_initiated) {
     $.activityIndicator.show();
     
     var url = 'http://cerca.wikilovesmonuments.it/namesearch.json?search=' + encodeURI(value);
@@ -74,9 +118,9 @@ function search(value, user_initiated) {
             if (Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)) {
                 Ti.Geolocation.getCurrentPosition(function (e) {
                     if (e.success) {
-                        setData(response, user_initiated, true, e);
+                        setMonumentsData(response, user_initiated, true, e);
                     } else {
-                        setData(response, user_initiated);
+                        setMonumentsData(response, user_initiated);
                     }
                 });
             } else {
@@ -84,13 +128,13 @@ function search(value, user_initiated) {
                     if (e.success) {
                         Ti.Geolocation.getCurrentPosition(function (e) {
                             if (e.success) {
-                                setData(response, user_initiated, true, e);
+                                setMonumentsData(response, user_initiated, true, e);
                             } else {
-                                setData(response, user_initiated);
+                                setMonumentsData(response, user_initiated);
                             }
                         });
                     } else {
-                        setData(response, user_initiated);
+                        setMonumentsData(response, user_initiated);
                     }
                 });
             }
@@ -107,8 +151,13 @@ function search(value, user_initiated) {
 }
 
 $.listview.addEventListener('itemclick', function(e){
-    var window = Alloy.createController('home/show', e.itemId).getView();
-    tabgroup.activeTab.open(window);
+    if (e.itemId.startsWith("monument")) {
+        var window = Alloy.createController('home/show', e.itemId.replace("monument", "")).getView();
+        tabgroup.activeTab.open(window);
+    } else if (e.itemId.startsWith("town")) {
+        tabgroup.activeTab = 0;
+        Alloy.Globals.events.trigger("set_city", {town: e.itemId.replace("town", "")})
+    }
 });
 
 $.winsearch.addEventListener('open', function(){
@@ -116,7 +165,11 @@ $.winsearch.addEventListener('open', function(){
         if (e.value.length < 3) {
             alert(L("minimum_char"));
         } else if (e.value.length < 5) {
-            search(e.value, true);
+            if ($.optionbar.index == 0) {
+                searchMonuments(e.value, true);
+            } else {
+                searchTowns(e.value, true);
+            }
         }
         $.searchfield.blur();
         if (OS_ANDROID) {
@@ -126,14 +179,38 @@ $.winsearch.addEventListener('open', function(){
 
     $.searchfield.addEventListener("change", function(e){
         if (e.value.length >= 5) {
-            search(e.value, false)
+            if ($.optionbar.index == 0) {
+                searchMonuments(e.value, false)
+            } else {
+                searchTowns(e.value, false);
+            }
         }
     })
  });
 
-if (OS_ANDROID) {
-    $.winsearch.addEventListener('blur', function(){
-        $.searchfield.blur();
+$.winsearch.addEventListener('blur', function(){
+    $.searchfield.blur();
+    if (OS_ANDROID) {
         Ti.UI.Android.hideSoftKeyboard();
-    });
+    }
+    $.listview.hide();
+});
+
+function setFields(){
+    if ($.optionbar.index == 0) {
+        $.listsection.headerTitle = L('list_section_monuments_header');
+        $.searchfield.hinttextid = "monument_searchfield";
+    } else {
+        $.listsection.headerTitle = L('list_section_towns_header');
+        $.searchfield.hinttextid = "town_searchfield";
+    }
+    $.listsection.setItems([]);
+    $.activityIndicator.hide();
+    $.searchfield.value = "";
+    $.searchfield.blur();
+    Ti.UI.Android.hideSoftKeyboard();
 }
+
+$.optionbar.addEventListener("click", setFields);
+
+$.winsearch.addEventListener("focus", setFields);

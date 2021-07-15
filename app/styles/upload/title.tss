@@ -18,9 +18,6 @@
 
 "TextField": {    
     borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
-    hintTextColor: '#A0A0A0',
-    color: 'black',
-    borderColor: 'black',
     borderWidth: '0.3'
 }
 /*

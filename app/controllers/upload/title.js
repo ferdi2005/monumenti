@@ -82,9 +82,6 @@ Array(images)[0].forEach(
                         height: Ti.UI.SIZE,
                         left: "5dp",
                         borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
-                        hintTextColor: '#A0A0A0',
-                        color: 'black',
-                        borderColor: 'black',
                         borderWidth: '0.3',
                         value: pretitolo                 
                     });
@@ -103,9 +100,6 @@ Array(images)[0].forEach(
                         height: Ti.UI.SIZE,
                         left: "5dp",
                         borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
-                        hintTextColor: '#A0A0A0',
-                        color: 'black',
-                        borderColor: 'black',
                         borderWidth: '0.3',
                         value: predescrizione               
                     });
@@ -122,9 +116,6 @@ Array(images)[0].forEach(
                         height: Ti.UI.SIZE,
                         left: "5dp",
                         borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
-                        hintTextColor: '#A0A0A0',
-                        color: 'black',
-                        borderColor: 'black',
                         borderWidth: '0.3',
                         value: response.today
                     });

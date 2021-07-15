@@ -4,8 +4,6 @@ if (OS_IOS) {
   var Map = require('ti.map');
 }
 
-$.searchfield.hide();
-$.searchfield.autocorrect = false;
 $.activityIndicator.hide();
 var defaultZoom = 14; // Per Android
 
@@ -256,8 +254,7 @@ function locate(latkeep, latdelta, londelta) {
   }
 }
 
-$.winmap.addEventListener('open', function(e){
-
+$.winmap.addEventListener('open', function(e){  
   if (Ti.App.Properties.getBool("flurry", "notset") == "notset") {
     var dialog = Ti.UI.createAlertDialog({
         buttonNames: [L("accept"), L("refuse")],
@@ -283,7 +280,7 @@ if (OS_IOS) {
   $.winmap.addEventListener('click', function (e) {
     if (e.annotation != undefined && e.annotation != null && !e.deselected) {
       if (e.clicksource == "infoWindow" || e.clicksource == "leftPane" || e.clicksource == "leftButton" || e.clicksource == "title") {
-        Alloy.Globals.utils.openmodal('home/show', e.annotation.myid);
+        Alloy.Globals.utils.open('home/show', e.annotation.myid);
       }
     }
   });
@@ -292,7 +289,7 @@ if (OS_IOS) {
 
 if (OS_ANDROID) {
   function infoboxClick(e) {
-    Alloy.Globals.utils.openmodal('home/show', e.marker.id);
+    Alloy.Globals.utils.open('home/show', e.marker.id);
   }
 
   $.osm.addEventListener("infoboxClick", infoboxClick);
@@ -317,49 +314,12 @@ function my_location() {
     locate(true, $.osm.location.zoomLevel);
   }
 
-  $.searchfield.hide();
-  $.searchfield.height = "10%";
   if (OS_ANDROID) {
     Ti.UI.Android.hideSoftKeyboard();
   }
 }
 
 $.my_location.addEventListener("click", my_location);
-
-$.search.addEventListener('click', function () {
-  $.searchfield.show();
-  $.searchfield.focus();
-  if (OS_ANDROID) {
-    $.searchfield.height = "20%";
-  }
-
-  $.searchfield.addEventListener('return', function (e) {
-    if (e.value.trim() == "") {
-      my_location();
-    } else {
-      findmon(e.value, "city");
-    }
-    $.searchfield.blur();
-    $.searchfield.hide();
-    $.searchfield.height = "10%";
-    if (OS_ANDROID) {
-      Ti.UI.Android.hideSoftKeyboard();
-    }
-  });
-});
-
-$.winmap.addEventListener("blur", function(e){
-  $.searchfield.blur();
-  $.searchfield.hide();
-  $.searchfield.height = "10%";
-});
-
-$.search.addEventListener('blur', function(e){
-  $.searchfield.hide();
-  if (OS_ANDROID) {
-    Ti.UI.Android.hideSoftKeyboard();
-  }
-});
 
 Alloy.Globals.events.on("map_close", function(e){
   if (OS_ANDROID) {
@@ -368,5 +328,16 @@ Alloy.Globals.events.on("map_close", function(e){
 
   if (OS_IOS) {
     findmon({coords: {latitude: e.latitude, longitude: e.longitude}}, "geoloc", true, $.mapview.region.latitudeDelta, $.mapview.region.longitudeDelta);
+  }
+});
+
+
+Alloy.Globals.events.on("set_city", function(e){
+  if (OS_IOS) {
+    findmon(e.town, "city", true, $.mapview.region.latitudeDelta, $.mapview.region.longitudeDelta);
+  }
+
+  if (OS_ANDROID) {
+    findmon(e.town, "city", true, $.osm.location.zoomLevel);
   }
 });

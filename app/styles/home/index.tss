@@ -38,29 +38,10 @@
 
 "#my_location": {
   bottom: "10%",
-  left: "15%",
-  width: 25,
-  height: 25,
-  backgroundColor: "transparent"
-}
-
-
-"#search": {
-  bottom: "10%",
   right: "5%",
   width: 25,
   height: 25,
   backgroundColor: "transparent"
-}
-
-"#searchfield": {
-  width: Ti.UI.FILL,
-  height: "10%",
-  backgroundColor: "#FFF",
-  color: "#000",
-  top: "0",
-  hintTextColor: "#A0A0A0",
-  returnKeyType: Ti.UI.RETURNKEY_SEARCH
 }
 
 "#activityIndicator": {

@@ -1,10 +1,16 @@
 <Alloy>
 	<Window id="winsearch" titleid="winsearch" class="container vertical">
 		<View class="vertical">
-			<TextField id="searchfield" hinttextid="monument_searchfield"/>
+			<OptionBar id="optionbar">
+				<Labels>
+					<Label selected="true" title="L('monuments')" />
+					<Label title="L('towns')" />
+				</Labels>
+			</OptionBar>
+			<TextField id="searchfield"/>
 			<ActivityIndicator id="activityIndicator" />
 			<ListView id="listview">
-				<ListSection id="listsection" headerTitle="L('list_section_monuments_header')" />
+				<ListSection id="listsection" />
 			</ListView>
 		</View>
 	</Window>

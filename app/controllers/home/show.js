@@ -82,11 +82,13 @@ var client = Ti.Network.createHTTPClient({
             }
         }
         
-        $.osm.addEventListener("markerClick", function(e){
-            tabgroup.activeTab = 0;
-            Alloy.Globals.events.trigger("map_close", {latitude: response.latitude, longitude: response.longitude});
-            $.show.close();
-        });
+        if (OS_ANDROID) {
+            $.osm.addEventListener("markerClick", function(e){
+                tabgroup.activeTab = 0;
+                Alloy.Globals.events.trigger("map_close", {latitude: response.latitude, longitude: response.longitude});
+                $.show.close();
+            });
+        }
         if (response.image != null && response.image != undefined && response.image != "") {
             $.image.image = "https://commons.wikimedia.org/w/thumb.php?f=" + response.image + "&w=1000";
         }

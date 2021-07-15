@@ -56,9 +56,10 @@
 	Oggetto delle immagini ammesse a partecipare al concorso sono i monumenti, un insieme molto ampio che include edifici, sculture, siti archeologici, strutture architettoniche ma anche siti naturali e beni paesaggistici. Tutte le fotografie sono rilasciate con licenza libera e pubblicate su Wikimedia Commons, il grande database che illustra Wikipedia (il 5º sito più visitato in Italia) e tutti gli altri progetti con contenuti multimediali (foto e video). Wiki Loves Monuments è aperto alla partecipazione di tutti, fotografi professionisti o amatori, senza limiti di età. L'edizione italiana è organizzata dal 2012 da Wikimedia Italia, associazione che si occupa dal 2005 di diffondere la conoscenza e la cultura libera in Italia, in qualità di capitolo di Wikimedia Foundation.</string> 
     <string name="site">Visita il sito del concorso</string>
     <string name="winmap">Mappa</string>
-    <string name="town_searchfield">Inserisci il nome della città e premi invio...</string> 
-    <string name="monument_searchfield">Inserisci il nome del monumento che vuoi cercare e premi invio...</string>
+    <string name="town_searchfield">Inserisci il nome della città o frazione...</string> 
+    <string name="monument_searchfield">Inserisci il nome del monumento...</string>
     <string name="list_section_monuments_header">Monumenti trovati</string>
+    <string name="list_section_towns_header">Città trovate</string>
     <string name="winsearch">Ricerca per nome</string>
     <string name="placeholder_show_title">Monumento</string>
     <string name="upload_button">Carica le tue foto</string>
@@ -84,4 +85,6 @@
     <string name="stop_upload">Annulla</string>
     <string name="search_tab">Per nome</string>
     <string name="settings_tab">Impostazioni</string> 
+    <string name="monuments">Monumenti</string>
+    <string name="towns">Città</string>
 </resources>
