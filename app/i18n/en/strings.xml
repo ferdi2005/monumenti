@@ -1,6 +1,6 @@
 <resources>
     <string name="app_version">Versione %s</string>
-    <string name="credits_text">Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments.\n Il pin azzurro indica un monumento che ha fotografie, il pin rosso indica un monumento che non ha ancora fotografie.\n Icona dell'albero modificata da Symbolon, licenza CC-BY 3.0\n Icone della barra di navigazione modificate da FontAwesome, licenza CC-BY-SA 4.0</string>
+    <string name="credits_text">Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments.\n Il pin azzurro indica un monumento che ha fotografie, il pin rosso indica un monumento che non ha ancora fotografie, quello grigio o viola indica un monumento non fotografabile per la scadenza dell'autorizzazione. \n Icona dell'albero modificata da Symbolon, licenza CC-BY 3.0\n Icone della barra di navigazione modificate da FontAwesome, licenza CC-BY-SA 4.0</string>
     <string name="error_geolocation">Qualcosa è andato storto! Assicurati di aver attivato la geolocalizzazione e riavvia l'applicazione o clicca refresh.</string>
     <string name="connection_erorr">Si è verificato un errore di connessione: %s. Riprova più tardi.</string> 
     <string name="generic_error">Si è verificato un errore: %s. Riprova più tardi.</string> 

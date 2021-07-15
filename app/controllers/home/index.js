@@ -107,29 +107,16 @@ function findmon(e, type, latkeep, latdelta, londelta) {
             leftButton: "/images/Info ios.png"
           });
           // Cambia il colore del pin a seconda che ci siano o no fotografie
-          if (item.tree) {
+          if (item.noupload) {
+            annotation.pincolor = Map.ANNOTATION_PURPLE;
+          } else if (item.tree) {
             if (item.with_photos) {
-              var image = "/images/tree blue.png";
+              annotation.image = "/images/tree blue.png";
             } else {
-              var image = "/images/tree red.png"
+              annotation.image = "/images/tree red.png"
             }
-            annotation = Map.createAnnotation({
-              latitude: item.latitude,
-              longitude: item.longitude,
-              title: item.itemlabel,
-              myid: item.item,
-              image: image,
-              leftButton: "/images/Info ios.png"
-            });  
           } else {
-            annotation = Map.createAnnotation({
-              latitude: item.latitude,
-              longitude: item.longitude,
-              title: item.itemlabel,
-              myid: item.item,
-              leftButton: "/images/Info ios.png"
-            });
-            if (item.with_photos) {
+             if (item.with_photos) {
               annotation.pincolor = Map.ANNOTATION_AZURE;
             } else {
               annotation.pincolor = Map.ANNOTATION_RED;
@@ -143,7 +130,9 @@ function findmon(e, type, latkeep, latdelta, londelta) {
         markers = []
         // Evita di prendere tutti tutti i risultati, che sono moltissimi
         response[0].forEach(function (item) {
-          if (item.with_photos) {
+          if (item.noupload) {
+            var icon = "/images/Info grey.png"
+          } else if (item.with_photos) {
             if (item.tree) {
               var icon = "/images/tree blue.png";
             } else {

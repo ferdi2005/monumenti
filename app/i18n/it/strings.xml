@@ -1,6 +1,6 @@
 <resources>
     <string name="app_version">Versione %s</string>
-    <string name="credits_text">Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments.\n Il pin azzurro indica un monumento che ha fotografie, il pin rosso indica un monumento che non ha ancora fotografie.\n Icona dell'albero modificata da Symbolon, licenza CC-BY 3.0\n Icone della barra di navigazione modificate da FontAwesome, licenza CC-BY-SA 4.0</string>
+    <string name="credits_text">Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments.\n Il pin azzurro indica un monumento che ha fotografie, il pin rosso indica un monumento che non ha ancora fotografie, quello grigio o viola indica un monumento non fotografabile per la scadenza dell'autorizzazione. \n Icona dell'albero modificata da Symbolon, licenza CC-BY 3.0\n Icone della barra di navigazione modificate da FontAwesome, licenza CC-BY-SA 4.0</string>
     <string name="error_geolocation">Qualcosa è andato storto! Assicurati di aver attivato la geolocalizzazione e riavvia l'applicazione o clicca refresh.</string>
     <string name="connection_erorr">Si è verificato un errore di connessione: %s. Riprova più tardi.</string> 
     <string name="generic_error">Si è verificato un errore: %s. Riprova più tardi.</string> 
@@ -83,8 +83,6 @@
     <string name="license_acceptance">Accetto di rilasciare irrevocabilmente queste immagini sotto la licenza Creative Commons-Attribuzione-Condividi allo stesso modo 4.0. Sono consapevole che verranno pubblicate su Wikimedia Commons e saranno riutilizzabili in perpetuo secondo i termini di detta licenza. Dichiaro altresì di essere l'autore delle immagini. Sono consapevole che la responsabilità penale e civile per quanto caricato è a mio carico.</string>
     <string name="confirm_upload">Conferma e carica</string>
     <string name="stop_upload">Annulla</string>
-    <string name="search_tab">Per nome</string>
-    <string name="settings_tab">Impostazioni</string> 
     <string name="monuments">Monumenti</string>
     <string name="towns">Città</string>
 </resources>

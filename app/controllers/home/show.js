@@ -261,24 +261,41 @@ var client = Ti.Network.createHTTPClient({
                     myid: response.id
                 });
                 
+                if (response.noupload) {
+                    annotation.pincolor = Map.ANNOTATION_PURPLE;
+                } else if (response.tree) {
+                    if (response.with_photos) {
+                      annotation.image = "/images/tree blue.png";
+                    } else {
+                      annotation.image = "/images/tree red.png"
+                    }
+                } else {
+                     if (response.with_photos) {
+                      annotation.pincolor = Map.ANNOTATION_AZURE;
+                    } else {
+                      annotation.pincolor = Map.ANNOTATION_RED;
+                    }
+                }        
                 $.mapview.addAnnotation(annotation);
             }
 
             if (OS_ANDROID) {
-                if (response.with_photos) {
+                if (response.noupload) {
+                    var icon = "/images/Info grey.png"
+                } else if (response.with_photos) {
                     if (response.tree) {
-                    var icon = "/images/tree blue.png";
+                        var icon = "/images/tree blue.png";
                     } else {
-                    var icon = "/images/Info blue.png";
+                        var icon = "/images/Info blue.png";
                     }
                 } else {
                     if (response.tree) {
-                    var icon = "/images/tree red.png";
+                        var icon = "/images/tree red.png";
                     } else {
-                    var icon = "/images/Info red.png";
+                        var icon = "/images/Info red.png";
                     }
                 }
-                    var markers = [];
+                            var markers = [];
                 markers.push({
                     latitude: response.latitude,
                     longitude: response.longitude,
