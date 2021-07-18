@@ -8,7 +8,7 @@
   top: '5px',
   borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
   borderWidth: '0.5',
-  width: Ti.UI.FILL
+  width: Ti.UI.FILL,
 }
 
 "#activityIndicator": {

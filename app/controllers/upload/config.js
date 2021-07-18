@@ -5,13 +5,23 @@ var args = $.args;
 
 // Mostra activity indicator
 $.activityIndicator.show();
+$.activityIndicator.height = Ti.UI.SIZE;
 
 // Nascondo tutti gli elementi (verranno mostrati successivamente)
 $.login_start.hide();
+$.login_start.height = 0;
+
 $.commento_login_start.hide();
+$.commento_login_start.height = 0;
+
 $.login_delete.hide();
+$.login_delete.height = 0;
+
 $.mediawiki_data.hide();
+$.mediawiki_data.height = 0;
+
 $.login_update.hide();
+$.login_update.height = 0;
 
 // Mostra bottone indietro
 if (args == "settings" && OS_ANDROID) {
@@ -92,6 +102,7 @@ function triggerDeletion(uuid, user_initiated = false){
 // Mostra i dati dell'utente
 function showUserInfo(userInfo) {
     $.login_delete.show();
+    $.login_delete.height = Ti.UI.SIZE;
 
     $.login_delete.addEventListener("click", function(e){
         triggerDeletion(UUID, true);
@@ -106,6 +117,7 @@ function showUserInfo(userInfo) {
         $.mediawiki_data.text = $.mediawiki_data.text += String.format(L("your_username"), userInfo.username);
     }
     $.mediawiki_data.show();
+    $.mediawiki_data.height = Ti.UI.SIZE;
 }
 
 // Svolge le operazioni per aprire la finestra di login
@@ -120,6 +132,7 @@ function startLogin(userInfo) {
         Dialog.addEventListener("close", function(e){
             retrieveUserData(userInfo.uuid, userInfo.token);
             $.activityIndicator.show();
+            $.activityIndicator.height = Ti.UI.SIZE;
         });
     } else {
         // Fallback nel caso in cui non sia supportato il webdialog
@@ -140,9 +153,16 @@ function retrieveUserData(uuid, token, user_initiated = false) {
                 if (userInfo.authorized == true) {
                     Ti.App.Properties.setBool("autorizzato", true);
                     $.login_start.hide();
+                    $.login_start.height = 0;
+
                     $.login_update.hide();
+                    $.login_update.height = 0;
+
                     $.commento_login_start.hide();
+                    $.commento_login_start.height = 0;
+
                     $.activityIndicator.hide();
+                    $.activityIndicator.height = 0;
                     // In caso di arrivo dalla finestra di caricamento
                     if (args == "show") {
                         $.config.close();
@@ -152,12 +172,19 @@ function retrieveUserData(uuid, token, user_initiated = false) {
                 } else {
                     Ti.App.Properties.setBool("autorizzato", false);
                     $.login_start.show();
+                    $.login_start.height = Ti.UI.SIZE;
+
                     $.login_update.show();
+                    $.login_update.height = Ti.UI.SIZE;
+
                     $.commento_login_start.show();
+                    $.commento_login_start.height = Ti.UI.SIZE;
+
                     $.login_start.addEventListener("click", function(e){
                         startLogin(userInfo);
                     });
                     $.activityIndicator.hide();
+                    $.activityIndicator.height = 0;
                     if (user_initiated) {
                         alert(L("login_not_done"));
                     }
@@ -181,9 +208,13 @@ function readInformation(uuid, user_initiated = false) {
         if (e.success == true) {
             retrieveUserData(uuid, e.value, user_initiated); // Il token è contenuto in e.value
         } else {
-            var alert = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("ok")]});
+            var alert = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("close"), L("login_delete")]});
             alert.addEventListener("click", function(e){
-                $.config.close();
+                if (e.index == 0) {
+                    $.config.close();
+                } else {
+                    triggerDeletion(UUID, false);
+                }
             });
             alert.show();
         }

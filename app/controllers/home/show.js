@@ -8,9 +8,15 @@ var args = $.args;
 // Nasconde tutti i buttons per mostrarli via via.
 $.Upload.hide();
 $.Info.hide();
+
 $.Wikipedia.hide();
+$.Wikipedia.height = 0;
+
 $.Osm_button.hide();
+
 $.address.hide();
+$.address.height = 0;
+
 if(OS_IOS) {
     $.mapview.hide();
 }
@@ -39,8 +45,10 @@ $.scrollable.width = Ti.UI.SIZE;
 var today = new Date();
 if (today.getMonth() == 8) { // I mesi in JavaScriptlandia partono da 0
     $.Alert.hide();
+    $.Alert.height = 0;
 } else {
     $.Alert.show();
+    $.Alert.height = Ti.UI.SIZE;
 }
 
 $.activityIndicator.show();
@@ -103,12 +111,13 @@ var client = Ti.Network.createHTTPClient({
                     Dialog.open({
                         title: response.itemlabel,
                         url: response.wikipedia
-                    })
+                    });
                 } else {
                     Ti.Platform.openURL(response.wikipedia);
                 }     
             });
             $.Wikipedia.show();
+            $.Wikipedia.height = Ti.UI.SIZE;
         }
         $.title.text = response.itemlabel;
         // Sistema per il caricamento delle fotografie
@@ -148,7 +157,7 @@ var client = Ti.Network.createHTTPClient({
                         }
                     }
                 });
-                tabgroup.activeTab.open(window, {modal: true, animated: true});     
+                tabgroup.activeTab.open(window, {animated: true});     
             } else {
                 if (response.noupload == false) {
                     startPhotoUpload();
@@ -311,6 +320,8 @@ var client = Ti.Network.createHTTPClient({
         if (response.address != null && response.address != undefined && response.address != "") {
             $.address.text = response.address;
             $.address.show();
+            $.address.height = Ti.UI.SIZE;
+
             $.activityIndicator.hide();
         } else {
             /* Ti.Geolocation.reverseGeocoder(response.latitude, response.longitude, function (e) {
@@ -328,6 +339,8 @@ var client = Ti.Network.createHTTPClient({
                 onload: function (e) {
                     $.address.text = this.responseText;
                     $.address.show();
+                    $.address.height = Ti.UI.SIZE;
+
                     $.activityIndicator.hide();
                 },
                 onerror: function (e) {

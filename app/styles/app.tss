@@ -25,6 +25,14 @@ overrode the settings with other TSS, XML, or JS settings:
 
 */
 
+"Window[platform=ios]" : {
+	backgroundColor: 'backgroundSemantic',
+}
+
+"View[platform=ios]" : {
+	backgroundColor: 'backgroundSemantic',
+}
+
 ".vertical": {
 	layout: "vertical"
 }

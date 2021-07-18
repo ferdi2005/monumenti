@@ -3,11 +3,6 @@
   
 }
 
-"TableView": {
-    height: Ti.UI.SIZE,
-    disableBounce: true,
-    separatorColor: "#000000"
-}
 
 "Label": {
     top: "5dp",

@@ -199,16 +199,18 @@ $.winsearch.addEventListener('blur', function(){
 function setFields(){
     if ($.optionbar.index == 0) {
         $.listsection.headerTitle = L('list_section_monuments_header');
-        $.searchfield.hinttextid = "monument_searchfield";
+        $.searchfield.hintText = L("monument_searchfield");
     } else {
         $.listsection.headerTitle = L('list_section_towns_header');
-        $.searchfield.hinttextid = "town_searchfield";
+        $.searchfield.hintText = L("town_searchfield");
     }
     $.listsection.setItems([]);
     $.activityIndicator.hide();
     $.searchfield.value = "";
     $.searchfield.blur();
-    Ti.UI.Android.hideSoftKeyboard();
+    if (OS_ANDROID) {
+        Ti.UI.Android.hideSoftKeyboard();
+    }
 }
 
 $.optionbar.addEventListener("click", setFields);

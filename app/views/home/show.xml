@@ -1,7 +1,6 @@
 <Alloy>
 	<Window class="container" id="show" titleid="placeholder_show_title">
 		<ScrollView id="scrollable" class="vertical-scroll">
-			<ActivityIndicator id="activityIndicator" />
 			<ImageView id="image"></ImageView>
 			<Label id="title" />
 			<Label id="description" />
@@ -13,6 +12,7 @@
 			<Button id="Wikipedia" titleid="wikipedia_article"/>
 			<Module id="mapview" module="ti.map" method="createView" if="OS_IOS" />
 			<OSMView module="ti.osm" id="osm" if="OS_ANDROID" />
+			<ActivityIndicator id="activityIndicator" />
 		</ScrollView>
 	</Window>
 </Alloy>

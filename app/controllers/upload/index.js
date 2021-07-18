@@ -40,7 +40,7 @@ function reload(e){
                     items = [];
 
                     photos.forEach(function(photo) {
-                        var serverurl = photo["serverurl"].replace("http", "https");
+                        var serverurl = photo["serverurl"];
                         if (photo["uploaded"] == false) {
                             if (photo["errorinfo"] == null || photo["errorinfo"] == undefined) {
                                 var errortext = L("photo_not_uploaded");

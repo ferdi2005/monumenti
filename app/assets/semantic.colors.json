@@ -2,5 +2,9 @@
     "tabColor": {
         "dark": "#FFFFFF",
         "light": "#222222"
+    },
+    "backgroundSemantic": {
+        "dark": "#2C2C2E",
+        "light": "#FFFFFF"
     }
 }

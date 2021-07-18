@@ -30,7 +30,11 @@ Array(images)[0].forEach(
                     });
                     alert.show();    
                 } else if(JSON.parse(this.responseText).error == "Photo upload not succedeed.") {
-                    var row = Titanium.UI.createTableViewRow({layout: "horizontal"});
+                    var view = Titanium.UI.createView({
+                        layout: "horizontal",
+                        width: Ti.UI.FILL,
+                        height: Ti.UI.SIZE
+                    });
 
                     var image = Titanium.UI.createImageView({
                         image: photo.media,
@@ -44,21 +48,33 @@ Array(images)[0].forEach(
                         textid: "error_image_upload",
                     });
 
-                    row.add(image);
-                    row.add(label);
+                    view.add(image);
+                    view.add(label);
 
-                    $.imagespace.add(row);
+                    $.photospace.add(view);
+                    
+                    $.photospace.add(Titanium.UI.createView({
+                        height: '2dp',
+                        left: '0dp',
+                        right: '0dp',
+                        borderWidth: '1',
+                        borderColor:'#aaa',
+                    }));
                 } else {
                     var response = JSON.parse(this.responseText);
                     var id = response.id;
+                    
+                    var container = Titanium.UI.createView({
+                        layout: "horizontal",
+                        width: Ti.UI.FILL,
+                        height: Ti.UI.SIZE
+                    });
 
-                    var row = Titanium.UI.createTableViewRow({layout: "horizontal"});
                     var image = Titanium.UI.createImageView({
                         image: photo.media,
                         top: "5dp",
                         left: "5dp",
-                        width: "100dp",
-                        left: 0
+                        width: "100dp"
                     });
 
                     var view = Titanium.UI.createView({
@@ -75,13 +91,13 @@ Array(images)[0].forEach(
                     }
 
                     var title = Titanium.UI.createTextField({
-                        hinttextid: "image_title",
+                        hintText: L("image_title"),
                         id: "title" + id,
                         inputType: Titanium.UI.INPUT_TYPE_CLASS_TEXT,
-                        width: Ti.UI.FILL,
                         height: Ti.UI.SIZE,
+                        width: Ti.UI.FILL,
                         left: "5dp",
-                        borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
+                        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_BEZEL,
                         borderWidth: '0.3',
                         value: pretitolo                 
                     });
@@ -92,14 +108,14 @@ Array(images)[0].forEach(
 
                     var predescrizione = response.city + " - " + response.label;
 
-                    var description = Titanium.UI.createTextField({
-                        hinttextid: "image_description",
+                    var description = Titanium.UI.createTextArea({
+                        hintText: L("image_description"),
                         id: "description" + id,
                         inputType: Titanium.UI.INPUT_TYPE_CLASS_TEXT,
-                        width: Ti.UI.FILL,
                         height: Ti.UI.SIZE,
+                        width: Ti.UI.FILL,
                         left: "5dp",
-                        borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
+                        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_BEZEL,
                         borderWidth: '0.3',
                         value: predescrizione               
                     });
@@ -109,33 +125,48 @@ Array(images)[0].forEach(
                     view.add(description);
 
                     var date = Titanium.UI.createTextField({
-                        hinttextid: "image_date",
+                        hintText: L("image_date"),
                         id: "date" + id,
                         inputType: Titanium.UI.INPUT_TYPE_CLASS_TEXT,
                         width: Ti.UI.FILL,
                         height: Ti.UI.SIZE,
                         left: "5dp",
-                        borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
+                        borderStyle: Titanium.UI.INPUT_BORDERSTYLE_BEZEL,
                         borderWidth: '0.3',
-                        value: response.today
+                        value: response.today // In realtà corrisponde ad oggi solo se la data exif della foto non è reperibile
                     });
 
                     fieldtext["date" + id] = date;
 
                     view.add(date);
 
-                    row.add(image);
-                    row.add(view);
+                    container.add(image);
+                    container.add(view);
+
+                    $.photospace.add(container);
+
+                    $.photospace.add(Titanium.UI.createView({
+                        height: '2dp',
+                        top: "5dp",
+                        left: '0dp',
+                        right: '0dp',
+                        borderWidth: '1',
+                        borderColor:'#aaa',
+                    }));
                     uploaded.push(id); // Array delle immagini caricate correttamente
 
-                    $.imagespace.add(row);
                     $.activityIndicator.hide();
                     $.activityIndicator.height = 0;
                     $.conferma.show();
                 }
             },
             onerror: function(e) {
-                var row = Titanium.UI.createTableViewRow({layout: "horizontal"});
+                var view = Titanium.UI.createView({
+                    layout: "horizontal",
+                    width: Ti.UI.FILL,
+                    height: Ti.UI.SIZE
+                });
+
                 var image = Titanium.UI.createImageView({
                     image: photo.media,
                     top: "5dp",
@@ -148,11 +179,19 @@ Array(images)[0].forEach(
                     textid: "error_image_upload",
                 });
 
-                row.add(image);
-                row.add(label);
+                view.add(image);
+                view.add(label);
 
-                $.imagespace.add(row);
-
+                $.photospace.add(view);
+                
+                $.photospace.add(Titanium.UI.createView({
+                    height: '2dp',
+                    left: '0dp',
+                    right: '0dp',
+                    borderWidth: '1',
+                    borderColor:'#aaa',
+                }));
+    
                 $.activityIndicator.hide();
                 $.activityIndicator.height = 0;
             },

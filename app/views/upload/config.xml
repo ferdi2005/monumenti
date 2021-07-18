@@ -1,8 +1,6 @@
 <Alloy>
 	<Window class="vertical" id="config" titleid="upload_settings">
 		<View class="vertical">
-			<ActivityIndicator id="activityIndicator" />
-
 			<Label textid="upload_settings_welcome"/>
 
 			<Button class="noshow" id="login_start" titleid="login_start" />
@@ -14,6 +12,8 @@
 			<Label class="noshow" id="mediawiki_data"/>
 			
 			<Label id="commento_login_start" class="noshow" textid="login_instructions"/>
+			
+			<ActivityIndicator id="activityIndicator" />
 		</View>
 	</Window>
 </Alloy>

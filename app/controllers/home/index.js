@@ -253,10 +253,11 @@ $.winmap.addEventListener('open', function(e){
       dialog.addEventListener('click', function(e) {
         if (e.index == 0) {
             Ti.App.Properties.setBool("flurry", true);
+            locate();
         } else {
             Ti.App.Properties.setBool("flurry", false);
+            locate();
         }
-        locate();
       });
       dialog.show();
   } else {

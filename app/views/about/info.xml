@@ -1,8 +1,9 @@
 <Alloy>
 	<Window class="vertical" id="info" titleid="info">
+		<ScrollView class="vertical-scroll">
+			<Label id="infocors" textid="infocors" />
 
-		<Label id="infocors" textid="infocors" />
-
-		<Button id="site" titleid="site" />
+			<Button id="site" titleid="site" />
+		</ScrollView>
 	</Window>
 </Alloy>

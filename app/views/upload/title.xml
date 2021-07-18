@@ -2,9 +2,7 @@
 	<Window titleid="photo_upload" class="vertical" id="title">
 		<ActivityIndicator id="activityIndicator" />
 		<ScrollView class="vertical-scroll">
-			<TableView id="tableview" class="vertical">
-				<TableViewSection id="imagespace" headerTitle="L('title_header_text')" />
-			</TableView>
+			<View id="photospace" class="vertical" />
 			<Label id="license" textid="license_acceptance" />
 			<Button id="conferma" titleid="confirm_upload" />
 			<Button id="annulla" titleid="stop_upload" />
