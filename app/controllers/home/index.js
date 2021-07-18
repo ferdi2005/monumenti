@@ -44,7 +44,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
     }
   }
   if (type == "city") {
-    url = 'https://cerca.wikilovesmonuments.it/monuments.json?city=' + e;
+    url = 'https://cerca.wikilovesmonuments.it/monuments.json?townid=' + e;
   }
 
   var xhr = Ti.Network.createHTTPClient({
@@ -253,11 +253,10 @@ $.winmap.addEventListener('open', function(e){
       dialog.addEventListener('click', function(e) {
         if (e.index == 0) {
             Ti.App.Properties.setBool("flurry", true);
-            locate();
         } else {
             Ti.App.Properties.setBool("flurry", false);
-            locate();
         }
+        locate();
       });
       dialog.show();
   } else {

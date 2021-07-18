@@ -37,14 +37,29 @@ if (args == "settings" && OS_ANDROID) {
             }); 
         };
 }
-// Event listener su Login update
-$.login_update.addEventListener("click", function(e){
-    readInformation(UUID, true);
-});
 
 // Dati utili
 const UUID = Titanium.Platform.id; // identificativo univoco del device
 const USERNAME = String(Titanium.Platform.username); // username del device (a scopi statistici)
+
+// Cancella in caso di problemi
+if (args == "delete") {
+    var alert = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("close"), L("login_delete")]});
+    alert.addEventListener("click", function(e){
+        if (e.index == 0) {
+            $.config.close();
+        } else {
+            triggerDeletion(UUID, false);
+            $.config.close();
+        }
+    });
+    alert.show();
+
+}
+// Event listener su Login update
+$.login_update.addEventListener("click", function(e){
+    readInformation(UUID, true);
+});
 
 // In caso di errori o richiesta, cancella la registrazione
 function triggerDeletion(uuid, user_initiated = false){
@@ -225,7 +240,11 @@ function readInformation(uuid, user_initiated = false) {
 
 $.config.addEventListener("open", function(e) {
     if (args == "show") {
-        alert(L("no_upload_until_commons"));
+        var dialog = Ti.UI.createAlertDialog({
+            messageid: 'no_upload_until_commons',
+            ok: L("ok"),
+          });
+    dialog.show();        
     }
     // Nel caso in cui non sia stata effettuata la registrazione, procede ad effettuarla
     if (Ti.App.Properties.getBool("registrato", false) == false) {
@@ -250,7 +269,15 @@ $.config.addEventListener("open", function(e) {
                             Ti.App.Properties.setBool("registrato", true); // Imposta l'avvenuta registrazione con successo
                             retrieveUserData(UUID, GENERATED_TOKEN);
                         } else {
-                            alert(String.format(L("generic_error"), e.error));
+                            var alert = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("close"), L("login_delete")]});
+                            alert.addEventListener("click", function(e){
+                                if (e.index == 0) {
+                                    $.config.close();
+                                } else {
+                                    triggerDeletion(UUID, false);
+                                }
+                            });
+                            alert.show();                                        
                         }
                     });
 

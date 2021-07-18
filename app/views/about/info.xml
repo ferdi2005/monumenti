@@ -3,7 +3,7 @@
 		<ScrollView class="vertical-scroll">
 			<Label id="infocors" textid="infocors" />
 
-			<Button id="site" titleid="site" />
+			<Button class="col_8 col_offset_1" id="site" titleid="site" />
 		</ScrollView>
 	</Window>
 </Alloy>

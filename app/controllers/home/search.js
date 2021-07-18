@@ -73,8 +73,8 @@ function searchTowns(value, user_initiated) {
                 response.forEach(function(town) {
                     itemdata =  { 
                         properties: {
-                            itemId: "town" + town.name,
-                            title: town.name,
+                            itemId: "town" + town.item,
+                            title: town.visible_name,
                             accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
                         }
                     }
@@ -161,6 +161,11 @@ $.listview.addEventListener('itemclick', function(e){
 });
 
 $.winsearch.addEventListener('open', function(){
+    // Setup iniziale della selezione
+    $.listsection.headerTitle = L('list_section_monuments_header');
+    $.searchfield.hintText = L("monument_searchfield");
+    $.optionbar.index = 0;
+
     $.searchfield.addEventListener('return', function (e) {
         if (e.value.length < 3) {
             alert(L("minimum_char"));
@@ -185,7 +190,9 @@ $.winsearch.addEventListener('open', function(){
                 searchTowns(e.value, false);
             }
         }
-    })
+    });
+
+    setFields();
  });
 
 $.winsearch.addEventListener('blur', function(){

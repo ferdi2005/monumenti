@@ -78,8 +78,17 @@ var client = Ti.Network.createHTTPClient({
                 };
                 $.mapview.center = [response.latitude, response.longitude];
                 $.mapview.show();
-            }
-
+                $.mapview.addEventListener('click', function (e) {
+                    if (e.annotation != undefined && e.annotation != null && !e.deselected) {
+                        if (e.clicksource == "pin") {
+                            tabgroup.activeTab = 0;
+                            Alloy.Globals.events.trigger("map_close", {latitude: response.latitude, longitude: response.longitude});
+                            $.show.close();
+                        }
+                    }
+                    });
+                }
+                  
             if (OS_ANDROID) {
                 $.osm.location = {
                     latitude: response.latitude,
@@ -138,7 +147,7 @@ var client = Ti.Network.createHTTPClient({
                         if (k.success == true) {
                             Alloy.Globals.utils.open("upload/title", [Titanium.Platform.id, k.value, e.images, response.item]);
                         } else {
-                            alert(L("keychain_error"));
+                            Alloy.Globals.utils.open("upload/config", "delete");
                         }
                     });
                     keychainItem.read();

@@ -18,6 +18,8 @@ var today = new Date();
 
 var counter = 0;
 
+var length = Array(images)[0].length; // Per mostrare i bottoni finali solo al momento giusto
+
 Array(images)[0].forEach(
     function(photo) {
         var url = Alloy.Globals.backend + "/photoupload.json"
@@ -52,14 +54,21 @@ Array(images)[0].forEach(
                     view.add(label);
 
                     $.photospace.add(view);
+                
+                    if (length > 1) {
+                        $.photospace.add(Titanium.UI.createView({
+                            height: '2dp',
+                            left: '0dp',
+                            right: '0dp',
+                            borderWidth: '1',
+                            borderColor:'#aaa',
+                        }));
+                    }
                     
-                    $.photospace.add(Titanium.UI.createView({
-                        height: '2dp',
-                        left: '0dp',
-                        right: '0dp',
-                        borderWidth: '1',
-                        borderColor:'#aaa',
-                    }));
+                    if (length >= counter) {
+                        $.activityIndicator.hide();
+                        $.activityIndicator.height = 0;
+                    }
                 } else {
                     var response = JSON.parse(this.responseText);
                     var id = response.id;
@@ -96,9 +105,10 @@ Array(images)[0].forEach(
                         inputType: Titanium.UI.INPUT_TYPE_CLASS_TEXT,
                         height: Ti.UI.SIZE,
                         width: Ti.UI.FILL,
+                        font: {fontSize: 16 },
                         left: "5dp",
                         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_BEZEL,
-                        borderWidth: '0.3',
+                        borderWidth: 0.3,
                         value: pretitolo                 
                     });
                     
@@ -115,8 +125,10 @@ Array(images)[0].forEach(
                         height: Ti.UI.SIZE,
                         width: Ti.UI.FILL,
                         left: "5dp",
+                        font: {fontSize: 16 },
+                        enableReturnKey: true,
                         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_BEZEL,
-                        borderWidth: '0.3',
+                        borderWidth: 0.3,
                         value: predescrizione               
                     });
 
@@ -131,12 +143,15 @@ Array(images)[0].forEach(
                         width: Ti.UI.FILL,
                         height: Ti.UI.SIZE,
                         left: "5dp",
+                        font: {fontSize: 16 },
                         borderStyle: Titanium.UI.INPUT_BORDERSTYLE_BEZEL,
-                        borderWidth: '0.3',
+                        borderWidth: 0.3,
                         value: response.today // In realtà corrisponde ad oggi solo se la data exif della foto non è reperibile
                     });
 
                     fieldtext["date" + id] = date;
+
+                    uploaded.push(id); // Array delle immagini caricate correttamente
 
                     view.add(date);
 
@@ -144,20 +159,23 @@ Array(images)[0].forEach(
                     container.add(view);
 
                     $.photospace.add(container);
+                
+                    if (length > 1) {
+                        $.photospace.add(Titanium.UI.createView({
+                            height: '2dp',
+                            top: "5dp",
+                            left: '0dp',
+                            right: '0dp',
+                            borderWidth: '1',
+                            borderColor:'#aaa',
+                        }));
+                    }
 
-                    $.photospace.add(Titanium.UI.createView({
-                        height: '2dp',
-                        top: "5dp",
-                        left: '0dp',
-                        right: '0dp',
-                        borderWidth: '1',
-                        borderColor:'#aaa',
-                    }));
-                    uploaded.push(id); // Array delle immagini caricate correttamente
-
-                    $.activityIndicator.hide();
-                    $.activityIndicator.height = 0;
-                    $.conferma.show();
+                    if (length >= counter) {
+                        $.activityIndicator.hide();
+                        $.activityIndicator.height = 0;
+                        $.conferma.show();
+                    }
                 }
             },
             onerror: function(e) {

@@ -2,10 +2,12 @@
 	<Window titleid="photo_upload" class="vertical" id="title">
 		<ActivityIndicator id="activityIndicator" />
 		<ScrollView class="vertical-scroll">
-			<View id="photospace" class="vertical" />
-			<Label id="license" textid="license_acceptance" />
-			<Button id="conferma" titleid="confirm_upload" />
-			<Button id="annulla" titleid="stop_upload" />
+			<View id="photospace" class="vertical" height="Ti.UI.SIZE" />
+			<View id="other_space" class="vertical" height="Ti.UI.SIZE">
+				<Label id="license" textid="license_acceptance" />
+				<Button id="conferma" titleid="confirm_upload" />
+				<Button id="annulla" titleid="stop_upload" />
+			</View>
 		</ScrollView>
 	</Window>
 </Alloy>

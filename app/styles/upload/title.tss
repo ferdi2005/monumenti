@@ -26,6 +26,7 @@
 
 ".image": {
     top: "5dp",
+    bottom: "5dp",
     left: "5dp",
     width: "100dp",
     left: 0
@@ -58,4 +59,8 @@
 "#annulla": {
     backgroundColor: "#8f0000",
     color: "#FFFFFF",
+}
+
+".other_space": {
+    top: "5dp",
 }
