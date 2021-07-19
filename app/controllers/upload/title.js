@@ -65,7 +65,7 @@ Array(images)[0].forEach(
                         }));
                     }
                     
-                    if (length >= counter) {
+                    if (counter == length) {
                         $.activityIndicator.hide();
                         $.activityIndicator.height = 0;
                     }
@@ -88,7 +88,7 @@ Array(images)[0].forEach(
 
                     var view = Titanium.UI.createView({
                         layout: "vertical",
-                        height: Ti.UI.SIZE
+                        height: Ti.UI.SIZE,
                     });
 
                     counter += 1;
@@ -99,7 +99,7 @@ Array(images)[0].forEach(
                         var pretitolo = response.city + " - " + response.label + " - " + response.timestamp + " " + counter;
                     }
 
-                    var title = Titanium.UI.createTextField({
+                    var title = Titanium.UI.createTextArea({
                         hintText: L("image_title"),
                         id: "title" + id,
                         inputType: Titanium.UI.INPUT_TYPE_CLASS_TEXT,
@@ -136,7 +136,7 @@ Array(images)[0].forEach(
 
                     view.add(description);
 
-                    var date = Titanium.UI.createTextField({
+                    var date = Titanium.UI.createTextArea({
                         hintText: L("image_date"),
                         id: "date" + id,
                         inputType: Titanium.UI.INPUT_TYPE_CLASS_TEXT,
@@ -160,18 +160,16 @@ Array(images)[0].forEach(
 
                     $.photospace.add(container);
                 
-                    if (length > 1) {
-                        $.photospace.add(Titanium.UI.createView({
-                            height: '2dp',
-                            top: "5dp",
-                            left: '0dp',
-                            right: '0dp',
-                            borderWidth: '1',
-                            borderColor:'#aaa',
-                        }));
-                    }
+                    $.photospace.add(Titanium.UI.createView({
+                        height: '2dp',
+                        top: "5dp",
+                        left: '0dp',
+                        right: '0dp',
+                        borderWidth: '1',
+                        borderColor:'#aaa',
+                    }));
 
-                    if (length >= counter) {
+                    if (counter == length) {
                         $.activityIndicator.hide();
                         $.activityIndicator.height = 0;
                         $.conferma.show();
@@ -280,32 +278,29 @@ $.conferma.addEventListener("click", function(e){
     }
 });
 
-$.annulla.addEventListener("click", function(e){
-    if(uploaded.length > 0) {
-        $.activityIndicator.show();
+function photo_cancel(){
+    $.activityIndicator.show();
 
-        var url = Alloy.Globals.backend + "/photocancel.json";
-        var client = Ti.Network.createHTTPClient({
-            onload: function(e){
-                $.activityIndicator.hide();
-                $.activityIndicator.height = 0;
-                $.title.close();
-            },
-            onerror: function(e){
-                $.activityIndicator.hide();
-                $.activityIndicator.height = 0;
-                $.title.close();
-            },
+    var url = Alloy.Globals.backend + "/photocancel.json";
+    var client = Ti.Network.createHTTPClient({
+        onload: function(e){
+            $.activityIndicator.hide();
+            $.activityIndicator.height = 0;
+            $.title.close();
+        },
+        onerror: function(e){
+            $.activityIndicator.hide();
+            $.activityIndicator.height = 0;
+            $.title.close();
+        },
             timeout: 20000
         });
         client.open("POST", url);
-        var content = {
-            uuid: UUID,
-            token: TOKEN,
-            ids: JSON.stringify(uploaded)
-        };
-        client.send(content);
-    } else {
-        $.title.close();
-    }
-});
+    var content = {
+        uuid: UUID,
+        token: TOKEN,
+        ids: JSON.stringify(uploaded)
+    };
+    client.send(content);
+}
+$.annulla.addEventListener("click", photo_cancel); // Tale funzione viene eseguita anche onBack

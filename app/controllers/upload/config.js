@@ -22,20 +22,27 @@ $.mediawiki_data.height = 0;
 
 $.login_update.hide();
 $.login_update.height = 0;
+    
+// Non mostrare il bottone indietro su iOS se arriva da un passaggio obbligatorio
+if (args == "show") {
+    $.config.hidesBackButton = true;
+}
 
 // Mostra bottone indietro
-if (args == "settings" && OS_ANDROID) {
-    $.config.activity.onCreateOptionsMenu = function(e) { 
-            var menu = e.menu; 
-            var menuItem = menu.add({ 
-                title: "Back", 
-                icon: "images/back.png", 
-                showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
-            }); 
-            menuItem.addEventListener("click", function(e) { 
-                $.config.close();
-            }); 
-        };
+if (args == "settings") {
+    if (OS_ANDROID) {
+        $.config.activity.onCreateOptionsMenu = function(e) { 
+                var menu = e.menu; 
+                var menuItem = menu.add({ 
+                    title: "Back", 
+                    icon: "images/back.png", 
+                    showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
+                }); 
+                menuItem.addEventListener("click", function(e) { 
+                    $.config.close();
+                }); 
+            };
+    }
 }
 
 // Dati utili
@@ -248,6 +255,10 @@ $.config.addEventListener("open", function(e) {
     }
     // Nel caso in cui non sia stata effettuata la registrazione, procede ad effettuarla
     if (Ti.App.Properties.getBool("registrato", false) == false) {
+        // Elimina un eventuale token già presente (risolve un bug su iOS per cui alla reinstallazione dell'app persisteva il keychainItem
+        var keychainItem = Identity.createKeychainItem({ identifier: "token" });
+        keychainItem.reset();
+    
         const GENERATED_TOKEN = Titanium.Platform.createUUID();
         var credentials = {
             uuid: UUID,

@@ -111,9 +111,9 @@ function findmon(e, type, latkeep, latdelta, londelta) {
             annotation.pincolor = Map.ANNOTATION_PURPLE;
           } else if (item.tree) {
             if (item.with_photos) {
-              annotation.image = "/images/tree blue.png";
+              annotation.image = "/images/tree blue ios.png";
             } else {
-              annotation.image = "/images/tree red.png"
+              annotation.image = "/images/tree red ios.png"
             }
           } else {
              if (item.with_photos) {
@@ -134,13 +134,13 @@ function findmon(e, type, latkeep, latdelta, londelta) {
             var icon = "/images/Info grey.png"
           } else if (item.with_photos) {
             if (item.tree) {
-              var icon = "/images/tree blue.png";
+              var icon = "/images/tree blue android.png";
             } else {
               var icon = "/images/Info blue.png";
             }
           } else {
             if (item.tree) {
-              var icon = "/images/tree red.png";
+              var icon = "/images/tree red android.png";
             } else {
               var icon = "/images/Info red.png";
             }

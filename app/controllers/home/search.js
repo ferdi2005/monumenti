@@ -36,7 +36,9 @@ function setMonumentsData(response, user_initiated, located = false, location){
                 properties: {
                     itemId: "monument" + item.item,
                     title: title ,
-                    accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE
+                    accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
+                    latitude: item.latitude,
+                    longitude: item.longitude
                 }
             }
             data.push(itemdata);
@@ -76,12 +78,16 @@ function searchTowns(value, user_initiated) {
                             itemId: "town" + town.item,
                             title: town.visible_name,
                             accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
+                            town_name: town.name
                         }
                     }
                     data.push(itemdata);   
                 });
 
                 if ($.listsection.items != data) {
+                    data = data.sort(function(a,b) {
+                        return a.properties.town_name.length - b.properties.town_name.length;
+                    });
                     $.listsection.setItems(data);
                 }
 

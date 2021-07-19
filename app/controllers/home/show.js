@@ -113,6 +113,7 @@ var client = Ti.Network.createHTTPClient({
             $.description.text = response.itemdescription;
         } else {
             $.description.hide();
+            $.description.height = 0;
         }
         if (response.wikipedia != null && response.wikipedia != undefined && response.wikipedia != "") {
             $.Wikipedia.addEventListener("click", function(){
@@ -283,9 +284,9 @@ var client = Ti.Network.createHTTPClient({
                     annotation.pincolor = Map.ANNOTATION_PURPLE;
                 } else if (response.tree) {
                     if (response.with_photos) {
-                      annotation.image = "/images/tree blue.png";
+                      annotation.image = "/images/tree blue ios.png";
                     } else {
-                      annotation.image = "/images/tree red.png"
+                      annotation.image = "/images/tree red ios.png"
                     }
                 } else {
                      if (response.with_photos) {
@@ -302,13 +303,13 @@ var client = Ti.Network.createHTTPClient({
                     var icon = "/images/Info grey.png"
                 } else if (response.with_photos) {
                     if (response.tree) {
-                        var icon = "/images/tree blue.png";
+                        var icon = "/images/tree blue android.png";
                     } else {
                         var icon = "/images/Info blue.png";
                     }
                 } else {
                     if (response.tree) {
-                        var icon = "/images/tree red.png";
+                        var icon = "/images/tree red android.png";
                     } else {
                         var icon = "/images/Info red.png";
                     }

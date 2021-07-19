@@ -11,10 +11,6 @@
     right: "5dp"
 }
 
-"TextField": {    
-    borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
-    borderWidth: '0.3'
-}
 /*
 "TextArea": {
     borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
@@ -61,6 +57,10 @@
     color: "#FFFFFF",
 }
 
-".other_space": {
-    top: "5dp",
+".photospace": {
+    bottom: "5dp",
+}
+
+".view": {
+    height: Ti.UI.FILL
 }
