@@ -1,3 +1,6 @@
+"View": {
+    height: Ti.UI.FILL
+}
 ".image": {
     top: "5dp",
     left: "10dp",
@@ -11,7 +14,7 @@
 }
 
 "ListView[platform=ios]": {
-    backgroundColor: "backgroundSemantic"
+    backgroundColor: "backgroundSemantic",
 }
 
 "Label": {
