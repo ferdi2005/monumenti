@@ -244,7 +244,6 @@ function locate(latkeep, latdelta, londelta) {
 }
 
 $.winmap.addEventListener('open', locate);
-$.winmap.addEventListener('focus', locate);
 
 if (OS_IOS) {
   // setInterval(localize(), 120000);
