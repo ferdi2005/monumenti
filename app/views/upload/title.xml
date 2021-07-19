@@ -1,5 +1,5 @@
 <Alloy>
-	<Window titleid="photo_upload" class="vertical" id="title" onBack="photo_cancel" hidesBackButton="true">
+	<Window titleid="photo_upload" class="vertical" id="title" hidesBackButton="true">
 		<View class="view">
 			<ActivityIndicator id="activityIndicator" />
 			<ScrollView class="vertical-scroll">
