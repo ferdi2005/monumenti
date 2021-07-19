@@ -251,7 +251,7 @@ $.config.addEventListener("open", function(e) {
     if (args == "show") {
         var dialog = Ti.UI.createAlertDialog({
             messageid: 'no_upload_until_commons',
-            ok: L("ok"),
+            okid: "ok",
           });
     dialog.show();        
     }
