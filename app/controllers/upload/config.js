@@ -97,7 +97,7 @@ function triggerDeletion(uuid, user_initiated = false){
                 },
                 onerror: function(e) {
                     if (user_initiated) {
-                        var alert = Ti.UI.createAlertDialog({message: L("server_deletion_not_possible") + e.error, buttonNames: [L("ok")]});
+                        var alert = Ti.UI.createAlertDialog({message: L("server_deletion_not_possible") + e.error, okid: "ok"});
                         alert.addEventListener("click", function(e){
                             $.config.close();
                         });
