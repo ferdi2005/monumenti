@@ -94,7 +94,7 @@ function reload(e){
                     $.activityIndicator.height = 0;
                 },
                 onerror: function(e) {
-                    var alert = Ti.UI.createAlertDialog({message:String.format(L("generic_error"), e.error), buttonNames: [L("ok")]});
+                    var alert = Ti.UI.createAlertDialog({message:String.format(L("generic_error"), e.error), okid: "ok"});
                     alert.addEventListener("click", function(e){
                         $.index.close();
                     });

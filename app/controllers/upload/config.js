@@ -89,7 +89,7 @@ function triggerDeletion(uuid, user_initiated = false){
                     } else {
                         message = "registration_deleted_by_error";
                     }
-                    var alert = Ti.UI.createAlertDialog({messageid: message, buttonNames: [L("ok")]});
+                    var alert = Ti.UI.createAlertDialog({messageid: message, okid: "ok"});
                     alert.addEventListener("click", function(e){
                         $.config.close();
                     });
@@ -110,7 +110,7 @@ function triggerDeletion(uuid, user_initiated = false){
             Ti.App.Properties.setBool("registrato", false);
             Ti.App.Properties.setBool("autorizzato", false);
 
-            var alert = Ti.UI.createAlertDialog({messageid: "server_deletion_not_possible", buttonNames: [L("ok")]});
+            var alert = Ti.UI.createAlertDialog({messageid: "server_deletion_not_possible", okid: "ok"});
             alert.addEventListener("click", function(e){
                 $.config.close();
             });

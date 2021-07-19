@@ -243,26 +243,8 @@ function locate(latkeep, latdelta, londelta) {
   }
 }
 
-$.winmap.addEventListener('open', function(e){  
-  if (Ti.App.Properties.getBool("flurry", "notset") == "notset") {
-    var dialog = Ti.UI.createAlertDialog({
-        buttonNames: [L("accept"), L("refuse")],
-        messageid: "flurry_ask",
-        titleid: 'flurry_title'
-      });
-      dialog.addEventListener('click', function(e) {
-        if (e.index == 0) {
-            Ti.App.Properties.setBool("flurry", true);
-        } else {
-            Ti.App.Properties.setBool("flurry", false);
-        }
-        locate();
-      });
-      dialog.show();
-  } else {
-    locate();
-  }
-});
+$.winmap.addEventListener('open', locate);
+$.winmap.addEventListener('focus', locate);
 
 if (OS_IOS) {
   // setInterval(localize(), 120000);

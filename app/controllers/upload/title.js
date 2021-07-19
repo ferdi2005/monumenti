@@ -26,7 +26,7 @@ Array(images)[0].forEach(
         var client = Ti.Network.createHTTPClient({
             onload: function(e) {
                 if (JSON.parse(this.responseText).error == "User not found.") {
-                    var alert = Ti.UI.createAlertDialog({messageid: "error_please_logout", buttonNames: [L("ok")]});
+                    var alert = Ti.UI.createAlertDialog({messageid: "error_please_logout", okid: "ok"});
                     alert.addEventListener("click", function(e){
                         $.title.close();
                     });
@@ -261,7 +261,7 @@ $.conferma.addEventListener("click", function(e){
                 alert.show();
             },
             onerror: function(e){
-                var alert = Ti.UI.createAlertDialog({message: String.format("image_queue_error", e.error), buttonNames: [L("ok")]});
+                var alert = Ti.UI.createAlertDialog({message: String.format("image_queue_error", e.error), okid: "ok"});
                 alert.addEventListener("click", function(e){
                     $.title.close();
                 });
@@ -279,6 +279,7 @@ $.conferma.addEventListener("click", function(e){
 });
 
 function photo_cancel(){
+    Ti.API.log("ciao");
     $.activityIndicator.show();
 
     var url = Alloy.Globals.backend + "/photocancel.json";
