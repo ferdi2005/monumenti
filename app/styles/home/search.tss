@@ -19,3 +19,7 @@
 "ListView": {
     separatorStyle: Titanium.UI.TABLE_VIEW_SEPARATOR_STYLE_SINGLE_LINE
 }
+
+"ListView[platform=ios]": {
+    backgroundColor: "backgroundSemantic"
+}

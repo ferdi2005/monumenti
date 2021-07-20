@@ -1,3 +1,6 @@
+"View": {
+    height: Ti.UI.FILL
+}
 ".image": {
     top: "5dp",
     left: "10dp",
@@ -7,7 +10,11 @@
 
 "ListView": {
     separatorStyle: Titanium.UI.TABLE_VIEW_SEPARATOR_STYLE_SINGLE_LINE,
-    height: Ti.UI.SIZE
+    height: Ti.UI.SIZE,
+}
+
+"ListView[platform=ios]": {
+    backgroundColor: "backgroundSemantic",
 }
 
 "Label": {

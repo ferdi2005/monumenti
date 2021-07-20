@@ -210,7 +210,8 @@ function locate(latkeep, latdelta, londelta) {
     });
   } else {
     Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function (e) {
-      if (e.success) {
+      Ti.API.log(JSON.stringify(e));
+      if (e.success || e.authorizationStatus == 3) { // su iOS ritorna success solo quando e.authorizationStatus == 4, anche il 3 per noi va bene.
         Ti.Geolocation.getCurrentPosition(function (e) {
           if (OS_ANDROID) {
             findmon(e, "geoloc", latkeep, latdelta);
@@ -244,7 +245,6 @@ function locate(latkeep, latdelta, londelta) {
 }
 
 $.winmap.addEventListener('open', locate);
-$.winmap.addEventListener('focus', locate);
 
 if (OS_IOS) {
   // setInterval(localize(), 120000);

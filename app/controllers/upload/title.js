@@ -304,4 +304,7 @@ function photo_cancel(){
     };
     client.send(content);
 }
-$.annulla.addEventListener("click", photo_cancel); // Tale funzione viene eseguita anche onBack
+$.annulla.addEventListener("click", photo_cancel);
+
+// Cancellazione anche alla pressione del tasto indietro
+$.title.onBack = photo_cancel;
