@@ -64,7 +64,7 @@ function setMonumentsData(response, user_initiated, located = false, location){
 function searchTowns(value, user_initiated) {
     $.activityIndicator.show();
     
-    var url = 'http://cerca.wikilovesmonuments.it/towns/search.json?query=' + encodeURI(value);
+    var url = 'http://cerca.wikilovesmonuments.it/towns/search.json?query=' + encodeURI(value) + "&locale=" + Titanium.Locale.currentLanguage;
     var xhr = Ti.Network.createHTTPClient({
         onload: function(e) {
             response = JSON.parse(this.responseText);
@@ -73,14 +73,21 @@ function searchTowns(value, user_initiated) {
                 data = []
 
                 response.forEach(function(town) {
+                    if (Titanium.Locale.currentLanguage == "it") {
+                        var town_name = town.visible_name;
+                    } else {
+                        var town_name = town.english_name;
+                    }
+    
                     itemdata =  { 
                         properties: {
                             itemId: "town" + town.item,
-                            title: town.visible_name,
+                            title: town_name,
                             accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
                             town_name: town.name
                         }
                     }
+
                     data.push(itemdata);   
                 });
 
@@ -175,7 +182,7 @@ $.winsearch.addEventListener('open', function(){
     $.searchfield.addEventListener('return', function (e) {
         if (e.value.length < 3) {
             alert(L("minimum_char"));
-        } else if (e.value.length < 5) {
+        } else {
             if ($.optionbar.index == 0) {
                 searchMonuments(e.value, true);
             } else {

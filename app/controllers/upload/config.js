@@ -3,6 +3,10 @@ const Dialog = require('ti.webdialog');
 
 var args = $.args;
 
+// Dati utili
+const UUID = Titanium.Platform.id; // identificativo univoco del device
+const USERNAME = String(Titanium.Platform.username); // username del device (a scopi statistici)
+
 // Mostra activity indicator
 $.activityIndicator.show();
 $.activityIndicator.height = Ti.UI.SIZE;
@@ -23,6 +27,28 @@ $.mediawiki_data.height = 0;
 $.login_update.hide();
 $.login_update.height = 0;
     
+// Aggiunge event lister
+$.login_start.addEventListener("click", function(e){
+    var keychainItem = Identity.createKeychainItem({ identifier: "token" });
+    keychainItem.addEventListener("read", function(e){
+        if (e.success == true) {
+            startLogin(UUID, e.value); // Il token è contenuto in e.value
+        } else {
+            var message = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("close"), L("login_delete")]});
+            message.addEventListener("click", function(e){
+                if (e.index == 0) {
+                    $.config.close();
+                } else {
+                    triggerDeletion(UUID, false);
+                }
+            });
+            message.show();
+        }
+        
+    });
+    keychainItem.read();
+});
+
 // Non mostrare il bottone indietro su iOS se arriva da un passaggio obbligatorio
 if (args == "show") {
     $.config.hidesBackButton = true;
@@ -44,10 +70,6 @@ if (args == "settings") {
             };
     }
 }
-
-// Dati utili
-const UUID = Titanium.Platform.id; // identificativo univoco del device
-const USERNAME = String(Titanium.Platform.username); // username del device (a scopi statistici)
 
 // Cancella in caso di problemi
 if (args == "delete") {
@@ -144,8 +166,9 @@ function showUserInfo(userInfo) {
 }
 
 // Svolge le operazioni per aprire la finestra di login
-function startLogin(userInfo) {
-    var url = Alloy.Globals.backend + "/start_login?uuid=" + userInfo.uuid + "&token=" + userInfo.token;
+function startLogin(uuid, token) {
+
+    var url = Alloy.Globals.backend + "/start_login?uuid=" + uuid + "&token=" + token;
     if (Dialog.isSupported()) {
         if (OS_ANDROID || !Dialog.isOpen()) {
             Dialog.open({
@@ -154,7 +177,8 @@ function startLogin(userInfo) {
                 dismissButtonStyle: Dialog.DISMISS_BUTTON_STYLE_DONE
             });
             Dialog.addEventListener("close", function(e){
-                retrieveUserData(userInfo.uuid, userInfo.token);
+                $.login_update.hide();
+                retrieveUserData(uuid, token);
                 $.activityIndicator.show();
                 $.activityIndicator.height = Ti.UI.SIZE;
             });
@@ -205,9 +229,6 @@ function retrieveUserData(uuid, token, user_initiated = false) {
                     $.commento_login_start.show();
                     $.commento_login_start.height = Ti.UI.SIZE;
 
-                    $.login_start.addEventListener("click", function(e){
-                        startLogin(userInfo);
-                    });
                     $.activityIndicator.hide();
                     $.activityIndicator.height = 0;
                     if (user_initiated) {

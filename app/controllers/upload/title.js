@@ -280,7 +280,6 @@ $.conferma.addEventListener("click", function(e){
 });
 
 function photo_cancel(){
-    Ti.API.log("ciao");
     $.activityIndicator.show();
 
     var url = Alloy.Globals.backend + "/photocancel.json";
