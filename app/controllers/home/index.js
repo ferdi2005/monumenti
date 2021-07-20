@@ -2,6 +2,11 @@
 
 if (OS_IOS) {
   var Map = require('ti.map');
+
+  if (Ti.UI.userInterfaceStyle == Ti.UI.USER_INTERFACE_STYLE_DARK) {
+    $.refresh.backgroundImage = "/images/refresh white.png";
+    $.my_location.backgroundImage = "/images/search white.png";
+  }
 }
 
 $.activityIndicator.hide();
