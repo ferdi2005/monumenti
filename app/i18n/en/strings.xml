@@ -57,7 +57,7 @@
     <string name="monument_searchfield">Insert the name of the monument...</string>
     <string name="list_section_monuments_header">Found Monuments</string>
     <string name="list_section_towns_header">Found cities</string>
-    <string name="winsearch">Search by name</string>
+    <string name="winsearch">Search</string>
     <string name="placeholder_show_title">Monument</string>
     <string name="upload_button">Upload your photos</string>
     <string name="only_september">Only photos uploaded from September 1 to 30 will participate in Wiki Loves Monuments.</string>
