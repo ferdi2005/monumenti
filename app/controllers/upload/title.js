@@ -99,6 +99,11 @@ Array(images)[0].forEach(
                         var pretitolo = response.city + " - " + response.label + " - " + response.timestamp + " " + counter;
                     }
 
+                    var title_label = Titanium.UI.createLabel({
+                        textid: "image_title",
+                        font: {fontSize: 12, fontWeight: "bold"},
+                    });
+
                     var title = Titanium.UI.createTextArea({
                         hintText: L("image_title"),
                         id: "title" + id,
@@ -114,9 +119,15 @@ Array(images)[0].forEach(
                     
                     fieldtext["title" + id] = title;
 
+                    view.add(title_label);
                     view.add(title);
 
                     var predescrizione = response.city + " - " + response.label;
+
+                    var description_label = Titanium.UI.createLabel({
+                        textid: "image_description",
+                        font: {fontSize: 12, fontWeight: "bold"},
+                    });
 
                     var description = Titanium.UI.createTextArea({
                         hintText: L("image_description"),
@@ -134,8 +145,13 @@ Array(images)[0].forEach(
 
                     fieldtext["description" + id] = description;
 
+                    view.add(description_label);
                     view.add(description);
 
+                    var date_label = Titanium.UI.createLabel({
+                        textid: "image_date",
+                        font: {fontSize: 12, fontWeight: "bold"},
+                    });
                     var date = Titanium.UI.createTextArea({
                         hintText: L("image_date"),
                         id: "date" + id,
@@ -150,10 +166,10 @@ Array(images)[0].forEach(
                     });
 
                     fieldtext["date" + id] = date;
+                    view.add(date_label);
+                    view.add(date);
 
                     uploaded.push(id); // Array delle immagini caricate correttamente
-
-                    view.add(date);
 
                     container.add(image);
                     container.add(view);

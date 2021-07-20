@@ -38,9 +38,9 @@
     <string name="photo_not_uploaded_with_reason">Image not uploaded due to error: %s.</string>
     <string name="error_please_logout">An error has occurred. Log out from the Upload Settings Manager in the settings tab.</string>
     <string name="error_image_upload">Error uploading this image, please try again later.</string> 
-    <string name="image_title">Image Title</string>
+    <string name="image_title">Image title</string>
     <string name="image_description">Image description</string>
-    <string name="image_date">Photo Date (dd/mm/aaaa)</string>
+    <string name="image_date">Image creation date (dd/mm/yyyy)</string>
     <string name="error_date_format">Warning: the date format must be dd/mm/yyyyy such as 11/05/2005.</string>
     <string name="fields_are_mandatory">The fields are mandatory! Fill them all out before uploading.</string>
     <string name="image_queue_success">Photos successfully queued for upload! You can check their status in the settings.</string> 
@@ -77,7 +77,7 @@
     <string name="photo_upload">Photo upload</string>
     <string name="index_header_text">Images already uploaded</string> 
     <string name="title_header_text">Images to upload</string> 
-    <string name="license_acceptance">I agree to irrevocably release these images under the Creative Commons-Attribution-ShareAlike 4.0 license. I understand that they will be published on Wikimedia Commons and will be reusable in perpetuity under the terms of that license. I also declare to be the author of the images. I am aware that the criminal and civil responsibility for what I upload is my own.</string>
+    <string name="license_acceptance">You can leave the fields as they are or edit them making them more informative. Your choice!\nI agree to irrevocably release these images under the Creative Commons-Attribution-ShareAlike 4.0 license. I understand that they will be published on Wikimedia Commons and will be reusable in perpetuity under the terms of that license. I also declare to be the author of the images. I am aware that the criminal and civil responsibility for what I upload is my own.</string>
     <string name="confirm_upload">Confirm and upload</string>
     <string name="stop_upload">Cancel</string>
     <string name="monuments">Monuments</string>

@@ -40,7 +40,7 @@
     <string name="error_image_upload">Errore nel caricamento di quest'immagine, riprova più tardi.</string> 
     <string name="image_title">Titolo dell'immagine</string>
     <string name="image_description">Descrizione dell'immagine</string>
-    <string name="image_date">Data della foto (gg/mm/aaaa)</string>
+    <string name="image_date">Data di scatto della foto (gg/mm/aaaa)</string>
     <string name="error_date_format">Attenzione: il formato della data deve essere gg/mm/aaaa come per esempio 11/05/2005.</string>
     <string name="fields_are_mandatory">I campi sono obbligatori! Compilali tutti prima di procedere all'upload.</string>
     <string name="image_queue_success">Foto messe in coda per il caricamento con successo! Puoi verificare il loro stato nelle impostazioni.</string> 
@@ -77,7 +77,7 @@
     <string name="photo_upload">Caricamento foto</string>
     <string name="index_header_text">Immagini inviate</string> 
     <string name="title_header_text">Immagini da caricare</string> 
-    <string name="license_acceptance">Accetto di rilasciare irrevocabilmente queste immagini sotto la licenza Creative Commons-Attribuzione-Condividi allo stesso modo 4.0. Sono consapevole che verranno pubblicate su Wikimedia Commons e saranno riutilizzabili in perpetuo secondo i termini di detta licenza. Dichiaro altresì di essere l'autore delle immagini. Sono consapevole che la responsabilità penale e civile per quanto caricato è a mio carico.</string>
+    <string name="license_acceptance">Puoi lasciare i campi così come sono o modificarli rendendoli più descrittivi. A te la scelta.\nAccetto di rilasciare irrevocabilmente queste immagini sotto la licenza Creative Commons-Attribuzione-Condividi allo stesso modo 4.0. Sono consapevole che verranno pubblicate su Wikimedia Commons e saranno riutilizzabili in perpetuo secondo i termini di detta licenza. Dichiaro altresì di essere l'autore delle immagini. Sono consapevole che la responsabilità penale e civile per quanto caricato è a mio carico.</string>
     <string name="confirm_upload">Conferma e carica</string>
     <string name="stop_upload">Annulla</string>
     <string name="monuments">Monumenti</string>
