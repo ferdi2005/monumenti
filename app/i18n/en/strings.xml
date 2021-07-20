@@ -1,6 +1,6 @@
 <resources>
     <string name="app_version">Version %s</string>
-    <string name="credits_text">App developed by Ferdinando Traversa for Wiki Loves Monuments.\n The blue pin indicates a monument that has photographs, the red pin indicates a monument that does not yet have any photographs.\n Tree icon modified by symbolon, CC-BY 3.0 license.\n Navigation bar icons modified by FontAwesome, CC-BY-SA 4.0 license\nEnglish translation by Marco Montanari (@sirmmo)</string>
+    <string name="credits_text">App developed by Ferdinando Traversa for Wiki Loves Monuments.\nThe blue pin indicates a monument that has photographs, the red pin indicates a monument that does not yet have any photographs.\nTree icon modified by symbolon, CC-BY 3.0 license.\nNavigation bar icons modified by FontAwesome, CC-BY-SA 4.0 license\nEnglish translation by Marco Montanari (@sirmmo)</string>
     <string name="error_geolocation">Something went wrong! Make sure you have geolocation enabled and restart the app or click refresh.</string>
     <string name="connection_erorr">A connection error occurred: %s.Retry later.</string> 
     <string name="generic_error">An error occurred: %s. Retry later.</string> 
