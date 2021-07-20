@@ -3,7 +3,11 @@ function set_flurry() {
     var Flurry = require('ti.flurry');
     Flurry.debugLogEnabled = true;
     Flurry.eventLoggingEnabled = true;
-    Flurry.initialize('BPHB2T7TNDV6FGZHW233');
+    if (OS_IOS) {
+        Flurry.initializeWithCrashReporting("GPN6DJSR8CMM4ZVV9GBH");
+    } else {
+        Flurry.initialize('BPHB2T7TNDV6FGZHW233');
+    }
 }
 
 if (Ti.App.Properties.getBool("flurry", "notset") == true) {
