@@ -26,11 +26,11 @@ Array(images)[0].forEach(
         var client = Ti.Network.createHTTPClient({
             onload: function(e) {
                 if (JSON.parse(this.responseText).error == "User not found.") {
-                    var alert = Ti.UI.createAlertDialog({messageid: "error_please_logout", okid: "ok"});
-                    alert.addEventListener("click", function(e){
+                    var message = Ti.UI.createAlertDialog({messageid: "error_please_logout", okid: "ok"});
+                    message.addEventListener("click", function(e){
                         $.title.close();
                     });
-                    alert.show();    
+                    message.show();    
                 } else if(JSON.parse(this.responseText).error == "Photo upload not succedeed.") {
                     var view = Titanium.UI.createView({
                         layout: "horizontal",
@@ -254,17 +254,18 @@ $.conferma.addEventListener("click", function(e){
         var url = Alloy.Globals.backend + "/set_title.json";
         var client = Ti.Network.createHTTPClient({
             onload: function(e){
-                var alert = Ti.UI.createAlertDialog({messageid: "image_queue_success", buttonNames: [L("ok")]});
-                alert.addEventListener("click", function(e){
+                var message = Ti.UI.createAlertDialog({messageid: "image_queue_success", buttonNames: [L("ok")]});
+                message.addEventListener("click", function(e){
                     $.title.close();
                 });
-                alert.show();
+                message.show();
             },
             onerror: function(e){
-                var alert = Ti.UI.createAlertDialog({message: String.format("image_queue_error", e.error), okid: "ok"});
-                alert.addEventListener("click", function(e){
+                var message = Ti.UI.createAlertDialog({message: String.format("image_queue_error", e.error), okid: "ok"});
+                message.addEventListener("click", function(e){
                     $.title.close();
                 });
+                message.show();
             },
             timeout: 20000
         });

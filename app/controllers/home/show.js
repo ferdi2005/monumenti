@@ -118,10 +118,12 @@ var client = Ti.Network.createHTTPClient({
         if (response.wikipedia != null && response.wikipedia != undefined && response.wikipedia != "") {
             $.Wikipedia.addEventListener("click", function(){
                 if (Dialog.isSupported()) {
-                    Dialog.open({
-                        title: response.itemlabel,
-                        url: response.wikipedia
-                    });
+                    if (OS_ANDROID || !Dialog.isOpen()) {
+                        Dialog.open({
+                            title: response.itemlabel,
+                            url: response.wikipedia
+                        });
+                    }
                 } else {
                     Ti.Platform.openURL(response.wikipedia);
                 }     
@@ -186,8 +188,8 @@ var client = Ti.Network.createHTTPClient({
             var reasonator_url =  "http://reasonator.toolforge.org/?q=" + response.item + "&lang=it";
             var wikidata_url = "http://www.wikidata.org/wiki/" + response.item;
             
-            var alert = Ti.UI.createAlertDialog({message: String.format(L("more_information"), response.itemlabel), buttonNames: ["Wikidata", "Reasonator"]});
-            alert.addEventListener("click", function(e){
+            var message = Ti.UI.createAlertDialog({message: String.format(L("more_information"), response.itemlabel), buttonNames: ["Wikidata", "Reasonator"]});
+            message.addEventListener("click", function(e){
                 switch(e.index) {
                     case 0:
                         info_url = wikidata_url;
@@ -198,24 +200,28 @@ var client = Ti.Network.createHTTPClient({
                 }
 
                 if (Dialog.isSupported()) {
-                    Dialog.open({
-                        title: response.itemlabel,
-                        url: info_url
-                    });
+                    if (OS_ANDROID || !Dialog.isOpen()) {
+                        Dialog.open({
+                            title: response.itemlabel,
+                            url: info_url
+                        });
+                    }
                 } else {
                     Ti.Platform.openURL(info_url);
                 }
             });
-            alert.show();
+            message.show();
         });
         $.Info.show();
         
         function openOSMdialog(response, osm_url) {
             if (Dialog.isSupported()) {
-                Dialog.open({
-                    title: response.itemlabel,
-                    url: osm_url
-                });
+                if (OS_ANDROID || !Dialog.isOpen()) {
+                    Dialog.open({
+                        title: response.itemlabel,
+                        url: osm_url
+                    });
+                }
             } else {
                 Ti.Platform.openURL(osm_url);
             }

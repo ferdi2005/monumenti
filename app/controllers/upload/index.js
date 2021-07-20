@@ -94,11 +94,11 @@ function reload(e){
                     $.activityIndicator.height = 0;
                 },
                 onerror: function(e) {
-                    var alert = Ti.UI.createAlertDialog({message:String.format(L("generic_error"), e.error), okid: "ok"});
-                    alert.addEventListener("click", function(e){
+                    var message = Ti.UI.createAlertDialog({message:String.format(L("generic_error"), e.error), okid: "ok"});
+                    message.addEventListener("click", function(e){
                         $.index.close();
                     });
-                    alert.show();
+                    message.show();
                 },
                 timeout: 5000
             });
@@ -122,10 +122,12 @@ $.optionbar.addEventListener("click", reload);
 // Usata nell'index.xml (view alloy) per il click sulle foto o sul titolo delle foto
 function openPhoto(e) {
     if (Dialog.isSupported()) {
-        Dialog.open({
-            title: e.source.text,
-            url: e.source.id
-        })
+        if (OS_ANDROID || !Dialog.isOpen()) {
+            Dialog.open({
+                title: e.source.text,
+                url: e.source.id
+            })
+        }
     } else {
         Ti.Platform.openURL(e.source.id);
     }

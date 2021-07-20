@@ -51,8 +51,8 @@ const USERNAME = String(Titanium.Platform.username); // username del device (a s
 
 // Cancella in caso di problemi
 if (args == "delete") {
-    var alert = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("close"), L("login_delete")]});
-    alert.addEventListener("click", function(e){
+    var message = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("close"), L("login_delete")]});
+    message.addEventListener("click", function(e){
         if (e.index == 0) {
             $.config.close();
         } else {
@@ -60,7 +60,7 @@ if (args == "delete") {
             $.config.close();
         }
     });
-    alert.show();
+    message.show();
 
 }
 // Event listener su Login update
@@ -82,26 +82,25 @@ function triggerDeletion(uuid, user_initiated = false){
             var url = Alloy.Globals.backend + "/deleteuser.json?uuid=" + uuid + "&token=" + k.value
             var client = Ti.Network.createHTTPClient({
                 onload: function(e) {
-                    var message;
-
+                    var text_of_message;
                     if (user_initiated) {
-                        message = "registration_deleted_by_user";
+                        text_of_message = "registration_deleted_by_user";
                     } else {
-                        message = "registration_deleted_by_error";
+                        text_of_message = "registration_deleted_by_error";
                     }
-                    var alert = Ti.UI.createAlertDialog({messageid: message, okid: "ok"});
-                    alert.addEventListener("click", function(e){
+                    var message = Ti.UI.createAlertDialog({messageid: text_of_message, okid: "ok"});
+                    message.addEventListener("click", function(e){
                         $.config.close();
                     });
-                    alert.show();
+                    message.show();
                 },
                 onerror: function(e) {
                     if (user_initiated) {
-                        var alert = Ti.UI.createAlertDialog({message: L("server_deletion_not_possible") + e.error, okid: "ok"});
-                        alert.addEventListener("click", function(e){
+                        var message = Ti.UI.createAlertDialog({message: L("server_deletion_not_possible") + e.error, okid: "ok"});
+                        message.addEventListener("click", function(e){
                             $.config.close();
                         });
-                        alert.show();
+                        message.show();
                     }
                 },
                 timeout: 5000
@@ -112,11 +111,11 @@ function triggerDeletion(uuid, user_initiated = false){
             Ti.App.Properties.setBool("registrato", false);
             Ti.App.Properties.setBool("autorizzato", false);
 
-            var alert = Ti.UI.createAlertDialog({messageid: "server_deletion_not_possible", okid: "ok"});
-            alert.addEventListener("click", function(e){
+            var message = Ti.UI.createAlertDialog({messageid: "server_deletion_not_possible", okid: "ok"});
+            message.addEventListener("click", function(e){
                 $.config.close();
             });
-            alert.show();
+            message.show();
         }
     });
     keychainItem.read();
@@ -148,16 +147,18 @@ function showUserInfo(userInfo) {
 function startLogin(userInfo) {
     var url = Alloy.Globals.backend + "/start_login?uuid=" + userInfo.uuid + "&token=" + userInfo.token;
     if (Dialog.isSupported()) {
-        Dialog.open({
-            title: L("start_commons_login"),
-            url: url,
-            dismissButtonStyle: Dialog.DISMISS_BUTTON_STYLE_DONE
-        });
-        Dialog.addEventListener("close", function(e){
-            retrieveUserData(userInfo.uuid, userInfo.token);
-            $.activityIndicator.show();
-            $.activityIndicator.height = Ti.UI.SIZE;
-        });
+        if (OS_ANDROID || !Dialog.isOpen()) {
+            Dialog.open({
+                title: L("start_commons_login"),
+                url: url,
+                dismissButtonStyle: Dialog.DISMISS_BUTTON_STYLE_DONE
+            });
+            Dialog.addEventListener("close", function(e){
+                retrieveUserData(userInfo.uuid, userInfo.token);
+                $.activityIndicator.show();
+                $.activityIndicator.height = Ti.UI.SIZE;
+            });
+        }
     } else {
         // Fallback nel caso in cui non sia supportato il webdialog
         Ti.Platform.openURL(url);
@@ -232,15 +233,15 @@ function readInformation(uuid, user_initiated = false) {
         if (e.success == true) {
             retrieveUserData(uuid, e.value, user_initiated); // Il token è contenuto in e.value
         } else {
-            var alert = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("close"), L("login_delete")]});
-            alert.addEventListener("click", function(e){
+            var message = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("close"), L("login_delete")]});
+            message.addEventListener("click", function(e){
                 if (e.index == 0) {
                     $.config.close();
                 } else {
                     triggerDeletion(UUID, false);
                 }
             });
-            alert.show();
+            message.show();
         }
         
     });
@@ -253,7 +254,7 @@ $.config.addEventListener("open", function(e) {
             messageid: 'no_upload_until_commons',
             okid: "ok",
           });
-    dialog.show();        
+        dialog.show();        
     }
     // Nel caso in cui non sia stata effettuata la registrazione, procede ad effettuarla
     if (Ti.App.Properties.getBool("registrato", false) == false) {
@@ -282,15 +283,15 @@ $.config.addEventListener("open", function(e) {
                             Ti.App.Properties.setBool("registrato", true); // Imposta l'avvenuta registrazione con successo
                             retrieveUserData(UUID, GENERATED_TOKEN);
                         } else {
-                            var alert = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("close"), L("login_delete")]});
-                            alert.addEventListener("click", function(e){
+                            var message = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("close"), L("login_delete")]});
+                            message.addEventListener("click", function(e){
                                 if (e.index == 0) {
                                     $.config.close();
                                 } else {
                                     triggerDeletion(UUID, false);
                                 }
                             });
-                            alert.show();                                        
+                            message.show();                                        
                         }
                     });
 
