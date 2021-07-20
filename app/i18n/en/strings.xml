@@ -16,7 +16,7 @@
     <string name="no_upload_permission">You may not have granted permission to access the photo gallery. Verify.</string>
     <string name="keychain_error">An error occurred with the keychain reading, please try again later.</string>
     <string name="signup_not_completed">Registration incomplete! Log in to Wikimedia Commons to continue.</string>
-    <string name="authorization_expired">The authorization on this monument is elapsed</string>
+    <string name="authorization_expired">The authorization on this monument has expired.</string>
     <string name="more_information">More infos on %s</string>
     <string name="choose_mean">How do you want to reach %s?</string>
     <string name="by_car">By car</string>
