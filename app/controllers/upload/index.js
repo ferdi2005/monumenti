@@ -4,6 +4,24 @@ const Dialog = require('ti.webdialog');
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = $.args;
 
+// Usata nell'index.xml (view alloy) per il click sulle foto o sul titolo delle foto
+function openPhoto(e) {
+    if (Dialog.isSupported()) {
+        if (OS_ANDROID || !Dialog.isOpen()) {
+            Dialog.open({
+                title: e.source.text,
+                url: e.source.id
+            })
+        }
+    } else {
+        Ti.Platform.openURL(e.source.id);
+    }
+} 
+
+// Usata nell'index.xml (view alloy) per il click sul bottone della scheda monumento
+function openShow(e) {
+    Alloy.Globals.utils.open("home/show", e.source.id);
+}
 // Mostra bottone indietro
 if (OS_ANDROID) {
     $.index.activity.onCreateOptionsMenu = function(e) { 
@@ -47,49 +65,171 @@ function reload(e){
                             } else {
                                 var errortext = String.format(L("photo_not_uploaded_with_reason"), photo["errorinfo"]);
                             }
-                            itemdata =  { 
-                                photo: {
-                                    image: serverurl
-                                },
-                                errorlabel: {
-                                    text: errortext
-                                },
-                                showButton: {
-                                    id: photo["item"]
-                                },
-                                template: "error",
-                            }    
-                        } else if (photo["uploaded"] == null) {
-                            itemdata =  { 
-                                photo: {
-                                    image: serverurl
-                                },
-                                showButton: {
-                                    id: photo["item"]
-                                },
-                                template: "waiting",
-                            }
-                        } else if (photo["uploaded"] == true) {
-                            itemdata =  { 
-                                photo: {
-                                    image: photo["url"],
-                                    id: photo["descriptionurl"]
-                                },
-                                title: {
-                                    text: photo["canonicaltitle"],
-                                    id: photo["descriptionurl"]
-                                },
-                                showButton: {
-                                    id: photo["item"]
-                                },
-                                template: "success",
-                            }
-                        }
 
-                        items.push(itemdata);
+                            var main_view =  Ti.UI.createView({
+                                layout: "vertical",
+                                width: Ti.UI.FILL,
+                                height: Ti.UI.SIZE        
+                            });
+
+                            var view = Ti.UI.createView({
+                                layout: "horizontal",
+                                width: Ti.UI.FILL,
+                                height: Ti.UI.SIZE        
+                            });
+
+                            var image = Ti.UI.createImageView({
+                                image: serverurl,
+                                top: "5dp",
+                                left: "5dp",
+                                width: "30%"                     
+                            });
+
+                            view.add(image);
+
+                            var errorlabel = Ti.UI.createLabel({
+                                text: errortext,
+                            });
+
+                            view.add(errorlabel);
+
+                            var showButton = Ti.UI.createButton({
+                                id: photo["item"],
+                                titleid: "show_monument",
+                                backgroundColor: "#8f0000",
+                                color: "#FFFFFF",
+                                top: "3dp",
+                                left: "5dp"                            
+                            });
+
+                            showButton.addEventListener("click", openShow);
+                        
+                            main_view.add(view)
+                            main_view.add(showButton);
+
+                            $.imagespace.add(main_view);
+
+                            $.imagespace.add(Titanium.UI.createView({
+                                height: '2dp',
+                                left: '0dp',
+                                right: '0dp',
+                                borderWidth: '1',
+                                borderColor:'#aaa',
+                            }));
+    
+                        } else if (photo["uploaded"] == null) {
+                            var main_view =  Ti.UI.createView({
+                                layout: "vertical",
+                                width: Ti.UI.FILL,
+                                height: Ti.UI.SIZE        
+                            });
+
+                            var view = Ti.UI.createView({
+                                layout: "horizontal",
+                                width: Ti.UI.FILL,
+                                height: Ti.UI.SIZE        
+                            });
+
+                            var image = Ti.UI.createImageView({
+                                image: serverurl,
+                                top: "5dp",
+                                left: "5dp",
+                                width: "30%"                            
+                            });
+
+                            view.add(image);
+
+                            var errorlabel = Ti.UI.createLabel({
+                                textid: "image_uploading",
+                            });
+
+                            view.add(errorlabel);
+
+                            var showButton = Ti.UI.createButton({
+                                id: photo["item"],
+                                titleid: "show_monument",
+                                backgroundColor: "#8f0000",
+                                color: "#FFFFFF",
+                                top: "3dp",
+                                left: "5dp"                            
+                            });
+
+                            showButton.addEventListener("click", openShow);
+
+                            main_view.add(view)
+                            main_view.add(showButton);
+
+                            $.imagespace.add(main_view);
+
+                            $.imagespace.add(Titanium.UI.createView({
+                                height: '2dp',
+                                left: '0dp',
+                                right: '0dp',
+                                borderWidth: '1',
+                                borderColor:'#aaa',
+                            }));
+
+                        } else if (photo["uploaded"] == true) {
+                            var main_view =  Ti.UI.createView({
+                                layout: "vertical",
+                                width: Ti.UI.FILL,
+                                height: Ti.UI.SIZE        
+                            });
+
+                            var view = Ti.UI.createView({
+                                layout: "horizontal",
+                                width: Ti.UI.FILL,
+                                height: Ti.UI.SIZE        
+                            });
+
+                            var image = Ti.UI.createImageView({
+                                image: photo["url"],
+                                top: "5dp",
+                                width: "30%", 
+                                left: "5dp",
+                                id: photo["descriptionurl"]                 
+                            });
+
+                            image.addEventListener("click", openPhoto); 
+
+                            view.add(image);
+
+                            var label = Ti.UI.createLabel({
+                                text: photo["canonicaltitle"],
+                                id: photo["descriptionurl"],
+                                color: "#16ABFD",
+                                left: "5dp"
+                            });
+                            
+                            label.addEventListener("click", openPhoto);
+
+                            view.add(label);
+
+                            var showButton = Ti.UI.createButton({
+                                id: photo["item"],
+                                titleid: "show_monument",
+                                backgroundColor: "#8f0000",
+                                color: "#FFFFFF",
+                                top: "3dp",
+                                left: "5dp"                            
+                            });
+
+                            showButton.addEventListener("click", openShow);
+                        
+                            main_view.add(view)
+                            main_view.add(showButton);
+
+                            $.imagespace.add(main_view);
+
+                            $.imagespace.add(Titanium.UI.createView({
+                                height: '2dp',
+                                left: '0dp',
+                                right: '0dp',
+                                borderWidth: '1',
+                                borderColor:'#aaa',
+                            }));
+                        }
                     });
-                    
-                    $.imagespace.setItems(items);
                     $.activityIndicator.hide();
                     $.activityIndicator.height = 0;
                 },
@@ -118,22 +258,3 @@ function reload(e){
 $.index.addEventListener("open", reload);
 
 $.optionbar.addEventListener("click", reload);
-
-// Usata nell'index.xml (view alloy) per il click sulle foto o sul titolo delle foto
-function openPhoto(e) {
-    if (Dialog.isSupported()) {
-        if (OS_ANDROID || !Dialog.isOpen()) {
-            Dialog.open({
-                title: e.source.text,
-                url: e.source.id
-            })
-        }
-    } else {
-        Ti.Platform.openURL(e.source.id);
-    }
-} 
-
-// Usata nell'index.xml (view alloy) per il click sul bottone della scheda monumento
-function openShow(e) {
-    Alloy.Globals.utils.open("home/show", e.source.id);
-}

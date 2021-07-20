@@ -8,15 +8,6 @@
     left: 0
 }
 
-"ListView": {
-    separatorStyle: Titanium.UI.TABLE_VIEW_SEPARATOR_STYLE_SINGLE_LINE,
-    height: Ti.UI.SIZE,
-}
-
-"ListView[platform=ios]": {
-    backgroundColor: "backgroundSemantic",
-}
-
 "Label": {
     top: "5dp",
     bottom: "5dp",

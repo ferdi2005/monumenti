@@ -85,4 +85,5 @@
     <string name="close">Close</string>
     <string name="search_tab">Search</string>
     <string name="settings_tab">Settings</string> 
+    <string name="image_uploading">Photo still uploading...</string>
 </resources>

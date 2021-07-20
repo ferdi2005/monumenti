@@ -85,4 +85,5 @@
     <string name="close">Chiudi</string>
     <string name="search_tab">Cerca</string>
     <string name="settings_tab">Impostazioni</string>
+    <string name="image_uploading">Immagine ancora in caricamento.</string>
 </resources>

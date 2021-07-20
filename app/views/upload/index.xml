@@ -1,6 +1,5 @@
 <Alloy>
 	<Window titleid="photo_list" class="vertical" id="index">
-		<View class="vertical">
 			<ActivityIndicator id="activityIndicator" />
 			<OptionBar id="optionbar">
 				<Labels>
@@ -8,32 +7,6 @@
 					<Label title="L('by_name')" />
 				</Labels>
 			</OptionBar>
-			<ListView id="listview" class="vertical">
-				<Templates>
-					<ItemTemplate name="error">
-						<View class="horizontal">
-							<ImageView bindId="photo" class="image"/>
-							<Label class="field" bindId="errorlabel"/>
-							<Button class="showbutton" bindId="showButton" onClick="openShow" titleid="show_monument"/>
-						</View>
-					</ItemTemplate>
-					<ItemTemplate name="waiting">
-						<View class="horizontal">
-							<ImageView bindId="photo" class="image"/>
-							<Label class="field" text="Immagine ancora in caricamento."/>
-							<Button class="showbutton" bindId="showButton" onClick="openShow" titleid="show_monument" />
-						</View>
-					</ItemTemplate>
-					<ItemTemplate name="success">
-						<View class="horizontal">
-							<ImageView bindId="photo" class="image" onClick="openPhoto"/>
-							<Label class="openlabel" bindId="title" onClick="openPhoto"/>
-							<Button class="showbutton" bindId="showButton" onClick="openShow" titleid="show_monument" />
-						</View>
-					</ItemTemplate>
-				</Templates>
-				<ListSection id="imagespace" headerTitle="L('index_header_text')" />
-			</ListView>
-		</View>
+			<View id="imagespace" class="vertical" />
 	</Window>
 </Alloy>
