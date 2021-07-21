@@ -61,9 +61,9 @@ function reload(e){
                         var serverurl = photo["serverurl"];
                         if (photo["uploaded"] == false) {
                             if (photo["errorinfo"] == null || photo["errorinfo"] == undefined) {
-                                var errortext = L("photo_not_uploaded");
+                                var errortext = String.format(L("photo_not_uploaded"), photo.title);
                             } else {
-                                var errortext = String.format(L("photo_not_uploaded_with_reason"), photo["errorinfo"]);
+                                var errortext = String.format(L("photo_not_uploaded_with_reason"), photo.title, photo["errorinfo"]);
                             }
 
                             var main_view =  Ti.UI.createView({
@@ -141,7 +141,7 @@ function reload(e){
                             view.add(image);
 
                             var errorlabel = Ti.UI.createLabel({
-                                textid: "image_uploading",
+                                text: String.format(L("image_uploading"), photo.title),
                                 left: "5dp"
                             });
 

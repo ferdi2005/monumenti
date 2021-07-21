@@ -34,8 +34,8 @@
     <string name="login_not_done">You are not logged in. Click on login to Wikimedia Commons to do so.</string>
     <string name="problem_do_logout">Something went wrong, retry later. If it happens again, please log out and log in again.</string>
     <string name="no_upload_until_commons">Before you can upload photographs, you must be logged into Wikimedia Commons.</string>
-    <string name="photo_not_uploaded">Image not uploaded due to error.</string>
-    <string name="photo_not_uploaded_with_reason">Image not uploaded due to error: %s.</string>
+    <string name="photo_not_uploaded">Image %s not uploaded due to error.</string>
+    <string name="photo_not_uploaded_with_reason">Image %1$s not uploaded due to error: %2$s.</string>
     <string name="error_please_logout">An error has occurred. Log out from the Upload Settings Manager in the settings tab.</string>
     <string name="error_image_upload">Error uploading this image, please try again later.</string> 
     <string name="image_title">Image title</string>
@@ -85,7 +85,7 @@
     <string name="close">Close</string>
     <string name="search_tab">Search</string>
     <string name="settings_tab">Settings</string> 
-    <string name="image_uploading">Photo still uploading...</string>
+    <string name="image_uploading">Photo %s still uploading...</string>
     <string name="license_link_text">License text</string>
     <string name="faq_ask">Welcome in the Wiki Loves Monuments Italy app! Do you know how to use it? If not, read our handy FAQs!</string>
     <string name="read_faq">No, take me straight to the FAQs!</string>
