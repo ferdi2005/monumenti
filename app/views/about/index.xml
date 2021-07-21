@@ -6,7 +6,7 @@
 			
 			<View class="horizontal">
 				<Label textid="flurry_ask"/>
-				<Switch id="tracciamento" />
+				<Switch id="tracciamento" value="false"/>
 			</View>
 
 			<Button class="col_8 col_offset_1" id="info" titleid="info" />

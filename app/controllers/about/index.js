@@ -3,9 +3,9 @@ var args = $.args;
 
 $.index.addEventListener("focus", function(e){
     if (Ti.App.Properties.getBool("flurry", "notset") == true) {
-        $.tracciamento.value == true;
+        $.tracciamento.value = true;
     } else {
-        $.tracciamento.value == false;
+        $.tracciamento.value = false;
     }
     
     if (Ti.App.Properties.getBool("registrato", false) == false || Ti.App.Properties.getBool("autorizzato", false) == false) {

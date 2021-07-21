@@ -215,7 +215,6 @@ function locate(latkeep, latdelta, londelta) {
     });
   } else {
     Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function (e) {
-      Ti.API.log(JSON.stringify(e));
       if (e.success || e.authorizationStatus == 3) { // su iOS ritorna success solo quando e.authorizationStatus == 4, anche il 3 per noi va bene.
         Ti.Geolocation.getCurrentPosition(function (e) {
           if (OS_ANDROID) {
