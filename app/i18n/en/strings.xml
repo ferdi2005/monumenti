@@ -1,6 +1,6 @@
 <resources>
     <string name="app_version">Version %s</string>
-    <string name="credits_text">App developed by Ferdinando Traversa for Wiki Loves Monuments.\nThe blue pin indicates a monument that has photographs, the red pin indicates a monument that does not yet have any photographs.\nTree icon modified by symbolon, CC-BY 3.0 license.\nNavigation bar icons modified by FontAwesome, CC-BY-SA 4.0 license\nEnglish translation by Marco Montanari (@sirmmo)</string>
+    <string name="credits_text">App developed by Ferdinando Traversa for Wiki Loves Monuments.\nTree icon derived by symbolon, CC-BY 3.0 license.\nNavigation bar icons derived by FontAwesome, CC-BY-SA 4.0 license\nEnglish translation by Marco Montanari (@sirmmo)</string>
     <string name="error_geolocation">Something went wrong! Make sure you have geolocation enabled and restart the app or click refresh.</string>
     <string name="connection_erorr">A connection error occurred: %s.Retry later.</string> 
     <string name="generic_error">An error occurred: %s. Retry later.</string> 
@@ -46,7 +46,7 @@
     <string name="image_queue_error">Something went wrong and the upload failed. Please try again later: %s.</string>.
     <string name="update_app">Warning! You are using an outdated version of the app (%1$s). Go to the store and download the new version %2$s.</string>.
     <string name="info">Info about Wiki Loves Monuments</string>
-    <string name="credits">Credits and meaning of colors</string>.
+    <string name="credits">Credits</string>.
     <string name="upload_config">Manage upload settings</string>.
     <string name="upload_list">Uploaded photos</string>
     <string name="infocors">Wiki Loves Monuments is an international contest that aims to illustrate Wikipedia and Wikimedia projects through photographs of cultural heritage taken by citizens themselves, thus being also a great opportunity for tourism promotion.\nIt was born in 2010 and is organized annually around the world, in more than 50 countries, from 1 to 30 September.\nIn 2012 it entered the Guinness Book of Records as the largest photo contest in the world. Each year, more than 130,000 photographs are uploaded.\nThe subject of the images allowed to participate in the competition are monuments, a very broad set that includes buildings, sculptures, archaeological sites, architectural structures but also natural sites and landscape assets. All photographs are released under a free license and published on Wikimedia Commons, the large database that illustrates Wikipedia (the 5th most visited site in Italy) and all other projects with multimedia content (photos and videos).\nWiki Loves Monuments is open to the participation of everyone, professional photographers or amateurs, with no age limit. \nThe Italian edition is organized since 2012 by Wikimedia Italia, an association that has been working since 2005 to spread knowledge and free culture in Italy, as a chapter of Wikimedia Foundation.</string> 
