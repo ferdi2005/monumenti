@@ -91,4 +91,5 @@
     <string name="read_faq">No, take me straight to the FAQs!</string>
     <string name="no_more_faqs">Yes, I'm an expert. I don't need them.</string>
     <string name="later_faq">I'll read them later.</string>
+    <string name="faq">Frequently asked questions</string>
 </resources>

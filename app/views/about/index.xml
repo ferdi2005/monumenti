@@ -11,6 +11,7 @@
 
 			<Button class="col_8 col_offset_1" id="info" titleid="info" />
 			<Button class="col_8 col_offset_1" id="crediti" titleid="credits"/>
+			<Button class="col_8 col_offset_1" id="faq" titleid="faq"/>
 			<Label id="lbl_version"/>
 		</ScrollView>
 	</Window>

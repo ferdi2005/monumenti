@@ -73,7 +73,9 @@ $.index.addEventListener("open", function(e) {
             if (e.index == 0) {
                 Ti.App.Properties.setBool("faq_dismissed", true);
                 var Dialog = require("ti.webdialog");
-                var faq_url = "https://app-backend.wikilovesmonuments.it/faq?language=" + Ti.Locale.currentLocale;
+
+                var faq_url = "https://app-backend.wikilovesmonuments.it/faq?language=" + Ti.Locale.currentLanguage;
+
                 if (Dialog.isSupported()) {
                     if (OS_ANDROID || !Dialog.isOpen()) {
                         Dialog.open({

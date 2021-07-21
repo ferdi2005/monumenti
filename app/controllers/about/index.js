@@ -51,3 +51,20 @@ $.tracciamento.addEventListener("change", function(e){
 $.crediti.addEventListener("click", function(e){
     alert(L("credits_text"));
 });
+
+$.faq.addEventListener("click", function(e){
+    var Dialog = require("ti.webdialog");
+    
+    var faq_url = "https://app-backend.wikilovesmonuments.it/faq?language=" + Ti.Locale.currentLanguage;
+
+    if (Dialog.isSupported()) {
+        if (OS_ANDROID || !Dialog.isOpen()) {
+            Dialog.open({
+                title: "FAQ",
+                url: faq_url
+            });
+        }
+    } else {
+        Ti.Platform.openURL(faq_url);
+    }
+});
