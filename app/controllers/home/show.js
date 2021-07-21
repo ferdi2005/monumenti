@@ -1,5 +1,7 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
-const Map = require('ti.map');
+if (OS_IOS) {
+    const Map = Alloy.Globals.Map;
+}
 const Dialog = require('ti.webdialog');
 const Identity = require("ti.identity");
 

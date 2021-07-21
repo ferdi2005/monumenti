@@ -1,6 +1,8 @@
 var tabgroup = null;
 var utilsService = require('utilsService');
-Alloy.Globals.Map = require('ti.map');
+if (OS_IOS) {
+    Alloy.Globals.Map = require('ti.map');
+}
 Alloy.Globals.utils = new utilsService();
 if (OS_ANDROID) {
     Alloy.Globals.OSM = require('ti.osm');

@@ -1,7 +1,7 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 
 if (OS_IOS) {
-  var Map = require('ti.map');
+  var Map = Alloy.Globals.Map;
 
   if (Ti.UI.userInterfaceStyle == Ti.UI.USER_INTERFACE_STYLE_DARK) {
     $.refresh.backgroundImage = "/images/refresh white.png";

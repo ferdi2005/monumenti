@@ -59,8 +59,8 @@
   </android>
   <modules>
     <module platform="android">ti.osm</module>
-    <module>ti.map</module>
-    <module>hyperloop</module>
+    <module platform="iphone">ti.map</module>
+    <!-- <module>hyperloop</module> -->
     <module platform="android">ti.flurry</module>
     <module platform="iphone">ti.flurry</module>
     <module platform="android">ti.playservices</module>
