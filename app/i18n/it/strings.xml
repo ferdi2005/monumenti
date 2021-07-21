@@ -27,8 +27,7 @@
     <string name="registration_deleted_by_error">La tua registrazione è stata cancellata a causa di un problema. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.</string>
     <string name="ok">Ok</string>
     <string name="server_deletion_not_possible">Non è stato possibile cancellare i tuoi dati dal server. Assicurati di revocare l'autorizzazione oAuth. </string>
-    <string name="test_wiki_login">Hai eseguito l'accesso alla Wiki di test. Da ora puoi tornare indietro e caricare le tue fotografie tramite l'apposito tasto nella scheda di ogni monumento. Le tue foto non verranno caricate davvero.</string> 
-    <string name="commons_login">Hai eseguito l'accesso a Wikimedia Commons. Da ora puoi tornare indietro e caricare le tue fotografie tramite l'apposito tasto nella scheda di ogni monumento.</string>
+    <string name="login_info">Username: %1$s\nWiki: %2$s</string>
     <string name="your_username"> Il tuo nome utente è %s.</string>
     <string name="start_commons_login">Esegui il login a Commons</string>
     <string name="login_not_done">Non hai ancora effettuato il login. Clicca su Accedi a Wikimedia Commons per farlo.</string>

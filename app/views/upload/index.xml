@@ -7,6 +7,6 @@
 					<Label title="L('by_name')" />
 				</Labels>
 			</OptionBar>
-			<View id="imagespace" class="vertical" />
+			<ScrollView id="imagespace" class="vertical-scroll" />
 	</Window>
 </Alloy>

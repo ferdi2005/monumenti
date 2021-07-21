@@ -18,18 +18,8 @@
     bottom: "6dp"
 }
 
-"#info": {
+"Button": {
     backgroundColor: "#8f0000",
-    color: "#FFFFFF"
-}
-
-"#upload_config": {
-    backgroundColor: "#8f0000",
-    color: "#FFFFFF",
-}
-
-"#upload_list": {
-    backgroundColor: "#006399",
     color: "#FFFFFF",
     hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
 }

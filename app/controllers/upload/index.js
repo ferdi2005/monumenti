@@ -39,7 +39,9 @@ if (OS_ANDROID) {
 
 function reload(e){
     $.activityIndicator.show();
-
+    
+    $.imagespace.removeAllChildren();
+    
     if ($.optionbar.index == 0) {
         var order = "date";
     } else {

@@ -153,14 +153,11 @@ function showUserInfo(userInfo) {
         triggerDeletion(UUID, true);
     });
 
-    if (userInfo.testuser == true) {
-        $.mediawiki_data.text = L("test_wiki_login");
-    } else {
-        $.mediawiki_data.text = L("commons_login");
-    }
-    if (userInfo.ready == true) {
-        $.mediawiki_data.text = $.mediawiki_data.text += String.format(L("your_username"), userInfo.username);
-    }
+    var wiki;
+    userInfo.testuser ? wiki = "Test wiki" : wiki = "Wikimedia Commons"
+    
+    $.mediawiki_data.text = String.format(L("login_info"), userInfo.username, wiki);
+    
     $.mediawiki_data.show();
     $.mediawiki_data.height = Ti.UI.SIZE;
 }

@@ -27,8 +27,7 @@
     <string name="registration_deleted_by_error">Your registration has been cancelled due to a problem. Reopen this tab to start a new one and upload your photographs.</string>
     <string name="ok">Ok</string>
     <string name="server_deletion_not_possible">Your data could not be deleted from the server. Make sure to revoke the oAuth authorization. </string>
-    <string name="test_wiki_login">You have accessed the test Wiki. From now on you can go back and upload your photos via the appropriate button in the tab of each monument. Your photos will not be actually uploaded.</string> 
-    <string name="commons_login">You are now logged in to Wikimedia Commons, you can go back and upload your photos using the button in the tab of each monument.</string>
+    <string name="login_info">Username: %1$s\nWiki: %2$s</string>
     <string name="your_username"> Your username is %s.</string>
     <string name="start_commons_login">Login to Wikimedia Commons</string>
     <string name="login_not_done">You are not logged in. Click on login to Wikimedia Commons to do so.</string>
@@ -70,8 +69,8 @@
     <string name="login_update">Verify access</string>
     <string name="login_delete">Logout</string>
     <string name="login_instructions">To continue, login or create an account on Wikimedia Commons by clicking the blue button above. If you have already logged in, click the button to verify that you are logged in.</string>
-    <string name="by_date">By Date</string> 
-    <string name="by_name">By Name</string> 
+    <string name="by_date">By date</string> 
+    <string name="by_name">By name</string> 
     <string name="show_monument">Monument info</string>
     <string name="photo_list">Uploaded photos list</string>
     <string name="photo_upload">Photo upload</string>
