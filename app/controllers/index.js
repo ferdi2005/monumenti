@@ -104,7 +104,7 @@ $.index.onBack = function(e) {
         });
     dialog.addEventListener('click', function(e) {
         if (e.index == 1) {
-            $.tabgroup.close();
+            $.index.close();
         }
     });
     dialog.show();
