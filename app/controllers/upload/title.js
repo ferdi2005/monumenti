@@ -1,5 +1,6 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = $.args;
+const Dialog = require("ti.webdialog");
 
 $.conferma.hide();
 
@@ -324,3 +325,16 @@ $.annulla.addEventListener("click", photo_cancel);
 
 // Cancellazione anche alla pressione del tasto indietro
 $.title.onBack = photo_cancel;
+
+$.license_link.addEventListener("click", function(e){
+    if (Dialog.isSupported()) {
+        if (OS_ANDROID || !Dialog.isOpen()) {
+            Dialog.open({
+                title: "CC-BY-SA 4.0",
+                url: "https://creativecommons.org/licenses/by-sa/4.0/deed." + Ti.Locale.currentLocale
+            });
+        }
+    } else {
+        Ti.Platform.openURL(response.wikipedia);
+    }
+});

@@ -73,7 +73,7 @@
     <string name="by_date">By Date</string> 
     <string name="by_name">By Name</string> 
     <string name="show_monument">Monument info</string>
-    <string name="photo_list">Uploaded photo list</string>
+    <string name="photo_list">Uploaded photos list</string>
     <string name="photo_upload">Photo upload</string>
     <string name="index_header_text">Images already uploaded</string> 
     <string name="title_header_text">Images to upload</string> 
@@ -86,4 +86,9 @@
     <string name="search_tab">Search</string>
     <string name="settings_tab">Settings</string> 
     <string name="image_uploading">Photo still uploading...</string>
+    <string name="license_link_text">License text</string>
+    <string name="faq_ask">Welcome in the Wiki Loves Monuments Italy app! Do you know how to use it? If not, read our handy FAQs!</string>
+    <string name="read_faq">No, take me straight to the FAQs!</string>
+    <string name="no_more_faqs">Yes, I'm an expert. I don't need them.</string>
+    <string name="later_faq">I'll read them later.</string>
 </resources>

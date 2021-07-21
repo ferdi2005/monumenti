@@ -86,4 +86,9 @@
     <string name="search_tab">Cerca</string>
     <string name="settings_tab">Impostazioni</string>
     <string name="image_uploading">Immagine ancora in caricamento.</string>
+    <string name="license_link_text">Testo della licenza</string>
+    <string name="faq_ask">Benvenuto nell'app di Wiki Loves Monuments Italia! Sai come usare quest'app? Se non lo sai, leggi le nostre utilissime FAQ!</string>
+    <string name="read_faq">No, portami alle FAQ!</string>
+    <stirng name="s">Sì, sono un esperto. Non ne ho bisgono.</string>
+    <string name="later_faq">Ricordamelo più tardi.</string>
 </resources>

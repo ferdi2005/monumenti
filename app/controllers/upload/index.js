@@ -113,6 +113,7 @@ function reload(e){
                                 height: '2dp',
                                 left: '0dp',
                                 right: '0dp',
+                                top: "2dp",
                                 borderWidth: '1',
                                 borderColor:'#aaa',
                             }));
@@ -141,6 +142,7 @@ function reload(e){
 
                             var errorlabel = Ti.UI.createLabel({
                                 textid: "image_uploading",
+                                left: "5dp"
                             });
 
                             view.add(errorlabel);
@@ -165,6 +167,7 @@ function reload(e){
                                 height: '2dp',
                                 left: '0dp',
                                 right: '0dp',
+                                top: "2dp",
                                 borderWidth: '1',
                                 borderColor:'#aaa',
                             }));
@@ -211,7 +214,7 @@ function reload(e){
                                 backgroundColor: "#8f0000",
                                 color: "#FFFFFF",
                                 top: "3dp",
-                                left: "5dp"                            
+                                left: "5dp"                     
                             });
 
                             showButton.addEventListener("click", openShow);
@@ -225,6 +228,7 @@ function reload(e){
                                 height: '2dp',
                                 left: '0dp',
                                 right: '0dp',
+                                top: "2dp",
                                 borderWidth: '1',
                                 borderColor:'#aaa',
                             }));

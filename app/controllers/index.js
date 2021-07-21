@@ -62,3 +62,34 @@ var xhr = Ti.Network.createHTTPClient({
 });
 xhr.open('GET', url);
 xhr.send();
+
+$.index.addEventListener("open", function(e) {
+    if (Ti.App.Properties.getBool("faq_dismissed", "notset") == "notset") {
+        var faq = Ti.UI.createAlertDialog({
+            buttonNames: [L("read_faq"), L("no_more_faqs"), L("later_faq")],
+            messageid: "faq_ask",
+        });
+        faq.addEventListener('click', function(e) {
+            if (e.index == 0) {
+                Ti.App.Properties.setBool("faq_dismissed", true);
+                var Dialog = require("ti.webdialog");
+                var faq_url = "https://app-backend.wikilovesmonuments.it/faq?language=" + Ti.Locale.currentLocale;
+                if (Dialog.isSupported()) {
+                    if (OS_ANDROID || !Dialog.isOpen()) {
+                        Dialog.open({
+                            title: "FAQ",
+                            url: faq_url
+                        });
+                    }
+                } else {
+                    Ti.Platform.openURL(faq_url);
+                }
+            } else if (e.index == 1) {
+                Ti.App.Properties.setBool("faq_dismissed", true);
+            }
+        });
+        faq.show();
+    } else {
+        $.index.open();
+    }
+});
