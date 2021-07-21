@@ -11,6 +11,9 @@ var args = $.args;
 $.Upload.hide();
 $.Info.hide();
 
+$.allphotos.hide();
+$.allphotos.height = 0;
+
 $.Wikipedia.hide();
 $.Wikipedia.height = 0;
 
@@ -249,7 +252,24 @@ var client = Ti.Network.createHTTPClient({
             });
             alert.show();
         }
-    
+        
+        $.allphotos.addEventListener("click", function(e) {
+            if (Dialog.isSupported()) {
+                if (OS_ANDROID || !Dialog.isOpen()) {
+                    Dialog.open({
+                        title: response.itemlabel,
+                        url: response.allphotos
+                    });
+                }
+            } else {
+                Ti.Platform.openURL(response.wikipedia);
+            }
+        });
+        if (response.with_photos) {
+            $.allphotos.show();
+            $.allphotos.height = Ti.UI.SIZE;
+        }
+
         if (response.latitude != null && response.longitude != null) {
             $.Osm_button.addEventListener('click', function (e) {                
                 if (Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)) {

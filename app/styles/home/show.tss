@@ -31,6 +31,11 @@
     color: "#000000",
 }
 
+"#allphotos": {
+    backgroundColor: "#8f0000",
+    color: "#FFFFFF",
+}
+
 "Button": {
     width: Ti.UI.FILL,
     top: "5dp",

@@ -10,6 +10,7 @@
 			<Button id="Osm_button" titleid="osm_text"/>
 			<Button id="Info" titleid="more_information_button"/>
 			<Button id="Wikipedia" titleid="wikipedia_article"/>
+			<Button id="allphotos" titleid="allphotos"/>
 			<Module id="mapview" module="ti.map" method="createView" if="OS_IOS" />
 			<OSMView module="ti.osm" id="osm" if="OS_ANDROID" />
 			<ActivityIndicator id="activityIndicator" />

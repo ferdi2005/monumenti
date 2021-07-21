@@ -91,4 +91,8 @@
     <string name="no_more_faqs">Yes, I'm an expert. I don't need them.</string>
     <string name="later_faq">I'll read them later.</string>
     <string name="faq">Frequently asked questions</string>
+    <string name="close_app_ask">Do you want to close WLM Italia?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="allphotos">Uploaded photos for this monument</string>
 </resources>

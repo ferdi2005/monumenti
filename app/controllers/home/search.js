@@ -165,7 +165,15 @@ function searchMonuments(value, user_initiated) {
 
 $.listview.addEventListener('itemclick', function(e){
     if (e.itemId.startsWith("monument")) {
+        var items = $.listsection.items;
+        var value = $.searchfield.value;
+
         var window = Alloy.createController('home/show', e.itemId.replace("monument", "")).getView();
+        window.addEventListener("close", function(e) {
+            $.listsection.setItems(items);
+            $.listview.show();
+            $.searchfield.value = value;
+        });
         tabgroup.activeTab.open(window);
     } else if (e.itemId.startsWith("town")) {
         tabgroup.activeTab = 0;
@@ -198,7 +206,7 @@ $.winsearch.addEventListener('open', function(){
     $.searchfield.addEventListener("change", function(e){
         if (e.value.length >= 5) {
             if ($.optionbar.index == 0) {
-                searchMonuments(e.value, false)
+                searchMonuments(e.value, false);
             } else {
                 searchTowns(e.value, false);
             }
@@ -224,7 +232,6 @@ function setFields(){
         $.listsection.headerTitle = L('list_section_towns_header');
         $.searchfield.hintText = L("town_searchfield");
     }
-    $.listsection.setItems([]);
     $.activityIndicator.hide();
     $.searchfield.value = "";
     $.searchfield.blur();

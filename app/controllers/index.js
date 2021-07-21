@@ -1,3 +1,4 @@
+global.tabgroup = $.index;
 
 function set_flurry() {
     var Flurry = require('ti.flurry');
@@ -13,8 +14,6 @@ function set_flurry() {
 if (Ti.App.Properties.getBool("flurry", "notset") == true) {
     set_flurry();
 }
-
-global.tabgroup = $.index;
 
 function check_and_show_flurry() {
     if (Ti.App.Properties.getBool("flurry", "notset") == "notset") {
@@ -95,3 +94,18 @@ $.index.addEventListener("open", function(e) {
         $.index.open();
     }
 });
+
+
+// Evita chiusure accidentali dell'app col back
+$.index.onBack = function(e) {
+    var dialog = Ti.UI.createAlertDialog({
+        buttonNames: [L("no"), L("yes")],
+        messageid: "close_app_ask"
+        });
+    dialog.addEventListener('click', function(e) {
+        if (e.index == 1) {
+            $.tabgroup.close();
+        }
+    });
+    dialog.show();
+}
