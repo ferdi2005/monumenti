@@ -1,5 +1,5 @@
-const Identity = require("ti.identity");
-const Dialog = require('ti.webdialog');
+var Identity = require("ti.identity");
+var Dialog = require('ti.webdialog');
 
 var args = $.args;
 

@@ -9,6 +9,16 @@ if (OS_IOS) {
   }
 }
 
+if (OS_ANDROID) {
+  Ti.App.addEventListener("pause", function(e) {
+    $.osm.pause();
+  });
+
+  Ti.App.addEventListener("resume", function(e) {
+    $.osm.resume();
+  });
+}
+
 $.activityIndicator.hide();
 var defaultZoom = 14; // Per Android
 

@@ -1,11 +1,22 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 if (OS_IOS) {
-    const Map = Alloy.Globals.Map;
+    var Map = require('ti.map');
 }
-const Dialog = require('ti.webdialog');
-const Identity = require("ti.identity");
+
+var Dialog = require('ti.webdialog');
+var Identity = require("ti.identity");
 
 var args = $.args;
+
+if (OS_ANDROID) {
+    Ti.App.addEventListener("pause", function(e) {
+      $.osm.pause();
+    });
+  
+    Ti.App.addEventListener("resume", function(e) {
+      $.osm.resume();
+    });
+}
 
 // Nasconde tutti i buttons per mostrarli via via.
 $.Upload.hide();
@@ -68,13 +79,7 @@ var client = Ti.Network.createHTTPClient({
         // L'elemento è indicato con response
 
         $.show.title = response.itemlabel;
-
-        if (OS_ANDROID) {
-            $.show.addEventListener("open", function(){
-                $.window.activity.actionBar.title = response.itemlabel;
-            });
-        }
-
+        
         if (response.latitude != null && response.longitude != null) {
             if (OS_IOS) {
                 $.mapview.region = {

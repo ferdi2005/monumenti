@@ -1,6 +1,6 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = $.args;
-const Dialog = require("ti.webdialog");
+var Dialog = require("ti.webdialog");
 
 $.conferma.hide();
 

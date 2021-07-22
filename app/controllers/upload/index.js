@@ -1,5 +1,5 @@
-const Identity = require("ti.identity");
-const Dialog = require('ti.webdialog');
+var Identity = require("ti.identity");
+var Dialog = require('ti.webdialog');
 
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = $.args;
