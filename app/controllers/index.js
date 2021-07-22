@@ -13,6 +13,7 @@ function set_flurry() {
 
     // Avvisa flurry per le uncaughtException
     Ti.App.addEventListener("uncaughtException", function(e) {
+        var Flurry = require('ti.flurry');
         Flurry.logEvent("uncaughtException", JSON.stringify(e));
     });    
 }
