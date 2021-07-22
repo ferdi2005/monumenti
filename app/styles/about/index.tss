@@ -13,13 +13,9 @@
     right: "5dp"
 }
 
-"#infocors": {
-    top: "6dp",
-    bottom: "6dp"
-}
-
 "Button": {
     backgroundColor: "#8f0000",
     color: "#FFFFFF",
-    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE
+    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE,
+    top: "6dp"
 }

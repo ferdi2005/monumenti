@@ -8,7 +8,8 @@
 
 "#image": {
     top: "5dp",
-    height: "40%"
+    height: "40%",
+    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE,
 }
 
 "#Info": {

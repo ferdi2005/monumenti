@@ -10,6 +10,8 @@ var args = $.args;
 // Nasconde tutti i buttons per mostrarli via via.
 $.Upload.hide();
 $.Info.hide();
+$.image.hide();
+$.image.height = 0;
 
 $.allphotos.hide();
 $.allphotos.height = 0;
@@ -113,6 +115,10 @@ var client = Ti.Network.createHTTPClient({
         }
         if (response.image != null && response.image != undefined && response.image != "") {
             $.image.image = "https://commons.wikimedia.org/w/thumb.php?f=" + response.image + "&w=1000";
+            $.image.addEventListener("load", function(e){
+                $.image.height = "40%";
+                $.image.show();
+            });
         }
         if (response.itemdescription != null && response.itemdescription != undefined && response.itemdescription != "") {
             $.description.text = response.itemdescription;
