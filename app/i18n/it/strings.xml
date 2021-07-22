@@ -23,8 +23,8 @@
     <string name="on_foot">A piedi</string>
     <string name="by_bike">In bici</string>
     <string name="no_geoloc_no_route">Senza geolocalizzazione attiva non sono in grado di tracciare un percorso!</string>
-    <string name="registration_deleted_by_user">Come richiesto, la tua registrazione è stata cancellata. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.</string>
-    <string name="registration_deleted_by_error">La tua registrazione è stata cancellata a causa di un problema. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.</string>
+    <string name="registration_deleted_by_user">Come richiesto, hai rimosso il tuo login. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.</string>
+    <string name="registration_deleted_by_error">Il tuo login è stato rimosso a causa di un problema. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.</string>
     <string name="ok">Ok</string>
     <string name="server_deletion_not_possible">Non è stato possibile cancellare i tuoi dati dal server. Assicurati di revocare l'autorizzazione oAuth. </string>
     <string name="login_info">Username: %1$s\nWiki: %2$s</string>

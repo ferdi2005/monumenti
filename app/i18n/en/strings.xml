@@ -23,8 +23,8 @@
     <string name="on_foot">On foot</string>
     <string name="by_bike">By bike</string>
     <string name="no_geoloc_no_route">Without active geolocation I am unable to plot a route!</string>
-    <string name="registration_deleted_by_user">As requested, your registration has been cancelled. Reopen this tab to start a new one and upload your photographs.</string>
-    <string name="registration_deleted_by_error">Your registration has been cancelled due to a problem. Reopen this tab to start a new one and upload your photographs.</string>
+    <string name="registration_deleted_by_user">As requested, you have been logged out by the application. Reopen this tab to start a new one and upload your photographs.</string>
+    <string name="registration_deleted_by_error">You have been logged out due to a problem. Reopen this tab to start a new one and upload your photographs.</string>
     <string name="ok">Ok</string>
     <string name="server_deletion_not_possible">Your data could not be deleted from the server. Make sure to revoke the oAuth authorization. </string>
     <string name="login_info">Username: %1$s\nWiki: %2$s</string>
