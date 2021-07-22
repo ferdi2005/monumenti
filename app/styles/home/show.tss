@@ -8,7 +8,7 @@
 
 "#image": {
     top: "5dp",
-    width: "1000px"
+    height: "40%"
 }
 
 "#Info": {

@@ -4,11 +4,17 @@ function set_flurry() {
     var Flurry = require('ti.flurry');
     Flurry.debugLogEnabled = true;
     Flurry.eventLoggingEnabled = true;
+
     if (OS_IOS) {
         Flurry.initializeWithCrashReporting("GPN6DJSR8CMM4ZVV9GBH");
     } else {
         Flurry.initialize('BPHB2T7TNDV6FGZHW233');
     }
+
+    // Avvisa flurry per le uncaughtException
+    Ti.App.addEventListener("uncaughtException", function(e) {
+        Flurry.logEvent("uncaughtException", e);
+    });    
 }
 
 if (Ti.App.Properties.getBool("flurry", "notset") == true) {
@@ -65,7 +71,7 @@ xhr.send();
 $.index.addEventListener("open", function(e) {
     if (Ti.App.Properties.getBool("faq_dismissed", "notset") == "notset") {
         var faq = Ti.UI.createAlertDialog({
-            buttonNames: [L("read_faq"), L("no_more_faqs"), L("later_faq")],
+            buttonNames: [L("read_faq"), L("no_more_faq"), L("later_faq")],
             messageid: "faq_ask",
         });
         faq.addEventListener('click', function(e) {

@@ -1,7 +1,7 @@
 <Alloy>
 	<Window class="container" id="show" titleid="placeholder_show_title">
 		<ScrollView id="scrollable" class="vertical-scroll">
-			<ImageView id="image"></ImageView>
+			<ImageView id="image" />
 			<Label id="title" />
 			<Label id="description" />
 			<Label id="address" />
