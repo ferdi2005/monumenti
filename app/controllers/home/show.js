@@ -119,10 +119,30 @@ var client = Ti.Network.createHTTPClient({
             });
         }
         if (response.image != null && response.image != undefined && response.image != "") {
-            $.image.image = "https://commons.wikimedia.org/w/thumb.php?f=" + response.image + "&w=1000";
+            $.image.image = "https://commons.wikimedia.org/w/thumb.php?f=" + response.image + "&w=500";
             $.image.addEventListener("load", function(e){
                 $.image.height = "40%";
                 $.image.show();
+            });
+
+            $.image.addEventListener("click", function(e) {
+                if (OS_IOS) {
+                    var image_url = "https://commons.wikimedia.org/wiki/File" + encodeURI(":") + encodeURI(response.image);
+                } else {
+                    var image_url = "https://commons.wikimedia.org/wiki/File:" + response.image;
+                }
+
+                if (Dialog.isSupported()) {
+                    if (OS_ANDROID || !Dialog.isOpen()) {
+                        Dialog.open({
+                            title: response.image,
+                            url: image_url,
+                            entersReaderIfAvailable: false
+                        });
+                    }
+                } else {
+                    Ti.Platform.openURL(image_url);
+                }
             });
         }
         if (response.itemdescription != null && response.itemdescription != undefined && response.itemdescription != "") {
@@ -266,10 +286,15 @@ var client = Ti.Network.createHTTPClient({
         
         $.allphotos.addEventListener("click", function(e) {
             if (Dialog.isSupported()) {
+                if (OS_IOS) {
+                    var allphotos_url = encodeURI(response.allphotos);
+                } else {
+                    var allphotos_url = response.allphotos;
+                }
                 if (OS_ANDROID || !Dialog.isOpen()) {
                     Dialog.open({
                         title: response.itemlabel,
-                        url: response.allphotos
+                        url: allphotos_url
                     });
                 }
             } else {
