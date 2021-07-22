@@ -1,5 +1,12 @@
 global.tabgroup = $.index;
 
+// Workaround energy leak nel background su Android
+Ti.App.addEventListener("pause", function(e) {
+    if (OS_ANDROID) {
+        $.index.close();
+    }
+});
+
 function set_flurry() {
     var Flurry = require('ti.flurry');
     Flurry.debugLogEnabled = true;
