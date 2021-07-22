@@ -25,3 +25,11 @@
     top: "3dp",
     left: "5dp"
 }
+
+"#photos_on_commons": {
+    backgroundColor: "#006399",
+    color: "#FFFFFF",
+    hiddenBehavior: Ti.UI.HIDDEN_BEHAVIOR_GONE,
+    top: "3dp",
+    bottom: "3dp"
+}

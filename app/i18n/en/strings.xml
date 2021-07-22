@@ -95,4 +95,5 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="allphotos">Uploaded photos for this monument</string>
+    <string name="photos_on_commons">All your photos on Wikimedia Commons</string>
 </resources>

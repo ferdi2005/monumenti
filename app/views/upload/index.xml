@@ -1,6 +1,7 @@
 <Alloy>
 	<Window titleid="photo_list" class="vertical" id="index">
 			<ActivityIndicator id="activityIndicator" />
+			<Button class="col_8 col_offset_1" id="photos_on_commons" titleid="photos_on_commons"/>
 			<OptionBar id="optionbar">
 				<Labels>
 					<Label selected="true" title="L('by_date')" />

@@ -18,10 +18,68 @@ function openPhoto(e) {
     }
 } 
 
+$.photos_on_commons.height = 0;
+$.photos_on_commons.hide();
+
+var keychainItem = Identity.createKeychainItem({ identifier: "token" });
+keychainItem.addEventListener("read", function(k){
+    if (k.success == true) {
+        var url = Alloy.Globals.backend + "/userinfo.json?uuid=" + Titanium.Platform.id + "&token=" + k.value;
+        var client = Ti.Network.createHTTPClient({
+            onload: function(e) {
+                var userInfo = JSON.parse(this.responseText);
+
+                if (userInfo.testuser) {
+                    var user_url = "https://ferdi.host/wiki/Special:ListFiles/" + userInfo.username;
+                } else {
+                    var user_url = "https://commons.wikimedia.org/wiki/Special:ListFiles/" + userInfo.username;
+                }
+
+                if (OS_IOS) {
+                    var user_url = encodeURI(url);
+                }
+
+                $.photos_on_commons.addEventListener("click", function(e) {
+                    if (Dialog.isSupported()) {
+                        if (OS_ANDROID || !Dialog.isOpen()) {
+                            Dialog.open({
+                                title: userInfo.username,
+                                url: user_url
+                            });
+                        }
+                    } else {
+                        Ti.Platform.openURL(user_url);
+                    }    
+                });
+
+                Ti.API.log("ciao");
+                $.photos_on_commons.show();
+                $.photos_on_commons.height = Ti.UI.SIZE;
+            },
+            onerror: function(e) {
+                $.photos_on_commons.height = 0;
+                $.photos_on_commons.hide();                    
+            },
+            timeout: 5000
+        });   
+        client.open("GET", url);
+        client.send();   
+
+    } else {
+        var alert = Ti.UI.createAlertDialog({message:String.format(L("generic_error"), k.error), buttonNames: [L("ok")]});
+        alert.addEventListener("click", function(e){
+            $.index.close();
+        });
+        alert.show();
+    }
+});
+keychainItem.read();
+
 // Usata nell'index.xml (view alloy) per il click sul bottone della scheda monumento
 function openShow(e) {
     Alloy.Globals.utils.open("home/show", e.source.id);
 }
+
 // Mostra bottone indietro
 if (OS_ANDROID) {
     $.index.activity.onCreateOptionsMenu = function(e) { 
@@ -56,7 +114,7 @@ function reload(e){
             var client = Ti.Network.createHTTPClient({
                 onload: function(e) {
                     var photos = JSON.parse(this.responseText);
-                    
+
                     items = [];
 
                     photos.forEach(function(photo) {
