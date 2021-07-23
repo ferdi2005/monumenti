@@ -36,7 +36,7 @@ keychainItem.addEventListener("read", function(k){
                 }
 
                 if (OS_IOS) {
-                    var user_url = encodeURI(url);
+                    var user_url = encodeURI(user_url);
                 }
 
                 $.photos_on_commons.addEventListener("click", function(e) {
