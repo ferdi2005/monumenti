@@ -61,7 +61,8 @@ $.faq.addEventListener("click", function(e){
         if (OS_ANDROID || !Dialog.isOpen()) {
             Dialog.open({
                 title: "FAQ",
-                url: faq_url
+                url: faq_url,
+                entersReaderIfAvailable: false
             });
         }
     } else {

@@ -31,7 +31,7 @@ if (OS_IOS) {
   $.mapview.height = Ti.UI.FILL;
 }
 
-function findmon(e, type, latkeep, latdelta, londelta) {
+function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
   if (latkeep != true) {
     if (OS_IOS) {
       var latdelta = 0.1;
@@ -121,7 +121,10 @@ function findmon(e, type, latkeep, latdelta, londelta) {
             leftButton: "/images/Info ios.png"
           });
           // Cambia il colore del pin a seconda che ci siano o no fotografie
-          if (item.noupload) {
+
+          if (item.item == monument_item) {
+            annotation.pincolor = Map.ANNOTATION_ORANGE;
+          } else if (item.noupload) {
             annotation.pincolor = Map.ANNOTATION_PURPLE;
           } else if (item.tree) {
             if (item.with_photos) {
@@ -136,6 +139,7 @@ function findmon(e, type, latkeep, latdelta, londelta) {
               annotation.pincolor = Map.ANNOTATION_RED;
             }
           }
+
           $.mapview.addAnnotation(annotation);
         });
       }
@@ -144,7 +148,9 @@ function findmon(e, type, latkeep, latdelta, londelta) {
         markers = []
         // Evita di prendere tutti tutti i risultati, che sono moltissimi
         response[0].forEach(function (item) {
-          if (item.noupload) {
+          if (item.item == monument_item) {
+            var icon = "/images/Info orange.png";
+          } else if (item.noupload) {
             var icon = "/images/Info grey.png"
           } else if (item.with_photos) {
             if (item.tree) {
@@ -307,11 +313,11 @@ $.my_location.addEventListener("click", my_location);
 
 Alloy.Globals.events.on("map_close", function(e){
   if (OS_ANDROID) {
-    findmon({coords: {latitude: e.latitude, longitude: e.longitude}}, "geoloc", true, $.osm.location.zoomLevel);
+    findmon({coords: {latitude: e.latitude, longitude: e.longitude}}, "geoloc", true, defaultZoom, 0, e.monument_item);
   }
 
   if (OS_IOS) {
-    findmon({coords: {latitude: e.latitude, longitude: e.longitude}}, "geoloc", true, $.mapview.region.latitudeDelta, $.mapview.region.longitudeDelta);
+    findmon({coords: {latitude: e.latitude, longitude: e.longitude}}, "geoloc", true, 0.1, 0.1, e.monument_item);
   }
 });
 
