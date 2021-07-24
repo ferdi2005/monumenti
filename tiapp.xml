@@ -45,6 +45,8 @@
         <string>Abbiamo bisogno della tua posizione per poterti localizzare ed indicare quali sono i monumenti più vicini a te.</string>
         <key>NSPhotoLibraryUsageDescription</key>
         <string>Abbiamo bisogno dell'accesso alle tue fotografie in modo che tu possa caricarle direttamente dall'app e partecipare al concorso.</string>
+        <key>ITSAppUsesNonExemptEncryption</key>
+        <false/>
       </dict>
     </plist>
   </ios>
