@@ -53,9 +53,11 @@ $.login_start.addEventListener("longpress", function(e){
     var keychainItem = Identity.createKeychainItem({ identifier: "token" });
     keychainItem.addEventListener("read", function(k){
         if (k.success == true) {
-            var dialog = Ti.UI.createAlertDialog({message: L("test_login_start"), okid: "ok"});
+            var dialog = Ti.UI.createAlertDialog({message: L("test_login_start"), buttonNames: [L("ok"), L("cancel")] });
             dialog.addEventListener("click", function(z){
-                startLogin(UUID, k.value, "wikitest"); // Il token è contenuto in e.value
+                if (z.index == 0) {
+                    startLogin(UUID, k.value, "wikitest"); // Il token è contenuto in e.value
+                }
             });
             dialog.show();
         } else {
