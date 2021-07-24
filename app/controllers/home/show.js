@@ -94,7 +94,7 @@ var client = Ti.Network.createHTTPClient({
                     if (e.annotation != undefined && e.annotation != null && !e.deselected) {
                         if (e.clicksource == "pin") {
                             tabgroup.activeTab = 0;
-                            Alloy.Globals.events.trigger("map_close", {latitude: response.latitude, longitude: response.longitude});
+                            Alloy.Globals.events.trigger("map_close", {latitude: response.latitude, longitude: response.longitude, monument_item: args});
                             $.show.close();
                         }
                     }
@@ -114,7 +114,7 @@ var client = Ti.Network.createHTTPClient({
         if (OS_ANDROID) {
             $.osm.addEventListener("markerClick", function(e){
                 tabgroup.activeTab = 0;
-                Alloy.Globals.events.trigger("map_close", {latitude: response.latitude, longitude: response.longitude});
+                Alloy.Globals.events.trigger("map_close", {latitude: response.latitude, longitude: response.longitude, monument_item: args});
                 $.show.close();
             });
         }
