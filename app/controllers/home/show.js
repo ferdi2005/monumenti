@@ -3,8 +3,6 @@ if (OS_IOS) {
     var Map = require('ti.map');
 }
 
-plscrash();
-
 var Dialog = require('ti.webdialog');
 var Identity = require("ti.identity");
 
