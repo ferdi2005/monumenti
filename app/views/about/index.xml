@@ -5,7 +5,7 @@
 			<Button class="col_8 col_offset_1" id="upload_list" titleid="upload_list" />
 			
 			<View class="horizontal">
-				<Label textid="flurry_ask"/>
+				<Label textid="analytics_ask"/>
 				<Switch id="tracciamento" value="false"/>
 			</View>
 

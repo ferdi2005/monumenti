@@ -2,7 +2,7 @@
 var args = $.args;
 
 $.index.addEventListener("focus", function(e){
-    if (Ti.App.Properties.getBool("flurry", "notset") == true) {
+    if (Ti.App.Properties.getBool("analytics", "notset") == true) {
         $.tracciamento.value = true;
     } else {
         $.tracciamento.value = false;
@@ -42,9 +42,9 @@ $.upload_list.addEventListener("click", function(e){
 
 $.tracciamento.addEventListener("change", function(e){
     if (e.value == true) {
-       Ti.App.Properties.setBool("flurry", true);
+       Ti.App.Properties.setBool("analytics", true);
     } else {
-        Ti.App.Properties.setBool("flurry", false);
+        Ti.App.Properties.setBool("analytics", false);
     }
 });
 

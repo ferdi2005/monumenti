@@ -8,8 +8,8 @@
     <string name="no_geolocation_permission">Impossibile localizzarti, non hai dato il permesso alla localizzazione. Cerca una città cliccando sulla lente di ingrandimento oppure abilita la localizzazione dalle impostazioni sulla privacy.</string>
     <string name="accept">Accetta</string>
     <string name="refuse">Rifiuta</string>
-    <string name="flurry_ask">Vuoi condividere con lo sviluppatore di quest'applicazione alcuni dati di utilizzo e in particolare di crash, in modo da poter contribuire al miglioramento della stessa, tramite la piattaforma Flurry?</string>
-    <string name="flurry_title">Dati di utilizzo e crash</string>
+    <string name="analytics_ask">Vuoi condividere con lo sviluppatore di quest'applicazione alcuni dati di utilizzo (in particolare, la versione dell'app quando la apri) e sui crash, con alcune informazioni anonimizzate sul tuo device, in modo da poter contribuire al miglioramento dell'applicazione? I dati non verranno condivisi con terzi.</string>
+    <string name="analytics_title">Dati di utilizzo e crash</string>
     <string name="no_results_found">Nessun risultato trovato! Prova a fare un'altra ricerca</string>
     <string name="minimum_char">Inserisci minimo 3 caratteri per effettuare una ricerca.</string>
     <string name="upload_stopped">Hai annullato il caricamento delle foto</string>

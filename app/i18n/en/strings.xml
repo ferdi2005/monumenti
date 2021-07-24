@@ -8,8 +8,8 @@
     <string name="no_geolocation_permission">Unable to locate you, you have not given permission to locate. Search for a city by clicking on the magnifying glass or enable localization from your privacy settings.</string>
     <string name="accept">Accept</string>
     <string name="refuse">Refuse</string>
-    <string name="flurry_ask">Do you want to share some usage data with the developer of this application and in particular crash data, so that you can contribute to its improvement, via the Flurry platform?</string>
-    <string name="flurry_title">Usage and crash data</string>
+    <string name="analytics_ask">Do you want to share some usage (in particular, the app version when you start the app) and crash data with the developer of this application with some anonymous information about your device, so that you can contribute to the app improvement? The data will not be shared with third parties.</string>
+    <string name="analytics_title">Usage and crash data</string>
     <string name="no_results_found">No results found! Try another search</string>
     <string name="minimum_char">Enter a minimum of 3 characters to perform a search.</string>
     <string name="upload_stopped">You have cancelled uploading photos</string>

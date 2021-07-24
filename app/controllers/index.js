@@ -1,64 +1,72 @@
 global.tabgroup = $.index;
 
-function set_flurry() {
-    var Flurry = require('ti.flurry');
-    Flurry.debugLogEnabled = true;
-    Flurry.eventLoggingEnabled = true;
-
-    if (OS_IOS) {
-        Flurry.initializeWithCrashReporting("GPN6DJSR8CMM4ZVV9GBH");
-    } else {
-        Flurry.initialize('BPHB2T7TNDV6FGZHW233');
-    }
-
-    // Avvisa flurry per le uncaughtException
+function set_analytics() {
     Ti.App.addEventListener("uncaughtException", function(e) {
-        var Flurry = require('ti.flurry');
-        Flurry.logEvent("uncaughtException", JSON.stringify(e));
-    });    
-}
+        JSON.stringify(e);
+        var url = Alloy.Globals.backend + "/analytics/crash.json?data=" + JSON.stringify(e);
 
-if (Ti.App.Properties.getBool("flurry", "notset") == true) {
-    set_flurry();
-}
+        if (Ti.App.Properties.getBool("analytics", "notset") == true) {
+            url += "&uuid=" + Titanium.Platform.id + "&device_name=" + String(Titanium.Platform.username) + "&os=" + Titanium.Platform.osname + "&os_version=" + Titanium.Platform.version + "&model=" + Titanium.Platform.model;
+        }
 
-function check_and_show_flurry() {
-    if (Ti.App.Properties.getBool("flurry", "notset") == "notset") {
-        var flurry = Ti.UI.createAlertDialog({
+        var xhr = Ti.Network.createHTTPClient({
+            onload: function() {
+                Ti.API.info("Analytics sent");
+            },
+            onerror: function() {
+                Ti.API.error("Analytics error");
+            },
+            timeout: 5000
+        });
+        xhr.open("GET", url);
+        xhr.send();
+    });
+}
+function check_and_show_analytics() {
+    Ti.API.log(Ti.App.Properties.getBool("analytics", "notset"));
+    if (Ti.App.Properties.getBool("analytics", "notset") == "notset") {
+        var analytics = Ti.UI.createAlertDialog({
             buttonNames: [L("accept"), L("refuse")],
-            messageid: "flurry_ask",
-            titleid: 'flurry_title'
+            messageid: "analytics_ask",
+            titleid: 'analytics_title'
           });
-        flurry.addEventListener('click', function(e) {
+        analytics.addEventListener('click', function(e) {
             if (e.index == 0) {
-                Ti.App.Properties.setBool("flurry", true);
-                set_flurry();
+                Ti.App.Properties.setBool("analytics", true);
+                set_analytics();
                 $.index.open();
             } else {
-                Ti.App.Properties.setBool("flurry", false);
+                Ti.App.Properties.setBool("analytics", false);
                 $.index.open();
             }
         });
-        flurry.show();
+        analytics.show();
     } else {
         $.index.open();
     }
 }
-var url = 'https://api.github.com/repos/ferdi2005/monumenti/releases/latest';
+
+var url = Alloy.Globals.backend + '/analytics/version.json?old_version=' + Ti.App.version;
+
+if (Ti.App.Properties.getBool("analytics", "notset") == true) {
+    url += "&uuid=" + Titanium.Platform.id + "&device_name=" + String(Titanium.Platform.username) + "&os=" + Titanium.Platform.osname + "&os_version=" + Titanium.Platform.version + "&model=" + Titanium.Platform.model;
+}
+
 var xhr = Ti.Network.createHTTPClient({
     onload: function(e) {
         response = JSON.parse(this.responseText);
-        if (response.tag_name != 'v' + Ti.App.version ) {
+        Ti.API.log(response);
+        if (!response.updated) {
             var dialog = Ti.UI.createAlertDialog({
-                message: String.format(L("update_app"), Ti.App.version, response.tag_name),
+                message: String.format(L("update_app"), Ti.App.version, response.app_version),
                 okid: "ok",
             });
             dialog.addEventListener('click', function(e) {
-                check_and_show_flurry();
+                check_and_show_analytics();
             });
             dialog.show();            
         } else { 
-            check_and_show_flurry();
+            check_and_show_analytics();
         }
     },
     onerror: function(e) {
@@ -80,7 +88,7 @@ $.index.addEventListener("open", function(e) {
                 Ti.App.Properties.setBool("faq_dismissed", true);
                 var Dialog = require("ti.webdialog");
 
-                var faq_url = "https://app-backend.wikilovesmonuments.it/faq?language=" + Ti.Locale.currentLanguage;
+                var faq_url = Alloy.Globals.backend + "/faq?language=" + Ti.Locale.currentLanguage;
 
                 if (Dialog.isSupported()) {
                     if (OS_ANDROID || !Dialog.isOpen()) {
