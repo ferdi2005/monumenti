@@ -96,4 +96,5 @@
     <string name="no">No</string>
     <string name="allphotos">Foto caricate per il monumento</string>
     <string name="photos_on_commons">Tutte le tue foto su Commons</string>
+    <string name="test_login_start">Stai per fare il login alla Test Wiki. Se non sei un tester, sei pregato di evitare di usare la test wiki e di fare un singolo click sul pulsante, non tenendolo premuto. Comunque le foto caricate sulla wiki di test non partecipano al concorso.</string>
 </resources>

@@ -49,6 +49,31 @@ $.login_start.addEventListener("click", function(e){
     keychainItem.read();
 });
 
+$.login_start.addEventListener("longpress", function(e){
+    var keychainItem = Identity.createKeychainItem({ identifier: "token" });
+    keychainItem.addEventListener("read", function(k){
+        if (k.success == true) {
+            var dialog = Ti.UI.createAlertDialog({message: L("test_login_start"), okid: "ok"});
+            dialog.addEventListener("click", function(z){
+                startLogin(UUID, k.value, "wikitest"); // Il token è contenuto in e.value
+            });
+            dialog.show();
+        } else {
+            var message = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("close"), L("login_delete")]});
+            message.addEventListener("click", function(z){
+                if (z.index == 0) {
+                    $.config.close();
+                } else {
+                    triggerDeletion(UUID, false);
+                }
+            });
+            message.show();
+        }
+        
+    });
+    keychainItem.read();
+});
+
 // Non mostrare il bottone indietro su iOS se arriva da un passaggio obbligatorio
 if (args == "show") {
     $.config.hidesBackButton = true;
@@ -163,9 +188,9 @@ function showUserInfo(userInfo) {
 }
 
 // Svolge le operazioni per aprire la finestra di login
-function startLogin(uuid, token) {
+function startLogin(uuid, token, wiki = "mediawiki") {
 
-    var url = Alloy.Globals.backend + "/start_login?uuid=" + uuid + "&token=" + token;
+    var url = Alloy.Globals.backend + "/start_login?wiki=" + wiki + "&uuid=" + uuid + "&token=" + token;
     if (Dialog.isSupported()) {
         if (OS_ANDROID || !Dialog.isOpen()) {
             Dialog.open({
