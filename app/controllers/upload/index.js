@@ -52,7 +52,6 @@ keychainItem.addEventListener("read", function(k){
                     }    
                 });
 
-                Ti.API.log("ciao");
                 $.photos_on_commons.show();
                 $.photos_on_commons.height = Ti.UI.SIZE;
             },

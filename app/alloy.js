@@ -7,5 +7,5 @@ Alloy.Globals.utils = new utilsService();
 if (OS_ANDROID) {
     Alloy.Globals.OSM = require('ti.osm');
 } 
-Alloy.Globals.backend = "http://7077fd9416c1.ngrok.io";
+Alloy.Globals.backend = "https://app-backend.wikilovesmonuments.it";
 Alloy.Globals.events = _.clone(Backbone.Events);

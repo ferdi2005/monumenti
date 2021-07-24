@@ -23,7 +23,6 @@ function set_analytics() {
     });
 }
 function check_and_show_analytics() {
-    Ti.API.log(Ti.App.Properties.getBool("analytics", "notset"));
     if (Ti.App.Properties.getBool("analytics", "notset") == "notset") {
         var analytics = Ti.UI.createAlertDialog({
             buttonNames: [L("accept"), L("refuse")],
@@ -55,7 +54,6 @@ if (Ti.App.Properties.getBool("analytics", "notset") == true) {
 var xhr = Ti.Network.createHTTPClient({
     onload: function(e) {
         response = JSON.parse(this.responseText);
-        Ti.API.log(response);
         if (!response.updated) {
             var dialog = Ti.UI.createAlertDialog({
                 message: String.format(L("update_app"), Ti.App.version, response.app_version),
