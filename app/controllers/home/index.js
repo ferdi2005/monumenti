@@ -123,7 +123,11 @@ function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
           // Cambia il colore del pin a seconda che ci siano o no fotografie
 
           if (item.item == monument_item) {
-            annotation.pincolor = Map.ANNOTATION_ORANGE;
+            if (item.tree) {
+              annotation.image = "/images/tree orange ios.png";
+            } else {
+              annotation.pincolor = Map.ANNOTATION_ORANGE;
+            }
           } else if (item.noupload) {
             annotation.pincolor = Map.ANNOTATION_PURPLE;
           } else if (item.tree) {
@@ -149,7 +153,11 @@ function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
         // Evita di prendere tutti tutti i risultati, che sono moltissimi
         response[0].forEach(function (item) {
           if (item.item == monument_item) {
-            var icon = "/images/Info orange.png";
+            if (item.tree) {
+              var icon = "/images/tree orange android.png";
+            } else {
+              var icon = "/images/Info orange.png";
+            }
           } else if (item.noupload) {
             var icon = "/images/Info grey.png"
           } else if (item.with_photos) {
