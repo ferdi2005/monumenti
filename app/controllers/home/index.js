@@ -321,11 +321,11 @@ $.my_location.addEventListener("click", my_location);
 
 Alloy.Globals.events.on("map_close", function(e){
   if (OS_ANDROID) {
-    findmon({coords: {latitude: e.latitude, longitude: e.longitude}}, "geoloc", true, defaultZoom, 0, e.monument_item);
+    findmon({coords: {latitude: e.latitude, longitude: e.longitude}}, "geoloc", true, 17, 0, e.monument_item);
   }
 
   if (OS_IOS) {
-    findmon({coords: {latitude: e.latitude, longitude: e.longitude}}, "geoloc", true, 0.1, 0.1, e.monument_item);
+    findmon({coords: {latitude: e.latitude, longitude: e.longitude}}, "geoloc", true, 0.001, 0.001, e.monument_item);
   }
 });
 

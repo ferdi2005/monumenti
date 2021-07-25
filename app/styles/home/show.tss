@@ -67,7 +67,7 @@
 }
 
 "#mapview[platform=ios]": {
-    height: '20%',
+    height: '30%',
     width: Ti.UI.FILL,
     userLocation: true,
     userLocationButton: false,
@@ -77,11 +77,11 @@
 
 "#osm[platform=android]": {
     mapType: Alloy.Globals.OSM.WIKIMEDIA,
-    height: '20%',
+    height: '30%',
     width: Ti.UI.FILL,
     top: '3dp',
     bottom: '5dp',
-    userAgent: "Wiki Loves Monuments Italia app/2.1.2 (https://github.com/ferdi2005/monumenti; ferdinando.traversa@wikimedia.it) ti.osm/1.0.1",
+    userAgent: "Wiki Loves Monuments Italia app/2.4.1 (https://github.com/ferdi2005/monumenti; ferdinando.traversa@wikimedia.it) ti.osm/1.0.1",
 }
 
 "#Alert": {

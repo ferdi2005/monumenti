@@ -99,7 +99,7 @@ if (args == "settings") {
 }
 
 // Cancella in caso di problemi
-if (args == "delete") {
+/* if (args == "delete") {
     var message = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("close"), L("login_delete")]});
     message.addEventListener("click", function(e){
         if (e.index == 0) {
@@ -111,7 +111,7 @@ if (args == "delete") {
     });
     message.show();
 
-}
+} */ // Non è necessario, perché se ci sono problemi l'alert viene già fatto
 // Event listener su Login update
 $.login_update.addEventListener("click", function(e){
     readInformation(UUID, true);
@@ -124,7 +124,13 @@ function triggerDeletion(uuid, user_initiated = false){
         if (k.success == true) {
             // Cancella la registrazione
             var keychainItem = Identity.createKeychainItem({ identifier: "token" });
-            keychainItem.reset();
+            keychainItem.fetchExistence({
+                result: function(e) {
+                    Ti.API.log("item exists");
+                    keychainItem.reset();
+                }
+            });
+            
             Ti.App.Properties.setBool("registrato", false);
             Ti.App.Properties.setBool("autorizzato", false);
             // Invia la cancellazione della registrazione al server per cancellare l'utente
@@ -167,6 +173,7 @@ function triggerDeletion(uuid, user_initiated = false){
             message.show();
         }
     });
+
     keychainItem.read();
     
 }
@@ -305,8 +312,14 @@ $.config.addEventListener("open", function(e) {
     if (Ti.App.Properties.getBool("registrato", false) == false) {
         // Elimina un eventuale token già presente (risolve un bug su iOS per cui alla reinstallazione dell'app persisteva il keychainItem
         var keychainItem = Identity.createKeychainItem({ identifier: "token" });
-        keychainItem.reset();
-    
+        keychainItem.fetchExistence({
+            result: function(e) {
+                if (e.exists == true) {
+                    keychainItem.reset();
+                }
+            }
+        });
+
         const GENERATED_TOKEN = Titanium.Platform.createUUID();
         var credentials = {
             uuid: UUID,
@@ -328,13 +341,9 @@ $.config.addEventListener("open", function(e) {
                             Ti.App.Properties.setBool("registrato", true); // Imposta l'avvenuta registrazione con successo
                             retrieveUserData(UUID, GENERATED_TOKEN);
                         } else {
-                            var message = Ti.UI.createAlertDialog({messageid: "problem_do_logout", buttonNames: [L("close"), L("login_delete")]});
+                            var message = Ti.UI.createAlertDialog({message:String.format(L("generic_error"), e.error), okid: "ok"});
                             message.addEventListener("click", function(e){
-                                if (e.index == 0) {
-                                    $.config.close();
-                                } else {
-                                    triggerDeletion(UUID, false);
-                                }
+                                $.config.close();
                             });
                             message.show();                                        
                         }

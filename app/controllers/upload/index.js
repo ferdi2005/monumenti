@@ -65,11 +65,8 @@ keychainItem.addEventListener("read", function(k){
         client.send();   
 
     } else {
-        var alert = Ti.UI.createAlertDialog({message:String.format(L("generic_error"), k.error), buttonNames: [L("ok")]});
-        alert.addEventListener("click", function(e){
-            $.index.close();
-        });
-        alert.show();
+        $.index.close();
+        Alloy.Globals.utils.open("upload/config", "delete");
     }
 });
 keychainItem.read();
@@ -322,3 +319,7 @@ function reload(e){
 $.index.addEventListener("open", reload);
 
 $.optionbar.addEventListener("click", reload);
+
+Alloy.Globals.events.on("map_close", function(e) {
+    $.index.close();
+});
