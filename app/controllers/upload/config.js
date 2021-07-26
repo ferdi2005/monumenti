@@ -199,7 +199,7 @@ function showUserInfo(userInfo) {
 // Svolge le operazioni per aprire la finestra di login
 function startLogin(uuid, token, wiki = "mediawiki") {
 
-    var url = Alloy.Globals.backend + "/start_login?wiki=" + wiki + "&uuid=" + uuid + "&token=" + token;
+    var url = Alloy.Globals.backend + "/start_login?language=" + Ti.Locale.currentLanguage + "&wiki=" + wiki + "&uuid=" + uuid + "&token=" + token;
     if (Dialog.isSupported()) {
         if (OS_ANDROID || !Dialog.isOpen()) {
             Dialog.open({
