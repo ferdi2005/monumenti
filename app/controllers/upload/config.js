@@ -157,6 +157,12 @@ function triggerDeletion(uuid, user_initiated = false){
             client.open("GET", url);
             client.send();
         } else {
+            keychainItem.fetchExistence(function(e) {
+                if (e.exists == true) {
+                    keychainItem.reset();
+                }
+            });
+            
             Ti.App.Properties.setBool("registrato", false);
             Ti.App.Properties.setBool("autorizzato", false);
 
@@ -306,18 +312,11 @@ $.config.addEventListener("open", function(e) {
     if (Ti.App.Properties.getBool("registrato", false) == false) {
         // Elimina un eventuale token già presente (risolve un bug su iOS per cui alla reinstallazione dell'app persisteva il keychainItem
         var keychainItem = Identity.createKeychainItem({ identifier: "token" });
-        if (OS_ANDROID) {
-            keychainItem.fetchExistence({
-                result: function(e) {
-                    Ti.API.log(JSON.stringify(e));
-                    if (e.exists == true) {
-                        keychainItem.reset();
-                    }
-                }
-            });
-        } else {
-            keychainItem.reset();
-        }
+        keychainItem.fetchExistence(function(e) {
+            if (e.exists == true) {
+                keychainItem.reset();
+            }
+        });
 
         const GENERATED_TOKEN = Titanium.Platform.createUUID();
         var credentials = {
