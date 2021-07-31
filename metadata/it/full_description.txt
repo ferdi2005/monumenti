@@ -1,9 +1,5 @@
-Tramite quest'applicazione, facendo uso delle funzionalità di localizzazione e di mappa, potrai vedere tutti i monumenti partecipanti a Wiki Loves monuments Italia vicino a te, analizzarne i dettagli in una scheda, ottenendo le informazioni dell'elemento Wikidata (nome, descrizione e indirizzo), un link a Wikidata, la possibilità di caricare le foto da un link a Wikimedia Commons e le indicazioni tramite OSM.
+Trova tutti i monumenti che aderiscono a Wiki Loves Monuments Italia e carica le tue foto. Dall’1 al 30 settembre partecipa così al concorso fotografico da Guinnes dei Primati.
+Con l’app Wiki Loves Monuments Italia potrai vedere direttamente dal tuo telefono quali sono i monumenti fotografabili per il concorso Wiki Loves Monuments. Cercali sulla mappa interattiva o consultando una lista. Scatta una foto e caricala subito attraverso l’applicazione, per renderla disponibile su Wikimedia Commons. Oppure aspetta il primo settembre e carica le foto che conservi nella tua galleria: in questo modo parteciperai automaticamente al concorso fotografico più grande del mondo.
+L’app Wiki Loves Monuments Italia  fa uso delle funzionalità di localizzazione e di mappa ed è collegata a OpenStreetMap e Wikidata per fornirti tutte le informazioni disponibili sui monumenti, come nome, descrizione e indirizzo. Ti permette di caricare con comodità su Wikimedia Commons tutte le foto che vuoi, anche mentre sei fuori casa. Puoi cercare una città specifica per vederne i monumenti fotografabili, oppure cercarli in base alla tua posizione.
 
-Puoi anche cercare una città specifica per vederne i monumenti oppure cliccare sul tasto di refresh per aggiornare la tua posizione.
-
-I dati della localizzazione vengono trattati con la massima riservatezza, la localizzazione non viene salvata in alcun modo.
-I dati dei monumenti sono presi da Wikidata, sono rilasciati sotto licenza CC-0 e sono disponibile a tutti tramite https://cerca.wikilovesmonuments.it che espone un'API pubblica su https://cerca.wikilovesmonuments.it/monuments.json.
-
-Codice sorgente: https://github.com/ferdi2005/monumenti
-Codice sorgente del backend: https://github.com/ferdi2005/wikilovesmonuments
+Ci teniamo alla privacy: i dati della localizzazione vengono trattati con la massima riservatezza e non vengono salvati in alcun modo.

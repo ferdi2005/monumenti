@@ -1,0 +1,2 @@
+- Internazionalizzazione della schermata di avvenuto accesso
+- Risoluzione di bug

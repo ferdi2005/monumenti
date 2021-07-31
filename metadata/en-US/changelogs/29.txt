@@ -1,0 +1,2 @@
+- Localization of the login succeeded screen
+- Bug fixes
