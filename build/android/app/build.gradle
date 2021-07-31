@@ -8,13 +8,9 @@ if (file("${projectDir}/google-services.json").exists()) {
 
 repositories {
 
-	maven { url 'file:///Users/ferdi2005/Library/Application%20Support/Titanium/mobilesdk/osx/9.3.2.GA/android/m2repository' }
+	maven { url 'file:///Users/ferdi2005/Library/Application%20Support/Titanium/mobilesdk/osx/10.0.0.GA/android/m2repository' }
 
-	maven { url 'file:///Users/ferdi2005/Codice/monumenti/modules/android/ti.osm/1.0.1/m2repository' }
-
-	maven { url 'file:///Users/ferdi2005/Library/Application%20Support/Titanium/modules/android/ti.map/5.0.1/m2repository' }
-
-	maven { url 'file:///Users/ferdi2005/Library/Application%20Support/Titanium/modules/android/hyperloop/7.0.1/m2repository' }
+	maven { url 'file:///Users/ferdi2005/Codice/monumenti/modules/android/ti.osm/1.0.3/m2repository' }
 
 	maven { url 'file:///Users/ferdi2005/Library/Application%20Support/Titanium/modules/android/ti.playservices/17.5.0/m2repository' }
 
@@ -28,10 +24,10 @@ android {
 	compileSdkVersion 30
 	defaultConfig {
 		applicationId 'it.wikimedia.wikilovesmonuments'
-		minSdkVersion 19
+		minSdkVersion 21
 		targetSdkVersion 30
-		versionCode 22
-		versionName '2.1.2'
+		versionCode 29
+		versionName '2.4.2'
 		manifestPlaceholders = project.ext.tiManifestPlaceholders
 		manifestPlaceholders.put('localApplicationId', applicationId) // Legacy placeholder old AARs sometimes use.
 		multiDexEnabled true
@@ -51,7 +47,7 @@ android {
 		targetCompatibility JavaVersion.VERSION_1_8
 	}
 	signingConfigs {
-		def tiKeystoreFilePath = '/Users/ferdi2005/Library/Application Support/Titanium/mobilesdk/osx/9.3.2.GA/android/dev_keystore'
+		def tiKeystoreFilePath = '/Users/ferdi2005/Library/Application Support/Titanium/mobilesdk/osx/10.0.0.GA/android/dev_keystore'
 		if (System.env.TI_ANDROID_APP_KEYSTORE_FILE != null) {
 			tiKeystoreFilePath = System.env.TI_ANDROID_APP_KEYSTORE_FILE
 		}
@@ -108,16 +104,10 @@ dependencies {
 	implementation fileTree(dir: "${projectDir}/src/main", include: ['*.aar', '*.jar'])
 
 
-	implementation project(':lib.ti.flurry')
 
+	implementation 'org.appcelerator:titanium:10.0.0'
 
-	implementation 'org.appcelerator:titanium:9.3.2'
-
-	implementation 'ti:osm:1.0.1'
-
-	implementation 'ti:map:5.0.1'
-
-	implementation 'hyperloop:hyperloop:7.0.1'
+	implementation 'ti:osm:1.0.3'
 
 	implementation 'ti:playservices:17.5.0'
 

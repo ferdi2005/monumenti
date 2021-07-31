@@ -26,45 +26,47 @@ public class AssetCryptImpl implements KrollAssetHelper.AssetCrypt
 	private static final String BIN_EXT = ".bin";
 
 	private static byte[] salt = {
-		(byte)103, (byte)196, (byte)170, (byte)76, (byte)88, (byte)139, (byte)124, (byte)61, (byte)126, (byte)130, (byte)200, (byte)126, (byte)3, (byte)149, (byte)240, (byte)234
+		(byte)170, (byte)221, (byte)53, (byte)22, (byte)232, (byte)168, (byte)70, (byte)240, (byte)196, (byte)252, (byte)226, (byte)120, (byte)238, (byte)97, (byte)218, (byte)167
 	};
 
 	private static final Collection<String> assets =
 		new ArrayList<String>(Arrays.asList(
+			"Resources/_app_props_.json",
+			"Resources/_env_.json",
+			"Resources/ti.kernel.js",
 			"Resources/ti.main.js",
-			"Resources/alloy/CFG.js",
 			"Resources/app.js",
+			"Resources/alloy/CFG.js",
+			"Resources/alloy.bootstrap.js",
+			"Resources/alloy.js",
+			"Resources/utilsService.js",
 			"Resources/alloy/backbone.js",
 			"Resources/alloy/constants.js",
+			"Resources/alloy/underscore.js",
+			"Resources/alloy/widget.js",
+			"Resources/alloy/styles/index.js",
 			"Resources/alloy/controllers/BaseController.js",
-			"Resources/alloy/controllers/about/index.js",
-			"Resources/alloy/controllers/about/info.js",
-			"Resources/alloy/controllers/home/index.js",
-			"Resources/alloy/controllers/home/search.js",
-			"Resources/alloy/controllers/home/show.js",
 			"Resources/alloy/controllers/index.js",
-			"Resources/alloy/controllers/upload/config.js",
-			"Resources/alloy/controllers/upload/index.js",
-			"Resources/alloy/controllers/upload/title.js",
+			"Resources/alloy/sync/localStorage.js",
+			"Resources/alloy/sync/properties.js",
+			"Resources/alloy/sync/sql.js",
 			"Resources/alloy/styles/about/index.js",
 			"Resources/alloy/styles/about/info.js",
 			"Resources/alloy/styles/home/index.js",
 			"Resources/alloy/styles/home/search.js",
 			"Resources/alloy/styles/home/show.js",
-			"Resources/alloy/styles/index.js",
+			"Resources/alloy/controllers/about/index.js",
+			"Resources/alloy/controllers/about/info.js",
 			"Resources/alloy/styles/upload/config.js",
 			"Resources/alloy/styles/upload/index.js",
 			"Resources/alloy/styles/upload/title.js",
-			"Resources/alloy/sync/localStorage.js",
-			"Resources/alloy/sync/properties.js",
-			"Resources/alloy/sync/sql.js",
-			"Resources/alloy/underscore.js",
-			"Resources/alloy/widget.js",
-			"Resources/alloy.bootstrap.js",
-			"Resources/alloy.js",
-			"Resources/utilsService.js",
+			"Resources/alloy/controllers/home/index.js",
+			"Resources/alloy/controllers/home/search.js",
+			"Resources/alloy/controllers/home/show.js",
+			"Resources/alloy/controllers/upload/config.js",
+			"Resources/alloy/controllers/upload/index.js",
+			"Resources/alloy/controllers/upload/title.js",
 			"Resources/ti.playservices/ti.playservices.bootstrap.js",
-			"Resources/_app_props_.json",
 			"Resources/ti.internal/bootstrap.json"
 		));
 

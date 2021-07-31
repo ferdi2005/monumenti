@@ -1,3 +1,2 @@
 rootProject.name = 'WLM Italia'
 include ':app'
-include ':lib.ti.flurry'

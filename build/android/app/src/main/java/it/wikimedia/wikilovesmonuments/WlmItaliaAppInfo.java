@@ -29,7 +29,7 @@ public final class WlmItaliaAppInfo implements ITiAppInfo
 	}
 
 	public String getVersion() {
-		return "2.1.2";
+		return "2.4.2";
 	}
 
 	public String getPublisher() {
@@ -53,7 +53,7 @@ public final class WlmItaliaAppInfo implements ITiAppInfo
 	}
 
 	public boolean isAnalyticsEnabled() {
-		return true;
+		return false;
 	}
 
 	public String getGUID() {

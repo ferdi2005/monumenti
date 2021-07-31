@@ -41,7 +41,6 @@ public final class WlmItaliaApplication extends TiApplication
 		KrollAssetCache.init(this);
 
 		super.onCreate();
-		postAppInfo();
 
 		V8Runtime runtime = new V8Runtime();
 
@@ -53,60 +52,6 @@ public final class WlmItaliaApplication extends TiApplication
 			try {
 				runtime.addExternalModule(
 						"ti.osm",
-						(Class<KrollExternalModule>) Class.forName(className));
-			} catch (Throwable ex) {
-				Log.e(TAG, "Failed to add external module: " + className);
-				if ((ex instanceof RuntimeException) == false) {
-					ex = new RuntimeException(ex);
-				}
-				throw (RuntimeException) ex;
-			}
-		}
-		
-
-		{
-		
-			String className = "ti.map.TiModuleBootstrap";
-		
-			try {
-				runtime.addExternalModule(
-						"ti.map",
-						(Class<KrollExternalModule>) Class.forName(className));
-			} catch (Throwable ex) {
-				Log.e(TAG, "Failed to add external module: " + className);
-				if ((ex instanceof RuntimeException) == false) {
-					ex = new RuntimeException(ex);
-				}
-				throw (RuntimeException) ex;
-			}
-		}
-		
-
-		{
-		
-			String className = "hyperloop.TiModuleBootstrap";
-		
-			try {
-				runtime.addExternalModule(
-						"hyperloop",
-						(Class<KrollExternalModule>) Class.forName(className));
-			} catch (Throwable ex) {
-				Log.e(TAG, "Failed to add external module: " + className);
-				if ((ex instanceof RuntimeException) == false) {
-					ex = new RuntimeException(ex);
-				}
-				throw (RuntimeException) ex;
-			}
-		}
-		
-
-		{
-		
-			String className = "ti.flurry.FlurryAndroidBootstrap";
-		
-			try {
-				runtime.addExternalModule(
-						"ti.flurry",
 						(Class<KrollExternalModule>) Class.forName(className));
 			} catch (Throwable ex) {
 				Log.e(TAG, "Failed to add external module: " + className);
@@ -174,7 +119,7 @@ public final class WlmItaliaApplication extends TiApplication
 
 
 		KrollRuntime.init(this, runtime);
-
+		postAppInfo();
 		postOnCreate();
 
 
@@ -203,75 +148,11 @@ public final class WlmItaliaApplication extends TiApplication
 		
 
 		moduleInfo = new KrollModuleInfo(
-			"ti.osm", "ti.osm", "2d5116e8-1aca-40b9-91f4-e844253c3477", "1.0.1",
+			"ti.osm", "ti.osm", "2d5116e8-1aca-40b9-91f4-e844253c3477", "1.0.3",
 			"ti.osm",
 			"Michael Gangolf",
 			"MIT",
 			"Copyright (c) 2021 by Michael Gangolf");
-
-		
-
-		
-
-		KrollModule.addCustomModuleInfo(moduleInfo);
-	
-		
-
-		moduleInfo = new KrollModuleInfo(
-			"map", "ti.map", "f0d8fd44-86d2-4730-b67d-bd454577aeee", "5.0.1",
-			"External version of Map module using native Google Maps library",
-			"Appcelerator",
-			"Apache Public License v2",
-			"Copyright (c) 2013-present by Axway, Inc.");
-
-		
-
-		
-
-		KrollModule.addCustomModuleInfo(moduleInfo);
-	
-		
-
-		moduleInfo = new KrollModuleInfo(
-			"hyperloop-android", "hyperloop", "bdaca69f-b316-4ce6-9065-7a61e1dafa39", "7.0.1",
-			"hyperloop-android",
-			"Appcelerator",
-			"Appcelerator Commercial License",
-			"Copyright (c) 2017-2021 Axway, Inc.");
-
-		
-
-		
-
-		KrollModule.addCustomModuleInfo(moduleInfo);
-	
-		
-		{
-			String className = "ti.flurry.FlurryAndroidModule";
-			String methodName = "onAppCreate";
-			try {
-				Class moduleClass = Class.forName(className);
-				Method moduleMethod = moduleClass.getMethod(methodName, TiApplication.class);
-				moduleMethod.invoke(null, this);
-			} catch (Throwable ex) {
-				Log.e(TAG, "Error invoking: " + className + "." + methodName + "()");
-				if ((ex instanceof InvocationTargetException) && (ex.getCause() != null)) {
-					ex = ex.getCause();
-				}
-				if ((ex instanceof RuntimeException) == false) {
-					ex = new RuntimeException(ex);
-				}
-				throw (RuntimeException) ex;
-			}
-		}
-		
-
-		moduleInfo = new KrollModuleInfo(
-			"flurry_android", "ti.flurry", "cb18a7d2-baa4-4c0d-a0b1-b07b8676f2ec", "3.0.0",
-			"Flurry event reporting module",
-			"Ayo Adesugba",
-			"Apache License, Version 2.0",
-			"Copyright (c) 2010-2014 by Appcelerator, Inc.");
 
 		
 
@@ -330,6 +211,6 @@ public final class WlmItaliaApplication extends TiApplication
 	@Override
 	public void verifyCustomModules(TiRootActivity rootActivity)
 	{
-
+		// This method is needed by the "appc" CLI.
 	}
 }

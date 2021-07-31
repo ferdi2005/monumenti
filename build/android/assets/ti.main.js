@@ -29,7 +29,7 @@ function _interopNamespace(e) {
  * This script is used to load ACA (Axway Crash Analytics).
  * This allows ACA to be the first module to load on startup.
  */
-Promise.resolve().then(function () {return /*#__PURE__*/_interopNamespace(require('com.appcelerator.aca'));}).catch(e => {// No need to notify of ACA load failure.
+Promise.resolve().then(function () {return /*#__PURE__*/_interopNamespace(require('com.appcelerator.aca'));}).catch(() => {// No need to notify of ACA load failure.
 });
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -40,7 +40,6 @@ var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof win
  * Licensed under the terms of the Apache Public License
  * Please see the LICENSE included with this distribution for details.
  */
-
 /* eslint-disable quote-props */
 
 /* globals OS_ANDROID, OS_IOS */
@@ -133,7 +132,7 @@ function isInsideNodeModules() {
 
   return false;
 }
-function join(output, separator) {
+function join$1(output, separator) {
   let str = '';
 
   if (output.length !== 0) {
@@ -155,15 +154,15 @@ function uncurryThis(f) {
     return f.call.apply(f, arguments);
   };
 }
-const ALL_PROPERTIES = 0;
-const ONLY_ENUMERABLE = 2;
+const ALL_PROPERTIES$2 = 0;
+const ONLY_ENUMERABLE$2 = 2;
 const propertyFilter = {
-  ALL_PROPERTIES,
-  ONLY_ENUMERABLE };
+  ALL_PROPERTIES: ALL_PROPERTIES$2,
+  ONLY_ENUMERABLE: ONLY_ENUMERABLE$2 };
 
 function getOwnNonIndexProperties(obj, filter) {
   const props = [];
-  const keys = filter === ONLY_ENUMERABLE ? Object.keys(obj) : Object.getOwnPropertyNames(obj);
+  const keys = filter === ONLY_ENUMERABLE$2 ? Object.keys(obj) : Object.getOwnPropertyNames(obj);
 
   for (var i = 0; i < keys.length; ++i) {
     const key = keys[i];
@@ -193,8 +192,8 @@ function isAllDigits(s) {
 }
 
 // Copyright Node.js contributors. All rights reserved.
-const TypedArrayPrototype = Object.getPrototypeOf(Uint8Array.prototype);
-const TypedArrayProto_toStringTag = uncurryThis(Object.getOwnPropertyDescriptor(TypedArrayPrototype, Symbol.toStringTag).get);
+const TypedArrayPrototype$1 = Object.getPrototypeOf(Uint8Array.prototype);
+const TypedArrayProto_toStringTag = uncurryThis(Object.getOwnPropertyDescriptor(TypedArrayPrototype$1, Symbol.toStringTag).get);
 
 function isObject(value) {
   return typeof value === 'object';
@@ -410,7 +409,7 @@ function lazyError() {
   return error;
 }
 
-function assert(value, message) {
+function assert$1(value, message) {
   if (!value) {
     const ERR_INTERNAL_ASSERTION = lazyError();
     throw new ERR_INTERNAL_ASSERTION(message);
@@ -422,7 +421,7 @@ function fail(message) {
   throw new ERR_INTERNAL_ASSERTION(message);
 }
 
-assert.fail = fail;
+assert$1.fail = fail;
 
 // Copyright Node.js contributors. All rights reserved.
 const messages = new Map();
@@ -495,20 +494,20 @@ function getMessage(key, args, self) {
   */
 
   if (typeof msg === 'function') {
-    assert(msg.length <= args.length, // Default options do not count.
+    assert$1(msg.length <= args.length, // Default options do not count.
     `Code: ${key}; The provided arguments length (${args.length}) does not ` + `match the required ones (${msg.length}).`);
     return msg.apply(self, args);
   }
 
   const expectedLength = (msg.match(/%[dfijoOs]/g) || []).length;
-  assert(expectedLength === args.length, `Code: ${key}; The provided arguments length (${args.length}) does not ` + `match the required ones (${expectedLength}).`);
+  assert$1(expectedLength === args.length, `Code: ${key}; The provided arguments length (${args.length}) does not ` + `match the required ones (${expectedLength}).`);
 
   if (args.length === 0) {
     return msg;
   }
 
   args.unshift(msg);
-  return format.apply(null, args); // @fixme rollup cannot handle lazy loaded modules, maybe move to webpack?
+  return format$1.apply(null, args); // @fixme rollup cannot handle lazy loaded modules, maybe move to webpack?
   // return lazyInternalUtilInspect().format.apply(null, args);
 }
 
@@ -548,7 +547,7 @@ E('ERR_INTERNAL_ASSERTION', message => {
   return message === undefined ? suffix : `${message}\n${suffix}`;
 }, Error);
 E('ERR_INVALID_ARG_TYPE', (name, expected, actual) => {
-  assert(typeof name === 'string', '\'name\' must be a string'); // determiner: 'must be' or 'must not be'
+  assert$1(typeof name === 'string', '\'name\' must be a string'); // determiner: 'must be' or 'must not be'
 
   let determiner;
 
@@ -602,11 +601,11 @@ function isStackOverflowError(err) {
 }
 
 function oneOf(expected, thing) {
-  assert(typeof thing === 'string', '`thing` has to be of type string');
+  assert$1(typeof thing === 'string', '`thing` has to be of type string');
 
   if (Array.isArray(expected)) {
     const len = expected.length;
-    assert(len > 0, 'At least one expected value needs to be specified');
+    assert$1(len > 0, 'At least one expected value needs to be specified');
     expected = expected.map(i => String(i));
 
     if (len > 2) {
@@ -646,6 +645,48 @@ function stringToHexBytes(value) {
   return byteArray;
 }
 
+const arrayIndexHandler = {
+  get(target, propKey, receiver) {
+    if (typeof propKey === 'string') {
+      const num = Number(propKey);
+
+      if (Number.isSafeInteger(num)) {
+        return getAdjustedIndex(target, num);
+      }
+    } else if (propKey === isBuffer) {
+      return true;
+    }
+
+    return Reflect.get(target, propKey, receiver);
+  },
+
+  set(target, propKey, value, receiver) {
+    if (typeof propKey === 'string') {
+      const num = Number(propKey);
+
+      if (Number.isSafeInteger(num)) {
+        setAdjustedIndex(target, num, value);
+        return true;
+      }
+    }
+
+    return Reflect.set(target, propKey, value, receiver);
+  },
+
+  has(target, key) {
+    if (typeof key === 'string') {
+      const num = Number(key);
+
+      if (Number.isSafeInteger(num)) {
+        // ensure it's a positive "safe" integer within the range of the buffer
+        return num >= 0 && num < target._tiBuffer.length;
+      }
+    }
+
+    return key in target;
+  } };
+
+// This is a special Buffer that wraps Ti.Buffer
 // as a result it is *much* slower to read/write values
 // because we need to go across the JS/Native boundary per-byte!
 // We also need to use a Proxy to handle intercepting set/get of indices to redirect to the underlying Ti.Buffer
@@ -805,49 +846,6 @@ class SlowBuffer {
 
     return this._tiBuffer.clone(this.byteOffset, this.length);
   }}
-
-// Use a Proxy to hack array style index accessors
-
-const arrayIndexHandler = {
-  get(target, propKey, receiver) {
-    if (typeof propKey === 'string') {
-      const num = Number(propKey);
-
-      if (Number.isSafeInteger(num)) {
-        return getAdjustedIndex(target, num);
-      }
-    } else if (propKey === isBuffer) {
-      return true;
-    }
-
-    return Reflect.get(target, propKey, receiver);
-  },
-
-  set(target, propKey, value, receiver) {
-    if (typeof propKey === 'string') {
-      const num = Number(propKey);
-
-      if (Number.isSafeInteger(num)) {
-        setAdjustedIndex(target, num, value);
-        return true;
-      }
-    }
-
-    return Reflect.set(target, propKey, value, receiver);
-  },
-
-  has(target, key) {
-    if (typeof key === 'string') {
-      const num = Number(key);
-
-      if (Number.isSafeInteger(num)) {
-        // ensure it's a positive "safe" integer within the range of the buffer
-        return num >= 0 && num < target._tiBuffer.length;
-      }
-    }
-
-    return key in target;
-  } };
 
 
 
@@ -1328,9 +1326,9 @@ Buffer$1.prototype.fill = function (value, offset, end, encoding) {
   return this;
 };
 
-const TypedArrayPrototype$1 = Object.getPrototypeOf(Uint8Array.prototype);
-const TypedArrayProto_byteLength = Object.getOwnPropertyDescriptor(TypedArrayPrototype$1, 'byteLength').get;
-const TypedArrayFill = TypedArrayPrototype$1.fill;
+const TypedArrayPrototype = Object.getPrototypeOf(Uint8Array.prototype);
+const TypedArrayProto_byteLength = Object.getOwnPropertyDescriptor(TypedArrayPrototype, 'byteLength').get;
+const TypedArrayFill = TypedArrayPrototype.fill;
 
 Buffer$1.prototype._fill = function (value, offset, end, encoding) {
   if (typeof value === 'number') {
@@ -2792,8 +2790,8 @@ function showFlaggedDeprecation() {
 
 // Copyright Node.js contributors. All rights reserved.
 const {
-  ALL_PROPERTIES: ALL_PROPERTIES$2,
-  ONLY_ENUMERABLE: ONLY_ENUMERABLE$2 } =
+  ALL_PROPERTIES,
+  ONLY_ENUMERABLE } =
 propertyFilter;
 const BooleanPrototype = Boolean.prototype;
 const DatePrototype = Date.prototype;
@@ -3321,7 +3319,7 @@ function formatRaw(ctx, value, recurseTimes, typedArray) {
   let braces;
   let noIterator = true;
   let i = 0;
-  const filter = ctx.showHidden ? ALL_PROPERTIES$2 : ONLY_ENUMERABLE$2;
+  const filter = ctx.showHidden ? ALL_PROPERTIES : ONLY_ENUMERABLE;
   let extrasType = kObjectType; // Iterators and the rest are split to reduce checks.
 
   if (value[Symbol.iterator]) {
@@ -4348,20 +4346,20 @@ function reduceToSingleString(ctx, output, base, braces, extrasType, recurseTime
         const start = output.length + ctx.indentationLvl + braces[0].length + base.length + 10;
 
         if (isBelowBreakLength(ctx, output, start, base)) {
-          return `${base ? `${base} ` : ''}${braces[0]} ${join(output, ', ')} ${braces[1]}`;
+          return `${base ? `${base} ` : ''}${braces[0]} ${join$1(output, ', ')} ${braces[1]}`;
         }
       }
     } // Line up each entry on an individual line.
 
 
     const indentation = `\n${' '.repeat(ctx.indentationLvl)}`;
-    return `${base ? `${base} ` : ''}${braces[0]}${indentation}  ` + `${join(output, `,${indentation}  `)}${indentation}${braces[1]}`;
+    return `${base ? `${base} ` : ''}${braces[0]}${indentation}  ` + `${join$1(output, `,${indentation}  `)}${indentation}${braces[1]}`;
   } // Line up all entries on a single line in case the entries do not exceed
   // `breakLength`.
 
 
   if (isBelowBreakLength(ctx, output, 0, base)) {
-    return `${braces[0]}${base ? ` ${base}` : ''} ${join(output, ', ')} ` + braces[1];
+    return `${braces[0]}${base ? ` ${base}` : ''} ${join$1(output, ', ')} ` + braces[1];
   }
 
   const indentation = ' '.repeat(ctx.indentationLvl); // If the opening "brace" is too large, like in the case of "Set {",
@@ -4370,10 +4368,10 @@ function reduceToSingleString(ctx, output, base, braces, extrasType, recurseTime
 
   const ln = base === '' && braces[0].length === 1 ? ' ' : `${base ? ` ${base}` : ''}\n${indentation}  `; // Line up each entry on an individual line.
 
-  return `${braces[0]}${ln}${join(output, `,\n${indentation}  `)} ${braces[1]}`;
+  return `${braces[0]}${ln}${join$1(output, `,\n${indentation}  `)} ${braces[1]}`;
 }
 
-function format(...args) {
+function format$1(...args) {
   return formatWithOptions(undefined, ...args);
 }
 
@@ -4567,7 +4565,7 @@ function formatWithOptions(inspectOptions, ...args) {
 }
 /* eslint-enable max-depth */
 
-function noop() {}
+function noop$1() {}
 
 function logTime(self, label, logData) {
   label = `${label}`;
@@ -4609,7 +4607,7 @@ function createWriteErrorHandler(stream) {
       // removed after the event, non-console.* writes won't be affected.
       // we are only adding noop if there is no one else listening for 'error'
       if (stream.listenerCount('error') === 0) {
-        stream.once('error', noop);
+        stream.once('error', noop$1);
       }
     }
   };
@@ -4678,7 +4676,7 @@ class Console {
       try {
         // Add and later remove a noop error handler to catch synchronous errors.
         if (stream.listenerCount('error') === 0) {
-          stream.once('error', noop);
+          stream.once('error', noop$1);
         }
 
         const errorHandler = useStdErr ? this._stderrErrorHandler : this._stdoutErrorHandler;
@@ -4691,7 +4689,7 @@ class Console {
         } // Sorry, there's no proper way to pass along the error here.
 
       } finally {
-        stream.removeListener && stream.removeListener('error', noop);
+        stream.removeListener && stream.removeListener('error', noop$1);
       }
     }
   }
@@ -4913,7 +4911,6 @@ if (typeof Error.prototype.toJSON !== 'function') {
  * Licensed under the terms of the Apache Public License
  * Please see the LICENSE included with this distribution for details.
  */
-
 /* globals OS_ANDROID */
 
 /**
@@ -5059,7 +5056,7 @@ function isHijackableModuleId(path) {
 } // Hack require to point to this as a core module "binding"
 
 
-const originalRequire = global.require; // This works for iOS as-is, and also intercepts the call on Android for ti.main.js (the first file executed)
+const originalRequire = global.require; // This works for Windows as-is, and also intercepts the call on Android/iOS for ti.main.js (the first file executed)
 
 global.require = function (moduleId) {
   if (bindings.has(moduleId)) {
@@ -5071,24 +5068,22 @@ global.require = function (moduleId) {
   }
 
   return originalRequire(moduleId);
+}; // ... but we still need to hack it when requiring from other files for Android/iOS (due to module.js impl)
+
+
+const originalModuleRequire = global.Module.prototype.require;
+
+global.Module.prototype.require = function (path, context) {
+  if (bindings.has(path)) {
+    return bindings.get(path);
+  }
+
+  if (redirects.has(path)) {
+    path = redirects.get(path);
+  }
+
+  return originalModuleRequire.call(this, path, context);
 };
-
-{
-  // ... but we still need to hack it when requiring from other files for Android
-  const originalModuleRequire = global.Module.prototype.require;
-
-  global.Module.prototype.require = function (path, context) {
-    if (bindings.has(path)) {
-      return bindings.get(path);
-    }
-
-    if (redirects.has(path)) {
-      path = redirects.get(path);
-    }
-
-    return originalModuleRequire.call(this, path, context);
-  };
-}
 /**
  * Registers a binding from a short module id to an already loaded/constructed object/value to export for that core module id
  *
@@ -5134,15 +5129,81 @@ function redirect(moduleId, filepath) {
   }
 
   redirects.set(moduleId, filepath);
-}
-const binding = {
-  register,
-  redirect };
+} // FIXME: There's a collision here with global.binding declared in KrollBridge.m on iOS
 
-global.binding = binding;
+if (!global.binding) {
+  global.binding = {};
+}
+
+global.binding.register = register;
+global.binding.redirect = redirect;
 
 // Load all JavaScript extensions/polyfills
 register('console', globalConsole);
+
+/* globals OS_ANDROID */
+{
+  // Avoid circular references in JSON structure
+  Object.defineProperty(Titanium.Activity.prototype, 'toJSON', {
+    value: function () {
+      const keys = Object.keys(this);
+      const keyCount = keys.length;
+      const serialized = {};
+
+      for (let i = 0; i < keyCount; i++) {
+        const k = keys[i];
+
+        if (k === 'window' || k === 'intent' || k.charAt(0) === '_') {
+          continue;
+        }
+
+        serialized[k] = this[k];
+      }
+
+      return serialized;
+    },
+    enumerable: false });
+
+}
+
+/* globals OS_ANDROID */
+{
+  const Properties = Titanium.App.Properties;
+
+  function nullOrDefaultValue(defaultValue) {
+    if (typeof defaultValue === 'undefined') {
+      return null;
+    }
+
+    return defaultValue;
+  }
+
+  function propertyGetter(delegate) {
+    return function (key, defaultValue) {
+      if (!Properties.hasProperty(key)) {
+        return nullOrDefaultValue(defaultValue);
+      }
+
+      return delegate.call(Properties, key);
+    };
+  }
+
+  ['getBool', 'getDouble', 'getInt', 'getString'].forEach(function (getter) {
+    Properties[getter] = propertyGetter(Properties[getter]);
+  });
+
+  Properties.getList = Properties.getObject = function (key, defaultValue) {
+    if (!Properties.hasProperty(key)) {
+      return nullOrDefaultValue(defaultValue);
+    }
+
+    return JSON.parse(Properties.getString(key));
+  };
+
+  Properties.setList = Properties.setObject = function (key, val) {
+    Properties.setString(key, JSON.stringify(val));
+  };
+}
 
 /**
  * Appcelerator Titanium Mobile
@@ -5151,27 +5212,382 @@ register('console', globalConsole);
  * Please see the LICENSE included with this distribution for details.
  */
 
-/* globals OS_IOS, OS_VERSION_MAJOR */
+/* globals OS_ANDROID, OS_IOS, OS_VERSION_MAJOR */
 const buffer = Ti.createBuffer({
   value: '' });
 
 const blob = buffer.toBlob();
-// https://developer.mozilla.org/en-US/docs/Web/API/Blob/arrayBuffer
+const BlobPrototype = Object.getPrototypeOf(blob);
 
+{
+  // This doesn't "stick" for iOS. It is implemented natively.
+  // Web Blob has an arrayBuffer() method that returns a Promise
+  // https://developer.mozilla.org/en-US/docs/Web/API/Blob/arrayBuffer
+  Object.defineProperty(BlobPrototype, 'arrayBuffer', {
+    value: function () {
+      return new Promise((resolve, reject) => {
+        let buf;
 
-blob.constructor.prototype.arrayBuffer = function () {
-  return new Promise((resolve, reject) => {
-    let buf;
+        try {
+          buf = this.toArrayBuffer();
+        } catch (err) {
+          return reject(err);
+        }
 
-    try {
-      buf = this.toArrayBuffer();
-    } catch (err) {
-      return reject(err);
+        resolve(buf);
+      });
+    },
+    enumerable: true });
+
+}
+
+/* globals OS_ANDROID */
+
+{
+  const Locale = Titanium.Locale;
+  const wrappedGetString = Locale.getString;
+
+  Locale.getString = function (key, defaultValue) {
+    const defaultValueType = typeof defaultValue; // If the hint/default is not a string, ignore it!
+
+    if (defaultValueType !== 'string') {
+      return wrappedGetString.call(Locale, key);
     }
 
-    resolve(buf);
-  });
+    return wrappedGetString.call(Locale, key, defaultValue);
+  };
+
+  commonjsGlobal.L = Locale.getString;
+}
+
+// Keeps an object alive until dispose() is called.
+// This is currently used to keep "top level" objects
+// (ex: windows, tab groups) alive until their lifecycle ends.
+function PersistentHandle(object) {
+  this.cell = PersistentHandle.lastId++;
+  PersistentHandle.objects[this.cell] = object;
+} // Objects retained by persistent handles.
+// Each element in this array acts as a storage "cell"
+// keeping the object reachable and alive until it is removed.
+
+
+PersistentHandle.objects = {};
+PersistentHandle.lastId = 0;
+
+PersistentHandle.prototype.dispose = function () {
+  if (this.cell === -1) {
+    // This handle has already been disposed.
+    return;
+  }
+
+  delete PersistentHandle.objects[this.cell];
+  this.cell = -1;
 };
+
+/**
+ * Appcelerator Titanium Mobile
+ * Copyright (c) 2013-Present by Appcelerator, Inc. All Rights Reserved.
+ * Licensed under the terms of the Apache Public License
+ * Please see the LICENSE included with this distribution for details.
+ */
+
+{
+  const HTTPClient = Titanium.Network.HTTPClient;
+  const _send = HTTPClient.prototype.send;
+
+  HTTPClient.prototype.send = function (options) {
+    // Retain the httpclient until the request has been finished.
+    const handle = new PersistentHandle(this);
+    this.on('disposehandle', function () {
+      handle.dispose();
+
+      if (kroll.DBG) {
+        kroll.log('HTTPClient', 'The persistent handle is disposed.');
+      }
+    });
+
+    _send.call(this, options);
+  };
+}
+
+/**
+ * Appcelerator Titanium Mobile
+ * Copyright (c) 2012-Present by Appcelerator, Inc. All Rights Reserved.
+ * Licensed under the terms of the Apache Public License
+ * Please see the LICENSE included with this distribution for details.
+ */
+
+/* globals OS_ANDROID */
+{
+  function iPhoneConstant(name) {
+    Titanium.API.error('!!!');
+    Titanium.API.error('!!! WARNING : Use of unsupported constant Ti.UI.iPhone.' + name + ' !!!');
+    Titanium.API.error('!!!');
+    return 0;
+  } // TODO: Remove me. Only for temporary compatibility
+
+
+  Titanium.UI.iPhone = {
+    ActivityIndicatorStyle: {
+      get BIG() {
+        return iPhoneConstant('ActivityIndicatorStyle.BIG');
+      },
+
+      get DARK() {
+        return iPhoneConstant('ActivityIndicatorStyle.DARK');
+      } },
+
+
+    AnimationStyle: {
+      get FLIP_FROM_LEFT() {
+        return iPhoneConstant('AnimationStyle.FLIP_FROM_LEFT');
+      } },
+
+
+    ProgressBarStyle: {
+      get SIMPLE() {
+        return iPhoneConstant('ProgressBarStyle.SIMPLE');
+      } },
+
+
+    SystemButton: {
+      get FLEXIBLE_SPACE() {
+        return iPhoneConstant('SystemButton.FLEXIBLE_SPACE');
+      },
+
+      get DISCLOSURE() {
+        return iPhoneConstant('SystemButton.DISCLOSURE');
+      } },
+
+
+    SystemButtonStyle: {
+      get BAR() {
+        return iPhoneConstant('SystemButtonStyle.BAR');
+      } },
+
+
+    TableViewCellSelectionStyle: {
+      get NONE() {
+        return iPhoneConstant('TableViewCellSelectionStyle.NONE');
+      } },
+
+
+    TableViewSeparatorStyle: {
+      get NONE() {
+        return iPhoneConstant('TableViewSeparatorStyle.NONE');
+      } },
+
+
+    RowAnimationStyle: {
+      get NONE() {
+        return iPhoneConstant('RowAnimationStyle.NONE');
+      } },
+
+
+    TableViewScrollPosition: {
+      get MIDDLE() {
+        return iPhoneConstant('TableViewScrollPosition.MIDDLE');
+      } },
+
+
+    TableViewStyle: {
+      get GROUPED() {
+        return iPhoneConstant('TableViewStyle.GROUPED');
+      } } };
+
+
+
+}
+
+/**
+ * Appcelerator Titanium Mobile
+ * Copyright (c) 2020-Present by Axway, Inc. All Rights Reserved.
+ * Licensed under the terms of the Apache Public License
+ * Please see the LICENSE included with this distribution for details.
+ */
+/* global OS_ANDROID */
+
+{
+  const ListView = Titanium.UI.ListView;
+  const defaultTemplate = {
+    properties: {
+      height: '45dp' },
+
+    childTemplates: [{
+      type: 'Ti.UI.Label',
+      bindId: 'title',
+      properties: {
+        left: '6dp',
+        width: '75%' } },
+
+    {
+      type: 'Ti.UI.ImageView',
+      bindId: 'image',
+      properties: {
+        right: '25dp',
+        width: '15%' } }] };
+
+
+
+
+  function createListView(options) {
+    if (!options) {
+      options = {};
+    }
+
+    options.templates = {
+      [Titanium.UI.LIST_ITEM_TEMPLATE_DEFAULT]: defaultTemplate,
+      ...options.templates };
+
+    const templates = options.templates;
+
+    for (const binding in templates) {
+      const currentTemplate = templates[binding];
+      processTemplate(currentTemplate);
+      processChildTemplates(currentTemplate);
+    }
+
+    return new ListView(options);
+  } // Create ListItemProxy, add events, then store it in 'tiProxy' property
+
+
+  function processTemplate(properties) {
+    const cellProxy = Titanium.UI.createListItem();
+    const events = properties.events;
+    properties.tiProxy = cellProxy;
+    addEventListeners(events, cellProxy);
+  } // Recursive function that process childTemplates and append corresponding proxies to
+  // property 'tiProxy'. I.e: type: "Titanium.UI.Label" -> tiProxy: LabelProxy object
+
+
+  function processChildTemplates(properties) {
+    if (!Object.prototype.hasOwnProperty.call(properties, 'childTemplates')) {
+      return;
+    }
+
+    const childProperties = properties.childTemplates;
+
+    if (!childProperties) {
+      return;
+    }
+
+    for (let i = 0; i < childProperties.length; i++) {
+      const child = childProperties[i];
+      const proxyType = child.type;
+
+      if (proxyType) {
+        const creationProperties = child.properties;
+        const creationFunction = lookup(proxyType); // Create proxy.
+
+        let childProxy;
+
+        if (creationProperties) {
+          childProxy = creationFunction(creationProperties);
+        } else {
+          childProxy = creationFunction();
+        } // Add event listeners.
+
+
+        const events = child.events;
+        addEventListeners(events, childProxy); // Append proxy to tiProxy property.
+
+        child.tiProxy = childProxy;
+      }
+
+      processChildTemplates(child);
+    }
+  } // Add event listeners.
+
+
+  function addEventListeners(events, proxy) {
+    if (events !== undefined) {
+      for (const eventName in events) {
+        proxy.addEventListener(eventName, events[eventName]);
+      }
+    }
+  }
+
+  function lookupProxyConstructor(namespace) {
+    const namespaceIndex = namespace.lastIndexOf('.');
+    const proxyName = namespace.slice(namespaceIndex + 1);
+    const parentNamespace = namespace.substring(0, namespaceIndex);
+    const segments = parentNamespace.split('.');
+    let parentProxy = commonjsGlobal;
+
+    for (let i = 0; i < segments.length; i++) {
+      parentProxy = parentProxy[segments[i]];
+    }
+
+    if (parentProxy) {
+      const method = parentProxy[`create${proxyName}`];
+
+      if (method) {
+        return method;
+      }
+    }
+
+    throw new Error(`Could not lookup constructor for namespace: "${namespace}"`);
+  } // Convert name of UI elements into a constructor function.
+  // i.e: lookup("Titanium.UI.Label") returns Titanium.UI.createLabel function.
+
+
+  function lookup(namespace) {
+    // Handle Titanium widgets.
+    if (/^(Ti|Titanium)/.test(namespace)) {
+      return lookupProxyConstructor(namespace); // Handle Alloy widgets.
+    } else {
+      let widget;
+
+      try {
+        // Attempt to load alloy widget.
+        widget = commonjsGlobal.Module.main.require(`/alloy/widgets/${namespace}/controllers/widget`);
+      } catch (e) {
+        try {
+          // Widget does not exist, attempt to load namespace.
+          widget = commonjsGlobal.Module.main.require(namespace);
+        } catch (err) {
+          // Namespace does not exist, fall back to legacy behaviour.
+          return lookupProxyConstructor(namespace);
+        }
+      }
+
+      if (widget) {
+        return function (parameters) {
+          const obj = new widget(parameters);
+          return obj.getView();
+        };
+      }
+    }
+  } // Overwrite list view constructor function with our own.
+
+
+  Titanium.UI.createListView = createListView;
+}
+
+/* globals OS_ANDROID */
+{
+  // Avoid circular references in JSON structure
+  Object.defineProperty(Titanium.UI.NavigationWindow.prototype, 'toJSON', {
+    value: function () {
+      const keys = Object.keys(this);
+      const keyCount = keys.length;
+      const serialized = {};
+
+      for (let i = 0; i < keyCount; i++) {
+        const k = keys[i];
+
+        if (k === 'parent' || k === 'window' || k.charAt(0) === '_') {
+          continue;
+        }
+
+        serialized[k] = this[k];
+      }
+
+      return serialized;
+    },
+    enumerable: false });
+
+}
 
 /**
  * This script is used at runtime for Ti.UI.fetchSemanticColor - as well as at build time by both iOS/Android.
@@ -5283,7 +5699,7 @@ class Color {
   }
   /**
    * Converts this color to an rgba expression. This expression is more consistent across platforms.
-   * (whereas iOS/Android differ in expecttaiosn for hex strings.)
+   * (whereas iOS/Android differ in expectations for hex strings.)
    * @returns {string}
    */
 
@@ -5420,49 +5836,379 @@ Object.defineProperty(UI, 'semanticColorType', {
   let colorset;
 
   UI.fetchSemanticColor = function fetchSemanticColor(colorName) {
+    // Load all semantic colors from JSON if not done already.
+    // Do so via require() in case this file was changed while running LiveView.
     if (!colorset) {
+      const colorsetFileName = 'semantic.colors.json';
+
       try {
-        const colorsetFile = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'semantic.colors.json');
+        const colorsetFile = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, colorsetFileName);
 
         if (colorsetFile.exists()) {
-          colorset = JSON.parse(colorsetFile.read().text);
+          // eslint-disable-next-line security/detect-non-literal-require
+          colorset = require(`/${colorsetFileName}`);
         }
       } catch (error) {
-        // We should probably throw an Error here (or return a fallback color!)
-        console.error('Failed to load colors file \'semantic.colors.json\'');
+        console.error(`Failed to load colors file '${colorsetFileName}'`);
         return color.fallback().toHex();
       }
     }
 
     try {
-      if (!colorset[colorName]) {
-        if (true) {
-          // if it's not in the semantic colors and we're on Android, it may be a Ti.Android.R.color value
-          const systemColorId = Ti.Android.R.color[colorName];
+      if (true) {
+        // On Android, use custom string references to be handled by "TiColorHelper.java".
+        if (colorset[colorName]) {
+          // Add all theme colors to a single string.
+          // Example: "ti.semantic.color:dark=<ColorString>;light=<ColorString>"
+          const colorArray = [];
 
-          if (systemColorId) {
-            const resourceColor = Ti.UI.Android.getColorResource(systemColorId);
-
-            if (resourceColor) {
-              return resourceColor.toHex();
-            }
+          for (const colorType in colorset[colorName]) {
+            const colorObj = color.fromSemanticColorsEntry(colorset[colorName][colorType]);
+            colorArray.push(`${colorType}=${colorObj.toRGBAString()}`);
           }
+
+          return 'ti.semantic.color:' + colorArray.join(';');
+        } else if (Ti.Android.R.color[colorName]) {
+          // We're referencing a native "res" color entry.
+          return `@color/${colorName}`;
         }
-
-        return color.fallback().toHex();
       }
-
-      const entry = colorset[colorName][UI.semanticColorType];
-      const colorObj = color.fromSemanticColorsEntry(entry); // For now, return a string on iOS < 13, Android so we can pass the result directly to the UI property we want to set
-      // Otherwise we need to modify the Android APIs to accept fake/real Ti.UI.Color instances and convert it to it's own internal
-      // Color representation
-
-      return colorObj.toRGBAString(); // If there's an entry, use the more exact rgba function over 8-char ARGB hex. Hard to convert things like 75% alpha properly.
     } catch (error) {
       console.error(`Failed to lookup color for ${colorName}`);
     }
 
     return color.fallback().toHex();
+  };
+}
+
+/**
+ * Appcelerator Titanium Mobile
+ * Copyright (c) 2011-Present by Appcelerator, Inc. All Rights Reserved.
+ * Licensed under the terms of the Apache Public License
+ * Please see the LICENSE included with this distribution for details.
+ */
+
+/* globals OS_ANDROID, OS_IOS */
+{
+  const Tab = Titanium.UI.Tab;
+
+  function createTab(options) {
+    const tab = new Tab(options);
+
+    if (options) {
+      tab._window = options.window;
+    }
+
+    return tab;
+  }
+
+  Titanium.UI.createTab = createTab;
+
+  Tab.prototype.open = function (window, options) {
+    if (!window) {
+      return;
+    }
+
+    if (!options) {
+      options = {};
+    } // When we open a window using tab.open(win), we treat it as
+    // opening a HW window on top of the tab.
+
+
+    options.tabOpen = true;
+    window.open(options);
+  };
+
+  Tab.prototype.close = function (options) {
+    const window = this.getWindow();
+
+    if (window) {
+      window.close(options);
+      this.setWindow(null);
+    }
+  };
+
+  const _setWindow = Tab.prototype.setWindow;
+
+  Tab.prototype.setWindow = function (window) {
+    this._window = window;
+
+    _setWindow.call(this, window);
+  }; // TODO: Remove! This is an undocumented accessor method
+
+
+  Tab.prototype.getWindow = function () {
+    return this._window;
+  };
+
+  Object.defineProperty(Tab.prototype, 'window', {
+    enumerable: true,
+    set: Tab.prototype.setWindow,
+    get: Tab.prototype.getWindow });
+
+}
+
+/**
+ * Appcelerator Titanium Mobile
+ * Copyright (c) 2021 by Axway, Inc. All Rights Reserved.
+ * Licensed under the terms of the Apache Public License
+ * Please see the LICENSE included with this distribution for details.
+ */
+
+/* globals OS_ANDROID */
+{
+  const TabGroup = Titanium.UI.TabGroup; // Avoid circular loops in toJSON()
+
+  Object.defineProperty(TabGroup.prototype, 'toJSON', {
+    value: function () {
+      const keys = Object.keys(this);
+      const keyCount = keys.length;
+      const serialized = {};
+
+      for (let i = 0; i < keyCount; i++) {
+        const k = keys[i];
+
+        if (k === 'activity' || k.charAt(0) === '_') {
+          continue;
+        }
+
+        serialized[k] = this[k];
+      }
+
+      return serialized;
+    },
+    enumerable: false });
+
+  Object.defineProperty(Titanium.UI.Tab.prototype, 'toJSON', {
+    value: function () {
+      const keys = Object.keys(this);
+      const keyCount = keys.length;
+      const serialized = {};
+
+      for (let i = 0; i < keyCount; i++) {
+        const k = keys[i];
+
+        if (k === 'window' || k === 'tabGroup' || k.charAt(0) === '_') {
+          continue;
+        }
+
+        serialized[k] = this[k];
+      }
+
+      return serialized;
+    },
+    enumerable: false });
+
+}
+
+/**
+ * Appcelerator Titanium Mobile
+ * Copyright (c) 2015-Present by Appcelerator, Inc. All Rights Reserved.
+ * Licensed under the terms of the Apache Public License
+ * Please see the LICENSE included with this distribution for details.
+ */
+
+/* globals OS_ANDROID */
+{
+  const View = Titanium.UI.View;
+  const _add = View.prototype.add;
+
+  View.prototype.add = function (child) {
+    if (child instanceof Titanium.TiWindow) {
+      throw new Error('Cannot add window/tabGroup to a view.');
+    }
+
+    this._children = this._children || [];
+
+    _add.call(this, child); // The children have to be retained by the view in the Javascript side
+    // in order to let V8 know the relationship between children and the view.
+    // Therefore, as long as its window is open, all its children won't be detached
+    // or garbage collected and V8 will recoganize the closures and retain all
+    // the related proxies.
+
+
+    this._children.push(child);
+  };
+
+  const _remove = View.prototype.remove;
+
+  View.prototype.remove = function (child) {
+    _remove.call(this, child); // Remove the child in the Javascript side so it can be detached and garbage collected.
+
+
+    const children = this._children || [];
+    const childIndex = children.indexOf(child);
+
+    if (childIndex !== -1) {
+      children.splice(childIndex, 1);
+    }
+  }; // Do not serialize the parent view. Doing so will result
+  // in a circular reference loop.
+
+
+  Object.defineProperty(Titanium.TiView.prototype, 'toJSON', {
+    value: function () {
+      const keys = Object.keys(this);
+      const keyCount = keys.length;
+      const serialized = {};
+
+      for (let i = 0; i < keyCount; i++) {
+        const k = keys[i];
+
+        if (k === 'parent' || k.charAt(0) === '_') {
+          continue;
+        }
+
+        serialized[k] = this[k];
+      }
+
+      return serialized;
+    },
+    enumerable: false });
+
+}
+
+/* globals OS_ANDROID */
+{
+  const createWebView = Titanium.UI.createWebView;
+
+  function createWebViewWrapper(...args) {
+    const webView = createWebView.apply(this, args);
+
+    webView.onCreateWindow = function (e) {
+      if (!e.isUserGesture) {
+        return null;
+      }
+
+      const win = Titanium.UI.createWindow({}, {
+        fullscreen: false // Force new activity.
+      });
+
+      const newWebView = Titanium.UI.createWebView();
+      win.add(newWebView);
+      win.open();
+      return newWebView;
+    };
+
+    return webView;
+  }
+
+  Titanium.UI.createWebView = createWebViewWrapper;
+}
+
+/**
+ * Appcelerator Titanium Mobile
+ * Copyright (c) 2011-Present by Appcelerator, Inc. All Rights Reserved.
+ * Licensed under the terms of the Apache Public License
+ * Please see the LICENSE included with this distribution for details.
+ */
+
+{
+  const TAG = 'Window';
+  const Script = kroll.binding('evals').Script; // Android-specific way to grab binding, hangs off 'script' on iOS
+
+  const Window = Titanium.UI.Window;
+  Window.prototype._cachedActivityProxy = null;
+
+  function createWindow(options) {
+    const window = new Window(options);
+    window._children = [];
+    return window;
+  }
+
+  Titanium.UI.createWindow = createWindow; // Activity getter (account for scenario when heavy weight window's activity is not created yet)
+
+  function activityProxyGetter() {
+    const activityProxy = this._getWindowActivityProxy();
+
+    if (activityProxy) {
+      return activityProxy;
+    }
+
+    if (this._cachedActivityProxy == null) {
+      // eslint-disable-line
+      this._cachedActivityProxy = {};
+    }
+
+    return this._cachedActivityProxy;
+  }
+
+  Window.prototype.getActivity = activityProxyGetter;
+  Object.defineProperty(Window.prototype, 'activity', {
+    get: activityProxyGetter });
+
+  const _open = Window.prototype.open;
+
+  Window.prototype.open = function (options) {
+    // Retain the window until it has closed.
+    const handle = new PersistentHandle(this);
+    const self = this;
+    this.once('close', function (e) {
+      if (e._closeFromActivityForcedToDestroy) {
+        if (kroll.DBG) {
+          kroll.log(TAG, 'Window is closed because the activity is forced to destroy by Android OS.');
+        }
+
+        return;
+      } // Dispose the URL context if the window's activity is destroyed.
+
+
+      if (self._urlContext) {
+        Script.disposeContext(self._urlContext);
+        self._urlContext = null;
+      }
+
+      handle.dispose();
+
+      if (kroll.DBG) {
+        kroll.log(TAG, 'Window is closed normally.');
+      }
+    });
+    return _open.call(this, options);
+  };
+
+  const _add = Window.prototype.add;
+
+  Window.prototype.add = function (child) {
+    if (child instanceof Titanium.TiWindow) {
+      throw new Error('Cannot add window/tabGroup to another window/tabGroup.');
+    }
+
+    _add.call(this, child); // The children have to be retained by the window in the Javascript side
+    // in order to let V8 know the relationship between children and the window.
+    // Therefore, as long as the window is open, all its children won't be detached
+    // or garbage collected and V8 will recoganize the closures and retain all
+    // the related proxies.
+
+
+    this._children.push(child);
+  };
+
+  const _remove = Window.prototype.remove;
+
+  Window.prototype.remove = function (child) {
+    _remove.call(this, child); // Remove the child in the Javascript side so it can be detached and garbage collected.
+
+
+    const children = this._children;
+
+    if (children) {
+      const childIndex = children.indexOf(child);
+
+      if (childIndex !== -1) {
+        children.splice(childIndex, 1);
+      }
+    }
+  };
+
+  Window.prototype.postWindowCreated = function () {
+    if (kroll.DBG) {
+      kroll.log(TAG, 'Checkpoint: postWindowCreated()');
+    }
+
+    if (this._cachedActivityProxy) {
+      this._internalActivity.extend(this._cachedActivityProxy);
+    }
   };
 }
 
@@ -5967,7 +6713,7 @@ process$1.uptime = () => {
   return diffMs / 1000.0; // convert to "seconds" with fractions
 };
 
-process$1.version = "9.3.2";
+process$1.version = "10.0.0";
 process$1.versions = {
   modules: '',
   // TODO: Report module api version (for current platform!)
@@ -6431,7 +7177,7 @@ function assertSegment(segment) {
  */
 
 
-function join$1(separator, paths) {
+function join(separator, paths) {
   const result = []; // naive impl: just join all the paths with separator
 
   for (const segment of paths) {
@@ -6477,7 +7223,7 @@ function resolve(separator, paths) {
 
 
   if (!hitRoot) {
-    resolved = process.cwd() + separator + resolved;
+    resolved = (global.process ? process.cwd() : '/') + separator + resolved;
   }
 
   const normalized = normalize(separator, resolved);
@@ -6644,7 +7390,7 @@ function parse(separator, filepath) {
  */
 
 
-function format$1(separator, pathObject) {
+function format(separator, pathObject) {
   assertArgumentType(pathObject, 'pathObject', 'object');
   const base = pathObject.base || `${pathObject.name || ''}${pathObject.ext || ''}`; // append base to root if `dir` wasn't specified, or if
   // dir is the root
@@ -6712,7 +7458,7 @@ const Win32Path = {
     return normalize(this.sep, filepath);
   },
   join: function (...paths) {
-    return join$1(this.sep, paths);
+    return join(this.sep, paths);
   },
   extname: function (filepath) {
     return extname(this.sep, filepath);
@@ -6733,7 +7479,7 @@ const Win32Path = {
     return parse(this.sep, filepath);
   },
   format: function (pathObject) {
-    return format$1(this.sep, pathObject);
+    return format(this.sep, pathObject);
   },
   toNamespacedPath: toNamespacedPath };
 
@@ -6747,7 +7493,7 @@ const PosixPath = {
     return normalize(this.sep, filepath);
   },
   join: function (...paths) {
-    return join$1(this.sep, paths);
+    return join(this.sep, paths);
   },
   extname: function (filepath) {
     return extname(this.sep, filepath);
@@ -6768,7 +7514,7 @@ const PosixPath = {
     return parse(this.sep, filepath);
   },
   format: function (pathObject) {
-    return format$1(this.sep, pathObject);
+    return format(this.sep, pathObject);
   },
   toNamespacedPath: function (filepath) {
     return filepath; // no-op
@@ -7007,7 +7753,7 @@ const tty = {
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const util = {
-  format,
+  format: format$1,
   formatWithOptions,
   inspect,
   isArray: Array.isArray,
@@ -7137,10 +7883,10 @@ util.deprecate = function (func, string, code) {
 }; // TODO: Support debuglog? What is our equivalent of process.env('NODE_DEBUG')?
 
 
-const noop$1 = () => {};
+const noop = () => {};
 
 util.debuglog = () => {
-  return noop$1;
+  return noop;
 };
 
 const DEFAULT_MESSAGES = {
@@ -7192,11 +7938,11 @@ class AssertionError extends Error {
 // comparisons used (Object.is vs ===)?
 
 
-const assert$1 = (value, message) => assert$1.ok(value, message);
+const assert = (value, message) => assert.ok(value, message);
 
-assert$1.AssertionError = AssertionError;
+assert.AssertionError = AssertionError;
 
-assert$1.ok = (...args) => {
+assert.ok = (...args) => {
   const value = args[0];
 
   if (value) {
@@ -7239,7 +7985,7 @@ function throwError(obj) {
   throw new AssertionError(obj);
 }
 
-assert$1.equal = (actual, expected, message) => {
+assert.equal = (actual, expected, message) => {
   if (actual == expected) {
     // eslint-disable-line eqeqeq
     return;
@@ -7253,7 +7999,7 @@ assert$1.equal = (actual, expected, message) => {
 
 };
 
-assert$1.strictEqual = (actual, expected, message) => {
+assert.strictEqual = (actual, expected, message) => {
   if (Object.is(actual, expected)) {
     // provides SameValue comparison for us
     return;
@@ -7267,7 +8013,7 @@ assert$1.strictEqual = (actual, expected, message) => {
 
 };
 
-assert$1.notEqual = (actual, expected, message) => {
+assert.notEqual = (actual, expected, message) => {
   if (actual != expected) {
     // eslint-disable-line eqeqeq
     return;
@@ -7281,7 +8027,7 @@ assert$1.notEqual = (actual, expected, message) => {
 
 };
 
-assert$1.notStrictEqual = (actual, expected, message) => {
+assert.notStrictEqual = (actual, expected, message) => {
   if (!Object.is(actual, expected)) {
     // provides SameValue comparison for us
     return;
@@ -7631,7 +8377,7 @@ function deepEqual(actual, expected, strictness, references) {
   return result;
 }
 
-assert$1.deepStrictEqual = (actual, expected, message) => {
+assert.deepStrictEqual = (actual, expected, message) => {
   if (!deepEqual(actual, expected, STRICTNESS.Strict)) {
     throwError({
       actual,
@@ -7642,7 +8388,7 @@ assert$1.deepStrictEqual = (actual, expected, message) => {
   }
 };
 
-assert$1.notDeepStrictEqual = (actual, expected, message) => {
+assert.notDeepStrictEqual = (actual, expected, message) => {
   if (deepEqual(actual, expected, STRICTNESS.Strict)) {
     throwError({
       actual,
@@ -7653,7 +8399,7 @@ assert$1.notDeepStrictEqual = (actual, expected, message) => {
   }
 };
 
-assert$1.deepEqual = (actual, expected, message) => {
+assert.deepEqual = (actual, expected, message) => {
   if (!deepEqual(actual, expected, STRICTNESS.Loose)) {
     throwError({
       actual,
@@ -7664,7 +8410,7 @@ assert$1.deepEqual = (actual, expected, message) => {
   }
 };
 
-assert$1.notDeepEqual = (actual, expected, message) => {
+assert.notDeepEqual = (actual, expected, message) => {
   if (deepEqual(actual, expected, STRICTNESS.Loose)) {
     throwError({
       actual,
@@ -7675,7 +8421,7 @@ assert$1.notDeepEqual = (actual, expected, message) => {
   }
 };
 
-assert$1.fail = (message = 'Failed') => throwError({
+assert.fail = (message = 'Failed') => throwError({
   message });
 
 
@@ -7724,7 +8470,7 @@ async function executePromise(fn) {
   return NO_EXCEPTION;
 }
 
-assert$1.throws = (fn, error, message) => {
+assert.throws = (fn, error, message) => {
   const actual = execute(fn);
 
   if (actual === NO_EXCEPTION) {
@@ -7748,7 +8494,7 @@ assert$1.throws = (fn, error, message) => {
   }
 };
 
-assert$1.rejects = async function (asyncFn, error, message) {
+assert.rejects = async function (asyncFn, error, message) {
   const actual = await executePromise(asyncFn);
 
   if (actual === NO_EXCEPTION) {
@@ -7772,7 +8518,7 @@ assert$1.rejects = async function (asyncFn, error, message) {
   }
 };
 
-assert$1.doesNotThrow = (fn, error, message) => {
+assert.doesNotThrow = (fn, error, message) => {
   const actual = execute(fn); // no Error, just return
 
   if (actual === NO_EXCEPTION) {
@@ -7799,7 +8545,7 @@ assert$1.doesNotThrow = (fn, error, message) => {
   throw actual;
 };
 
-assert$1.doesNotReject = async function (fn, error, message) {
+assert.doesNotReject = async function (fn, error, message) {
   const actual = await executePromise(fn); // no Error, just return
 
   if (actual === NO_EXCEPTION) {
@@ -7899,7 +8645,7 @@ function checkError(actual, expected, message) {
   return false;
 }
 
-assert$1.ifError = value => {
+assert.ifError = value => {
   if (value === null || value === undefined) {
     return;
   }
@@ -7913,17 +8659,17 @@ assert$1.ifError = value => {
 }; // Create "strict" copy which overrides "loose" methods to call strict equivalents
 
 
-assert$1.strict = (value, message) => assert$1.ok(value, message); // "Copy" methods from assert to assert.strict!
+assert.strict = (value, message) => assert.ok(value, message); // "Copy" methods from assert to assert.strict!
 
 
-Object.assign(assert$1.strict, assert$1); // Override the "loose" methods to point to the strict ones
+Object.assign(assert.strict, assert); // Override the "loose" methods to point to the strict ones
 
-assert$1.strict.deepEqual = assert$1.deepStrictEqual;
-assert$1.strict.notDeepEqual = assert$1.notDeepStrictEqual;
-assert$1.strict.equal = assert$1.strictEqual;
-assert$1.strict.notEqual = assert$1.notStrictEqual; // hang strict off itself
+assert.strict.deepEqual = assert.deepStrictEqual;
+assert.strict.notDeepEqual = assert.notDeepStrictEqual;
+assert.strict.equal = assert.strictEqual;
+assert.strict.notEqual = assert.notStrictEqual; // hang strict off itself
 
-assert$1.strict.strict = assert$1.strict;
+assert.strict.strict = assert.strict;
 
 /**
  * @param {string} [encoding='utf8'] The character encoding the `StringDecoder` will use.
@@ -8039,7 +8785,6 @@ class MultiByteStringDecoderImpl extends StringDecoderImpl {
    * - charLength: expected number of bytes for the incomplete character
    * - index: index in the buffer where the incomplete character begins
    * @param {Buffer} _buffer Buffer we are checking to see if it has an incompelte "character" at the end
-   * @returns {IncompleteCharObject}
    */
 
 
@@ -10322,7 +11067,7 @@ register('path', path);
 register('os', OS);
 register('tty', tty);
 register('util', util);
-register('assert', assert$1);
+register('assert', assert);
 register('events', EventEmitter);
 register('buffer', BufferModule);
 register('string_decoder', StringDecoder$1);
@@ -10496,7 +11241,7 @@ function loadAsync(finished) {
  * - Load the app developer's main "app.js" script after doing all of the above.
  */
 
-Ti.API.info(`${Ti.App.name} ${Ti.App.version} (Powered by Titanium ${"9.3.2"}.${"f5f8f67867"})`); // Load JS language polyfills
+Ti.API.info(`${Ti.App.name} ${Ti.App.version} (Powered by Titanium ${"10.0.0"}.${"416af89b8f"})`); // Load JS language polyfills
 loadAsync(function () {
   // We've finished loading/executing all bootstrap scripts.
   // We can now proceed to run the main "app.js" script.

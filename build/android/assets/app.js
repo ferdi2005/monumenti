@@ -16,8 +16,10 @@ global.Backbone=Backbone);var
 
 
 tabgroup=null,
-utilsService=require("utilsService");
-Alloy.Globals.Map=require("ti.map"),
+utilsService=require("utilsService");!1,
+
+
+
 Alloy.Globals.utils=new utilsService,
 
 Alloy.Globals.OSM=require("ti.osm"),
