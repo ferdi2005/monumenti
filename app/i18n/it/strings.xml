@@ -76,7 +76,7 @@
     <string name="photo_upload">Caricamento foto</string>
     <string name="index_header_text">Immagini inviate</string> 
     <string name="title_header_text">Immagini da caricare</string> 
-    <string name="license_acceptance">Puoi lasciare i campi così come sono o modificarli rendendoli più descrittivi. A te la scelta.\nAccetto di rilasciare irrevocabilmente queste immagini sotto la licenza Creative Commons-Attribuzione-Condividi allo stesso modo 4.0. Sono consapevole che verranno pubblicate su Wikimedia Commons e saranno riutilizzabili in perpetuo secondo i termini di detta licenza. Dichiaro altresì di essere l'autore delle immagini. Sono consapevole che la responsabilità penale e civile per quanto caricato è a mio carico.</string>
+    <string name="license_acceptance">Puoi lasciare i campi così come sono o modificarli rendendoli più descrittivi. A te la scelta.\nCliccando "Conferma e carica" accetti di rilasciare irrevocabilmente queste immagini sotto la licenza Creative Commons-Attribuzione-Condividi allo stesso modo 4.0, riconosci di essere consapevole che verranno pubblicate su Wikimedia Commons e saranno riutilizzabili in perpetuo secondo i termini di detta licenza e altresì dichiari di essere l'autore delle immagini. Proseguendo, inoltre, prendi atto che la responsabilità penale e civile per quanto caricato resta sempre e inderogabilmente a tuo carico.</string>
     <string name="confirm_upload">Conferma e carica</string>
     <string name="stop_upload">Annulla</string>
     <string name="monuments">Monumenti</string>

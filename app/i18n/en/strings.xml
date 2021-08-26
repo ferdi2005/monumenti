@@ -76,7 +76,7 @@
     <string name="photo_upload">Photo upload</string>
     <string name="index_header_text">Images already uploaded</string> 
     <string name="title_header_text">Images to upload</string> 
-    <string name="license_acceptance">You can leave the fields as they are or edit them making them more informative. Your choice!\nI agree to irrevocably release these images under the Creative Commons-Attribution-ShareAlike 4.0 license. I understand that they will be published on Wikimedia Commons and will be reusable in perpetuity under the terms of that license. I also declare to be the author of the images. I am aware that the criminal and civil responsibility for what I upload is my own.</string>
+    <string name="license_acceptance">You can leave the fields as they are or edit them making them more informative. Your choice!\nClicking on "Confirm and upload", you accept to irrevocably release these images under the Creative Commons-Attribution-ShareAlike 4.0 license, you acknowledge that they will be published on Wikimedia Commons and will be reusable in perpetuity under the terms of that license and you also declare to be their author. If you continue with the upload, you also acknowledge that the criminal and civil responsibility for what is being uploaded is your own.</string>
     <string name="confirm_upload">Confirm and upload</string>
     <string name="stop_upload">Cancel</string>
     <string name="monuments">Monuments</string>
