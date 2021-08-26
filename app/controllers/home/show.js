@@ -20,7 +20,11 @@ if (OS_ANDROID) {
 
 // Nasconde tutti i buttons per mostrarli via via.
 $.Upload.hide();
+$.Upload.height = 0;
+
 $.Info.hide();
+$.Info.height = 0;
+
 $.image.hide();
 $.image.height = 0;
 
@@ -31,6 +35,7 @@ $.Wikipedia.hide();
 $.Wikipedia.height = 0;
 
 $.Osm_button.hide();
+$.Osm_button.height = 0;
 
 $.address.hide();
 $.address.height = 0;
@@ -214,9 +219,10 @@ var client = Ti.Network.createHTTPClient({
         });
         // Evita il caricamento di foto di monumenti scaduti
         if (response.noupload == false) {
+            $.Upload.height = Ti.UI.SIZE;
             $.Upload.show();
         } else {
-            $.Alert.textid = "authorization_expired";
+            $.Alert.text = L("authorization_expired");
         }
         
         $.Info.addEventListener('click', function (e) {
@@ -248,6 +254,7 @@ var client = Ti.Network.createHTTPClient({
             });
             message.show();
         });
+        $.Info.height = Ti.UI.SIZE;
         $.Info.show();
         
         function openOSMdialog(response, osm_url) {
@@ -334,6 +341,7 @@ var client = Ti.Network.createHTTPClient({
             });
             
             $.Osm_button.show();
+            $.Osm_button.height = Ti.UI.SIZE;
             
 
             if (OS_IOS) {

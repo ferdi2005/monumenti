@@ -3,7 +3,6 @@
 /platform
 /i18n
 /build/*
-!/build/android
 npm-debug.log
 tmp
 .map
