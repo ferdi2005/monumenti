@@ -150,6 +150,8 @@ function triggerDeletion(uuid, user_initiated = false){
                             $.config.close();
                         });
                         message.show();
+                    } else {
+                        $.config.close();
                     }
                 },
                 timeout: 5000
