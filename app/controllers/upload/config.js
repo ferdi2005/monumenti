@@ -269,8 +269,16 @@ function retrieveUserData(uuid, token, user_initiated = false) {
             }
         },
         onerror: function(e) {
-            alert(String.format(L("connection_erorr"), e.error));
-            $.config.close;
+            if (!user_initiated) {
+                var message = Ti.UI.createAlertDialog({message: String.format(L("connection_erorr"), e.error), okid: "ok"});
+                message.addEventListener("click", function(e){
+                    $.config.close();
+                });
+                message.show();
+            } else {    
+                alert(String.format(L("connection_erorr"), e.error));
+                $.config.close;
+            }
         },
         timeout: 5000
     });
@@ -349,12 +357,19 @@ $.config.addEventListener("open", function(e) {
 
                     keychainItem.save(GENERATED_TOKEN);
                 } else {
-                    alert(String.format(L("generic_error"), this.status));
-                    $.config.close();  
+                    var message = Ti.UI.createAlertDialog({message: String.format(L("generic_error"), this.status), okid: "ok"});
+                    message.addEventListener("click", function(e){
+                        $.config.close();
+                    });
+                    message.show();
                 }
             },
             onerror: function(e) {
-                alert(String.format(L("connection_erorr"), e.error));
+                var message = Ti.UI.createAlertDialog({message: String.format(L("connection_erorr"), e.error), okid: "ok"});
+                message.addEventListener("click", function(e){
+                    $.config.close();
+                });
+                message.show();
             },
             timeout: 5000
         });
