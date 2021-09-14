@@ -26,7 +26,7 @@ function setMonumentsData(response, user_initiated, located = false, location){
         response.forEach(function (item) {
             var title;
             // Ottengo la distanza tra elementi
-            if (located == true && item.latitude != null && item.longitude != null) {
+            if (located && item.latitude != null && item.longitude != null) {
                 title = item.itemlabel + " (" + getDistance(location.coords.latitude, location.coords.longitude, item.latitude, item.longitude) + " km)";
             } else {
                 title = item.itemlabel;
@@ -45,9 +45,11 @@ function setMonumentsData(response, user_initiated, located = false, location){
         });
         
         if ($.listsection.items != data) {
-            data = data.sort(function(a,b){
-                return getDistance(location.coords.latitude, location.coords.longitude, a.properties.latitude, a.properties.longitude) - getDistance(location.coords.latitude, location.coords.longitude, b.properties.latitude, b.properties.longitude);
-            })
+            if (located) {
+                data = data.sort(function(a,b){
+                    return getDistance(location.coords.latitude, location.coords.longitude, a.properties.latitude, a.properties.longitude) - getDistance(location.coords.latitude, location.coords.longitude, b.properties.latitude, b.properties.longitude);
+                })
+            }
             $.listsection.setItems(data);
         }
         $.listview.show();
