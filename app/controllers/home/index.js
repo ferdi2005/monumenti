@@ -125,6 +125,8 @@ function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
           if (item.item == monument_item) {
             if (item.tree) {
               annotation.image = "/images/tree orange ios.png";
+            } else if (item.is_castle) {
+              annotation.image = "/images/castle orange ios.png";
             } else {
               annotation.pincolor = Map.ANNOTATION_ORANGE;
             }
@@ -134,7 +136,13 @@ function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
             if (item.with_photos) {
               annotation.image = "/images/tree blue ios.png";
             } else {
-              annotation.image = "/images/tree red ios.png"
+              annotation.image = "/images/tree red ios.png";
+            }
+          } else if (item.is_castle) {
+            if (item.with_photos) {
+              annotation.image = "/images/castle blue ios.png";
+            } else {
+              annotation.image = "/images/castle red ios.png";
             }
           } else {
              if (item.with_photos) {
@@ -155,6 +163,8 @@ function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
           if (item.item == monument_item) {
             if (item.tree) {
               var icon = "/images/tree orange android.png";
+            } else if (item.is_castle) {
+              var icon = "/images/castle orange android.png";
             } else {
               var icon = "/images/Info orange.png";
             }
@@ -163,12 +173,16 @@ function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
           } else if (item.with_photos) {
             if (item.tree) {
               var icon = "/images/tree blue android.png";
+            } else if (item.is_castle) {
+              var icon = "/images/castle blue android.png";
             } else {
               var icon = "/images/Info blue.png";
             }
           } else {
             if (item.tree) {
               var icon = "/images/tree red android.png";
+            } else if (item.is_castle) {
+              var icon = "/images/castle red android.png";
             } else {
               var icon = "/images/Info red.png";
             }
