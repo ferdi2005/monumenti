@@ -295,8 +295,9 @@ $.winmap.addEventListener('open', function(){
     Alloy.Globals.utils.open("onboarding/stats");
   } else if (Ti.App.Properties.getInt("onboarding_status", 0) == 3) {
     Alloy.Globals.utils.open("onboarding/faq");
+  } else { 
+    locate();
   }
-  locate();
 });
 
 if (OS_IOS) {
