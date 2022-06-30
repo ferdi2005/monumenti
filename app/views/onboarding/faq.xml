@@ -1,0 +1,7 @@
+<Alloy>
+	<Window class="controller vertical" id="faq" titleid="faq_title">
+			<Label id="text" class="center" textid="faq_ask" />
+			<Button class="col_8 col_offset_1" id="read_faq" titleid="read_faq" />
+			<Button class="col_8 col_offset_1" id="no_more_faq" titleid="no_more_faq" />
+	</Window>
+</Alloy>

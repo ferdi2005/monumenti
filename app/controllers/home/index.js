@@ -285,7 +285,19 @@ function locate(latkeep, latdelta, londelta) {
   }
 }
 
-$.winmap.addEventListener('open', locate);
+/* Avvio della proceudra di onboarding all'apertura della finestra, altrimenti prosegue con la localizzazione */
+$.winmap.addEventListener('open', function(){
+  if (Ti.App.Properties.getInt("onboarding_status", 0) == 0) {
+    Alloy.Globals.utils.open("onboarding/welcome");
+  } else if (Ti.App.Properties.getInt("onboarding_status", 0) == 1) {
+    Alloy.Globals.utils.open("onboarding/location");
+  } else if (Ti.App.Properties.getInt("onboarding_status", 0) == 2) {
+    Alloy.Globals.utils.open("onboarding/stats");
+  } else if (Ti.App.Properties.getInt("onboarding_status", 0) == 3) {
+    Alloy.Globals.utils.open("onboarding/faq");
+  }
+  locate();
+});
 
 if (OS_IOS) {
   // setInterval(localize(), 120000);

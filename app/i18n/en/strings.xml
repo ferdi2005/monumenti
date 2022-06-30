@@ -86,10 +86,9 @@
     <string name="settings_tab">Settings</string> 
     <string name="image_uploading">Photo %s still uploading...</string>
     <string name="license_link_text">License text</string>
-    <string name="faq_ask">Welcome in the Wiki Loves Monuments Italy app! Do you know how to use it? If not, read our handy FAQs!</string>
+    <string name="faq_ask">Do you know how to use the app? If not, read our handy FAQs! You'll always find them in Settings, if you need.</string>
     <string name="read_faq">No, take me straight to the FAQs!</string>
     <string name="no_more_faq">Yes, I'm an expert. I don't need them.</string>
-    <string name="later_faq">I'll read them later.</string>
     <string name="faq">Frequently asked questions</string>
     <string name="close_app_ask">Do you want to close WLM Italia?</string>
     <string name="yes">Yes</string>
@@ -98,4 +97,13 @@
     <string name="photos_on_commons">All your photos on Commons</string>
     <string name="test_login_start">You're going to login to Test Wiki. If you are not a tester, please do not login to the test wiki and instead do a single click (not a long press) on the button. Anyway, the photos that are uploaded on the test wiki do not participate in the contest.</string>
     <string name="cancel">Cancel</string>
+
+    <string name="welcome_text">Benvenuto nell'app di Wiki Loves Monuments Italia, il concorso fotografico dedicato ai monumenti.</string>
+    <string name="welcome_button">Prosegui</string>
+    <string name="welcome">Benvenuto!</string>
+    <string name="location_title">Posizione</string>
+    <string name="location_text">Quest'applicazione necessita del tuo permesso all'uso della posizione in quanto gran parte delle funzioni sono basate sulla localizzazione. In questo modo, potrai localizzare i monumenti vicino a te!</string>
+    <string name="procedi">Procedi</string>
+    <string name="stats_title">Analisi e dati</string>
+    <string name="faq_title">Domande frequenti</string>
 </resources>

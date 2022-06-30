@@ -166,6 +166,10 @@ overrode the settings with other TSS, XML, or JS settings:
   	}
 }
 
+".center": {
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+}
+
 "#activityindicator": {
 	style: Ti.UI.ActivityIndicatorStyle.DARK,
 	top: 10,

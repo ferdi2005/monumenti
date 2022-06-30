@@ -1,0 +1,26 @@
+
+".container" : {
+  
+}
+
+"Label": {
+    top: "5dp",
+    bottom: "5dp",
+    left: "5dp",
+    right: "5dp"
+}
+
+
+"#button": {
+    backgroundColor: "#990001",
+    color: "#FFFFFF",
+    top: "5dp"
+}
+
+"#title": {
+    font: {
+        fontSize: "30dp",
+        fontWeight: "bold",
+    },
+    color: "#000000",
+}

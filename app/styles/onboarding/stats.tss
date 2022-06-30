@@ -1,0 +1,24 @@
+
+".container" : {
+  
+}
+
+
+"Label": {
+    top: "5dp",
+    bottom: "5dp",
+    left: "5dp",
+    right: "5dp"
+}
+
+
+"#yes": {
+    backgroundColor: "#990001",
+    color: "#FFFFFF",
+}
+
+
+"#no": {
+    backgroundColor: "#FFFFFF",
+    color: "#000000",
+}

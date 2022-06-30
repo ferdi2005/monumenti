@@ -1,0 +1,17 @@
+
+".container" : {
+  
+}
+
+"Label": {
+    top: "5dp",
+    bottom: "5dp",
+    left: "5dp",
+    right: "5dp"
+}
+
+
+"#read_faq": {
+    backgroundColor: "#990001",
+    color: "#FFFFFF",
+}

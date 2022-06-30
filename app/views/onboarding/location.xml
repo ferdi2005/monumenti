@@ -1,0 +1,6 @@
+<Alloy>
+	<Window class="controller vertical" id="location" titleid="location_title">
+			<Label id="text" class="center" textid="location_text" />
+			<Button class="col_4 col_offset_3" id="button" titleid="procedi" />
+	</Window>
+</Alloy>
