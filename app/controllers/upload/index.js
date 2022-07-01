@@ -30,7 +30,7 @@ keychainItem.addEventListener("read", function(k){
                 var userInfo = JSON.parse(this.responseText);
 
                 if (userInfo.testuser) {
-                    var user_url = "https://ferdi.host/wiki/Special:ListFiles/" + userInfo.username;
+                    var user_url = "https://app-test.ferdinando.me/wiki/Special:ListFiles/" + userInfo.username;
                 } else {
                     var user_url = "https://commons.wikimedia.org/wiki/Special:ListFiles/" + userInfo.username;
                 }
