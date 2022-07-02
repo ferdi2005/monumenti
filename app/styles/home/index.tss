@@ -9,7 +9,6 @@
 
 "#mapview": {
   height: Ti.UI.FILL,
-  userLocation: true
 }
 "#introd": {
   font: {

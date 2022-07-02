@@ -9,7 +9,7 @@ $.button.addEventListener("click", function(e) {
         Ti.App.Properties.setInt("onboarding_status", 2);
 
         Alloy.Globals.utils.open("onboarding/stats");
-        $.location.close();
+        $.location.close({animated: false});
     });
 });
 

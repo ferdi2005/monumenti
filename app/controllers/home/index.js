@@ -29,6 +29,9 @@ if (OS_ANDROID) {
 if (OS_IOS) {
   $.mapview.mapType = Map.NORMAL_TYPE;
   $.mapview.height = Ti.UI.FILL;
+  if (Ti.App.Properties.setInt("onboarding_status", 0) ==  4) {
+    $.mapview.userLocation = true;
+  }
 }
 
 function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
@@ -288,17 +291,21 @@ function locate(latkeep, latdelta, londelta) {
 /* Avvio della proceudra di onboarding all'apertura della finestra, altrimenti prosegue con la localizzazione */
 $.winmap.addEventListener('open', function(){
   if (Ti.App.Properties.getInt("onboarding_status", 0) == 0) {
-    Alloy.Globals.utils.open("onboarding/welcome");
+    Alloy.Globals.utils.open("onboarding/welcome", {animated: false});
   } else if (Ti.App.Properties.getInt("onboarding_status", 0) == 1) {
-    Alloy.Globals.utils.open("onboarding/location");
+    Alloy.Globals.utils.open("onboarding/location", {animated: false});
   } else if (Ti.App.Properties.getInt("onboarding_status", 0) == 2) {
-    Alloy.Globals.utils.open("onboarding/stats");
+    Alloy.Globals.utils.open("onboarding/stats", {animated: false});
   } else if (Ti.App.Properties.getInt("onboarding_status", 0) == 3) {
-    Alloy.Globals.utils.open("onboarding/faq");
+    Alloy.Globals.utils.open("onboarding/faq", {animated: false});
   } else { 
     locate();
   }
 });
+
+if (OS_IOS) {
+  Alloy.Globals.events.on("firstlocate", locate);
+}
 
 if (OS_IOS) {
   // setInterval(localize(), 120000);

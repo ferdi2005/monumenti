@@ -1,6 +1,7 @@
 
-".container" : {
-  
+".controller[platform=ios]" : {
+  top: "50dp",
+  navBarHidden: true
 }
 
 "Label": {

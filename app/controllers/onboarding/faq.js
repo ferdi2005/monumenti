@@ -3,7 +3,8 @@ var args = $.args;
 
 function do_close() {
     Ti.App.Properties.setInt("onboarding_status", 4);
-    $.faq.close();
+    $.faq.close({animated: false});
+    Alloy.Globals.events.trigger("firstlocate");
 }
 
 $.read_faq.addEventListener('click', function(e) {
@@ -21,6 +22,7 @@ $.read_faq.addEventListener('click', function(e) {
                 Dialog.addEventListener('click', function(e) {
                     do_close();
                 });
+                $.faq.addEventListener("focus", do_close);
             }
         } else {
             Ti.Platform.openURL(faq_url);

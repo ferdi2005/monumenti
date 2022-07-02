@@ -81,7 +81,7 @@
     width: Ti.UI.FILL,
     top: '3dp',
     bottom: '5dp',
-    userAgent: "Wiki Loves Monuments Italia app/2.4.1 (https://github.com/ferdi2005/monumenti; ferdinando.traversa@wikimedia.it) ti.osm/1.0.1",
+    userAgent: "Wiki Loves Monuments Italia app/2.4.5 (https://github.com/ferdi2005/monumenti; ferdinando.traversa@wikimedia.it) ti.osm/1.0.1",
 }
 
 "#Alert": {
