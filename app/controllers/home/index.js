@@ -290,7 +290,11 @@ function locate(latkeep, latdelta, londelta) {
 
 /* Avvio della proceudra di onboarding all'apertura della finestra, altrimenti prosegue con la localizzazione */
 $.winmap.addEventListener('open', function(){
-  if (Ti.App.Properties.getInt("onboarding_status", 0) == 0) {
+  if (Ti.App.Properties.getBool('faq_dismissed', "notset") == true) {
+    // evita che l'onboarding venga mostrato a chi aveva già una versione precedente dell'app
+    Ti.App.Properties.setInt("onboarding_status", 4);
+    locate();
+  } else if (Ti.App.Properties.getInt("onboarding_status", 0) == 0) {
     Alloy.Globals.utils.open("onboarding/welcome", {animated: false});
   } else if (Ti.App.Properties.getInt("onboarding_status", 0) == 1) {
     Alloy.Globals.utils.open("onboarding/location", {animated: false});
