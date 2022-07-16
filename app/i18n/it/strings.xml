@@ -2,7 +2,7 @@
     <string name="app_version">Versione %s</string>
     <string name="credits_text">Applicazione sviluppata da Ferdinando Traversa per il concorso Wiki Loves Monuments.\nIcona dell'albero modificata da Symbolon, licenza CC-BY 3.0\nIcone della barra di navigazione modificate da FontAwesome, licenza CC-BY-SA 4.0\nTraduzione in Inglese di Marco Montanari (@sirmmo)</string>
     <string name="error_geolocation">Qualcosa è andato storto! Assicurati di aver attivato la geolocalizzazione e riavvia l'applicazione o clicca refresh.</string>
-    <string name="connection_erorr">Si è verificato un errore di connessione: %s. Riprova più tardi.</string> 
+    <string name="connection_error">Si è verificato un errore di connessione: %s. Riprova più tardi.</string> 
     <string name="generic_error">Si è verificato un errore: %s. Riprova più tardi.</string> 
     <string name="activate_geolocation">Attiva la geolocalizzazione per usare la mappa.</string>
     <string name="no_geolocation_permission">Impossibile localizzarti, non hai dato il permesso alla localizzazione. Cerca una città cliccando sulla lente di ingrandimento oppure abilita la localizzazione dalle impostazioni sulla privacy.</string>
@@ -97,4 +97,12 @@
     <string name="photos_on_commons">Tutte le tue foto su Commons</string>
     <string name="test_login_start">Stai per fare il login alla Test Wiki. Se non sei un tester, sei pregato di evitare di usare la test wiki e di fare un singolo click sul pulsante, non tenendolo premuto. Le foto caricate sulla wiki di test non partecipano al concorso.</string>
     <string name="cancel">Annulla</string>
+    <string name="welcome_text">Benvenuto nell'app di Wiki Loves Monuments Italia, il concorso fotografico dedicato ai monumenti.</string>
+    <string name="welcome_button">Prosegui</string>
+    <string name="welcome">Benvenuto!</string>
+    <string name="location_title">Posizione</string>
+    <string name="location_text">Quest'applicazione necessita del tuo permesso all'uso della posizione in quanto gran parte delle funzioni sono basate sulla localizzazione. In questo modo, potrai localizzare i monumenti vicino a te!</string>
+    <string name="procedi">Procedi</string>
+    <string name="stats_title">Analisi e dati</string>
+    <string name="faq_title">Domande frequenti</string>
 </resources>
