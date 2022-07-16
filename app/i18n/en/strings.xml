@@ -2,7 +2,7 @@
     <string name="app_version">Version %s</string>
     <string name="credits_text">App developed by Ferdinando Traversa for Wiki Loves Monuments.\nTree icon derived by symbolon, CC-BY 3.0 license.\nNavigation bar icons derived by FontAwesome, CC-BY-SA 4.0 license\nEnglish translation by Marco Montanari (@sirmmo)</string>
     <string name="error_geolocation">Something went wrong! Make sure you have geolocation enabled and restart the app or click refresh.</string>
-    <string name="connection_erorr">A connection error occurred: %s.Retry later.</string> 
+    <string name="connection_error">A connection error occurred: %s.Retry later.</string> 
     <string name="generic_error">An error occurred: %s. Retry later.</string> 
     <string name="activate_geolocation">Enable geolocation to use the map.</string>
     <string name="no_geolocation_permission">Unable to locate you, you have not given permission to locate. Search for a city by clicking on the magnifying glass or enable localization from your privacy settings.</string>
@@ -97,13 +97,12 @@
     <string name="photos_on_commons">All your photos on Commons</string>
     <string name="test_login_start">You're going to login to Test Wiki. If you are not a tester, please do not login to the test wiki and instead do a single click (not a long press) on the button. Anyway, the photos that are uploaded on the test wiki do not participate in the contest.</string>
     <string name="cancel">Cancel</string>
-
-    <string name="welcome_text">Benvenuto nell'app di Wiki Loves Monuments Italia, il concorso fotografico dedicato ai monumenti.</string>
-    <string name="welcome_button">Prosegui</string>
-    <string name="welcome">Benvenuto!</string>
-    <string name="location_title">Posizione</string>
-    <string name="location_text">Quest'applicazione necessita del tuo permesso all'uso della posizione in quanto gran parte delle funzioni sono basate sulla localizzazione. In questo modo, potrai localizzare i monumenti vicino a te!</string>
-    <string name="procedi">Procedi</string>
-    <string name="stats_title">Analisi e dati</string>
-    <string name="faq_title">Domande frequenti</string>
+    <string name="welcome_text">Welcome in the app of Wiki Loves Monuments Italia, the photo contest dedicated to monuments.</string>
+    <string name="welcome_button">Next</string>
+    <string name="welcome">Welcome!</string>
+    <string name="location_title">Position</string>
+    <string name="location_text">This application needs your allowance to use position because most functions works with localization. This way, you can get the monuments close to you!</string>
+    <string name="procedi">Next</string>
+    <string name="stats_title">Analysis and data</string>
+    <string name="faq_title">FAQ</string>
 </resources>
