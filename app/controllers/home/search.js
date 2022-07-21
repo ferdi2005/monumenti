@@ -113,7 +113,7 @@ function searchTowns(value, user_initiated) {
 
         },
         onerror: function(e) {
-            alert(String.format(L("connection_erorr"), e.error));
+            alert(String.format(L("connection_error"), e.error));
             $.activityIndicator.hide();
         },
         timeout: 50000
@@ -156,7 +156,7 @@ function searchMonuments(value, user_initiated) {
 
         },
         onerror: function(e) {
-            alert(String.format(L("connection_erorr"), e.error));
+            alert(String.format(L("connection_error"), e.error));
             $.activityIndicator.hide();
         },
         timeout: 50000

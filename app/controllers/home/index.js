@@ -204,7 +204,7 @@ function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
       $.activityIndicator.hide();
     },
     onerror: function (e) {
-      alert(String.format(L("connection_erorr"), e.error));
+      alert(String.format(L("connection_error"), e.error));
       $.activityIndicator.hide();
 
     },

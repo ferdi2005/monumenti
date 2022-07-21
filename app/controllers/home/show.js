@@ -437,7 +437,7 @@ var client = Ti.Network.createHTTPClient({
         }
     },
     onerror: function (e) {
-        alert(String.format(L("connection_erorr"), e.error));
+        alert(String.format(L("connection_error"), e.error));
         $.activityIndicator.hide();
         $.show.close();
     },
