@@ -137,19 +137,31 @@ function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
             annotation.pincolor = Map.ANNOTATION_PURPLE;
           } else if (item.tree) {
             if (item.with_photos) {
-              annotation.image = "/images/tree blue ios.png";
+              if (item.featured || item.quality) {
+                annotation.image = "/images/tree gold ios.png";
+              } else {
+                annotation.image = "/images/tree blue ios.png";
+              }
             } else {
               annotation.image = "/images/tree red ios.png";
             }
           } else if (item.is_castle) {
             if (item.with_photos) {
-              annotation.image = "/images/castle blue ios.png";
+              if (item.featured || item.quality) {
+                annotation.image = "/images/castle gold ios.png";
+              } else {
+                annotation.image = "/images/castle blue ios.png";
+              }
             } else {
               annotation.image = "/images/castle red ios.png";
             }
           } else {
              if (item.with_photos) {
-              annotation.pincolor = Map.ANNOTATION_AZURE;
+              if (item.featured || item.quality) {
+                annotation.image = "/images/Info gold ios.png";
+              } else {
+                annotation.pincolor = Map.ANNOTATION_AZURE;
+              }
             } else {
               annotation.pincolor = Map.ANNOTATION_RED;
             }
@@ -175,11 +187,23 @@ function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
             var icon = "/images/Info grey.png"
           } else if (item.with_photos) {
             if (item.tree) {
-              var icon = "/images/tree blue android.png";
+              if (item.featured || item.quality) {
+                var icon = "/images/tree gold android.png";
+              } else {
+                var icon = "/images/tree blue android.png";
+              }
             } else if (item.is_castle) {
-              var icon = "/images/castle blue android.png";
+              if (item.featured || item.quality) {
+                var icon = "/images/castle gold android.png";
+              } else {
+                var icon = "/images/castle blue android.png";
+              }
             } else {
-              var icon = "/images/Info blue.png";
+              if (item.featured || item.quality) {
+                var icon = "/images/Info gold android.png";
+              } else {
+                var icon = "/images/Info blue.png";
+              }
             }
           } else {
             if (item.tree) {
