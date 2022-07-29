@@ -331,9 +331,8 @@ $.winmap.addEventListener('open', function(){
   }
 });
 
-if (OS_IOS) {
-  Alloy.Globals.events.on("firstlocate", locate);
-}
+
+Alloy.Globals.events.on("firstlocate", locate); // Effettua la localizzazione dopo l'onboarding (vedi onboarding/faq.js)
 
 if (OS_IOS) {
   // setInterval(localize(), 120000);
