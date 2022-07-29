@@ -200,7 +200,7 @@ function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
               }
             } else {
               if (item.featured || item.quality) {
-                var icon = "/images/Info gold android.png";
+                var icon = "/images/Info gold.png";
               } else {
                 var icon = "/images/Info blue.png";
               }
