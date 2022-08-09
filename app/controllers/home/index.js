@@ -121,7 +121,8 @@ function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
             longitude: item.longitude,
             title: item.itemlabel,
             myid: item.item,
-            leftButton: "/images/Info ios.png"
+          // leftButton: Titanium.UI.iOS.SystemButton.INFO_LIGHT,
+          // TODO: Ripristinare una volta risolto il bug upstream
           });
           // Cambia il colore del pin a seconda che ci siano o no fotografie
 
@@ -337,6 +338,7 @@ Alloy.Globals.events.on("firstlocate", locate); // Effettua la localizzazione do
 if (OS_IOS) {
   // setInterval(localize(), 120000);
   $.winmap.addEventListener('click', function (e) {
+    Ti.API.log(e.clicksource + " " + e.annotation.myid);
     if (e.annotation != undefined && e.annotation != null && !e.deselected) {
       if (e.clicksource == "infoWindow" || e.clicksource == "leftPane" || e.clicksource == "leftButton" || e.clicksource == "title") {
         Alloy.Globals.utils.open('home/show', e.annotation.myid);
