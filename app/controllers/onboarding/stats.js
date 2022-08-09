@@ -26,7 +26,7 @@ function set_analytics() {
 
 function do_close() {
     Ti.App.Properties.setInt("onboarding_status", 3);
-    Alloy.Globals.utils.open("onboarding/faq");
+    Alloy.Globals.utils.open("onboarding/faq",{animated: false});
     $.stats.close({animated: false});
 }
 $.yes.addEventListener("click", function(){

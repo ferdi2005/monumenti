@@ -2,7 +2,7 @@
 var args = $.args;
 
 $.button.addEventListener("click", function() { 
-    Alloy.Globals.utils.open("onboarding/location");
+    Alloy.Globals.utils.open("onboarding/location", {animated: false});
     Ti.App.Properties.setInt("onboarding_status", 1);
     $.welcome.close({animated: false});
 });
