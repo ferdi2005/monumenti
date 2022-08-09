@@ -121,7 +121,8 @@ function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
             longitude: item.longitude,
             title: item.itemlabel,
             myid: item.item,
-            leftButton: Titanium.UI.iOS.SystemButton.INFO_LIGHT,
+            // leftButton: Titanium.UI.iOS.SystemButton.INFO_LIGHT,
+            // TODO: ripristinare una volta risolto il bug upstream tidev/titanium_mobile#13411
           });
           // Cambia il colore del pin a seconda che ci siano o no fotografie
 
@@ -131,10 +132,12 @@ function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
             } else if (item.is_castle) {
               annotation.image = "/images/castle orange ios.png";
             } else {
-              annotation.pincolor = Map.ANNOTATION_ORANGE;
+              // annotation.pincolor = Map.ANNOTATION_ORANGE;
+              annotation.image = "/images/Info orange ios.png";
             }
           } else if (item.noupload) {
-            annotation.pincolor = Map.ANNOTATION_PURPLE;
+            // annotation.pincolor = Map.ANNOTATION_PURPLE;
+            annotation.image = "/images/Info grey ios.png";
           } else if (item.tree) {
             if (item.with_photos) {
               if (item.featured || item.quality) {
@@ -160,10 +163,12 @@ function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
               if (item.featured || item.quality) {
                 annotation.image = "/images/Info gold ios.png";
               } else {
-                annotation.pincolor = Map.ANNOTATION_AZURE;
+                // annotation.pincolor = Map.ANNOTATION_AZURE;
+                annotation.image = "/images/Info blue ios.png";
               }
             } else {
-              annotation.pincolor = Map.ANNOTATION_RED;
+              // annotation.pincolor = Map.ANNOTATION_RED;
+              annotation.image = "/images/Info red ios.png";
             }
           }
 
