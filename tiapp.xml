@@ -3,7 +3,7 @@
   xmlns:ti="http://ti.appcelerator.org">
   <id>it.wikimedia.wikilovesmonuments</id>
   <name>WLM Italia</name>
-  <version>2.4.5</version>
+  <version>2.5.0.1</version>
   <publisher>Ferdinando Traversa</publisher>
   <url>https://cerca.wikilovesmonuments.it</url>
   <description>App per trovare i monumenti partecipanti a Wiki Loves Monuments con la propria posizione.</description>
@@ -74,7 +74,7 @@
     <target device="ipad">true</target>
     <target device="iphone">true</target>
   </deployment-targets>
-  <sdk-version>10.1.1.GA</sdk-version>
+  <sdk-version>11.0.0.GA</sdk-version>
   <plugins>
     <plugin version="1.0">ti.alloy</plugin>
   </plugins>
