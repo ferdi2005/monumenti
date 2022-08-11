@@ -318,7 +318,7 @@ var client = Ti.Network.createHTTPClient({
                 if (Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE) || Ti.Geolocation.hasLocationPermissions(Ti.Geolocation.AUTHORIZATION_ALWAYS)) {
                     Ti.Geolocation.getCurrentPosition(function (e) {
                         if (e.success) {
-                            var osm_url = "https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude;
+                            var osm_url = "https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "," + e.coords.longitude + ";" + response.latitude + "," + response.longitude;
 
                             showOSMalert(response, osm_url);
                         } else {
@@ -329,7 +329,7 @@ var client = Ti.Network.createHTTPClient({
                     Ti.Geolocation.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function (e) {
                         if (e.success || e.authorizationStatus == 3) { // su iOS ritorna success solo quando e.authorizationStatus == 4, anche il 3 per noi va bene.
                             Ti.Geolocation.getCurrentPosition(function (e) {
-                                var osm_url = "https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "%2C" + e.coords.longitude + "%3B" + response.latitude + "%2C" + response.longitude;
+                                var osm_url = "https://www.openstreetmap.org/directions?route=" + e.coords.latitude + "," + e.coords.longitude + ";" + response.latitude + "," + response.longitude;
 
                                 showOSMalert(response, osm_url);
                             });
