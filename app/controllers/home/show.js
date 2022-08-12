@@ -227,8 +227,8 @@ var client = Ti.Network.createHTTPClient({
         
         $.Info.addEventListener('click', function (e) {
             var info_url;
-            var reasonator_url =  "http://reasonator.toolforge.org/?q=" + response.item + "&lang=it";
-            var wikidata_url = "http://www.wikidata.org/wiki/" + response.item;
+            var reasonator_url =  "http://reasonator.toolforge.org/?q=" + response.item + "&lang=" + Ti.Locale.currentLanguage;
+            var wikidata_url = "http://www.wikidata.org/wiki/" + response.item + "?uselang=" + Ti.Locale.currentLanguage;
             
             var message = Ti.UI.createAlertDialog({message: String.format(L("more_information"), response.itemlabel), buttonNames: ["Wikidata", "Reasonator"]});
             message.addEventListener("click", function(e){
@@ -293,12 +293,9 @@ var client = Ti.Network.createHTTPClient({
         
         $.allphotos.addEventListener("click", function(e) {
             if (Dialog.isSupported()) {
-                if (OS_IOS) {
-                    var allphotos_url = encodeURI(response.allphotos);
-                } else {
                     var allphotos_url = response.allphotos;
-                }
-                if (OS_ANDROID || !Dialog.isOpen()) {
+
+                    if (OS_ANDROID || !Dialog.isOpen()) {
                     Dialog.open({
                         title: response.itemlabel,
                         url: allphotos_url

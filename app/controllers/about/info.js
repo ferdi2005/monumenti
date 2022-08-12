@@ -17,5 +17,5 @@ if (OS_ANDROID) {
 }
 
 $.site.addEventListener("click", function(e){
-    Ti.Platform.openURL("https://wikilovesmonuments.it");
+    Ti.Platform.openURL("https://wikimedia.it/wiki-loves-monuments");
 });

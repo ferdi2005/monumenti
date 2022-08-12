@@ -35,10 +35,6 @@ keychainItem.addEventListener("read", function(k){
                     var user_url = "https://commons.wikimedia.org/wiki/Special:ListFiles/" + userInfo.username;
                 }
 
-                if (OS_IOS) {
-                    var user_url = encodeURI(user_url);
-                }
-
                 $.photos_on_commons.addEventListener("click", function(e) {
                     if (Dialog.isSupported()) {
                         if (OS_ANDROID || !Dialog.isOpen()) {
