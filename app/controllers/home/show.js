@@ -350,40 +350,78 @@ var client = Ti.Network.createHTTPClient({
                 });
                 
                 if (response.noupload) {
-                    annotation.pincolor = Map.ANNOTATION_PURPLE;
+                    // annotation.pincolor = Map.ANNOTATION_PURPLE;
+                    annotation.image = "/images/Info grey ios.png";
                 } else if (response.tree) {
                     if (response.with_photos) {
-                      annotation.image = "/images/tree blue ios.png";
+                      if (response.featured || response.quality) {
+                        annotation.image = "/images/tree gold ios.png";
+                      } else {
+                        annotation.image = "/images/tree blue ios.png";
+                      }
                     } else {
-                      annotation.image = "/images/tree red ios.png"
+                      annotation.image = "/images/tree red ios.png";
                     }
-                } else {
+                  } else if (response.is_castle) {
+                    if (response.with_photos) {
+                      if (response.featured || response.quality) {
+                        annotation.image = "/images/castle gold ios.png";
+                      } else {
+                        annotation.image = "/images/castle blue ios.png";
+                      }
+                    } else {
+                      annotation.image = "/images/castle red ios.png";
+                    }
+                  } else {
                      if (response.with_photos) {
-                      annotation.pincolor = Map.ANNOTATION_AZURE;
+                      if (response.featured || response.quality) {
+                        annotation.image = "/images/Info gold ios.png";
+                      } else {
+                        // annotation.pincolor = Map.ANNOTATION_AZURE;
+                        annotation.image = "/images/Info blue ios.png";
+                      }
                     } else {
-                      annotation.pincolor = Map.ANNOTATION_RED;
+                      // annotation.pincolor = Map.ANNOTATION_RED;
+                      annotation.image = "/images/Info red ios.png";
                     }
-                }        
+                  }               
                 $.mapview.addAnnotation(annotation);
             }
 
             if (OS_ANDROID) {
                 if (response.noupload) {
                     var icon = "/images/Info grey.png"
-                } else if (response.with_photos) {
+                  } else if (response.with_photos) {
                     if (response.tree) {
+                      if (response.featured || response.quality) {
+                        var icon = "/images/tree gold android.png";
+                      } else {
                         var icon = "/images/tree blue android.png";
+                      }
+                    } else if (response.is_castle) {
+                      if (response.featured || response.quality) {
+                        var icon = "/images/castle gold android.png";
+                      } else {
+                        var icon = "/images/castle blue android.png";
+                      }
                     } else {
+                      if (response.featured || response.quality) {
+                        var icon = "/images/Info gold.png";
+                      } else {
                         var icon = "/images/Info blue.png";
+                      }
                     }
-                } else {
+                  } else {
                     if (response.tree) {
-                        var icon = "/images/tree red android.png";
+                      var icon = "/images/tree red android.png";
+                    } else if (response.is_castle) {
+                      var icon = "/images/castle red android.png";
                     } else {
-                        var icon = "/images/Info red.png";
+                      var icon = "/images/Info red.png";
                     }
-                }
-                            var markers = [];
+                  }                            
+                  
+                var markers = [];
                 markers.push({
                     latitude: response.latitude,
                     longitude: response.longitude,
