@@ -29,9 +29,6 @@ if (OS_ANDROID) {
 if (OS_IOS) {
   $.mapview.mapType = Map.NORMAL_TYPE;
   $.mapview.height = Ti.UI.FILL;
-  if (Ti.App.Properties.setInt("onboarding_status", 0) ==  4) {
-    $.mapview.userLocation = true;
-  }
 }
 
 function findmon(e, type, latkeep, latdelta, londelta, monument_item = null) {
@@ -322,6 +319,9 @@ $.winmap.addEventListener('open', function(){
   if (Ti.App.Properties.getBool('faq_dismissed', "notset") == true) {
     // evita che l'onboarding venga mostrato a chi aveva già una versione precedente dell'app
     Ti.App.Properties.setInt("onboarding_status", 4);
+    if (OS_IOS) {
+      $.mapview.userLocation = true;
+    }
     locate();
   } else if (Ti.App.Properties.getInt("onboarding_status", 0) == 0) {
     Alloy.Globals.utils.open("onboarding/welcome", {animated: false});
@@ -332,6 +332,9 @@ $.winmap.addEventListener('open', function(){
   } else if (Ti.App.Properties.getInt("onboarding_status", 0) == 3) {
     Alloy.Globals.utils.open("onboarding/faq", {animated: false});
   } else { 
+    if (OS_IOS) {
+      $.mapview.userLocation = true;
+    }
     locate();
   }
 });
