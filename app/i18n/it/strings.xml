@@ -105,4 +105,6 @@
     <string name="procedi">Procedi</string>
     <string name="stats_title">Analisi e dati</string>
     <string name="faq_title">Domande frequenti</string>
+    <string name="success_in_deleting_image">Immagine eliminata con successo</string>
+    <string name="error_in_deleting_image">C'è stato un problema e non è stato possibile rimuovere l'immagine. Riprova tra poco. %s</string>
 </resources>

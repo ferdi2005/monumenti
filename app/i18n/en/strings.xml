@@ -105,4 +105,7 @@
     <string name="procedi">Next</string>
     <string name="stats_title">Analysis and data</string>
     <string name="faq_title">FAQ</string>
+    <string name="success_in_deleting_image">Image removed successfully</string>
+    <string name="error_in_deleting_image">There has been a problem and it was not possible to remove this image. Please try again later. %s</string>
+
 </resources>

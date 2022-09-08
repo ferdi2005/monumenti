@@ -26,6 +26,41 @@ var images = Array(images)[0];
 
 var length = images.length; // Per mostrare la sbarra solo se necessario
 
+function photo_delete(fired){
+    $.activityIndicator.show();
+    var fired = fired;
+
+    var url = Alloy.Globals.backend + "/photocancel.json";
+    var client = Ti.Network.createHTTPClient({
+        onload: function(e){
+            $.photospace.remove($.photospace.children.find((item) => {return item.id == fired.source.id}));
+
+            uploaded = uploaded.filter((id) => {return id != fired.source.id});
+
+            if (uploaded.length == 0) {
+                $.conferma.hide();
+            }
+
+            alert(L("success_in_deleting_image"));
+            $.activityIndicator.hide();
+            $.activityIndicator.height = 0;
+        },
+        onerror: function(e){
+            alert(String.format(L("error_in_deleting_image"), e.error));
+            $.activityIndicator.hide();
+            $.activityIndicator.height = 0;
+        },
+            timeout: 20000
+        });
+        client.open("POST", url);
+    var content = {
+        uuid: UUID,
+        token: TOKEN,
+        ids: JSON.stringify([fired.source.id]) // fa eliminare solo la foto indicata
+    };
+    client.send(content);
+}
+
 function do_next_upload(){
     images.shift(); // Rimuove l'immagine che è stata già caricata
     if (images.length > 0){
@@ -89,8 +124,15 @@ function upload(photo) {
                 var container = Titanium.UI.createView({
                     layout: "horizontal",
                     width: Ti.UI.FILL,
-                    height: Ti.UI.SIZE
+                    height: Ti.UI.SIZE,
+                    id: id
                 });
+
+                var container_image = Titanium.UI.createView({
+                    layout: "vertical",
+                    width: Ti.UI.SIZE,
+                    height: Ti.UI.SIZE
+                }); // creo container per mostrare il bottone trash sotto il bottone immagine
 
                 var image = Titanium.UI.createImageView({
                     image: photo.media,
@@ -98,6 +140,25 @@ function upload(photo) {
                     left: "5dp",
                     width: "100dp"
                 });
+                
+                var trash_params = {
+                    top: "5dp",
+                    left: "5dp",
+                    width: "20dp",
+                    height: "22.6dp",
+                    id: id,
+                    backgroundImage: "/images/trash-solid.png"
+                }
+
+                if (OS_IOS) {
+                    trash_params.systemButton = Ti.UI.iOS.SystemButton.TRASH;
+                } else if (OS_ANDROID) {
+                    trash_params.backgroundImage = "/images/trash-solid.png";
+                }
+                
+                var trash = Ti.UI.createButton(trash_params);
+
+                trash.addEventListener("click", photo_delete);                
 
                 var view = Titanium.UI.createView({
                     layout: "vertical",
@@ -189,7 +250,9 @@ function upload(photo) {
 
                 uploaded.push(id); // Array delle immagini caricate correttamente
 
-                container.add(image);
+                container_image.add(image);
+                container_image.add(trash); // aggiungo button per cancellare l'immagine in un container dedicato, in modo che sia verticale con l'immagine
+                container.add(container_image);
                 container.add(view);
 
                 $.photospace.add(container);
