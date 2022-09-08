@@ -131,7 +131,8 @@ var client = Ti.Network.createHTTPClient({
             });
 
             $.image.addEventListener("click", function(e) {
-                var image_url = "https://commons.wikimedia.org/wiki/File:" + response.image.replaceAll("%20", "_");
+                Ti.API.log(decodeURI(response.image));
+                var image_url = "https://commons.wikimedia.org/wiki/File:" + decodeURI(response.image).replaceAll("%2C", ",");
 
                 if (Dialog.isSupported()) {
                     if (OS_ANDROID || !Dialog.isOpen()) {
