@@ -27,14 +27,14 @@
     <string name="registration_deleted_by_error">You have been logged out due to a problem. Reopen this tab to start a new one and upload your photographs.</string>
     <string name="ok">Ok</string>
     <string name="server_deletion_not_possible">Your data could not be deleted from the server. Make sure to revoke the oAuth authorization. </string>
-    <string name="login_info">Username: %1$s\nWiki: %2$s</string>
+    <string name="login_info">Username: %s\nWiki: %s</string>
     <string name="your_username"> Your username is %s.</string>
     <string name="start_commons_login">Login to Wikimedia Commons</string>
     <string name="login_not_done">You are not logged in. Click on login to Wikimedia Commons to do so.</string>
     <string name="problem_do_logout">Something went wrong, retry later. If it happens again, please log out and log in again.</string>
     <string name="no_upload_until_commons">Before you can upload photographs, you must be logged into Wikimedia Commons.</string>
     <string name="photo_not_uploaded">Image %s not uploaded due to error.</string>
-    <string name="photo_not_uploaded_with_reason">Image %1$s not uploaded due to error: %2$s.</string>
+    <string name="photo_not_uploaded_with_reason">Image %1$s not uploaded due to error: %s.</string>
     <string name="error_please_logout">An error has occurred. Log out from the Upload Settings Manager in the settings tab.</string>
     <string name="error_image_upload">Error uploading this image, please try again later.</string> 
     <string name="image_title">Image title</string>
@@ -44,7 +44,7 @@
     <string name="fields_are_mandatory">The fields are mandatory! Fill them all out before uploading.</string>
     <string name="image_queue_success">Photos successfully queued for upload! You can check their status in the settings.</string> 
     <string name="image_queue_error">Something went wrong and the upload failed. Please try again later: %s.</string>.
-    <string name="update_app">Warning! You are using an outdated version of the app (%1$s). Go to the store and download the new version %2$s.</string>.
+    <string name="update_app">Warning! You are using an outdated version of the app (%s). Go to the store and download the new version %s.</string>.
     <string name="info">Info about Wiki Loves Monuments</string>
     <string name="credits">Credits</string>.
     <string name="upload_config">Manage upload settings</string>.

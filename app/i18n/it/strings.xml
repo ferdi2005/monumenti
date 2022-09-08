@@ -27,14 +27,14 @@
     <string name="registration_deleted_by_error">Il tuo login è stato rimosso a causa di un problema. Riapri questa scheda per crearne una nuova e caricare le tue fotografie.</string>
     <string name="ok">Ok</string>
     <string name="server_deletion_not_possible">Non è stato possibile cancellare i tuoi dati dal server. Assicurati di revocare l'autorizzazione oAuth. </string>
-    <string name="login_info">Username: %1$s\nWiki: %2$s</string>
+    <string name="login_info">Username: %s\nWiki: %s</string>
     <string name="your_username"> Il tuo nome utente è %s.</string>
     <string name="start_commons_login">Esegui il login a Commons</string>
     <string name="login_not_done">Non hai ancora effettuato il login. Clicca su Accedi a Wikimedia Commons per farlo.</string>
     <string name="problem_do_logout">Si è verificato un problema, riprova più tardi. Se si ripresenta, fai il logout.</string>
     <string name="no_upload_until_commons">Prima di poter caricare le fotografie, devi effettuare l'accesso a Wikimedia Commons.</string>
     <string name="photo_not_uploaded">Immagine %s non caricata a causa di un errore.</string>
-    <string name="photo_not_uploaded_with_reason">Immagine %1$s non caricata a causa di un errore: %2$s.</string>
+    <string name="photo_not_uploaded_with_reason">Immagine %s non caricata a causa di un errore: %s.</string>
     <string name="error_please_logout">Si è verificato un errore. Esegui il logout dalla Gestione impostazioni upload nella scheda impostazioni.</string>
     <string name="error_image_upload">Errore nel caricamento di quest'immagine, riprova più tardi.</string> 
     <string name="image_title">Titolo dell'immagine</string>
@@ -44,7 +44,7 @@
     <string name="fields_are_mandatory">I campi sono obbligatori! Compilali tutti prima di procedere all'upload.</string>
     <string name="image_queue_success">Foto messe in coda per il caricamento con successo! Puoi verificare il loro stato nelle impostazioni.</string> 
     <string name="image_queue_error">Qualcosa è andato storto e il caricamento non è riuscito. Riprova più tardi: %s.</string>
-    <string name="update_app">Attenzione! Stai usando una versione non aggiornata dell'applicazione (%1$s). Vai sullo store a scaricare la nuova versione %2$s.</string>
+    <string name="update_app">Attenzione! Stai usando una versione non aggiornata dell'applicazione (%s). Vai sullo store a scaricare la nuova versione %s.</string>
     <string name="info">Info su Wiki Loves Monuments</string>
     <string name="credits">Crediti</string>
     <string name="upload_config">Gestione impostazioni upload</string>

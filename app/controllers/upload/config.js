@@ -190,7 +190,7 @@ function showUserInfo(userInfo) {
     });
 
     var wiki;
-    userInfo.testuser ? wiki = "Test wiki" : wiki = "Wikimedia Commons"
+    userInfo.testuser ? wiki = "Test wiki" : wiki = "Wikimedia Commons";
     
     $.mediawiki_data.text = String.format(L("login_info"), userInfo.username, wiki);
     
