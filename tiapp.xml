@@ -39,10 +39,6 @@
         <false/>
         <key>NSLocationWhenInUseUsageDescription</key>
         <string>Abbiamo bisogno della tua posizione per poterti localizzare ed indicare quali sono i monumenti più vicini a te.</string>
-        <key>NSLocationAlwaysUsageDescription</key>
-        <string>Abbiamo bisogno della tua posizione per poterti localizzare ed indicare quali sono i monumenti più vicini a te.</string>
-        <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-        <string>Abbiamo bisogno della tua posizione per poterti localizzare ed indicare quali sono i monumenti più vicini a te.</string>
         <key>NSPhotoLibraryUsageDescription</key>
         <string>Abbiamo bisogno dell'accesso alle tue fotografie in modo che tu possa caricarle direttamente dall'app e partecipare al concorso.</string>
         <key>ITSAppUsesNonExemptEncryption</key>
@@ -74,7 +70,7 @@
     <target device="ipad">true</target>
     <target device="iphone">true</target>
   </deployment-targets>
-  <sdk-version>11.0.0.GA</sdk-version>
+  <sdk-version>11.1.0.GA</sdk-version>
   <plugins>
     <plugin version="1.0">ti.alloy</plugin>
   </plugins>
