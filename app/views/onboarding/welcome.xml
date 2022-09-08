@@ -1,7 +1,7 @@
 <Alloy>
 	<Window class="controller vertical" id="welcome" titleid="welcome">
 			<Label id="title" class="center" text="Wiki Loves Monuments Italia"/>
-			<View><ImageView image="/images/wlm logo.png" id="image" width="50%" /></View>
+			<View><ImageView image="/images/wlm logo.png" id="image" width="250dp" /></View>
 			<!-- Inserito in una view per essere centrato-->
 			<Label id="text" class="center" textid="welcome_text" />
 			<Button class="col_4 col_offset_3" id="button" titleid="welcome_button" />
