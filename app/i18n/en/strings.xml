@@ -34,7 +34,7 @@
     <string name="problem_do_logout">Something went wrong, retry later. If it happens again, please log out and log in again.</string>
     <string name="no_upload_until_commons">Before you can upload photographs, you must be logged into Wikimedia Commons.</string>
     <string name="photo_not_uploaded">Image %s not uploaded due to error.</string>
-    <string name="photo_not_uploaded_with_reason">Image %1$s not uploaded due to error: %s.</string>
+    <string name="photo_not_uploaded_with_reason">Image %s not uploaded due to error: %s.</string>
     <string name="error_please_logout">An error has occurred. Log out from the Upload Settings Manager in the settings tab.</string>
     <string name="error_image_upload">Error uploading this image, please try again later.</string> 
     <string name="image_title">Image title</string>
