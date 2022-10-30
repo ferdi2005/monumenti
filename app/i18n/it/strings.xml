@@ -107,4 +107,5 @@
     <string name="faq_title">Domande frequenti</string>
     <string name="success_in_deleting_image">Immagine eliminata con successo</string>
     <string name="error_in_deleting_image">C'è stato un problema e non è stato possibile rimuovere l'immagine. Riprova tra poco. %s</string>
+    <string name="no_photo_left">Non è rimasta alcuna foto da caricare!</sring>
 </resources>

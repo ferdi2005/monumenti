@@ -39,6 +39,12 @@ function photo_delete(fired){
 
             if (uploaded.length == 0) {
                 $.conferma.hide();
+                var message = Ti.UI.createAlertDialog({messageid: "no_photo_left", okid: "ok"});
+                message.addEventListener("click", function(e){
+                    $.title.close();
+                });
+                message.show();
+                return // evita che si prosegua nella funzione
             }
 
             alert(L("success_in_deleting_image"));
