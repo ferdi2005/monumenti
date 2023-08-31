@@ -6,6 +6,22 @@ if (Ti.App.Properties.getBool("analytics", "notset") == true) {
     url += "&uuid=" + Titanium.Platform.id + "&device_name=" + String(Titanium.Platform.username) + "&os=" + Titanium.Platform.osname + "&os_version=" + Titanium.Platform.version + "&model=" + Titanium.Platform.model;
 }
 
+// AVVISO DI CHUISURA APPLICAZIONE
+
+var dialog = Ti.UI.createAlertDialog({
+    message: L("farewell"),
+    ok: L("farewell_cta"),
+    canceledOnTouchOutside: false,
+    persistent: true
+});
+dialog.show();
+
+dialog.addEventListener('click', function(e) {
+    Ti.Platform.openURL("https://app.wikilovesmonuments.it");
+    dialog.show();
+});
+
+/*
 var xhr = Ti.Network.createHTTPClient({
     onload: function(e) {
         response = JSON.parse(this.responseText);
@@ -43,3 +59,4 @@ $.index.onBack = function(e) {
     });
     dialog.show();
 }
+*/
