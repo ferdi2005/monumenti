@@ -107,7 +107,7 @@
     <string name="faq_title">Domande frequenti</string>
     <string name="success_in_deleting_image">Immagine eliminata con successo</string>
     <string name="error_in_deleting_image">C'è stato un problema e non è stato possibile rimuovere l'immagine. Riprova tra poco. %s</string>
-    <string name="no_photo_left">Non è rimasta alcuna foto da caricare!</sring>
+    <string name="no_photo_left">Non è rimasta alcuna foto da caricare!</string>
     <string name="farewell">A partire dal 2023 la presente applicazione è stata sostituita. Grazie a tutti quanti l'hanno utilizzta e a quanti hanno contribuito nel svilupparla. Continua a partecipare al concorso con la nuova webapp!</string>
     <string name="farewell_cta">Apri la nuova webapp</string>
 </resources>

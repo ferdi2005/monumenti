@@ -107,7 +107,7 @@
     <string name="faq_title">FAQ</string>
     <string name="success_in_deleting_image">Image removed successfully</string>
     <string name="error_in_deleting_image">There has been a problem and it was not possible to remove this image. Please try again later. %s</string>
-    <string name="no_photo_left">No photo left for uploading!</sring>
+    <string name="no_photo_left">No photo left for uploading!</string>
     <string name="farewell">Starting from 2023, this app has been replaced. Thanks to who has used it or has contributed to its development. Continue to enter into Wiki Loves Monuents with the new webapp!</string>
     <string name="farewell_cta">Open the new webapp!</string>
 </resources>
